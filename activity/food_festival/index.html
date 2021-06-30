@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="MobileOptimized" content="240" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />  
+    <meta content="email=no" name="format-detection" />
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title>花生地铁美食节</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <img src="images/bg.png" alt="" class="index-img">
+  <div class="bom">指导单位：深圳市零售商业行业协会<span>全程支持：茂业百货南山店、深圳海岸城购物中心、益田假日广场、KK MALL、KK ONE、来电科技 </span>     官方合作媒体：深圳广电集团《食客准备》</div>
+  <img src="images/move.png" alt="" class="img-ico move">
+  <img src="images/nsmy.png" alt="" class="img-ico shop-ico nsmy">
+  <img src="images/hac.png" alt="" class="img-ico shop-ico hac">
+  <img src="images/ytjr.png" alt="" class="img-ico shop-ico ytjr">
+  <img src="images/kkone.png" alt="" class="img-ico shop-ico kkone">
+  <img src="images/kkmall.png" alt="" class="img-ico shop-ico kkmall">
+
+  <img src="images/tgxj.png" alt="" class="img-ico shop-ico tgxj">
+  <img src="images/yhy.png" alt="" class="img-ico shop-ico yhy">
+  <img src="images/cj.png" alt="" class="img-ico shop-ico cj">
+  <img src="images/tj.png" alt="" class="img-ico shop-ico tj">
+  <img src="images/hj.png" alt="" class="img-ico shop-ico hj">
+  <img src="images/hkl.png" alt="" class="img-ico shop-ico hkl">
+  <img src="images/lpesk.png" alt="" class="img-ico shop-ico lpe">
+  <img src="images/wt.png" alt="" class="img-ico shop-ico wt">
+
+
+<div class="black-bg"></div>
+<div class="pop-box">
+  <div class="pop-bg">
+    <div class="pop-con">
+      <!-- <ul>
+        <li>
+          <div class="shop-con">
+            <img src="images/logo01.jpg" alt="" class="shop-logo">
+            <div class="shop-info">
+              <div class="t1">得乐酸奶（海岸城店）</div>
+              <div class="t2">地址：海岸城广场负1楼006号</div>
+            </div>
+          </div>
+          <div class="shop-gray">商户活动：全场买一送一</div>
+        </li>
+      </ul> -->
+    </div>
+  </div>
+  <div class="pop-close"><span></span></div>
+</div>
+<div style="display: none;"><script type="text/javascript" src="https://s5.cnzz.com/z_stat.php?id=1277495370&web_id=1277495370"></script></div>
+<script src="js/zepto.min.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<!-- <script type="text/javascript" src="js/vconsole.min.js"></script>  -->
+<script src="js/public.js"></script>
+<script>
+    $(function(){
+        var win_h =parseInt($(window).height());
+        var win_w =parseInt($(window).width());
+        var bom_h = parseInt($(".bom").height());
+        var fontS = parseInt($("body").css("font-size"));
+        var rate = 1113/(win_h-bom_h);
+        $(".index-img").css("height",(win_h-bom_h)+"px");
+
+        $(".move").css({"height":parseInt(94/rate)+"px","left":parseInt(357/rate)+"px","top":parseInt(1028/rate)+"px",});
+        $(".nsmy").css({"height":parseInt(45/rate)+"px","left":parseInt(412/rate)+"px","top":parseInt(939/rate)+"px",});
+        $(".hac").css({"height":parseInt(45/rate)+"px","left":parseInt(621/rate)+"px","top":parseInt(1005/rate)+"px",});
+        $(".ytjr").css({"height":parseInt(45/rate)+"px","left":parseInt(855/rate)+"px","top":parseInt(780/rate)+"px",});
+        $(".kkone").css({"height":parseInt(45/rate)+"px","left":parseInt(1076/rate)+"px","top":parseInt(870/rate)+"px",});
+        $(".kkmall").css({"height":parseInt(45/rate)+"px","left":parseInt(1828/rate)+"px","top":parseInt(657/rate)+"px",});
+
+        $(".tgxj").css({"height":parseInt(60/rate)+"px","left":parseInt(618/rate)+"px","top":parseInt(1050/rate)+"px",});
+        $(".yhy").css({"height":parseInt(60/rate)+"px","left":parseInt(700/rate)+"px","top":parseInt(1050/rate)+"px",});
+        $(".cj").css({"height":parseInt(60/rate)+"px","left":parseInt(1023/rate)+"px","top":parseInt(82/rate)+"px",});
+        $(".tj").css({"height":parseInt(60/rate)+"px","left":parseInt(1408/rate)+"px","top":parseInt(840/rate)+"px",});
+        $(".hj").css({"height":parseInt(60/rate)+"px","left":parseInt(1670/rate)+"px","top":parseInt(730/rate)+"px",});
+
+        $(".hkl").css({"height":parseInt(60/rate)+"px","left":parseInt(1720/rate)+"px","top":parseInt(702/rate)+"px",});
+        $(".lpe").css({"height":parseInt(60/rate)+"px","left":parseInt(1910/rate)+"px","top":parseInt(184/rate)+"px",});
+        $(".wt").css({"height":parseInt(60/rate)+"px","left":parseInt(1884/rate)+"px","top":parseInt(780/rate)+"px",});
+
+
+
+        $(".pop-box").css({"marginTop":parseInt((win_h-fontS*46.8)/2)+"px","marginLeft":parseInt((win_w-fontS*26.65)/2)+"px",});
+
+        //弹窗显示
+        $(".shop-ico").click(function(){
+          $(".black-bg,.pop-box").show();
+        })
+         $(".pop-close span").click(function(){
+          $(".black-bg,.pop-box").hide();
+        })
+
+        var kkmall = {
+          "shopName":"kkmall",
+          "list":[
+          {
+            "title":"南京大牌档 KK MALL店",
+            "address":"地址：KK MALL京基百纳空间3层L325a",
+            "actText":"9.8元换购民国美龄粥",
+          },
+          {
+            "title":"喜来稀肉 KK MALL店",
+            "address":"地址：KK MALL京基百纳空间2层",
+            "actText":"菌菇拼盘1份（满200元可用）",
+          },
+          {
+            "title":"俏江南 KK MALL店",
+            "address":"地址：KK MALL京基百纳空间3层",
+            "actText":"1元享每日会员菜（满48元可用）",
+          },
+          {
+            "title":"鑫泰泰国料理 KK MALL店",
+            "address":"地址：KK MALL京基百纳空间4层",
+            "actText":"269元换购原价369元超值双人套餐",
+          },
+          ]
+        }
+
+        var ytjr = {
+          "shopName":"ytjr",
+          "list":[
+          {
+            "title":"STARLEAF星叶·南洋料理益田假日广场店",
+            "address":"地址：益田假日广场2层L2-32-35号",
+            "actText":"50元代金券（满100元可用）",
+          }
+          ]
+        }
+        var hac = {
+          "shopName":"hac",
+          "list":[
+          {
+            "title":"梧桐海岸城店",
+            "address":"地址：海岸城购物中心四楼号L423",
+            "actText":"59元代金券、99元代金券",
+          },
+          {
+            "title":"梧桐Plus万象城店",
+            "address":"地址：万象城华润大厦三楼N303B",
+            "actText":"59元代金券、99元代金券",
+          },
+          {
+            "title":"唐宫小聚海岸城店",
+            "address":"地址：海岸城购物中心西区1层128号",
+            "actText":"60元代金券（满200元可用）",
+          },
+          {
+            "title":"云海肴云南菜海岸城店",
+            "address":"地址：海岸城购物中心L5 535号",
+            "actText":"50元代金券（满200元可用）",
+          },
+          {
+            "title":"仁信老铺海岸城店",
+            "address":"地址：海岸城购物中心B1层021-022号铺",
+            "actText":"20元代金券（满100元可用）",
+          },
+          {
+            "title":"船歌鱼水饺海岸城店",
+            "address":"地址：海岸城购物中心-1L025号",
+            "actText":"19元代金券",
+          },
+          {
+            "title":"哈里小屋海岸城店",
+            "address":"地址：海岸城购物中心5楼505-A",
+            "actText":"DIY烘焙课程单次体验9折",
+          },
+          {
+            "title":"得乐酸奶海岸城店",
+            "address":"地址：海岸城广场负1楼006号",
+            "actText":"全场买一送一",
+          },
+
+          {
+            "title":"得乐酸奶南山海雅店",
+            "address":"地址：海雅缤纷城1楼",
+            "actText":"全场买一送一",
+          },
+          {
+            "title":"黑白电视佳华领汇广场店",
+            "address":"地址：佳华领汇广场二期二层LH2F-13",
+            "actText":"臭豆腐单品5折券",
+          },
+          {
+            "title":"黑白电视海岸城店",
+            "address":"地址：海岸城购物中心负一楼",
+            "actText":"臭豆腐单品5折券",
+          },
+          {
+            "title":"黑白电视茂业百货店",
+            "address":"地址：茂业百货南山店负一层",
+            "actText":"臭豆腐单品5折券",
+          },
+          {
+            "title":"黑白电视壹方城店",
+            "address":"地址：壹方城购物中心B2层072号",
+            "actText":"臭豆腐单品5折券",
+          },
+          {
+            "title":"黑白电视连城新天地店",
+            "address":"地址：购物公园地铁站B出口",
+            "actText":"臭豆腐单品5折券",
+          },
+          ]
+        }
+        var kkone = {
+          "shopName":"kkone",
+          "list":[
+          {
+            "title":"熊藏居酒屋KK ONE店",
+            "address":"地址：京基百纳时代一楼151号",
+            "actText":"45元换购88元套餐",
+          },
+          {
+            "title":"探炉烤鱼 KK ONE店",
+            "address":"地址：京基百纳时代4层412A",
+            "actText":"149元换购217元双人套餐",
+          },
+          {
+            "title":"水煮鱼乡 KK ONE店",
+            "address":"地址：京基百纳时代4层412",
+            "actText":"199元换购263元四人套餐",
+          },
+          {
+            "title":"乔木四季 KK ONE店",
+            "address":"地址：京基百纳时代3层306",
+            "actText":"268元换购398元六人套餐",
+          },
+          {
+            "title":"久野木 KK ONE店",
+            "address":"地址：京基百纳时代1层L113",
+            "actText":"52元换购超值定制套餐",
+          },
+          ]
+        }
+
+        var nsmy = {
+          "shopName":"nsmy",
+          "list":[
+          {
+            "title":"后街唐厨南山茂业店",
+            "address":"地址：南山茂业百货8楼F08001铺",
+            "actText":"30元代金券（满100元可用）",
+          },
+          {
+            "title":"萨莉亚南山茂业店",
+            "address":"地址：南山茂业百货B1012",
+            "actText":"20元代金券（满100元可用）",
+          },
+          {
+            "title":"福客南山茂业店",
+            "address":"地址：南山茂业百货负一层B011016号",
+            "actText":"10元代金券（满35元可用）",
+          },
+          {
+            "title":"云味馆南山茂业店",
+            "address":"地址：茂业时代广场L123",
+            "actText":"9.5元换购原价19元云南小锅米线",
+          },
+          {
+            "title":"湘阁里辣南山茂业百货店",
+            "address":"地址：茂业百货8楼",
+            "actText":"剁椒鱼头系列菜品5折",
+          },
+          {
+            "title":"俏凤凰深圳南山茂业店",
+            "address":"地址：茂业百货负一层俏凤凰",
+            "actText":"30元代金券",
+          },
+          ]
+        }
+
+        var tgxj = {
+          "title":"唐宫小聚",
+          "img":"tgxj",
+          "intro":"玩的是创意，考的是手艺。精选唐宫金奖乳鸽等多款唐宫特色名菜搭配各类粤菜名点，融合不同菜式并加以创新，自成一格。",
+          "info":"营业时间 10：30 - 22：00<br/>地址：海岸城购物中心西区1层128号<br/>电话：0755-23888812",
+          "actText":"60元代金券（满200元可用）"
+        };
+
+        var yhy = {
+          "title":"云海肴云南菜",
+          "img":"yhy",
+          "intro":"寓意“源自彩云之南，汇聚四海佳肴”。秉承“真材实料，慢工细活”的宗旨，致力于提供云南美食七彩的饮食文化",
+          "info":"营业时间：11：00 - 21：30<br/>地址① 海岸城购物中心L5 535号<br/>电话：0755-86359177<br/>地址② 壹方城L4 032-033号<br/>电话：0755-23009846<br/>地址③ 九方购物中心B1层<br/>电话：0755-23997717<br/>地址④ 星河COCO Park 四楼L4C-015号<br/>电话：0755-84658349<br/>地址⑤ 万象汇购物中心L4 58号<br/>电话：0755-28683351<br/>地址⑥ 梅林卓悦汇购物中心负一层B1-01号<br/>电话：0755-23964964<br/>地址⑦ 蛇口花园城商务中心L415-3<br/>电话：0755-21650793",
+          "actText":"50元代金券（满200元可用）"
+        }
+
+        var cj = {
+          "title":"車记碳烤肥牛",
+          "img":"cj",
+          "intro":"烤肉与大露天位更配哦！尽管三家店位置小偏，但食材好、好吃、份量足，性价比超高！",
+          "info":"营业时间：11：00 - 02：00<br/>地址① 西丽街道石鼓路4003号早安商务中心B座6、7、10号电话：13728686228 地址② 坂田街道和磡北路众亿美食广场西侧二楼露台<br/>电话：15575977711<br/>地址③ 西乡街道坪洲劳动北路永丰综合楼旁<br/>电话：18664321191",
+          "actText":"肥牛PLUS5折券及15元代金券（满100元可用）"
+        }
+
+        var tj = {
+          "title":"泰炙泰式火锅",
+          "img":"tj",
+          "intro":"一家超人气泰式火锅餐厅，将经典的泰国汤品用作锅底，让泰式风情贯穿一切！",
+          "info":"营业时间：11：00 - 23：00<br/>地址：皇庭广场西广场G层01号<br/>电话：0755-82831070",
+          "actText":"猪肚丸5折券及30元代金券（满100元可用）"
+        }
+
+        var hj = {
+          "title":"欢聚丰豪烧烤",
+          "img":"hj",
+          "intro":"致力于提供舒适美好的烧烤用餐体验",
+          "info":"营业时间：下午17：30 - 22：00<br/>地址① 福田区岗厦村东一坊73号<br/>地址② 福田村大门坊3号102铺<br/>地址③ 区祠堂后街下沙村3坊63号<br/>地址④ 福田区福祥街10号<br/>地址⑤ 福田区赤尾村3坊35号103铺<br/>地址⑥福田区南园街道爱华路31号<br/>电话：0755-22271867",
+          "actText":"48元换购鸡煲/烤鱼及20元代金券"
+        }
+
+        var hkl = {
+          "title":"豪客来牛排",
+          "img":"hkl",
+          "intro":"原汁原味好牛排，欢聚豪客来 ！",
+          "info":"营业时间：10：00 - 22：00<br/>地址：新城市广场B1层B1-A号<br/>电话：0755-82344904",
+          "actText":"128元新人大礼包及10元代金券"
+        }
+
+        var lpe = {
+          "title":"佬炮儿烧烤",
+          "img":"lpe",
+          "intro":"浓情东北味，样样都走心，不仅能烧烤还能打火锅。",
+          "info":"营业时间：17：00 - 03：00<br/>地址①罗湖区太宁路65号太安地铁B出口旁边10米<br/>电话：0755-22271867<br/>地址②布吉街道信义假日名城锦绣园C栋商铺S108<br/>电话：0755-28262767",
+          "actText":"佬炮儿烧烤布吉信义店全场7折50元代金券（满200元可用）"
+        }
+
+        var wt = {
+          "title":"wish梧桐",
+          "img":"wt",
+          "intro":"来自北京的创意京味菜代表，在保留中国传统料理精髓的基础上完美地融合了西方时尚美学元素。招牌菜四味烤鸭非常值得一试！",
+          "info":"营业时间：11：00 - 14：30、17：00 - 22：00<br/>地址① 海岸城购物中心四楼号L423<br/>电话：0755-86621686<br/>地址② 深南东路万象城华润大厦三楼N303B<br/>电话：0755-86691686",
+          "actText":"59元代金券（限妙龄乳鸭使用）<br />99元代金券（限招牌四味烤鸭用）"
+        }
+
+
+
+        $(".nsmy").click(function(){
+          shopList(nsmy);
+        })
+        $(".hac").click(function(){
+          shopList(hac);
+        })
+        $(".kkmall").click(function(){
+          shopList(kkmall);
+        })
+        $(".kkone").click(function(){
+          shopList(kkone);
+        })
+        $(".ytjr").click(function(){
+          shopList(ytjr);
+        })
+
+
+        $(".tgxj").click(function(){
+          shopInfo(tgxj);
+        })
+        $(".yhy").click(function(){
+          shopInfo(yhy);
+        })
+        $(".cj").click(function(){
+          shopInfo(cj);
+        })
+        $(".tj").click(function(){
+          shopInfo(tj);
+        })
+        $(".hj").click(function(){
+          shopInfo(hj);
+        })
+        $(".lpe").click(function(){
+          shopInfo(lpe);
+        })
+        $(".hkl").click(function(){
+          shopInfo(hkl);
+        })
+        $(".wt").click(function(){
+          shopInfo(wt);
+        })
+
+        function shopList(obj){
+          var html='';
+          html+='<div class="desc">以下商户活动优惠券需通过花生BLACK卡吃货节游戏获得 <a href="http://activity.peanut8.com/act/2019/foodie/html/index.html">点击进入游戏</a></div><ul>';
+          if(obj.list.length>0){
+            for(var x=0;x<obj.list.length;x++){
+              html+='<li><div class="shop-con">'+
+                    '<img src="images/'+obj.shopName+'_'+x+'.jpg" alt="" class="shop-logo">'+
+                    '<div class="shop-info"><div class="t1">'+obj.list[x].title+'</div>'+
+                    '<div class="t2">'+obj.list[x].address+'</div>'+
+                    '</div></div><div class="shop-gray">'+obj.list[x].actText+'</div></li>';
+            }
+          }
+          html+='</ul>';
+          $(".pop-con").html(html);
+        }
+
+
+
+
+        function shopInfo(obj){
+          var html='';
+          if(obj){
+           html+='<div class="info-box"><div class="desc">以下商户活动优惠券需通过花生BLACK卡吃货节游戏获得 <a href="http://activity.peanut8.com/act/2019/foodie/html/index.html">点击进入游戏</a></div>'+
+            '<img src="images/'+obj.img+'_img.jpg" alt="">'+
+            '<div class="shop-gray">'+obj.actText+'</div>'+
+            '<div class="title">'+obj.title+'</div>'+
+            '<div class="intro">'+obj.intro+'</div>'+
+            '<div class="info">'+obj.info+'</div></div>';
+            $(".pop-con").html(html);
+          }
+        }
+
+
+
+         
+
+
+
+
+
+    })
+
+</script>
+</body>
+</html>

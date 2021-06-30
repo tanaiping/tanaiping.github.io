@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+<meta name="MobileOptimized" content="240" />
+<meta name="apple-touch-fullscreen" content="YES" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta content="telephone=no" name="format-detection" />  
+<meta content="email=no" name="format-detection" />
+<!-- uc强制竖屏 -->
+<meta name="screen-orientation" content="portrait">
+<!-- QQ强制竖屏 -->
+<meta name="x5-orientation" content="portrait">
+<!-- UC强制全屏 -->
+<meta name="full-screen" content="yes">
+<!-- QQ强制全屏 -->
+<meta name="x5-fullscreen" content="true">
+<!-- UC应用模式 -->
+<meta name="browsermode" content="application">
+<!-- QQ应用模式 -->
+<meta name="x5-page-mode" content="app">
+<!-- windows phone 点击无高光 -->
+<meta name="msapplication-tap-highlight" content="no">
+<!-- 适应移动端end -->
+<title>地铁配对</title>
+<link rel="stylesheet" type="text/css" href="css/com.css">  
+</head>
+<body>
+<div class="main-wrap" style="background-color: #7eccd8;" >
+    <div class="tem-wrap" style="display: none;">
+        <ul class="template-list man-tem clearfix">
+            <li class="checked">
+                <img src="images/template/t1.png" alt="" class="tem-rw" img_name="t1">
+                <div class="check-box"><img src="images/checked.png" alt="" class="check-img"></div>
+            </li>
+            <li>
+                <img src="images/template/t2.png" alt="" class="tem-rw" img_name="t2">
+                <div class="check-box"><img src="images/uncheck.png" alt="" class="check-img"></div>
+            </li>
+            <li>
+                <img src="images/template/t3.png" alt="" class="tem-rw" img_name="t3">
+                <div class="check-box"><img src="images/uncheck.png" alt="" class="check-img"></div>
+            </li>
+            <li>
+                <img src="images/template/t4.png" alt="" class="tem-rw" img_name="t4">
+                <div class="check-box"><img src="images/uncheck.png" alt="" class="check-img"></div>
+            </li>
+            <li>
+                <img src="images/template/t5.png" alt="" class="tem-rw" img_name="t5">
+                <div class="check-box"><img src="images/uncheck.png" alt="" class="check-img"></div>
+            </li>
+            <li>
+                <img src="images/template/t6.png" alt="" class="tem-rw" img_name="t6">
+                <div class="check-box"><img src="images/uncheck.png" alt="" class="check-img"></div>
+            </li>
+            <li>
+                <img src="images/template/t7.png" alt="" class="tem-rw" img_name="t7">
+                <div class="check-box"><img src="images/uncheck.png" alt="" class="check-img"></div>
+            </li>
+            <li>
+                <img src="images/template/t8.png" alt="" class="tem-rw" img_name="t8">
+                <div class="check-box"><img src="images/uncheck.png" alt="" class="check-img"></div>
+            </li>
+            <li>
+                <img src="images/template/t9.png" alt="" class="tem-rw" img_name="t9">
+                <div class="check-box"><img src="images/uncheck.png" alt="" class="check-img"></div>
+            </li>
+        </ul>
+        <ul class="template-list women-tem clearfix">
+            <li>
+                <img src="images/template/t11.png" alt="" class="tem-rw " img_name="t11">
+                <div class="check-box"><img src="images/uncheck.png" alt="" class="check-img"></div>
+            </li>
+            <li>
+                <img src="images/template/t12.png" alt="" class="tem-rw"  img_name="t12">
+                <div class="check-box"><img src="images/uncheck.png" alt="" class="check-img"></div>
+            </li>
+            <li>
+                <img src="images/template/t13.png" alt="" class="tem-rw" img_name="t13">
+                <div class="check-box"><img src="images/uncheck.png" alt="" class="check-img"></div>
+            </li>
+            <li>
+                <img src="images/template/t14.png" alt="" class="tem-rw" img_name="t14">
+                <div class="check-box"><img src="images/uncheck.png" alt="" class="check-img"></div>
+            </li>
+            <li>
+                <img src="images/template/t15.png" alt="" class="tem-rw" img_name="t15">
+                <div class="check-box"><img src="images/uncheck.png" alt="" class="check-img"></div>
+            </li>
+            <li>
+                <img src="images/template/t16.png" alt="" class="tem-rw" img_name="t16">
+                <div class="check-box"><img src="images/uncheck.png" alt="" class="check-img"></div>
+            </li>
+            <li>
+                <img src="images/template/t17.png" alt="" class="tem-rw" img_name="t17">
+                <div class="check-box"><img src="images/uncheck.png" alt="" class="check-img"></div>
+            </li>
+            <li>
+                <img src="images/template/t18.png" alt="" class="tem-rw" img_name="t18">
+                <div class="check-box"><img src="images/uncheck.png" alt="" class="check-img"></div>
+            </li>
+            <li>
+                <img src="images/template/t19.png" alt="" class="tem-rw" img_name="t19">
+                <div class="check-box"><img src="images/uncheck.png" alt="" class="check-img"></div>
+            </li>
+        </ul> 
+        <a href="javascript:history.go(-1);" class="template-back"><img src="images/back.png" alt=""></a>
+        <div class="camera-box">
+            <div class="pr">
+                <img src="images/camera.png" alt="">
+                <div id="camera-btn01"></div>
+            </div>
+        </div>
+    </div> 
+    <!-- 合成照片隐藏的部分 start -->
+    <canvas id="mycanvas"></canvas>
+    <input type="file" accept="image/*"  id="camera_input" /><!-- 调用相机和相册  隐藏的 capture="camera" -->
+    <!-- 合成照片隐藏的部分  end -->
+    <!-- 预览的区域 start -->
+    <div class="preview-wrap" style="display: block;">
+        <img src="images/preview_bg.jpg" alt="" class="preview-bg-img">
+        <a href="javascript:;" class="preview-back"><img src="images/back.png" alt=""></a>
+        <div class="preview-box">
+            <div class="preview-pr">
+                <img src="" alt="" id="self_img"> <!-- 自己拍照的图存在这里  隐藏的 -->
+                <canvas id="c1"></canvas><!--选取的相片 或者拍照的相片 -->
+                <img src="images/preview/t13.png" alt="" class="preview-rw" id="tempalteId">
+                <div class="photo-kuang"></div>
+                <img src="" alt="" id="preview_img" style="width: 169px; height: 169px;">
+                <input type="hidden" value="" id="preview_input_val">  <!-- 合成图片的隐藏域 -->
+            </div>
+        </div>
+        <div id="camera-btn02"><img src="images/re_camera_btn.png" alt=""></div>
+        <div class="submit-btn preview-btn" id="upload-btn"><img src="images/submit_upload-btn.png" alt=""></div>
+    </div>
+    <!-- 预览的区域 end -->
+</div>
+<script type="text/javascript" src="js/jquery.js"></script>  
+<script src="js/alloy_paper.js"></script>  
+<script src="js/alloy_finger.js"></script> 
+<script>
+$(function(){
+    var win_w = window.screen.width;
+    var win_h = window.screen.height;
+    var dp = window.devicePixelRatio;
+    // console.log(win_w + "==="+dp);
+    if(win_w<win_h){
+        var tanslate_value =parseInt((win_h-win_w)/2);
+        var preview_box_width = win_w*0.9*340/660;
+        var value = 'rotate(90deg) translateX('+tanslate_value+'px) translateY('+tanslate_value+'px)';
+        $(".main-wrap").css({"width":win_h,"height":win_w}).css('transform',value);   
+        $(".preview-bg-img,.tem-wrap,.preview-wrap").css({"width":win_h,"height":win_w})
+    }else{
+        var preview_box_width = win_h*0.9*340/660;
+        $(".main-wrap,.preview-bg-img,.tem-wrap,.preview-wrap").css({"width":win_w,"height":win_h});
+       
+    }
+    //选择模板
+    $(".template-list li").click(function(){
+        if(!$(this).hasClass('checked')){
+            $(".template-list li").removeClass('checked').find(".check-img").attr("src","images/uncheck.png");
+            $(this).addClass('checked').find(".check-img").attr("src","images/checked.png");
+            var tem_name = $(this).find(".tem-rw").attr("img_name");
+            $("#tempalteId").attr("src","images/preview/"+tem_name+".png");
+        }
+    });
+    // 设置框 以及拍照相片的显示宽
+    $(".preview-box").css("width",preview_box_width);
+    $(".photo-kuang,#c1,#self_img").css({"height":parseInt(preview_box_width*0.8852)+"px","width":parseInt(preview_box_width*0.8852)+"px"});
+    //预览界面点击返回到模板界面
+    $(".preview-back").click(function(){
+        $(".tem-wrap").show();
+        $(".preview-wrap").hide();
+        // $("body").stop().animate({scrollTop:"0px"},200);
+        $("#preview_img").attr("src","");
+    })
+
+    function getObjectURL(file) {
+        // if(file == null)
+        //     return;     
+        var url = null ;      
+        if (window.createObjectURL!=undefined) { // basic      
+            url = window.createObjectURL(file) ;      
+        } else if (window.URL!=undefined) { // mozilla(firefox)      
+            url = window.URL.createObjectURL(file) ;      
+        } else if (window.webkitURL!=undefined) { // webkit or chrome      
+            url = window.webkitURL.createObjectURL(file) ;      
+        }      
+        return url ;      
+    }   
+    $("#camera-btn01,#camera-btn02").click(function(){
+        $("#camera_input").click();
+    });
+      
+    var canvas = document.getElementById("mycanvas");  //画布
+    var image2 = document.getElementById("self_img");    //自己上传的图
+    var c1 = document.getElementById("c1");    //预览的canvas
+    c1.width = 300;  
+    c1.height = 300;
+    $(document).on("change","#camera_input",function(e){
+        $('#c1').show(); 
+        var ctx1 = c1.getContext("2d");  
+        $('#self_img').hide(); 
+        $("#preview_img").hide();
+        $("#upload-btn").attr("class","submit-btn preview-btn");
+        $("#upload-btn").find("img").attr("src","images/preview-img.png"); 
+        $(".photo-kuang,.preview-rw").show();
+        var $input_file = '<input type="file" accept="image/*"  id="camera_input" />'// 解决上传同一张图没反应的情况   remove  然后再append
+        upimgurl = getObjectURL(this.files[0]);    
+        upimg = new Image();      
+        upimg.src = upimgurl;      
+        upimg.onload = function(){   
+            ctx1.clearRect(0,0,c1.width,c1.height);  
+            var Stage = AlloyPaper.Stage, Bitmap = AlloyPaper.Bitmap,Loader=AlloyPaper.Loader;  
+            var stage = new Stage("#c1");  
+            stage.autoUpdate=false;  
+            var ld = new Loader();  
+            ld.loadRes2([  
+                { id: "test", src: upimgurl },  
+            ]);  
+            ld.complete(function () {  
+                var bmp = new Bitmap(ld.get("test"));  
+                bmp.originX = 0.5;  
+                bmp.originY = 0.5;  
+                bmp.x = stage.width / 2;  
+                bmp.y = stage.height / 2;  
+                stage.add(bmp);  
+      
+                //stage.update();  
+                updateStage();  
+                var initScale = 1;  
+                new AlloyFinger(bmp, {  
+                    multipointStart: function () {  
+                        initScale = bmp.scaleX;  
+                    },  
+                    rotate: function (evt) {  
+                        bmp.rotation += evt.angle;  
+                        //stage.update();  
+                        updateStage();  
+                    },  
+                    pinch: function (evt) {  
+                        bmp.scaleX = bmp.scaleY = initScale * evt.scale;  
+                        //stage.update();  
+                        updateStage();  
+                    },  
+                    pressMove: function (evt) {  
+                        // bmp.x += evt.deltaX;  
+                        // bmp.y += evt.deltaY;
+                        //以下因为旋转90度了 所以改下值
+                        bmp.x += evt.deltaY;  
+                        bmp.y -= evt.deltaX;  
+                        evt.preventDefault();  
+                        //stage.update();  
+                        updateStage();  
+                    }  
+      
+                });  
+            });  
+            //将上传的图片画入canvas圆中  
+            function updateStage(){  
+                ctx1.beginPath();  
+                ctx1.rect(0, 0, c1.width, c1.height);
+                ctx1.save();  
+                ctx1.clip();  
+                stage.update();  
+                ctx1.restore();   
+            }  
+        };   
+        if($(".template-list li").hasClass('checked')){
+               $(".tem-wrap").hide();
+               $(".preview-wrap").show();
+               // $("body").stop().animate({scrollTop:"0px"},200);
+        }
+        $("#camera_input").remove();
+        $("#mycanvas").after($input_file); // 解决上传同一张图没反应的情况   remove  然后再append
+    });   
+      
+    $('.preview-btn').on('click',function(){  
+        $('#self_img').attr('src',c1.toDataURL("image/jpg"));  
+        $('#self_img').show();  
+        $('#c1').hide();
+         setTimeout(function(){
+            canvas = convertImageToCanvas(image2);
+            $("#preview_img").attr("src",convertCanvasToImage(canvas).src);
+            $("#preview_input_val").val(convertCanvasToImage(canvas).src);
+            $(".photo-kuang,#self_img,.preview-rw").hide();
+            $("#preview_img").show();
+            $("#upload-btn").attr("class","submit-btn");
+            $("#upload-btn").find("img").attr("src","images/submit_upload-btn.png");
+       },800);
+    });  
+
+    // Converts image to canvas; returns new canvas element
+    function convertImageToCanvas(image2) {
+        canvas.width ="300";
+        canvas.height = "300";
+        // 在canvas绘制前填充白色背景   
+        canvas.getContext("2d").fillStyle = "#FFF";   
+        canvas.getContext("2d").fillRect(0, 0, canvas.width, canvas.height);
+        canvas.getContext("2d").drawImage(image2, 0, 0,300,300); //self_img 上传的图  width  height  伸展或缩小图像宽高  320
+        // canvas.getContext("2d").drawImage(image1, 0, 0,340,660);
+        return canvas;
+    }
+
+    // Converts canvas to an image
+    function convertCanvasToImage(canvas) {
+        var image = new Image();
+        image.setAttribute('crossOrigin', 'Anonymous'); //解决跨域问题
+        image.src = canvas.toDataURL("image/jpeg",0.6);
+        return image;
+    }
+    $(".submit-btn").click(function(){
+        if(!$(this).hasClass('preview-btn')){
+            $(".main-wrap").append('<div class="black-formsbg" style="display:block;"></div><div class="uploading-box"><div class="upload-pr"><img src="images/upload.gif"><div class="upload-close"></div></div></div>');
+        }
+    })
+
+    $(".main-wrap").on("click",".upload-close",function(){
+        $(".uploading-box,.black-formsbg").remove();
+        // 以下编写 停止上传
+    })
+
+
+    $(function(){
+        $(".down-btn").click(function(){
+            //test("是否成功！！！");
+
+        })
+    })
+    function toast(str){
+        $(".main-wrap").append('<div class="total-box"><span>'+str+'</span></div>');
+       setTimeout(function(){$(".total-box").remove();},2000);
+    }
+   // toast("ssss");
+});
+</script>
+</body>
+</html>

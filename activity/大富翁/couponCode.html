@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="x-rim-auto-match" content="none">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="copyright" content="Copyright (c)花生地铁wifi">
+  <meta name="HandheldFriendly" content="true">
+  <meta name="format-detection" content="telephone=no">
+  <title>奖品详情</title>
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/style.css?v=1.0.0">
+</head>
+
+<body class="coupon-bg">
+  <p class="no-prize">你还没有获得奖品哦!<br />快去参加活动兑换奖品吧!</p>
+  <div class="my-coupon">
+    <div class="prize-img">
+      <img src="./images/prize_long_0.png" alt="">
+    </div>
+    <p class="prize-code">券码：<span class="coupon">SDFERGBH161462</span></p>
+    <div class="prize-info">
+      <p class="tips">使用说明：</p>
+      <p class="note">1、活动时间：12.24~12.28</br>
+        2、活动期间，每位用户每天2次免费抽奖机会，每天首次分享，摇骰子机会+1</br>
+        3、活动期间，每成功邀请1位新用户或让近一周未使用过花生APP老用户，打开花生地铁APP，摇骰子机会+1，
+        每天邀请或唤醒人数排名第一的用户可获得每天最大奖1份。每位用户每天抽奖次数不超过10次；</br>
+        4、邀请人数不限，截止12.28日 22点，累计邀请人数30人以上且排名前3的用户，有机会额外获得惊喜1份好礼（仅限3份）</br>
+        5、活动期间，每天开最大奖，12.24 最大现金红包￥；</br>
+        6、现金红包存放于“我的”—“钱包”里，满￥30即可提现
+      </p>
+    </div>
+    <a href="JavaScript:;" class="btn-get-it"></a>
+  </div>
+  <script src="./js/zepto.min.js"></script>
+  <script src="./js/resize.js"></script>
+  <script src="./js/nfyg-pack-common.js"></script>
+  <!-- <script src="./js/vconsole.min.js"></script> -->
+  <script>
+    $(function () {
+      var nfyg = new NFYG();
+      console.log(nfyg);
+      var isApp = nfyg.browser.isNfyg;
+      var tel, nickName, headUrl, point, userId;
+      var _URL = 'http://activity.peanut8.com/operateact/'
+      var id = GetQueryString('prizeId')
+      if (isApp) {
+        nfyg.getNewUserInfo(function (userInfo) {
+          userInfo = JSON.parse(userInfo);
+          console.log(userInfo);
+          tel = userInfo.mobile;
+          nickName = userInfo.nickName;
+          headUrl = userInfo.headUrl;
+          point = userInfo.point;
+          userId = userInfo.userId;
+          getUserDetail(tel, id)
+        });
+      } else {
+        tel = '15814777383'
+        getUserDetail(tel, id)
+        // $(".no-prize").show().html('请到 花生地铁WiFi APP查看并兑换奖品~')
+        // $('.my-coupon').hide()
+      }
+
+      function getUserDetail(tel, id) {
+        $.ajax({
+          type: "post",
+          url: _URL + 'detail',
+          data: {
+            'userId': tel,
+            'id': id
+          },
+          dataType: "json",
+          success: function (data) {
+            console.log(data);
+            if (data.code == 1) {
+              $(".prize-img img").attr("src", data.info.img);
+              $(".coupon").html(data.coupon)
+              $(".prize-info .note").html(data.info.note);
+              var type = parseInt(data.info.type)
+              switch (type) {
+                case 2:
+                case 3:
+                  $('.prize-code').show()
+                  $('.btn-get-it').hide()
+                  break;
+                case 5:
+                  $('.prize-code').hide()
+                  $('.btn-get-it').attr('href', data.info.url).show()
+                  break;
+                default:
+                  $('.prize-code').show()
+                  $('.btn-get-it').hide()
+                  break;
+              }
+              $(".no-prize").hide()
+              $('.my-coupon').show()
+            } else {
+              $(".no-prize").show()
+              $('.my-coupon').hide()
+            }
+
+          },
+        });
+      }
+      /*获取参数*/
+      function GetQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) {
+          // console.log(r);
+          return decodeURI(r[2]);
+        }
+        return null;
+      }
+    })
+  </script>
+</body>
+
+</html>

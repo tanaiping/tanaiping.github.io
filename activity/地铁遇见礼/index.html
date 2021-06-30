@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+<meta name="MobileOptimized" content="240" />
+<meta name="apple-touch-fullscreen" content="YES" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta content="telephone=no" name="format-detection" />  
+<meta content="email=no" name="format-detection" />
+<!-- uc强制竖屏 -->
+<meta name="screen-orientation" content="portrait">
+<!-- QQ强制竖屏 -->
+<meta name="x5-orientation" content="portrait">
+<!-- UC强制全屏 -->
+<meta name="full-screen" content="yes">
+<!-- QQ强制全屏 -->
+<meta name="x5-fullscreen" content="true">
+<!-- UC应用模式 -->
+<meta name="browsermode" content="application">
+<!-- QQ应用模式 -->
+<meta name="x5-page-mode" content="app">
+<!-- windows phone 点击无高光 -->
+<meta name="msapplication-tap-highlight" content="no">
+<!-- 适应移动端end -->
+<title>地铁配对</title>
+<link rel="stylesheet" type="text/css" href="css/swiper.min.css">
+<link rel="stylesheet" type="text/css" href="css/com.css">
+<script type="text/javascript" src="js/jquery.js"></script>  
+<script type="text/javascript" src="js/swiper.min.js"></script>  
+<script type="text/javascript" src="js/nfygInlay.js"></script>   
+</head>
+<body>
+<div class="swiper-container-horizontal main-wrap" >  
+    <img src="images/indexbg.jpg" alt=""  class="main-bgimg">
+    <!-- Swiper -->
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <img src="images/ad_img/ad_img01.jpg" alt="" class="swiper-adimg">
+                <div class="gift gift01">
+                    <img src="images/gift/01.png" alt="">
+                    <a href="gift_main.html" class="look-gift-btn"></a>
+                </div>
+                <!-- <img src="images/template/t1.png" alt="" class="rw place01"> -->
+                <img src="images/demo/1.jpg" alt="" class="rw place02">
+                <!-- <img src="images/template/t2.png" alt="" class="rw place03"> -->
+                 <div class="gift gift03">
+                    <img src="images/gift/02.png" alt="">
+                    <a href="gift_main.html" class="look-gift-btn"></a>
+                </div>
+                <img src="images/demo/2.jpg" alt="" class="rw place04">
+                <!-- <img src="images/template/t3.png" alt="" class="rw place05"> -->
+                 <div class="gift gift05">
+                    <img src="images/gift/03.png" alt="">
+                    <a href="gift_main.html" class="look-gift-btn"></a>
+                </div>
+                <img src="images/demo/3.jpg" alt="" class="rw place06">
+            </div>
+            <div class="swiper-slide">
+                <img src="images/ad_img/ad_img02.jpg" alt="" class="swiper-adimg">
+                <img src="images/demo/1.jpg" alt="" class="rw place01">
+                <img src="images/demo/4.jpg" alt="" class="rw place02">
+                <img src="images/demo/3.jpg" alt="" class="rw place03">
+                <img src="images/demo/5.jpg" alt="" class="rw place04">
+                <img src="images/demo/2.jpg" alt="" class="rw place05">
+                <img src="images/demo/6.jpg" alt="" class="rw place06">
+            </div>
+            <div class="swiper-slide">
+                <img src="images/ad_img/ad_img03.jpg" alt="" class="swiper-adimg">
+                <img src="images/demo/1.jpg" alt="" class="rw place01">
+                <img src="images/demo/2.jpg" alt="" class="rw place02">
+                <img src="images/demo/3.jpg" alt="" class="rw place03">
+                <img src="images/demo/4.jpg" alt="" class="rw place04">
+                <img src="images/demo/5.jpg" alt="" class="rw place05">
+                <img src="images/demo/6.jpg" alt="" class="rw place06">
+            </div>
+        </div>
+    </div>
+    <!-- Add Arrows -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <!-- subway 地铁 -->
+    <img src="images/index_bottom.png" alt="" class="subway-bottom">
+    <div class="subway-img"><img src="images/subway.png" alt=""></div>
+    <a href="javascript:;" class="how-play-btn"></a>
+    <a href="template.html" class="want-play-btn"></a>
+    <a href="gift_main.html" class="mygift-btn"></a>
+    <!-- Swiper -->
+
+    <div class="black-formsbg"></div>
+    <div class="forms-wrap app-outer" >
+        <img src="images/app_outer.png" alt="">
+        <div class="closeform"></div>
+        <div class="confirm-btn"></div>
+    </div>
+    <div class="forms-wrap app-inner">
+        <img src="images/app_inner.png" alt="">
+        <div class="closeform"></div>
+        <div class="confirm-btn"></div>
+    </div>
+    <div class="forms-wrap unlogin" >
+        <img src="images/unlogin.png" alt="">
+        <div class="closeform"></div>
+        <div class="confirm-btn"></div>
+    </div>
+    
+
+</div>
+<script>
+$(function(){
+    $(".black-formsbg,.app-inner").show();
+    // var win_w = window.screen.width;
+    // var win_h = window.screen.height;
+    var win_w = document.documentElement.clientWidth;
+    var win_h = document.documentElement.clientHeight;
+    var dp = window.devicePixelRatio;
+    // console.log(win_w + "==="+dp);
+    if(win_w<win_h){
+        var tanslate_value =parseInt((win_h-win_w)/2);
+        var value = 'rotate(90deg) translateX('+tanslate_value+'px) translateY('+tanslate_value+'px)';
+        $(".main-wrap").css({"width":win_h,"height":win_w}).css('transform',value);
+        $(".swiper-container").css({"width":win_h,"height":win_w});
+        $(".main-bgimg").css({"width":win_h,"height":win_w});
+        $(".subway-bottom").css({"width":win_h});
+        
+    }else{
+        $(".main-wrap").css({"width":win_w,"height":win_h});
+        $(".swiper-container").css({"width":win_w,"height":win_h});
+        $(".main-bgimg").css({"width":win_w,"height":win_h});
+        $(".subway-bottom").css({"width":win_w});
+    }
+
+
+    //swiper 初始化
+    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+        loop: false,
+        autoplay: false,
+        autoplayDisableOnInteraction: false,
+        onlyExternal : true,//值为true时，slide无法拖动
+        paginationBulletRender: function (swiper, index, className) {
+            return '<span class="' + className + '">' + (index + 1) + '</span>';
+        }
+    });
+
+    var actIndex = 0;
+     /* 动态赋值 start */
+    // var str1 = '<a href="javascript:;"><img src="images/ad_img/ad_img01.jpg" alt="" class="swiper-adimg">'+
+    //                 '<img src="images/template/t4.png" alt="" class="rw place01">'+
+    //                 '<img src="images/template/t14.png" alt="" class="rw place02">'+
+    //                 '<img src="images/template/t5.png" alt="" class="rw place03">'+
+    //                 '<img src="images/template/t18.png" alt="" class="rw place04">'+
+    //                 '<img src="images/template/t6.png" alt="" class="rw place05">'+
+    //                 '<img src="images/template/t13.png" alt="" class="rw place06"></a>'
+    //    var str2 = '<a href="javascript:;"><img src="images/ad_img/ad_img02.jpg" alt="" class="swiper-adimg">'+
+    //                 '<img src="images/template/t1.png" alt="" class="rw place01">'+
+    //                 '<img src="images/template/t11.png" alt="" class="rw place02">'+
+    //                 '<img src="images/template/t2.png" alt="" class="rw place03">'+
+    //                 '<img src="images/template/t12.png" alt="" class="rw place04">'+
+    //                 '<img src="images/template/t3.png" alt="" class="rw place05">'+
+    //                 '<img src="images/template/t13.png" alt="" class="rw place06"></a>'
+    //    var str3 = '<a href="javascript:;"><img src="images/ad_img/ad_img03.jpg" alt="" class="swiper-adimg">'+
+    //                 '<img src="images/template/t7.png" alt="" class="rw place01">'+
+    //                 '<img src="images/template/t17.png" alt="" class="rw place02">'+
+    //                 '<img src="images/template/t8.png" alt="" class="rw place03">'+
+    //                 '<img src="images/template/t18.png" alt="" class="rw place04">'+
+    //                 '<img src="images/template/t9.png" alt="" class="rw place05">'+
+    //                 '<img src="images/template/t19.png" alt="" class="rw place06"></a>'
+    //    var arr = [str1,str2,str3];
+    //    $(".swiper-slide").eq(actIndex).html(arr[actIndex]);
+    /* 动态赋值 end */
+
+    //设置地铁的参数以及运动动画
+    var subway_w = $(".subway-img").height()*2945/186+10;
+    var main_w = $(".main-wrap").width();
+    $(".subway-img").css({"width":subway_w,"left":-subway_w});
+
+    function run_subway(){
+        $(".subway-img").stop(true,true).animate({left: main_w}, 2000,'linear',function(){
+            $(".subway-img").css({"left":-subway_w});
+        });
+    }
+    run_subway();
+    $(".swiper-button-next,.swiper-button-prev").click(function(event) {
+       run_subway();
+       // actIndex = swiper.activeIndex;
+       // $(".swiper-slide").eq(actIndex).html(arr[actIndex]);
+    });
+
+    $(".how-play-btn").click(function(){
+        //var userInfo = nfyg.getUserInfo();
+        //判断APP内是否有某个方法  （myObj）
+        alert(nfyg.isPlatform());
+        if (typeof isPlatform != "undefined") { 
+            //APP外
+            $(".black-formsbg,.app-outer").show();
+
+    　　}else{
+            //APP内
+            $(".black-formsbg,.app-inner").show();
+        }
+    })
+
+
+    //点关闭 确认 弹窗以外的区域  隐藏弹窗
+    $(".closeform,.confirm-btn,.black-formsbg").click(function(){
+        $(".black-formsbg,.forms-wrap").hide();
+    });
+    // var userInfo = nfyg.getUserInfo();
+
+    // var userId = '',headUrl = '',nickName = '',point = '';
+    // if(userInfo != null){
+    //     userInfo =  JSON.parse(userInfo);
+    //     userId = userInfo.userId,headUrl = userInfo.headUrl,nickName = userInfo.nickName,point = userInfo.point;
+    // }    
+    // $(".click-btn").click(function(){
+    // 	if(userId==undefined||userId==""){
+    // 		alert("请登录！！！")
+            //未登录
+            //$(".black-formsbg,.unlogin").show();
+    // 	}
+    // 	else{
+    // 		window.location.href="http://activity.peanut8.com/index.php/prize/lists?userid="+userId;
+    // 	}
+    // })
+
+});
+</script>
+</body>
+</html>

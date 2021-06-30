@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="MobileOptimized" content="240" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />  
+    <meta content="email=no" name="format-detection" />
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title>外套5折限时抢购</title>
+    <link rel="stylesheet" href="css/baleno.css">
+</head>
+<body style="background-color: #ffffff">
+    <div class="main-wrap">
+       <div class="logo"><img src="images/logo.jpg" alt=""></div>
+       <div class="baleno-img"><img src="images/baleno_img.jpg" alt=""></div>
+       <div class="form-box">
+           <div class="input-box"><input type="text" maxlength="11" pattern="[0-9]*" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" placeholder="电话" id="tel_num"></div>
+           <div class="clearfix" id="sex_con">
+               <div class="sex-box man fl" sexTag=0><span>男性</span></div>
+               <div class="sex-box women fr" sexTag=1><span>女性</span></div>
+           </div>
+           <div class="confirm-box"><span class="confirm-btn" id="confirm_btn">领取五元优惠券</span></div>
+       </div>
+       <div class="desc-box">
+           <div class="desc-main">
+               <h1>优惠券使用详情如下：</h1>
+               <ul class="desc-list">
+                   <li>（1）优惠券限指定的五折外套产品使用</li>
+                   <li>（2）优惠券只限广东区正价店铺使用</li>
+                   <li>（3）优惠券只限用于一件产品</li>
+                   <li>（4）优惠券不能与其他优惠同时使用(VIP卡除外)</li>
+                   <li>（5）优惠券使用时间：2017.12.21-2018.1.1</li>
+               </ul>
+           </div>
+       </div>
+    </div>
+<!--  弹层 -->
+<div class="white-formsbg-black"></div>
+<div class="forms-wrap success">
+    <a href="javascript:;" class="confirm-btn02"></a>
+</div>
+<script src="js/zepto.min.js"></script>
+<script src="js/public.js"></script>
+<script type="text/javascript">
+$(function(){
+   window.addEventListener('resize', Rem, false);
+   Rem();
+   //切换性别
+   $(".sex-box").click(function(){
+        var index = $(".sex-box").index(this);
+        $(".sex-box").removeClass('checked').eq(index).addClass('checked');
+   })
+
+   //点击确认提交用户信息
+   $("#confirm_btn").click(function(){
+        clickConfirm();
+   });
+
+   $(document).keydown(function(event){ 
+        if(event.keyCode==13){ 
+            console.log("sss");
+            $("#confirm_btn").click();
+        } 
+    }); 
+
+
+    // 收集参数
+    function buildParam(tel,sex){
+       var param = {};
+       param["tel"] = tel;
+       param["sex"] = sex;
+       return JSON.stringify(param);
+    }
+
+    /** 
+     * 验证电话号码 
+     * @param phoneValue 要验证的电话号码 
+     * @returns 匹配返回true 不匹配返回false 
+     */
+    function validatePhone(phoneValue) { 
+      var reg = /^[1][0-9]{10}$/; 
+      return reg.test(phoneValue); 
+    } 
+
+    function clickConfirm(){
+        //判断手机号码
+        var call_num = $("#tel_num").val();
+        var set_tag;
+        if(!validatePhone(call_num)){
+            commonUtils.showPop2("请输入正确的手机号码");
+            return false;
+        }
+        //判断性别
+       var obj = $("#sex_con");
+       if(obj.find('.checked').length>0){
+            set_tag = $(".sex-box.checked").attr("sexTag"); //0代表男  1代表女
+       }else{
+            commonUtils.showPop2("请选择您的性别");
+            return false;
+       }
+       var param = buildParam(call_num,set_tag);
+       console.log(param);
+       // $.ajax({
+       //      url :"",
+       //      type: 'post',
+       //      data : param,
+       //      success  : function(data) {
+                
+       //      }
+       //  });
+    }
+
+    $(".confirm-btn02").click(function(){
+        $(".white-formsbg-black,.success").hide();
+    })
+
+    console.log($(".logo").width());
+    console.log($(".logo").height());
+})
+</script>
+</body>
+</html>

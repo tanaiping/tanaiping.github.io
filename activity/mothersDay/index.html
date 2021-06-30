@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta http-equiv="Cache-Control" content="no-cache" />
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="MobileOptimized" content="240" />
+		<meta name="apple-touch-fullscreen" content="YES" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="email=no" name="format-detection" />
+		<!-- uc强制竖屏 -->
+		<meta name="screen-orientation" content="portrait">
+		<!-- QQ强制竖屏 -->
+		<meta name="x5-orientation" content="portrait">
+		<!-- UC强制全屏 -->
+		<meta name="full-screen" content="yes">
+		<!-- QQ强制全屏 -->
+		<meta name="x5-fullscreen" content="true">
+		<!-- UC应用模式 -->
+		<meta name="browsermode" content="application">
+		<!-- QQ应用模式 -->
+		<meta name="x5-page-mode" content="app">
+		<!-- windows phone 点击无高光 -->
+		<meta name="msapplication-tap-highlight" content="no">
+		<!-- 适应移动端end -->
+		<title>母亲节，为她发声</title>
+
+		<link rel="stylesheet" href="css/interlocution.css?t=1">
+	</head>
+
+	<body style="background: #f2f2f2;">
+		<input type="hidden" value="1" id="page" />
+		<div class="main-wrap">
+
+			<!--<div class="mainLogo">
+				<img src="img/man-top.jpg" />
+			</div>-->
+			<div class="topBox-bg">
+				<div class="topBox-title">
+					<!--<div class="titleBox">
+						<p>请你理解我</p>
+						<p>Try to understand</p>
+					</div>-->
+					<a href="submitProblem.html" class="addProblemBt index">
+						我是<b>妈妈</b>我要<em></em>添加问题
+					</a>
+					<!--<p class="topWords">创建问题，审核之后将会出现在首页，请耐心等待呦。</p>-->
+				</div>
+			</div>
+
+			<div class="contentBox">
+				<!-- 规则 -->
+				<div class="rule" id="rule">获奖规则</div>
+				<div class="content-top">
+					<span class="active" id="hot">热度排序</span>
+					<span id="new">创建排序</span>
+				</div>
+				<ul class="problem-list">
+
+				</ul>
+				<div class="tishi" style="display: none;margin-top: .1rem;">我也是有底线的~</div>
+			</div>
+		</div>
+
+		<!-- 弹窗 -->
+		<div class="main-wrap main-popupBox" style="display:none">
+			<div class="main-popup">
+				<div class="content-box">
+					<div class="content-img">
+						<!-- 关闭规则 -->
+						<div class="popupClose" id="popupClose"></div>
+						<a class="main-button"></a>
+						<div class="popupCode">
+							<img src="img/code.jpg" />
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+		<script>
+			$(function() {
+				var apiUrl = "http://activity.peanut8.com/";
+				var orderInt = 0;
+				var totalPage;
+				$("#rule").click(function() {
+					$(".main-popupBox").show();
+				})
+				
+				$("#popupClose , .main-button").click(function() {
+					$(".main-popupBox").hide();
+				})
+
+				var urlId = getUrlParam('id');
+				if(urlId == 1){
+				  $(".main-popupBox").hide();
+				}else{
+				  $(".main-popupBox").show();
+				}
+
+				//获取url中的参数
+				function getUrlParam(name) {
+				  var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+				  var r = window.location.search.substr(1).match(reg); //匹配目标参数
+				  if (r != null) return unescape(r[2]); return null; //返回参数值
+				}
+				//最热
+				function hot(page) {
+					//alert(page);
+					$.ajax({
+						type: "get",
+						url: apiUrl + 'interlocution/index',
+						async:false,
+						data: {
+							page: page,
+							order: orderInt
+						},
+						dataType: 'json',
+						success: function(data) {
+							if(data.page == 1){
+								totalPage = data.totalPage;
+							}
+							var html = "";
+							for (var i = 0; i < data.list.length; i++) {
+								html += "<li><a href='addAnswer.html?id=" + data.list[i].id;
+								html += "'><div class='problemBox clearfix'><div class='onlookers'>";
+								html += "<em></em><p>围观</p></div><div class='problemWords'>" + data.list[i].title;
+								html += "</div></div><div class='answerBox'><em></em><b>我理解你</b>我来回答问题</div></a></li>"
+							}
+							$(".problem-list").append(html);
+							$("#page").val(page);
+						},
+						error: function() {}
+					});
+				}
+				//
+				$("#hot").click(function() {
+					$(".problem-list").empty();
+						orderInt = 0;
+						$(".content-top span:last-child").removeClass("active").siblings().addClass("active");
+						hot(1);
+					})
+					//最新
+				$("#new").click(function() {
+					$(".problem-list").empty();
+					orderInt = 1;
+					$(".content-top span:last-child").addClass("active").siblings().removeClass("active");
+					hot(1);
+				})
+				hot(1);
+				$(window).scroll(function () {
+					//alert(1);
+					var totalheight = parseFloat($(window).height()) + parseFloat($(window).scrollTop());
+					var documentheight = parseFloat($(document).height());
+					if (documentheight - totalheight <= 50) {
+					    var page = $("#page").val() * 1 + 1;
+						if(totalPage < page){
+							$(".tishi").show();
+							return;
+						}else{
+							$(".tishi").hide();
+						}
+						hot(page);
+					}
+				});
+					//微信分享
+				    var url = 'http://activity.peanut8.com/act/2019/mothersDay/index.html';
+				    var imgUrl = 'http://activity.peanut8.com/act/2019/mothersDay/img/share.jpg';
+				    var title = '母亲节，为她发声';
+				    var desc = '母亲节，为她发声';
+				    var wx_url = window.location.href;
+				    $.ajax({
+				      type: "get",
+				      url: 'http://activity.peanut8.com/WxShare/anxious',
+				      data: {
+				        url: wx_url
+				      },
+				      dataType: 'json',
+				      success: function(data) {
+				        if(data.code == 1) {
+				          wx.config({
+				            debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+				            appId: data.data.sharePackage.appId, // 必填，公众号的唯一标识
+				            timestamp: data.data.sharePackage.timestamp, // 必填，生成签名的时间戳
+				            nonceStr: data.data.sharePackage.nonceStr, // 必填，生成签名的随机串
+				            signature: data.data.sharePackage.signature, // 必填，签名，见附录1
+				            jsApiList: [
+				              'checkJsApi',
+				              'onMenuShareTimeline',
+				              'onMenuShareAppMessage'
+				            ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+				          });
+				          var shareInfo = data.data.shareInfo;
+				          wx.ready(function() {
+				            //分享到朋友圈
+				            wx.onMenuShareTimeline({
+				              title: title, // 分享标题
+				              desc: desc,
+				              link: url, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+				              imgUrl: imgUrl, // 分享图标
+				              success: function() {
+
+				              },
+				              cancel: function(res) {
+
+				              }
+				            });
+
+				            //分享给朋友
+				            wx.onMenuShareAppMessage({
+				              title: title, // 分享标题
+				              desc: desc, // 分享描述
+				              link: url, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+				              imgUrl: imgUrl, // 分享图标
+				              success: function() {
+
+				              },
+				              cancel: function() {
+
+				              }
+				            });
+				          });
+				        }
+				      },
+				      error: function() {}
+				    })
+			});
+
+		</script>
+		</script>
+	</body>
+
+</html>

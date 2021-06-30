@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>实时站点人流排行</title>
+	<link rel="stylesheet" href="css/base.css" />
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<div class="main-wrap">
+		<div class="rank-title">实时站点人流排行</div>
+		<div class="cur-time"></div>
+		<div class="clearfix rank-con">
+			<div class="rank-box fl">
+				<div class="rank-wrap">
+					<div class="rank-header">站点 <em>人数</em></div>
+					<ul class="rank-list">
+						<li>
+							<div class="station">静安寺<em>300</em></div>
+							<div class="precent"><em class="em01" style="width: 46%"></em></div>
+						</li>
+						<li>
+							<div class="station">静安寺<em>300</em></div>
+							<div class="precent"><em class="em02" style="width: 53%"></em></div>
+						</li>
+						<li>
+							<div class="station">静安寺<em>300</em></div>
+							<div class="precent"><em class="em03" style="width: 56%"></em></div>
+						</li>
+						<li>
+							<div class="station">静安寺<em>300</em></div>
+							<div class="precent"><em class="em04" style="width: 65%"></em></div>
+						</li>
+						<li>
+							<div class="station">静安寺<em>300</em></div>
+							<div class="precent"><em class="em05" style="width: 43%"></em></div>
+						</li>
+						<li>
+							<div class="station">静安寺<em>300</em></div>
+							<div class="precent"><em class="em01" style="width: 77%"></em></div>
+						</li>
+						<li>
+							<div class="station">静安寺<em>300</em></div>
+							<div class="precent"><em class="em02" style="width: 85%"></em></div>
+						</li>
+						<li>
+							<div class="station">静安寺<em>300</em></div>
+							<div class="precent"><em class="em03" style="width: 57%"></em></div>
+						</li>
+						<li>
+							<div class="station">静安寺<em>300</em></div>
+							<div class="precent"><em class="em04" style="width: 84%"></em></div>
+						</li>
+						<li>
+							<div class="station">静安寺<em>300</em></div>
+							<div class="precent"><em class="em05" style="width: 77%"></em></div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="rank-box fr">
+				<div class="rank-wrap">
+					<div class="rank-header">站点 <em>人数</em></div>
+					<ul class="rank-list">
+						<li>
+							<div class="station">静安寺<em>300</em></div>
+							<div class="precent"><em class="em01" style="width: 46%"></em></div>
+						</li>
+						<li>
+							<div class="station">静安寺<em>300</em></div>
+							<div class="precent"><em class="em02" style="width: 33%"></em></div>
+						</li>
+						<li>
+							<div class="station">静安寺<em>300</em></div>
+							<div class="precent"><em class="em03" style="width: 66%"></em></div>
+						</li>
+						<li>
+							<div class="station">静安寺<em>300</em></div>
+							<div class="precent"><em class="em04" style="width: 36%"></em></div>
+						</li>
+						<li>
+							<div class="station">静安寺<em>300</em></div>
+							<div class="precent"><em class="em05" style="width: 58%"></em></div>
+						</li>
+						<li>
+							<div class="station">静安寺<em>300</em></div>
+							<div class="precent"><em class="em01" style="width: 26%"></em></div>
+						</li>
+						<li>
+							<div class="station">静安寺<em>300</em></div>
+							<div class="precent"><em class="em02" style="width: 86%"></em></div>
+						</li>
+						<li>
+							<div class="station">静安寺<em>300</em></div>
+							<div class="precent"><em class="em03" style="width: 46%"></em></div>
+						</li>
+						<li>
+							<div class="station">静安寺<em>300</em></div>
+							<div class="precent"><em class="em04" style="width: 79%"></em></div>
+						</li>
+						<li>
+							<div class="station">静安寺<em>300</em></div>
+							<div class="precent"><em class="em05" style="width: 59%"></em></div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script>
+	$(function(){
+		var mydate = new Date();
+		var myHours = mydate.getHours();
+		var myMin = mydate.getMinutes();
+		var mySeconds = mydate.getSeconds();
+		$(".time-txt").text("当前时间："+myHours+":"+myMin+":"+mySeconds);
+		setInterval(function(){
+			 mydate = new Date();
+			 myHours = mydate.getHours();
+		 	 myMin = mydate.getMinutes();
+		 	 mySeconds = mydate.getSeconds();
+		 	 if (myHours<10) {myHours = "0" +myHours;}
+	        if (myMin<10) {myMin = "0" +myMin;}
+	        if (mySeconds<10) {mySeconds = "0" +mySeconds;}
+			 $(".cur-time").text("当前时间："+myHours+":"+myMin+":"+mySeconds);
+			 console.log("当前时间："+myHours+":"+myMin+":"+mySeconds);
+		},1000);
+
+
+
+	})
+</script>
+</body>
+</html>

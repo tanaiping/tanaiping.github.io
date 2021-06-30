@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html class="bg-black">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <!-- bootstrap 3.2.0 Latest compiled and minified CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- font Awesome -->
+    <!-- Ionicons -->
+    <!-- Theme style -->
+    <link href="css/bonanzooka.css" rel="stylesheet" type="text/css" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body class="bg-black">
+
+    <div class="form-box" id="login-box">
+        <div class="header bg-green">
+            <div class="logo">
+                <strong>花生地铁大数据</strong>
+            </div>
+        </div>
+        <form action="../index.html" method="post">
+            <div class="body bg-white">
+
+                <div class="input-group">
+                    <span class="input-group-btn">
+                        <button class="btn btn-success" type="button"><i class="fontello-user-1">帐号</i>
+                        </button>
+                    </span>
+                    <input type="text" id="user" placeholder="User" class="form-control">
+                </div>
+
+                <br>
+                <div class="input-group">
+                    <span class="input-group-btn">
+                        <button class="btn btn-success" type="button"><i class="fontello-lock">密码</i>
+                        </button>
+                    </span>
+                    <input type="password" id="pass" name="password" class="form-control" placeholder="Password" />
+                </div>
+                <br>
+            </div>
+
+            <div class="footer">
+
+                <p class="text-center login-with">Login</b>
+                </p>
+                <hr class="timeline-hr">
+                <a href="#" id="loginBt" class="btn btn-twitter btn-block">
+                   	登录
+                </a>
+            </div>
+        </form>
+    </div>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script>
+		$(function(){
+			var userName = "admin";
+			var passWord = "123456";
+			$("#loginBt").click(function(){
+				console.log("nnn");
+				var user = $("#user").val();
+				var pass = $("#pass").val();
+				if(userName == user && passWord == pass){
+					var hashUrl = localStorage.Url;
+					if(hashUrl == "flowQuery"){
+				 		window.location.href="index.html#!/flowQuery";
+				 	}else if(hashUrl == "diagram"){
+				 		window.location.href="index.html#!/diagram";
+				 	}else if(hashUrl == "travelCombination"){
+				 		window.location.href="index.html#!/travelCombination";
+				 	}else if(hashUrl == "lineFlowQuery"){
+				 		window.location.href="index.html#!/lineFlowQuery";
+				 	}else if(hashUrl == "numberOfSites"){
+				 		window.location.href="index.html#!/numberOfSites";
+				 	}else if(hashUrl == "siteFlowQuery"){
+				 		window.location.href="index.html#!/siteFlowQuery";
+				 	}else if(hashUrl == "positionAndNumber"){
+				 		window.location.href="index.html#!/positionAndNumber";
+				 	}else if(hashUrl == "carCongestion"){
+				 		window.location.href="index.html#!/carCongestion";
+				 	}else if(hashUrl == "timetable"){
+				 		window.location.href="index.html#!/timetable";
+				 	}else{
+				 		window.location.href="index.html";
+				 	}
+					
+					localStorage.userName = userName;
+					localStorage.passWord = passWord;
+				}else if(user == ""  || pass == ""){
+					$(".text-center").text("账户或密码不能为空！");
+					$(".text-center").css("color","red");
+					return false;
+				}else{
+					$(".text-center").text("账户或密码错误！");
+					$(".text-center").css("color","red");
+					return false;
+				}
+				
+			})
+		})
+	</script>
+</body>
+
+</html>

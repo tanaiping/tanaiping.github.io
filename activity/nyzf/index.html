@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="MobileOptimized" content="240" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />  
+    <meta content="email=no" name="format-detection" />
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title>柠悦FUE5.0艺术植发，3秒快速获取头发种植方案及价格。</title>
+    <link rel="stylesheet" href="css/base.css">
+    <style>
+        body{background-color: #FFF;}
+        input[type="text"]{outline: none; -webkit-appearance: none;}
+        .main-wrap{width: 100%; max-width: 750px; margin:0 auto;}
+        .prompt{text-align: center;width: 90%;position: fixed;margin: auto;left: 0;right: 0;top: 40%;z-index: 1001;display: none;}
+        .prompt em{display: inline-block;background: rgba(0,0,0,0.75);padding: .75rem 1.25rem;border-radius: 2.5rem;color: #FFF;font-size: 1.6rem;line-height: 2.4rem;}
+        .form-box{padding: 0 3rem;}
+        .title{font-size: 1.4rem; color: #666; line-height: 4rem; padding-top: 1rem;}
+        .title span{font-size: 1rem; color: #999;}
+        .title em{font-size: 1rem; color: red;}
+        .list{display: flex;flex-direction: row; width: 100%; flex-wrap: wrap; justify-content: space-between;}
+        .list li{width: 50%; line-height: 3rem; height: 3rem;}
+        .list li input{vertical-align:middle;}
+        .list li label{font-size: 1.2rem; color: #666; padding-left: .3rem;vertical-align:middle;}
+        .tel-num{width: 100%;border-radius: .3rem;border:1px solid #e3e3e3; line-height: 4rem; height: 4rem; text-indent: 1rem; font-size: 1.2rem;}
+        .perInfo{display: flex; flex-direction: row; font-size: 1.2rem; color: #999; line-height: 2.4rem;height: 2.4rem; margin: 1.5rem 0; align-items: center;}
+        .perInfo input{vertical-align: middle;}
+        .perInfo span{padding-left: .6rem;vertical-align:middle;}
+        .perInfo em{color: #3b9aff;}
+        .submit-btn{background-color: #b0112b; width: 100%; height: 4.8rem; text-align: center; line-height: 4.8rem; font-size: 1.6rem; color: #FFF;}
+        .submit-btn.disabled{background-color: #e3e3e3;}
+        .desc{font-size: 1.1rem; color: #000; line-height: 2rem;padding-top: 1rem; padding-bottom: 3rem;}
+        .desc em{ color: red;}
+        /*.list li input,.perInfo input{background: #FFF;border:1px solid #d7d7d7;}
+        .list li input:checked,.perInfo input:checked{background: #3b9aff; border:1px solid #3b9aff;}*/
+    </style>
+
+</head>
+<body>
+    <div class="main-wrap">
+        <img src="images/img01.jpg" alt="" style="width: 100%;">
+        <div class="form-box">
+          <div class="title">1、您的年龄？<span>（单选）</span><em>*</em></div>
+          <ul class="list">
+            <li><input type="radio" name="age" id="a1" value="1"><label for="a1">24岁以下</label></li>
+            <li><input type="radio" name="age" id="a2" value="2"><label for="a2">24-40岁</label></li>
+            <li><input type="radio" name="age" id="a3" value="3"><label for="a3">40-50岁</label></li>
+            <li><input type="radio" name="age" id="a4" value="4"><label for="a4">50岁以上</label></li>
+          </ul>
+          <div class="title">2、脱发多久了？<span>（单选）</span><em>*</em></div>
+          <ul class="list">
+            <li><input type="radio" name="time" id="t1" value="1"><label for="t1">1年以内</label></li>
+            <li><input type="radio" name="time" id="t2" value="2"><label for="t2">1-3年</label></li>
+            <li><input type="radio" name="time" id="t3" value="3"><label for="t3">3-5年</label></li>
+            <li><input type="radio" name="time" id="t4" value="4"><label for="t4">5年以上</label></li>
+          </ul>
+          <div class="title">3、脱发类型？<span>（多选）</span><em>*</em></div>
+          <ul class="list">
+            <li><input type="checkbox" name="type" id="tp01" value="1"><label for="tp01">发际线后移</label></li>
+            <li><input type="checkbox" name="type" id="tp02" value="2"><label for="tp02">头顶稀疏</label></li>
+            <li><input type="checkbox" name="type" id="tp03" value="3"><label for="tp03">M型脱发</label></li>
+            <li><input type="checkbox" name="type" id="tp04" value="4"><label for="tp04">大面积脱发</label></li>
+          </ul>
+          <div class="title">4、您的电话？<span>（单选）</span><em>*</em></div>
+          <input type="text" placeholder="请输入" class="tel-num" maxlength="11" pattern="[0-9]*" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" class="tel-num">
+          <div class="perInfo">
+            <input type="checkbox" checked="true" name="info" value="1">
+            <span class="t1">自动输入历史手机号<em>《个人信息授权书》</em></span>
+          </div>
+          <div class="submit-btn">立即提交，免费获取植发价格</div>
+          <div class="desc"><em>*</em>以上填写客户信息仅用于植发报价相关咨询，我院不会泄露给任何 第三方或其他用途</div>
+        </div>
+        <img src="images/img02.jpg" alt="" style="width: 100%;">
+    </div>
+<div class="prompt" id="prompt"><em>提示信息</em></div>
+<script src="js/zepto.min.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script src="js/public.js"></script>
+<script>
+    $(function(){
+        var url = 'http://activity.peanut8.com/act/2019/nyzf/index.html';
+        var imgUrl = 'http://activity.peanut8.com/act/2019/nyzf/images/share.jpg';
+        var title = '柠悦FUE5.0艺术植发，3秒快速获取头发种植方案及价格。';
+        var desc = '柠悦FUE5.0艺术植发，3秒快速获取头发种植方案及价格。';
+        var wx_url = window.location.href;
+        $.ajax({
+          type: "get",
+          url: 'http://activity.peanut8.com/WxShare/anxious',
+          data: {
+            url: wx_url
+          },
+          dataType: 'json',
+          success: function(data) {
+            if(data.code == 1) {
+              wx.config({
+                debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                appId: data.data.sharePackage.appId, // 必填，公众号的唯一标识
+                timestamp: data.data.sharePackage.timestamp, // 必填，生成签名的时间戳
+                nonceStr: data.data.sharePackage.nonceStr, // 必填，生成签名的随机串
+                signature: data.data.sharePackage.signature, // 必填，签名，见附录1
+                jsApiList: [
+                  'checkJsApi',
+                  'onMenuShareTimeline',
+                  'onMenuShareAppMessage'
+                ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+              });
+              var shareInfo = data.data.shareInfo;
+              wx.ready(function() {
+                //分享到朋友圈
+                wx.onMenuShareTimeline({
+                  title: title, // 分享标题
+                  desc: desc,
+                  link: url, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                  imgUrl: imgUrl, // 分享图标
+                  success: function() {
+
+                  },
+                  cancel: function(res) {
+
+                  }
+                });
+
+                //分享给朋友
+                wx.onMenuShareAppMessage({
+                  title: title, // 分享标题
+                  desc: desc, // 分享描述
+                  link: url, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                  imgUrl: imgUrl, // 分享图标
+                  success: function() {
+
+                  },
+                  cancel: function() {
+
+                  }
+                });
+              });
+            }
+          },
+          error: function() {}
+        })
+
+
+        $(".submit-btn").click(function(){
+          var _this =$(this);
+          var age = $('input[name="age"]:checked').val();
+          var time = $('input[name="time"]:checked').val();
+          var type ='';
+          $('input[name="type"]:checked').each(function(){
+              // type.push("$(this).val()");
+              type += $(this).val()+",";
+
+          });
+          var tel = $(".tel-num").val();
+          var info = $('input[name="info"]:checked').val();
+
+          if(age==undefined){
+            promptShow("请选择您的年龄");
+            return false;
+          }
+          if(time==undefined){
+            promptShow("请选择您的时长");
+            return false;
+          }
+          if(type.length==0){
+            promptShow("请选择您的脱发类型");
+            return false;
+          }
+          if(tel==""){
+            promptShow("请输入你的手机号码");
+            return false;
+          }
+          if(info != 1){
+            promptShow("请勾选个人信息授权书");
+            return false;
+          }
+          if(!_this.hasClass("disabled")){
+            _this.addClass("disabled");
+            $.ajax({
+                  type: "post",
+                  url: 'http://activity.peanut8.com/act/save',
+                  data:{"age":age,"dTime ":time,"type":type,"tel":tel},  //15814777383
+                  dataType: 'json',
+                  success: function(data) {
+                    console.log(data);
+                    if(data.code == -1){
+                      promptShow(data.msg);
+                      _this.removeClass("disabled");
+                      return false;
+                    }
+                    promptShow("提交成功");
+                    setTimeout(function(){window.location.reload()},3000);
+                  },
+                  complete:function(){
+                    
+                  }
+            });
+          }
+
+          
+          
+
+        })
+
+
+    })
+
+</script>
+<script>
+    
+</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+<meta name="MobileOptimized" content="240" />
+<meta name="apple-touch-fullscreen" content="YES" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta content="telephone=no" name="format-detection" />  
+<meta content="email=no" name="format-detection" />
+<!-- uc强制竖屏 -->
+<meta name="screen-orientation" content="portrait">
+<!-- QQ强制竖屏 -->
+<meta name="x5-orientation" content="portrait">
+<!-- UC强制全屏 -->
+<meta name="full-screen" content="yes">
+<!-- QQ强制全屏 -->
+<meta name="x5-fullscreen" content="true">
+<!-- UC应用模式 -->
+<meta name="browsermode" content="application">
+<!-- QQ应用模式 -->
+<meta name="x5-page-mode" content="app">
+<!-- windows phone 点击无高光 -->
+<meta name="msapplication-tap-highlight" content="no">
+<!-- 适应移动端end -->
+<title>宋记</title>
+<link rel="stylesheet" type="text/css" href="css/swiper.min.css">
+<link rel="stylesheet" type="text/css" href="css/com.css">
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/swiper.min.js"></script>
+<script type="text/javascript" src="js/nfygInlay.js"></script>
+</head>
+<body>
+<!-- Swiper -->
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide"><a href="javascript:;"><img src="images/sj01.jpg" alt=""></a></div>
+        <div class="swiper-slide"><a href="javascript:;"><img src="images/sj02.jpg" alt=""></a></div>
+        <div class="swiper-slide">
+        	<a href="javascript:;"><img src="images/sj03.jpg" alt=""></a>
+        	<a href="javascript:;" class="click-btn"></a>
+        </div>
+        <div class="swiper-slide"><a href="javascript:;"><img src="images/sj04.jpg" alt=""></a></div>
+    </div>
+     <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+</div>
+<script>
+$(function(){
+    //swiper 初始化
+	var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        loop: false,
+        autoplay: false,
+        autoplayDisableOnInteraction: false
+    });
+    var userInfo = nfyg.getUserInfo();
+
+    var userId = '',headUrl = '',nickName = '',point = '';
+    if(userInfo != null){
+        userInfo =  JSON.parse(userInfo);
+        userId = userInfo.userId,headUrl = userInfo.headUrl,nickName = userInfo.nickName,point = userInfo.point;
+    }    
+    $(".click-btn").click(function(){
+    	if(userId==undefined||userId==""){
+    		alert("请登录！！！")
+    	}
+    	else{
+    		window.location.href="http://activity.peanut8.com/index.php/prize/lists?userid="+userId;
+    	}
+    })
+
+});
+</script>
+</body>
+</html>

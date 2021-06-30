@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="x-rim-auto-match" content="none" />
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+  <meta name="copyright" content="Copyright (c)花生地铁wifi" />
+  <meta name="HandheldFriendly" content="true" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="keywords" content="花生,地铁,wifi,WIFI,花生地铁,花生地铁wifi,地铁wifi,花生wifi" />
+  <meta name="author" content="yerongtao" />
+  <title>每日大奖实时排行榜</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="http://www.wifi8.com/images/logo_icon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body class="daily-bg">
+  <div class="cloud"></div>
+  <div class="my-daily">
+    <div class="title"></div>
+    <div class="main">
+      <div class="user-th">
+        <p class="left">上榜用户</p>
+        <p class="right">今日邀请人数</p>
+      </div>
+      <div class="user-me">
+        <!-- <div class="left">
+          <span class="user-num">02</span>
+          <div class="user-img"></div>
+          <p class="user-name">花生宝宝</p>
+        </div>
+        <p class="user-count right">14</p> -->
+      </div>
+      <ul class="user-td">
+        <!-- <li>
+          <div class="left">
+            <span class="user-num">01</span>
+            <div class="user-img"></div>
+            <p class="user-name">小花生</p>
+          </div>
+          <p class="user-count right">124</p>
+        </li> -->
+      </ul>
+    </div>
+  </div>
+<div class="prompt" id="prompt"><em>提示信息</em></div>
+  <script src="./js/zepto.min.js"></script>
+  <script src="./js/resize.js"></script>
+  <script src="./js/nfyg-pack-common.js"></script>
+  <!-- <script src="./js/vconsole.min.js"></script> -->
+  <script>
+    $(function(){
+        // var _url = "http://192.168.201.170/";
+        var _url = 'https://cmsapi.wifi8.com/'
+        var nfyg = new NFYG();
+        var isApp = nfyg.browser.isNfyg;
+      var tel, nickName, headUrl, point, userId;
+      if (isApp) {
+        var userInfo = nfyg.getUserInfo();
+        userInfo = JSON.parse(userInfo);
+          tel = userInfo.mobile;
+          nickName = userInfo.nickName;
+          headUrl = userInfo.headUrl;
+          point = userInfo.point;
+          userId = userInfo.userId;
+         if (userId == '' || userId == undefined || userId == null) {
+            nfyg.pushToLoginView()
+          }else{
+            nfyg.encrypt(userId,function(data){
+                  $.ajax({
+                    type: "post",
+                    url: _url+'uSystem/v1/dayRankList',
+                    data:{"userId":data},  //userId
+                    dataType: 'json',
+                    success: function(data) {
+                      console.log(data);
+                      var html=''
+                      if(data.resultCode==0){
+                        var _html_self = "";
+                        _html_self+='<div class="left">'
+                        _html_self+='<span class="user-num">'+data.data.awaKenRankUsers[0].rank+'</span>'
+                        if(data.data.awaKenRankUsers[0].headUrl!=""){
+                            _html_self+='<div class="user-img" style="background-image:url('+data.data.awaKenRankUsers[0].headUrl+')"></div>'
+                          }else{
+                            _html_self+='<div class="user-img"></div>'
+                          }
+                        _html_self+='<p class="user-name">'+data.data.awaKenRankUsers[0].nickName+'</p>'
+                        _html_self+='</div>'
+                        _html_self+='<p class="user-count right">'+data.data.awaKenRankUsers[0].number+'</p>'
+                        $(".user-me").html(_html_self);
+                        if(data.data.awaKenRanks.length>0){
+                          for(var i=0;i<data.data.awaKenRanks.length;i++){
+                            html+='<li>'
+                            html+='<div class="left">'
+                            html+='<span class="user-num">'+data.data.awaKenRanks[i].rank+'</span>'
+                            if(data.data.awaKenRanks[i].headUrl!=""){
+                              html+='<div class="user-img" style="background-image:url('+data.data.awaKenRanks[i].headUrl+')"></div>'
+                            }else{
+                              html+='<div class="user-img"></div>'
+                            }
+                            html+='<p class="user-name">'+data.data.awaKenRanks[i].nickName+'</p>'
+                            html+='</div>'
+                            html+='<p class="user-count right">'+data.data.awaKenRanks[i].number+'</p>'
+                            html+='</li>'
+                          }
+                        }
+                        $(".user-td").html(html);
+                      }else{
+                        promptShow(data.resultMsg);
+                      }
+                    }
+                  });
+                
+              });
+          }
+     
+      } else {
+          promptShow('请到APP内查看排行榜数据！');
+      }       
+              
+    })
+
+//  提示信息
+function promptShow(msg) {
+  $('#prompt').children('em').html(msg);
+  $('#prompt').show();
+  window.setTimeout(function () {
+    $('#prompt').hide();
+  }, 2500);
+}
+  </script>
+</body>
+
+</html>

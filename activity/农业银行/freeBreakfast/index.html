@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	    <meta http-equiv="Cache-Control" content="no-cache" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+	    <meta name="MobileOptimized" content="240" />
+	    <meta name="apple-touch-fullscreen" content="YES" />
+	    <meta name="apple-mobile-web-app-capable" content="yes" />
+	    <meta content="telephone=no" name="format-detection" />  
+	    <meta content="email=no" name="format-detection" />
+	    <!-- uc强制竖屏 -->
+	    <meta name="screen-orientation" content="portrait">
+	    <!-- QQ强制竖屏 -->
+	    <meta name="x5-orientation" content="portrait">
+	    <!-- UC强制全屏 -->
+	    <meta name="full-screen" content="yes">
+	    <!-- QQ强制全屏 -->
+	    <meta name="x5-fullscreen" content="true">
+	    <!-- UC应用模式 -->
+	    <meta name="browsermode" content="application">
+	    <!-- QQ应用模式 -->
+	    <meta name="x5-page-mode" content="app">
+	    <!-- windows phone 点击无高光 -->
+	    <meta name="msapplication-tap-highlight" content="no">
+	    <!-- 适应移动端end -->
+	    <title>广州农行-真功夫元气早餐券</title>
+	    
+	    <link rel="stylesheet" href="css/index.css">
+	</head>
+	<body >
+		<div class="main-wrap">
+			<div class="mainBg">
+				<div class="explain" id="explain">活动说明</div>
+				<div class="activeBtWrap">
+					<div class="activeBt" id="activeBt"></div>
+					<div class="activeBt activeLook" id="activeLook"></div>
+				</div>
+			</div>
+			
+			<!--说明 弹出 -->
+			<div class="popuBox" id="popuBox" style="display: none;">
+				<div class="popuContent">
+					<div class="contentTop"></div>
+					<div class="wordsBox">
+						<div class="logoBox fl_start">
+							<em></em>
+							<em></em>
+						</div>
+						<div class="words">
+							<p><b>活动时间：</b>2018年9月26日-2019年1月31日(早餐券兑换有效期至2019年2月28日)</p>
+							<p><b>活动内容：</b>中国农业银行APP 6分钱兑真功夫元气早餐</p>
+							<p><b>活动规则：</b>1.广州地区参与用户在中国农业银行APP首页轮播图点击进入活动。</br>2.花生地铁APP受邀客户输入花生地铁APP登陆手机号，其他渠道受邀客户输入手机号及邀请码后，成功支付6分钱即可获得真功夫“鲜香肉酱蒸米粉+热豆浆（小）”早餐券一份。</br>3.客户凭券可到广州指定的真功夫门店兑换该产品，门店范围详见早餐券页面。</br>4.活动期间每个客户仅限参与一次活动，数量有限，先到先得。</p>
+							<p><b>本活动仅限广州用户参与。</b></p>
+						</div>
+						<div class="closeBt" id="closeBt"></div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- 成功 -->
+			<div class="popuBox" id="succeedBox" style="display: none;">
+				<div class="popuContent succeedCon">
+					<div class="succeedImg"></div>
+					<!-- 真功夫元气早餐券已发送至您的卡包，可到广州任意真功夫门店使用噢. -->
+					<p></p>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script>
+			$(function(){
+				var ipUrl='https://cmsapi.wifi8.com';
+				var downLoad = "http://mobile.abchina.com/download/clientDownload/zh_CN/MB_Index.aspx";
+				var userTel;
+				var userCode;
+				$('#activeBt').click(function(){
+					//早餐券是否兑换完 0没有 3以兑完
+					$.ajax({
+						type:"get",
+						url:ipUrl+"/uSystem/v1/abcPay/cardNumber",
+						dataType:'json',
+						success:function(data){
+							var json = data;
+							if(json.resultCode == 0){
+								userTel = localStorage.userTel;
+								userCode = localStorage.userCode;
+								if(userTel != undefined || userCode != undefined){
+									order();
+									/*$('#succeedBox').show();
+									$('#succeedBox p').text('您已参与过该活动，下次在继续参与哦！');*/
+								}else{
+									window.location.href='login.html';
+								}
+								
+							}else if(json.resultCode == 3){
+								//活动太火爆了，早餐券已经被抢玩咯。
+								$('#succeedBox').show();
+								$('#succeedBox p').text('活动太火爆了，早餐券已经被抢完咯。');
+							}
+						},
+						error:function(){
+						}
+					});
+				})
+				function order(){
+					$.ajax({
+						type:"post",
+						url:ipUrl+"/uSystem/v1/abcPay/pushOrder",
+						data:JSON.stringify({"abcOrder":{"phone":userTel,"inviteCode":userCode}}),
+						contentType: "application/x-www-form-urlencoded",
+						dataType:'json',
+						success:function(data){
+							var json = data;
+							 console.log(json.resultCode);
+							if(json.resultCode == 0){
+								window.location.href=json.data;
+								console.log(json.data+'0支付跳转url');
+							}else if(json.resultCode == 3){
+								$('#succeedBox').show();
+								$('#succeedBox p').text('活动太火爆了，早餐券已经被抢完咯。');
+							}else if(json.resultCode == 4){
+								//还有未完成的订单
+								window.location.href=json.data;
+								console.log(json.data+'4支付跳转url');
+							}else if(json.resultCode == 5){
+								$('#succeedBox').show();
+								$('#succeedBox p').text('您已参与过该活动，下次再继续参与哦！');
+							}
+						},
+						error:function(){}
+					});
+				}
+				//查看我的早餐券
+				$('#activeLook').click(function(){
+					userTel = localStorage.userTel;
+					if(userTel == undefined || userTel == ''){
+						window.location.href="login.html";
+						return;
+					}
+					$.ajax({
+						type:"post",
+						url:ipUrl+"/uSystem/v1/abcPay/queryCard",
+						data:userTel,
+						dataType:'json',
+						success:function(data){
+							var json = data;
+							console.log(json.data);
+							if(json.data == undefined || json.data == ''){
+								window.location.href="coupon.html"
+							}else{
+								localStorage.code = json.data.cardCode;
+								localStorage.validTime = json.data.validTime
+								window.location.href="coupon.html"
+							}
+						},
+						error:function(){
+						}
+					});
+				})
+				
+				//说明弹窗
+				$('#explain').click(function(){
+					$('#popuBox').show();
+				})
+				//close弹窗
+				$('#closeBt').click(function(){
+					$('#popuBox').hide();
+				})
+				
+				//close弹窗
+				$('#succeedBox').click(function(){
+					$('#succeedBox').hide();
+				})
+			})
+		</script>
+	</body>
+</html>
+

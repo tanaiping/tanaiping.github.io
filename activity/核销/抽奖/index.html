@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+<meta name="MobileOptimized" content="240" />
+<meta name="apple-touch-fullscreen" content="YES" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta content="telephone=no" name="format-detection" />  
+<meta content="email=no" name="format-detection" />
+<!-- uc强制竖屏 -->
+<meta name="screen-orientation" content="portrait">
+<!-- QQ强制竖屏 -->
+<meta name="x5-orientation" content="portrait">
+<!-- UC强制全屏 -->
+<meta name="full-screen" content="yes">
+<!-- QQ强制全屏 -->
+<meta name="x5-fullscreen" content="true">
+<!-- UC应用模式 -->
+<meta name="browsermode" content="application">
+<!-- QQ应用模式 -->
+<meta name="x5-page-mode" content="app">
+<!-- windows phone 点击无高光 -->
+<meta name="msapplication-tap-highlight" content="no">
+<!-- 适应移动端end -->
+<title>地铁好吃男女</title>
+<link rel="stylesheet" href="css/com.css">
+</head>
+<body>
+<div class="main-wrap">
+    <div class="partner-box">
+        <img src="images/shop.jpg" alt="">
+    </div>
+    <div class="main-imgbox">
+        <a href="list.html" class="card-btn"><img src="images/my_card_btn.png" alt=""></a>
+        <img src="images/img1.png" alt="" class="main-img">
+    </div>
+    <div class="lottery-box">
+        <div class="lottery-listwrap">
+            <ul class="lottery-list">
+                <li><img src="images/quan/UUI-10.jpg" alt=""></li>
+            </ul>
+        </div>
+        <img src="images/box01.png" alt="" class="lottery-img-kuang">
+        <div class="lottery-btn"><img src="images/lottery_btn.png" alt=""></div>
+    </div>
+    <div class="txt-img"><img src="images/txt.png" alt=""></div>
+</div>
+<!--  弹层 -->
+<div class="white-formsbg-black"></div>
+<div class="forms-wrap hbw">
+    <img src="images/hbw.png" alt="">
+    <div class="close-form"></div>
+</div>
+<div class="forms-wrap used">
+    <img src="images/used.png" alt="">
+    <div class="close-form"></div>
+</div>
+<div class="forms-wrap success">
+    <img src="images/success.png" alt="">
+    <div class="close-form"></div>
+</div>
+<div class="forms-wrap login">
+    <img src="images/login.png" alt="">
+    <div class="close-form"></div>
+    <div class="know-btn"></div>
+</div>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/cookie.js"></script> 
+<script>
+$(function(){
+    var win_w = $(window).width();
+    var lot_h = parseInt(win_w*0.86*446/684);
+    var lot_imgh = parseInt(win_w*0.86*446/684)*0.775;
+    var status =false;
+    var isFirst =true;
+    var start =true;
+    var mainH = $(".main-wrap").height();
+    var loop;
+    //抽奖所需的参数
+    var imgs = ["UUI-09.jpg", "UUI-10.jpg", "UUI-11.jpg", "UUI-14.jpg", "UUI-15.jpg", "UUI-20.jpg"];
+    //var random = Math.floor(Math.random()*imgs.length);
+    //rem 设置
+    function Rem() {
+    var docEl = document.documentElement,
+    oSize = docEl.clientWidth / 36;
+
+    if (oSize > 20) {
+    oSize = 20; // 限制rem值 720 / 36 =20
+    }
+    //console.log(oSize);
+    docEl.style.fontSize = oSize + 'px';
+    }
+    function setSize(){
+        Rem();
+        $(".lottery-box").css("height",lot_h+"px");
+        $(".lottery-listwrap").css("height",lot_imgh+"px");
+    }
+    function lottery(random){
+        var lottery_MAX = parseInt(imgs.length*6)+parseInt(random);
+        var i=0;
+        console.log(random);
+        if(status==true) {
+            return false;
+        }
+        console.log(status);
+        status=true;
+        var interval = setInterval(function(){
+            if(i<=lottery_MAX){
+                var y = i%imgs.length;
+                $(".lottery-list img").attr("src","images/quan/"+imgs[y]);
+                i++;
+            }
+            else{
+                status=false;
+                if(!isFirst){
+                    if(random==2){
+                        $(".white-formsbg-black").show();
+                        $(".hbw").show();
+                    }
+                    else if(random==1||random==5){
+                        $(".white-formsbg-black").show();
+                        $(".success").show();
+
+                    }
+                }else{
+                    isFirst=false;
+                    if(random==2){
+                        $(".white-formsbg-black").show();
+                        $(".hbw").show();
+                    }
+                }
+                //已经抽奖五次  代码写在这里
+                // $(".white-formsbg-black").show();
+                // $(".used").show();
+                clearInterval(interval);
+            }
+        },100);
+    }
+    function loop(){
+        var i=0;
+        loop = setInterval(function(){
+            var y = i%imgs.length;
+            $(".lottery-list img").attr("src","images/quan/"+imgs[y]);
+            i++;
+        },100);
+    }
+    setSize();
+    window.addEventListener('resize', setSize, false);
+    // var arr = [5,2,3,152];
+    // console.log(arr.indexOf(52));    // 返回0
+    //点击抽奖
+    $(".lottery-btn").click(function(){
+        clearInterval(loop);
+        var random = Math.floor(Math.random()*imgs.length);  // 后台可以不用这句话  直接在下面的方法里面传个值  这里用于静态测试
+        lottery(random);
+    });
+
+    $(".white-formsbg-black,.close-form,.know-btn").click(function(){
+        $(".white-formsbg-black,.forms-wrap").hide();
+    });
+
+     var ck=new Cookie("HasLoaded");  //每个页面的new Cookie名HasLoaded不能相同
+      if(ck.Read()==null){//未加载过，Cookie内容为空
+        //第一次页面送汉堡王
+        lottery(2);
+         //设置保存时间
+         var dd = new Date();
+         dd = new Date(dd.getYear() + 1900, dd.getMonth(), dd.getDate());
+         dd.setDate(dd.getDate() + 365);
+         ck.setExpiresTime(dd);
+         ck.Write("true");  //设置Cookie。只要IE不关闭，Cookie就一直存在
+      }else{
+        isFirst= false;
+        //其他就随机
+        loop();
+      }
+});
+</script>
+</body>
+</html>

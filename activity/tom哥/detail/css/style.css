@@ -1,0 +1,52 @@
+body{ background-color: #FFF;}
+.main-wrap{width: 100%; max-width: 750px; margin:0 auto;}
+.main-pad{padding:1.5rem;}
+.banner-box{ position: relative;}
+.banner-img{width: 100%;height: auto;}
+.act-type{position: absolute; left: .5rem; bottom: .5rem; font-size: 2.1rem; color: #FFF; text-align: center; width: 7.1rem; line-height: 6.3rem; height: 6.3rem;}
+.act-type.act01{background: url(../images/type_red_01.png) no-repeat; background-size: contain;}
+.act-type.act02{background: url(../images/type_yellow_01.png) no-repeat; background-size: contain;}
+.act-type.act03{background: url(../images/type_blue_01.png) no-repeat; background-size: contain;}
+.act-txt h3{ color: #e98468; font-size: 1.5rem; line-height:4rem; }
+.act-txt div{font-size: 1.2rem; color: #333;line-height:2rem;}
+.nav-box{padding-top: 1.5rem; border-bottom: 1px solid #ededed; height: 4.3rem;}
+.nav-box ul{display: flex; flex-direction: row;}
+.nav-box ul li{width: 50%; text-align: center;position: relative;}
+.nav-box ul li span{color: #b4b4b4; font-size: 1.5rem; display: block; width: 4rem; height: 2.5rem; line-height: 2.5rem;}
+.nav-box ul li em{width: 4rem; height: .2rem; position: absolute; left: 10rem; bottom: 0px; border-radius: .1rem;
+  background: -webkit-linear-gradient(left, #ff3a43 , #fa7644); /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(right, #ff3a43, #fa7644); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(right, #ff3a43, #fa7644); /* Firefox 3.6 - 15 */
+  background: linear-gradient(to right, #ff3a43 , #fa7644); /* 标准的语法 */
+}
+.nav-box ul li:first-child span{ margin-left: 10rem;}
+.nav-box ul li:last-child span{ margin-left: 2rem; }
+.dis-wrap{margin-bottom: 4.4rem; }
+.discuss-box{border-bottom: 1px solid #ededed; padding:1.5rem 0; }
+.admin-info{display: flex;flex-direction: row; margin-bottom: .5rem;}
+.admin-info .tx{width: 3.4rem; height: 3.4rem;border-radius: 1.7rem;}
+.admin-info .name{padding-left: 1rem; height: 3.4rem; line-height: 3.4rem; font-size: 1.6rem; color: #333333;}
+.admin-info .sex{margin: 1.5rem 0 0 .5rem; width: 1.1rem;height: 1.1rem;}
+.admin-info .male{ background: url(../images/male.png) no-repeat; background-size: contain; }
+.admin-info .female{ background: url(../images/female.png) no-repeat; background-size: contain; }
+.discuss-con{padding-left: 3.5rem;}
+.imgbox{display: flex; flex-wrap: wrap;}
+.imgbox .dis-img{width: 8.4rem; height: 8.4rem; margin:0 .45rem .45rem 0; background:url(../images/img01.png) center center no-repeat; background-size: cover;}
+
+.dis-opa{display: flex; justify-content: space-between; padding: 1.4rem 0;}
+.dis-opa .date{ line-height: 1.8rem; height: 1.8rem; font-size: 1.2rem; color: #999; }
+.dis-zan{display: flex; flex-direction: row; justify-content: flex-end;line-height: 1.8rem;font-size: 1.3rem; color: #333;}
+.dis-ico{padding:0 1.6rem 0 2.5rem; background: url(../images/discuss.png) no-repeat; background-size: contain;}
+.zan-ico{padding-left:2.5rem; background: url(../images/zan.png) left center no-repeat; background-size: contain;}
+.dis-txt{font-size: 1.5rem; color: #333; line-height: 2rem; padding: 1rem 0;}
+.zan-list li{margin:.8rem 0; line-height: 1.8rem;height: 1.8rem;font-size: 1.5rem; color: #333;position: relative;}
+.zan-list span{font-weight: bold;}
+.zan-list li .zan{background: url(../images/zan.png) center center no-repeat; background-size: contain; width: 1.8rem; height: 1.8rem; position: absolute; right: 0px; top: 0; }
+.zan-list li .zan.act,.zan-ico.act{ background-image: url(../images/zan_h.png); }
+
+.fixed-bottom{background-color: #FFF;position: fixed;bottom: 0; left: 0px; width: 100%; height: 5.4rem; display: flex; justify-content: center;}
+.join-dis-btn{width: 30rem; height: 4.4rem;margin-top: .5rem; border-radius: 5rem; font-size: 1.8rem; color: #FFF; text-align: center; line-height: 4.4rem;
+  background: -webkit-linear-gradient(left, #ff3a43 , #fa7644); /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(right, #ff3a43, #fa7644); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(right, #ff3a43, #fa7644); /* Firefox 3.6 - 15 */
+  background: linear-gradient(to right, #ff3a43 , #fa7644); /* 标准的语法 */}

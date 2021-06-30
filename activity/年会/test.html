@@ -1,0 +1,87 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Language" content="zh-CN">
+<meta name="Keywords" content="SuperSlide,js特效下载,js特效代码,网页特效,jquery 教程,jquery插件下载,网站开发教程,主流cms教  程,B5seo优化,B5教程网,bcty365,jQuery无缝滚动">
+<meta name="Description" content="B5教程网提供优秀的网站开发教程、js网页特效、js特效下载、js代码、jquery插件下载、  jquery 教程、主流cms教程等内容。请记住最专业的网页特效及网页编程开发教程地址  http://www.bcty365.com">
+<title>jquery SuperSlide插件实现的文字无缝向上滚动特效代码</title>
+<script src="js/jquery1.42.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
+</head>
+
+<body>
+
+
+
+
+		<style type="text/css">
+		/* css 重置 */
+		*{margin:0; padding:0; list-style:none; }
+		body{ background:#fff; font:normal 12px/22px 宋体;  }
+		img{ border:0;  }
+		a{ text-decoration:none; color:#333;  }
+		a:hover{ color:#1974A1;  }
+
+
+		/* 本例子css */
+		.txtMarquee-top{ overflow:hidden; position:relative;  border:1px solid #ccc;   }
+		.txtMarquee-top .hd{ overflow:hidden;  height:30px; background:#f4f4f4; padding:0 10px;  }
+		.txtMarquee-top .hd .prev,.txtMarquee-top .hd .next{ display:block;  width:9px; height:5px; float:right; margin-right:5px; margin-top:10px;  overflow:hidden;
+			 cursor:pointer; background:url("../images/arrow.png") 0 -100px no-repeat;}
+		.txtMarquee-top .hd .next{ background-position:0 -140px;  }
+		.txtMarquee-top .hd .prevStop{ background-position:-60px -100px;  }
+		.txtMarquee-top .hd .nextStop{ background-position:-60px -140px;  }
+		.txtMarquee-top .bd{ padding:15px;  }
+		.txtMarquee-top .infoList li{ height:24px; line-height:24px;   }
+		.txtMarquee-top .infoList li .date{ float:right; color:#999;  }
+
+		</style>
+
+
+		<div class="txtMarquee-top">
+			<div class="hd">
+				<a class="next"></a>
+				<a class="prev"></a>
+			</div>
+			<div class="bd" style="height: 150px ;overflow: hidden;">
+				<ul class="infoList" style="position: relative;">
+					<li><span class="date">2011-11-11</span><a href="http://www.SuperSlide2.com" target="_blank">中国打破了世界软件巨头规则</a></li>
+					<li><span class="date">2011-11-11</span><a href="http://www.SuperSlide2.com" target="_blank">口语：会说中文就能说英语！</a></li>
+					<li><span class="date">2011-11-11</span><a href="http://www.SuperSlide2.com" target="_blank">农场摘菜不如在线学外语好玩</a></li>
+					<li><span class="date">2011-11-11</span><a href="http://www.SuperSlide2.com" target="_blank">数理化老师竟也看学习资料？</a></li>
+					<li><span class="date">2011-11-11</span><a href="http://www.SuperSlide2.com" target="_blank">学英语送ipad2,45天突破听说</a></li>
+					<li><span class="date">2011-11-11</span><a href="http://www.SuperSlide2.com" target="_blank">学外语，上北外！</a></li>
+					<li><span class="date">2011-11-11</span><a href="http://www.SuperSlide2.com" target="_blank">那些无法理解的荒唐事</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<script id="jsID" type="text/javascript">
+		//  var ary = location.href.split("&");
+		// jQuery(".txtMarquee-top").slide( { mainCell:".bd ul",autoPlay:true,effect:"fade",vis:8,interTime:500,opp:false,pnLoop:false,trigger:"mouseover",mouseOverStop:true  });
+
+
+		$(function(){
+			var top_val = parseFloat($(".infoList li").css("height"));
+			var append_num = 0;
+			setInterval(append,300);
+			function append(){
+				if(append_num>20){
+					
+				}else{
+					$(".infoList").append('<li><span class="date">2011-11-11</span><a href="http://www.SuperSlide2.com" target="_blank">444444</a></li>')
+				}
+				append_num++;
+				$(".infoList").animate({top:-(append_num*top_val)+"px"},500);
+				console.log(top_val);
+			}
+		})
+		</script>
+
+
+
+</body>
+</html>
+
+

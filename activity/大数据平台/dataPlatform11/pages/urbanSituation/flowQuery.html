@@ -1,0 +1,29 @@
+<div id="dateList00" style="position: relative;">
+	<div class="clearfix">
+		<div class="dataQuery">
+			<div class="dataBegin">开始日期<input type="text" id="flowStartTime" /></div>
+			<div class="dataEnd">结束日期<input type="text" id="flowEndTime" /></div>
+		</div>
+		<div class="queryBt">
+			<button type="button" ng-click="queryBt()">查询</button>
+			<button type="button">导出</button>
+		</div>
+	</div>
+	
+	<div id="queryChart" class="" style="width: 100%;height: 582px;margin-top: 50px;background: rgba(0,116,255,0.2);"></div>
+	<table id="example1" class="table table-bordered table-striped" style="margin-top: 45px;background: rgba(255,255,255,0);">
+        <thead>
+            <tr>
+                <th>日期</th>
+                <th>人流数据</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in data">
+                <td>{{item.date}}</td>
+                <td>{{item.uv}}</td>
+            </tr>
+            
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,6 @@
+修改common.js的时候  就要个性myawards.html  切记要修改common.js底部的这段my_awards_v1.html?
+
+//我的奖品
+function myawards(activeType){
+	window.location.href = 'my_awards_v1.html?activeType='+activeType+"&appkey="+appkey+"&uid="+uid;
+}

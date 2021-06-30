@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="MobileOptimized" content="240" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />  
+    <meta content="email=no" name="format-detection" />
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title>五河-登录</title>
+    <link rel="stylesheet" href="public/css/swiper.min.css">
+    <link rel="stylesheet" href="public/css/style11_29.css">
+</head>
+<body>
+    <div class="main-wrap">
+        <img src="public/images/banner01.jpg" alt="" class="banner-img">
+      <!-- Swiper -->
+        <!-- <div class="swiper-container">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img src="public/images/banner01.jpg" alt="">
+                <span>智慧五河 人文五河</span>
+              </div>
+              <div class="swiper-slide">
+                <img src="public/images/banner01.jpg" alt="">
+                <span>智慧五河 人文五河2222</span>
+              </div>
+              <div class="swiper-slide">
+                <img src="public/images/banner01.jpg" alt="">
+                <span>智慧五河 人文五河3333</span>
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div> -->
+        <!-- swiper end -->
+        <form action="">
+            <!-- 首登 -->
+            <div class="login-formbox">
+                <div class="login-txt">登录手机号码，以连接WiFi</div>
+                <ul class="login-list">
+                    <li>
+                       <div class="acc-no li-div">
+                           <!-- <input type="text" placeholder="请输入账号"> -->
+                           <input type="tel" id="wedding-phone" maxlength="11" pattern="[0-9]*" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" placeholder="请输入账号" />
+                        <div class="close-ico"></div>
+                       </div> 
+                    </li>
+                    <li>
+                        <div class="pwd li-div">
+                           <input type="text" placeholder="请输入验证码">
+                        <div class="close-ico"></div>
+                        <a href="javascript:;" class="yzm-btn">获取验证码</a>
+                       </div> 
+                    </li>
+                </ul>
+            </div>
+            <!-- end  -->
+            <!-- 次登-->
+            <!-- <div class="logged-in">
+                <div class="logged-tel">已登录158****5856</div>
+            </div> -->
+            <!-- end  -->
+            <a href="javascript:;" class="contactBtn">连接WiFi</a>
+        </form>
+
+        <div class="footer">技术支持 南方银谷 电话：400-187-7877 ©wifi8</div>
+  </div>
+<div class="formsbg-black"></div>
+<script src="public/js/zepto.min.js"></script>
+<script src="public/js/swiper.min.js"></script>
+<script src="public/js/portal.js"></script>
+<script>
+    $(function(){
+        window.addEventListener('resize', Rem, false);
+       Rem();
+       mainH();
+       var win_w = $(".main-wrap").width();
+       var banner_Img= parseFloat(win_w*450/750);
+       $(".banner-img").css("height",banner_Img+"px");
+       //swiper 初始化
+       // var swiper = new Swiper('.swiper-container', {
+       //    pagination: {
+       //      el: '.swiper-pagination',
+       //    },
+       //    paginationClickable: true,
+       //    loop: true,
+       //    autoplay: 3000,
+       //    autoplayDisableOnInteraction: false
+       //  });
+
+       // $(".li-div input").click(function(e){
+       //      e.stopPropagation();
+       //      $(".li-div").removeClass('focus');
+       //      $(this).parents(".li-div").addClass('focus');
+            
+       // });
+      $(".li-div input").click(function(e){
+          e.stopPropagation();
+          $(".li-div").removeClass('focus');
+          $(this).parents(".li-div").addClass('focus');
+       })
+       $("body").click(function(){
+          $(".li-div").removeClass('focus');
+       })
+
+       $(".close-ico").click(function(e){
+          e.stopPropagation();
+          $(this).parents("li").find('input').val("").focus();
+       })
+
+       var interval;
+       var num =10;
+       function times(){
+        if(num>0){
+            num--;
+            $(".yzm-btn").text(num);
+        }else{
+            clearInterval(interval);
+            $(".yzm-btn").removeClass('disabled').text("获取验证码");
+        }
+       }
+       $(".yzm-btn").click(function(){
+            if(!$(this).hasClass('disabled')){
+                num=10;
+                $(this).addClass('disabled').text(10);
+                interval = setInterval(times,1000);
+            }
+       })
+
+       $(".close-ico").click(function(e){
+         e.stopPropagation();
+          var obj = $(this).parents("li");
+          obj.find('input').val("").focus();
+       })
+
+
+        //错误提示
+       //  commonUtils.showPop2("请输入正确的手机号码");
+    })
+</script> 
+</body>
+</html>

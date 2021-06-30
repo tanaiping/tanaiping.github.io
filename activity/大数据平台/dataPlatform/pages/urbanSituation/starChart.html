@@ -1,0 +1,246 @@
+<div class="main-bg">
+	<div class="main-wrap">
+		<div class="subway-star pt200">
+			<div class="user-data">
+				<div class="data-num" id="cur_data"></div>
+				<div class="data-desc"><span><em id="time">08:52:11</em>广州地铁实时人数</span></div>
+			</div>
+			<div class="opacity_bg">
+				<div class="t1" id="allNum"></div>
+				<div class="t2">广州地铁当日累计人数</div>
+			</div>
+			<!-- 用户覆盖数 end  -->
+			<div class="subway-wrap">
+				<div class="s1-1 station" station-name="广州东站" ng-click="getStation($event)"></div>
+				<div class="s1-2 station" station-name="体育中心" ng-click="getStation($event)"></div>
+				<div class="s1-3 station" station-name="体育西路" ng-click="getStation($event)"></div>
+				<div class="s1-4 station" station-name="杨箕" ng-click="getStation($event)"></div>
+				<div class="s1-5 station" station-name="东山口" ng-click="getStation($event)"></div>
+				<div class="s1-6 station" station-name="烈士陵园" ng-click="getStation($event)"></div>
+				<div class="s1-7 station" station-name="农讲所" ng-click="getStation($event)"></div>
+				<div class="s1-8 station" station-name="公园前" ng-click="getStation($event)"></div>
+				<div class="s1-9 station" station-name="西门口" ng-click="getStation($event)"></div>
+				<div class="s1-10 station" station-name="陈家祠" ng-click="getStation($event)"></div>
+				<div class="s1-11 station" station-name="长寿路" ng-click="getStation($event)"></div>
+				<div class="s1-12 station" station-name="黄沙" ng-click="getStation($event)"></div>
+				<div class="s1-13 station" station-name="芳村" ng-click="getStation($event)"></div>
+				<div class="s1-14 station" station-name="花地湾" ng-click="getStation($event)"></div>
+				<div class="s1-15 station" station-name="坑口" ng-click="getStation($event)"></div>
+				<div class="s1-16 station" station-name="西朗" ng-click="getStation($event)"></div>
+
+				<div class="s2-1 station" station-name="嘉禾望岗" ng-click="getStation($event)"></div>
+				<div class="s2-2 station" station-name="黄边" ng-click="getStation($event)"></div>
+				<div class="s2-3 station" station-name="江夏" ng-click="getStation($event)"></div>
+				<div class="s2-4 station" station-name="萧岗" ng-click="getStation($event)"></div>
+				<div class="s2-5 station" station-name="白云文化广场" ng-click="getStation($event)"></div>
+				<div class="s2-6 station" station-name="白云公园" ng-click="getStation($event)"></div>
+				<div class="s2-7 station" station-name="飞翔公园" ng-click="getStation($event)"></div>
+				<div class="s2-8 station" station-name="三元里" ng-click="getStation($event)"></div>
+				<div class="s2-9 station" station-name="广州火车站" ng-click="getStation($event)"></div>
+				<div class="s2-10 station" station-name="越秀公园" ng-click="getStation($event)"></div>
+				<div class="s2-11 station" station-name="纪念堂" ng-click="getStation($event)"></div>
+				<div class="s2-12 station" station-name="海珠广场" ng-click="getStation($event)"></div>
+				<div class="s2-13 station" station-name="市二宫" ng-click="getStation($event)"></div>
+				<div class="s2-14 station" station-name="江南西" ng-click="getStation($event)"></div>
+				<div class="s2-15 station" station-name="昌岗" ng-click="getStation($event)"></div>
+				<div class="s2-16 station" station-name="江泰路" ng-click="getStation($event)"></div>
+				<div class="s2-17 station" station-name="东晓南" ng-click="getStation($event)"></div>
+				<div class="s2-18 station" station-name="南洲" ng-click="getStation($event)"></div>
+				<div class="s2-19 station" station-name="洛溪" ng-click="getStation($event)"></div>
+				<div class="s2-20 station" station-name="南浦" ng-click="getStation($event)"></div>
+				<div class="s2-21 station" station-name="会江" ng-click="getStation($event)"></div>
+				<div class="s2-22 station" station-name="石壁" ng-click="getStation($event)"></div>
+				<div class="s2-23 station" station-name="广州南站" ng-click="getStation($event)"></div>
+
+				<div class="s3-1 station" station-name="天河客运站" ng-click="getStation($event)"></div>
+				<div class="s3-2 station" station-name="五山" ng-click="getStation($event)"></div>
+				<div class="s3-3 station" station-name="华师" ng-click="getStation($event)"></div>
+				<div class="s3-4 station" station-name="岗顶" ng-click="getStation($event)"></div>
+				<div class="s3-5 station" station-name="石牌桥" ng-click="getStation($event)"></div>
+				<div class="s3-6 station" station-name="珠江新城" ng-click="getStation($event)"></div>
+				<div class="s3-7 station" station-name="广州塔" ng-click="getStation($event)"></div>
+				<div class="s3-8 station" station-name="客村" ng-click="getStation($event)"></div>
+				<div class="s3-9 station" station-name="大塘" ng-click="getStation($event)"></div>
+				<div class="s3-10 station" station-name="沥滘" ng-click="getStation($event)"></div>
+				<div class="s3-11 station" station-name="厦滘" ng-click="getStation($event)"></div>
+				<div class="s3-12 station" station-name="大石" ng-click="getStation($event)"></div>
+				<div class="s3-13 station" station-name="汉溪长隆" ng-click="getStation($event)"></div>
+				<div class="s3-14 station" station-name="市桥" ng-click="getStation($event)"></div>
+				<div class="s3-15 station" station-name="番禺广场" ng-click="getStation($event)"></div>
+				<div class="s3-16 station" station-name="林和西" ng-click="getStation($event)"></div>
+				<div class="s3-17 station" station-name="燕塘" ng-click="getStation($event)"></div>
+				<div class="s3-18 station" station-name="梅花园" ng-click="getStation($event)"></div>
+				<div class="s3-19 station" station-name="京溪南方医院" ng-click="getStation($event)"></div>
+				<div class="s3-20 station" station-name="同和" ng-click="getStation($event)"></div>
+				<div class="s3-21 station" station-name="永泰" ng-click="getStation($event)"></div>
+				<div class="s3-22 station" station-name="白云大道北" ng-click="getStation($event)"></div>
+				<div class="s3-23 station" station-name="龙归" ng-click="getStation($event)"></div>
+				<div class="s3-24 station" station-name="人和" ng-click="getStation($event)"></div>
+				<div class="s3-25 station" station-name="高增" ng-click="getStation($event)"></div>
+				<div class="s3-26 station" station-name="机场南(1号航站楼)" ng-click="getStation($event)"></div>
+				<div class="s3-27 station" station-name="机场北(2号航站楼)" ng-click="getStation($event)"></div>
+
+				<div class="s4-1 station" station-name="南沙客运港" ng-click="getStation($event)"></div>
+				<div class="s4-2 station" station-name="南横" ng-click="getStation($event)"></div>
+				<div class="s4-3 station" station-name="塘坑" ng-click="getStation($event)"></div>
+				<div class="s4-4 station" station-name="大涌" ng-click="getStation($event)"></div>
+				<div class="s4-5 station" station-name="广隆" ng-click="getStation($event)"></div>
+				<div class="s4-6 station" station-name="飞沙角" ng-click="getStation($event)"></div>
+				<div class="s4-7 station" station-name="金洲" ng-click="getStation($event)"></div>
+				<div class="s4-8 station" station-name="蕉门" ng-click="getStation($event)"></div>
+				<div class="s4-9 station" station-name="黄阁" ng-click="getStation($event)"></div>
+				<div class="s4-10 station" station-name="黄阁汽车城" ng-click="getStation($event)"></div>
+				<div class="s4-11 station" station-name="庆盛" ng-click="getStation($event)"></div>
+				<div class="s4-12 station" station-name="东涌" ng-click="getStation($event)"></div>
+				<div class="s4-13 station" station-name="低涌" ng-click="getStation($event)"></div>
+				<div class="s4-14 station" station-name="海傍" ng-click="getStation($event)"></div>
+				<div class="s4-15 station" station-name="石碁" ng-click="getStation($event)"></div>
+				<div class="s4-16 station" station-name="新造" ng-click="getStation($event)"></div>
+				<div class="s4-17 station" station-name="大学城南" ng-click="getStation($event)"></div>
+				<div class="s4-18 station" station-name="大学城北" ng-click="getStation($event)"></div>
+				<div class="s4-19 station" station-name="官洲" ng-click="getStation($event)"></div>
+				<div class="s4-20 station" station-name="万胜围" ng-click="getStation($event)"></div>
+				<div class="s4-21 station" station-name="车陂南" ng-click="getStation($event)"></div>
+				<div class="s4-22 station" station-name="车陂" ng-click="getStation($event)"></div>
+				<div class="s4-23 station" station-name="黄村" ng-click="getStation($event)"></div>
+
+				<div class="s5-1 station" station-name="文冲" ng-click="getStation($event)"></div>
+				<div class="s5-2 station" station-name="大沙东" ng-click="getStation($event)"></div>
+				<div class="s5-3 station" station-name="大沙地" ng-click="getStation($event)"></div>
+				<div class="s5-4 station" station-name="鱼珠" ng-click="getStation($event)"></div>
+				<div class="s5-5 station" station-name="三溪" ng-click="getStation($event)"></div>
+				<div class="s5-6 station" station-name="东圃" ng-click="getStation($event)"></div>
+				<div class="s5-7 station" station-name="科韵路" ng-click="getStation($event)"></div>
+				<div class="s5-8 station" station-name="员村" ng-click="getStation($event)"></div>
+				<div class="s5-9 station" station-name="潭村" ng-click="getStation($event)"></div>
+				<div class="s5-10 station" station-name="猎德" ng-click="getStation($event)"></div>
+				<div class="s5-11 station" station-name="五羊邨" ng-click="getStation($event)"></div>
+				<div class="s5-12 station" station-name="动物园" ng-click="getStation($event)"></div>
+				<div class="s5-13 station" station-name="区庄" ng-click="getStation($event)"></div>
+				<div class="s5-14 station" station-name="淘金" ng-click="getStation($event)"></div>
+				<div class="s5-15 station" station-name="小北" ng-click="getStation($event)"></div>
+				<div class="s5-16 station" station-name="西村" ng-click="getStation($event)"></div>
+				<div class="s5-17 station" station-name="西场" ng-click="getStation($event)"></div>
+				<div class="s5-18 station" station-name="中山八" ng-click="getStation($event)"></div>
+				<div class="s5-19 station" station-name="坦尾" ng-click="getStation($event)"></div>
+				<div class="s5-20 station" station-name="滘口" ng-click="getStation($event)"></div>
+
+				<div class="s6-1 station" station-name="浔峰岗" ng-click="getStation($event)"></div>
+				<div class="s6-2 station" station-name="横沙" ng-click="getStation($event)"></div>
+				<div class="s6-3 station" station-name="沙贝" ng-click="getStation($event)"></div>
+				<div class="s6-4 station" station-name="河沙" ng-click="getStation($event)"></div>
+				<div class="s6-5 station" station-name="坦尾" ng-click="getStation($event)"></div>
+				<div class="s6-6 station" station-name="如意坊" ng-click="getStation($event)"></div>
+				<div class="s6-7 station" station-name="文化公园" ng-click="getStation($event)"></div>
+				<div class="s6-8 station" station-name="一德路" ng-click="getStation($event)"></div>
+				<div class="s6-9 station" station-name="北京路" ng-click="getStation($event)"></div>
+				<div class="s6-10 station" station-name="团一大广场" ng-click="getStation($event)"></div>
+				<div class="s6-11 station" station-name="东湖" ng-click="getStation($event)"></div>
+				<div class="s6-12 station" station-name="黄花岗" ng-click="getStation($event)"></div>
+				<div class="s6-13 station" station-name="沙河顶" ng-click="getStation($event)"></div>
+				<div class="s6-14 station" station-name="天平架" ng-click="getStation($event)"></div>
+				<div class="s6-15 station" station-name="长湴" ng-click="getStation($event)"></div>
+				<div class="s6-16 station" station-name="植物园" ng-click="getStation($event)"></div>
+				<div class="s6-17 station" station-name="龙洞" ng-click="getStation($event)"></div>
+				<div class="s6-18 station" station-name="柯木塱" ng-click="getStation($event)"></div>
+				<div class="s6-19 station" station-name="高塘石" ng-click="getStation($event)"></div>
+				<div class="s6-20 station" station-name="黄陂" ng-click="getStation($event)"></div>
+				<div class="s6-21 station" station-name="金峰" ng-click="getStation($event)"></div>
+				<div class="s6-22 station" station-name="暹岗" ng-click="getStation($event)"></div>
+				<div class="s6-23 station" station-name="苏元" ng-click="getStation($event)"></div>
+				<div class="s6-24 station" station-name="萝岗" ng-click="getStation($event)"></div>
+				<div class="s6-25 station" station-name="香雪" ng-click="getStation($event)"></div>
+
+
+				<div class="s7-1 station" station-name="板桥" ng-click="getStation($event)"></div>
+				<div class="s7-2 station" station-name="员岗" ng-click="getStation($event)"></div>
+				<div class="s7-3 station" station-name="南村万博" ng-click="getStation($event)"></div>
+				<div class="s7-4 station" station-name="钟村" ng-click="getStation($event)"></div>
+				<div class="s7-5 station" station-name="谢村" ng-click="getStation($event)"></div>
+
+				<div class="s8-1 station" station-name="琶洲" ng-click="getStation($event)"></div>
+				<div class="s8-2 station" station-name="新港东" ng-click="getStation($event)"></div>
+				<div class="s8-3 station" station-name="磨碟沙" ng-click="getStation($event)"></div>
+				<div class="s8-4 station" station-name="赤岗" ng-click="getStation($event)"></div>
+				<div class="s8-5 station" station-name="鹭江" ng-click="getStation($event)"></div>
+				<div class="s8-6 station" station-name="中大" ng-click="getStation($event)"></div>
+				<div class="s8-7 station" station-name="晓港" ng-click="getStation($event)"></div>
+				<div class="s8-8 station" station-name="宝岗大道" ng-click="getStation($event)"></div>
+				<div class="s8-9 station" station-name="沙园" ng-click="getStation($event)"></div>
+				<div class="s8-10 station" station-name="凤凰新村" ng-click="getStation($event)"></div>
+
+
+				<!-- 9 begin -->
+				<div class="s9-1 station" station-name="清布" ng-click="getStation($event)"></div>
+				<div class="s9-2 station" station-name="莲塘" ng-click="getStation($event)"></div>
+				<div class="s9-3 station" station-name="马鞍山公园" ng-click="getStation($event)"></div>
+				<div class="s9-4 station" station-name="花都广场" ng-click="getStation($event)"></div>
+				<div class="s9-5 station" station-name="花果山公园" ng-click="getStation($event)"></div>
+				<div class="s9-6 station" station-name="花城路" ng-click="getStation($event)"></div>
+				<div class="s9-7 station" station-name="广州北站" ng-click="getStation($event)"></div>
+				<div class="s9-8 station" station-name="花都汽车城" ng-click="getStation($event)"></div>
+				<div class="s9-9 station" station-name="飞鹅岭" ng-click="getStation($event)"></div>
+				<!-- 9 end -->
+				
+				<!-- 广佛线 -->
+				<div class="s10-1 station" station-name="燕岗" ng-click="getStation($event)"></div>
+				<div class="s10-2 station" station-name="沙涌" ng-click="getStation($event)"></div>
+				<div class="s10-3 station" station-name="鹤洞" ng-click="getStation($event)"></div>
+				<div class="s10-4 station" station-name="菊树" ng-click="getStation($event)"></div>
+				<div class="s10-5 station" station-name="龙溪" ng-click="getStation($event)"></div>
+				<div class="s10-6 station" station-name="金融高新区" ng-click="getStation($event)"></div>
+				<div class="s10-7 station" station-name="千灯湖" ng-click="getStation($event)"></div>
+				<div class="s10-8 station" station-name="礌岗" ng-click="getStation($event)"></div>
+				<div class="s10-9 station" station-name="南桂路" ng-click="getStation($event)"></div>
+				<div class="s10-10 station" station-name="桂城" ng-click="getStation($event)"></div>
+				<div class="s10-11 station" station-name="朝安" ng-click="getStation($event)"></div>
+				<div class="s10-12 station" station-name="普君北路" ng-click="getStation($event)"></div>
+				<div class="s10-13 station" station-name="祖庙" ng-click="getStation($event)"></div>
+				<div class="s10-14 station" station-name="同济路" ng-click="getStation($event)"></div>
+				<div class="s10-15 station" station-name="季华园" ng-click="getStation($event)"></div>
+				<div class="s10-16 station" station-name="魁奇路" ng-click="getStation($event)"></div>
+				<div class="s10-17 station" station-name="澜石" ng-click="getStation($event)"></div>
+				<div class="s10-18 station" station-name="世纪莲" ng-click="getStation($event)"></div>
+				<div class="s10-19 station" station-name="东平" ng-click="getStation($event)"></div>
+				<div class="s10-20 station" station-name="新城东" ng-click="getStation($event)"></div>
+
+				<!-- APM -->
+				<div class="s11-1 station" station-name="海心沙" ng-click="getStation($event)"></div>
+				<div class="s11-2 station" station-name="大剧院" ng-click="getStation($event)"></div>
+				<div class="s11-3 station" station-name="花城大道" ng-click="getStation($event)"></div>
+				<div class="s11-4 station" station-name="妇儿中心" ng-click="getStation($event)"></div>
+				<div class="s11-5 station" station-name="黄埔大道" ng-click="getStation($event)"></div>
+				<div class="s11-6 station" station-name="天河南" ng-click="getStation($event)"></div>
+				<div class="s11-7 station" station-name="体育中心南" ng-click="getStation($event)"></div>
+
+				<!-- 知识城线 -->
+				<div class="s12-1 station" station-name="镇龙" ng-click="getStation($event)"></div>
+				<div class="s12-2 station" station-name="镇龙北" ng-click="getStation($event)"></div>
+				<div class="s12-3 station" station-name="汤村" ng-click="getStation($event)"></div>
+				<div class="s12-4 station" station-name="旺村" ng-click="getStation($event)"></div>
+				<div class="s12-5 station" station-name="何棠下" ng-click="getStation($event)"></div>
+				<div class="s12-6 station" station-name="知识城" ng-click="getStation($event)"></div>
+				<div class="s12-7 station" station-name="枫下" ng-click="getStation($event)"></div>
+				<div class="s12-8 station" station-name="新南" ng-click="getStation($event)"></div>
+				<div class="s12-9 station" station-name="红卫" ng-click="getStation($event)"></div>
+				<div class="s12-10 station" station-name="新和" ng-click="getStation($event)"></div>
+				
+				<!-- 13 begin-->
+				<div class="s13-1 station" station-name="新沙" ng-click="getStation($event)"></div>
+				<div class="s13-2 station" station-name="官湖" ng-click="getStation($event)"></div>
+				<div class="s13-3 station" station-name="新塘" ng-click="getStation($event)"></div>
+				<div class="s13-4 station" station-name="白江" ng-click="getStation($event)"></div>
+				<div class="s13-5 station" station-name="沙村" ng-click="getStation($event)"></div>
+				<div class="s13-6 station" station-name="南岗" ng-click="getStation($event)"></div>
+				<div class="s13-7 station" station-name="夏园" ng-click="getStation($event)"></div>
+				<div class="s13-8 station" station-name="南海神庙" ng-click="getStation($event)"></div>
+				<div class="s13-9 station" station-name="双岗" ng-click="getStation($event)"></div>
+				<div class="s13-10 station" station-name="裕丰围" ng-click="getStation($event)"></div>
+				<!-- 13 end-->
+				
+
+			</div>
+		</div>
+		<!-- subway end  -->
+	</div>
+</div>

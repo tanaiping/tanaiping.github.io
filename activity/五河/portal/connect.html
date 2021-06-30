@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="MobileOptimized" content="240" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />  
+    <meta content="email=no" name="format-detection" />
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title>五河-连接</title>
+    <link rel="stylesheet" href="public/css/style11_29.css">
+    
+</head>
+<body>
+    <div class="main-wrap">
+        <div class="connect-t1">正在为您连接WiFi<br />请等待<em id="times">15</em>秒</div>  
+        <div class="connect-imgbox">
+            <img src="public/images/connect.png" alt="" class="connect-bg">
+            <div class="title">智慧五河</div>
+        </div>
+        <div class="footer">技术支持 南方银谷 电话：400-187-7877 ©wifi8</div>
+    </div>
+<script src="public/js/zepto.min.js"></script>
+<script src="public/js/portal.js"></script>
+<script>
+	$(function(){
+        window.addEventListener('resize', Rem, false);
+       Rem();
+       mainH();
+
+       var interval;
+       var num = 15;
+       function times(){
+        if(num>0){
+            num--;
+            $("#times").text(num);
+            //连接成功
+            // if(){//连接成功的条件
+            //     clearInterval(interval);
+            //     $(".connect-t1").html("恭喜您连接成功");
+            // }else{ //连接失败
+            //    clearInterval(interval);
+                //$(".connect-t1").html('连接失败<br />返回<a href="login.html">首页</a>重新尝试');
+                //setTimeout(function(){window.location.href="login.html";},2000);
+            //}
+        }else{
+            clearInterval(interval);
+        }
+       }
+       interval = setInterval(times,1000);
+    })
+</script>
+</body>
+</html>
+
+
+

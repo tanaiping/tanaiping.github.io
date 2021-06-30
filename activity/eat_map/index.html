@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="MobileOptimized" content="240" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />  
+    <meta content="email=no" name="format-detection" />
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title>万达广场欢乐家庭车生活</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="index-bg">
+    <div class="metro-map">
+      <div class="mapbox">
+          <img src="images/map.jpg" alt=""  class="map-img"  id="metro_map" style="display: none;">
+          <canvas id="c1" class="map-img"></canvas>
+          <div class="loca-1" x="487" y="142">
+            <a href="page3.html" class="location-link">
+              <img src="images/shop03.png" alt="" >
+              <img src="images/location_ico.png" class="loca-ico bling1">
+            </a>
+            <a href="page2.html" class="location-link">
+              <img src="images/shop02.png" alt="">
+              <img src="images/location_ico.png" class="loca-ico bling1" style="left: 2.4rem;">
+            </a>
+            
+          </div>
+          <div class="loca-2" x="-465" y="360">
+            <a href="page4.html" class="location-link">
+              <img src="images/shop04.png" alt="">
+              <img src="images/location_ico.png" class="loca-ico bling1">
+            </a>
+          </div>
+          <div class="loca-3" x="26" y="-80">
+            <a href="page1.html" class="location-link">
+              <img src="images/shop01.png" alt="">
+              <img src="images/location_ico.png" class="loca-ico bling1">
+            </a>
+          </div>
+      </div>
+    </div>
+  </div>
+<!-- <script src="js/zepto.min.js"></script> -->
+<script type="text/javascript" src="js/jquery.js"></script>  
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<!-- <script type="text/javascript" src="js/vconsole.min.js"></script>  -->
+<script src="js/alloy_paper.js"></script>  
+<script src="js/alloy_finger.js"></script> 
+<script src="js/public.js"></script>
+<script>
+    $(function(){
+      
+      //微信分享
+        var url = 'http://activity.peanut8.com/act/2019/wanda428/index.html';
+        var imgUrl = 'http://activity.peanut8.com/act/2019/wanda428/images/share.jpg';
+        var title = '万达广场欢乐家庭车生活';
+        var desc = '万达广场欢乐家庭车生活';
+        var wx_url = window.location.href;
+        $.ajax({
+          type: "get",
+          url: 'http://activity.peanut8.com/WxShare/anxious',
+          data: {
+            url: wx_url
+          },
+          dataType: 'json',
+          success: function(data) {
+            if(data.code == 1) {
+              wx.config({
+                debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                appId: data.data.sharePackage.appId, // 必填，公众号的唯一标识
+                timestamp: data.data.sharePackage.timestamp, // 必填，生成签名的时间戳
+                nonceStr: data.data.sharePackage.nonceStr, // 必填，生成签名的随机串
+                signature: data.data.sharePackage.signature, // 必填，签名，见附录1
+                jsApiList: [
+                  'checkJsApi',
+                  'onMenuShareTimeline',
+                  'onMenuShareAppMessage'
+                ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+              });
+              var shareInfo = data.data.shareInfo;
+              wx.ready(function() {
+                //分享到朋友圈
+                wx.onMenuShareTimeline({
+                  title: title, // 分享标题
+                  desc: desc,
+                  link: url, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                  imgUrl: imgUrl, // 分享图标
+                  success: function() {
+
+                  },
+                  cancel: function(res) {
+
+                  }
+                });
+
+                //分享给朋友
+                wx.onMenuShareAppMessage({
+                  title: title, // 分享标题
+                  desc: desc, // 分享描述
+                  link: url, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                  imgUrl: imgUrl, // 分享图标
+                  success: function() {
+
+                  },
+                  cancel: function() {
+
+                  }
+                });
+              });
+            }
+          },
+          error: function() {}
+        })
+        
+
+     $(window).load(function(){
+        var image1 = document.getElementById("metro_map");    //自己上传的图
+        var c1 = document.getElementById("c1"); 
+        console.log($(".metro-map").css("width")+"--"+$(".metro-map").css("height"))
+        c1.width = parseInt($(".metro-map").css("width"));  
+        c1.height = parseInt($(".metro-map").css("height")); 
+        var ctx1 = c1.getContext("2d"); 
+        upimgurl = $(".map-img").attr("src");   
+        upimg = new Image();      
+        upimg.src = upimgurl;     
+        upimg.onload = function(){   
+            ctx1.clearRect(0,0,c1.width,c1.height);  
+            var Stage = AlloyPaper.Stage, Bitmap = AlloyPaper.Bitmap,Loader=AlloyPaper.Loader;  
+            var stage = new Stage("#c1");  
+            stage.autoUpdate=false;  
+            var ld = new Loader();  
+            ld.loadRes2([  
+                { id: "test", src: upimgurl },  
+            ]);  
+            ld.complete(function () {  
+                var bmp = new Bitmap(ld.get("test"));  
+                bmp.originX = 0.316;  
+                bmp.originY = 0.386; 
+                // bmp.originX = 0.553;  
+                // bmp.originY = 0.48; 
+                bmp.x = stage.width / 2;  
+                bmp.y = stage.height / 2;  
+                stage.add(bmp);  
+                //stage.update();  
+                //updateStage();  
+                var initScale =1;
+                var newScale = bmp.scaleX = bmp.scaleY = 0.22
+                resetLocation(bmp.x,bmp.y,0.22);
+                updateStage();
+                /************************/  
+                new AlloyFinger(bmp, {  
+                    multipointStart: function () {  
+                        initScale = bmp.scaleX; 
+                    },  
+                    rotate: function (evt) {  
+                        //bmp.rotation += evt.angle;  
+                        //stage.update();
+
+                        //updateStage();  
+                    },  
+                    pinch: function (evt) {  
+                        bmp.scaleX = bmp.scaleY = initScale * evt.scale;  
+                        //stage.update();  
+                        // console.log(bmp.scaleX+"====pinch"+bmp.scaleY);
+                        // console.log(bmp.x+"====pinch"+bmp.y);
+                        resetLocation(bmp.x,bmp.y,bmp.scaleX);
+                        updateStage();  
+                    },  
+                    pressMove: function (evt) {  
+                        bmp.x += evt.deltaX;  
+                        bmp.y += evt.deltaY;
+                        //以下因为旋转90度了 所以改下值
+                        // bmp.x += evt.deltaY;  
+                        // bmp.y -= evt.deltaX;  
+                        evt.preventDefault();  
+                        //stage.update();  
+                        // console.log(bmp.scaleX+"====pressMove"+bmp.scaleY);
+                        // console.log(bmp.x+"====pressMove"+bmp.y);
+                        resetLocation(bmp.x,bmp.y,bmp.scaleX);
+                        updateStage();  
+                    }  
+                });  
+            });  
+            //将上传的图片画入canvas圆中  
+            function updateStage(){  
+                ctx1.beginPath();  
+                ctx1.rect(0, 0, c1.width, c1.height);
+                ctx1.save();  
+                ctx1.clip();  
+                stage.update();  
+                ctx1.restore();   
+            }
+
+            //重置万达的 位置以及大小
+            function resetLocation(x,y,scale){
+              var s_w1 = parseInt($(".loca-1").width());
+              var s_h1 = parseInt($(".loca-1").height());
+              var s_l1 = parseInt($(".loca-1").attr("x"))*scale;
+              var s_t1 = parseInt($(".loca-1").attr("y"))*scale;
+
+              var s_w2 = parseInt($(".loca-2").width());
+              var s_h2 = parseInt($(".loca-2").height());
+              var s_l2 = parseInt($(".loca-2").attr("x"))*scale;
+              var s_t2 = parseInt($(".loca-2").attr("y"))*scale;
+
+              var s_w3 = parseInt($(".loca-3").width());
+              var s_h3 = parseInt($(".loca-3").height());
+              var s_l3 = parseInt($(".loca-3").attr("x"))*scale;
+              var s_t3 = parseInt($(".loca-3").attr("y"))*scale;
+
+              $(".loca-1").css({"left":(s_l1+x-s_w1/2)+"px","top":(s_t1+y-s_h1)+"px"}); 
+              $(".loca-2").css({"left":(s_l2+x-s_w2/2)+"px","top":(s_t2+y-s_h2)+"px"}); 
+              $(".loca-3").css({"left":(s_l3+x-s_w3/2)+"px","top":(s_t3+y-s_h3)+"px"});
+              $(".loca-1,.loca-2,.loca-3").show();
+            }  
+        };
+
+     });
+      
+  
+      
+    })
+
+</script>
+</body>
+</html>

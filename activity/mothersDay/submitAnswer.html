@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta http-equiv="Cache-Control" content="no-cache" />
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="MobileOptimized" content="240" />
+		<meta name="apple-touch-fullscreen" content="YES" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="email=no" name="format-detection" />
+		<!-- uc强制竖屏 -->
+		<meta name="screen-orientation" content="portrait">
+		<!-- QQ强制竖屏 -->
+		<meta name="x5-orientation" content="portrait">
+		<!-- UC强制全屏 -->
+		<meta name="full-screen" content="yes">
+		<!-- QQ强制全屏 -->
+		<meta name="x5-fullscreen" content="true">
+		<!-- UC应用模式 -->
+		<meta name="browsermode" content="application">
+		<!-- QQ应用模式 -->
+		<meta name="x5-page-mode" content="app">
+		<!-- windows phone 点击无高光 -->
+		<meta name="msapplication-tap-highlight" content="no">
+		<!-- 适应移动端end -->
+		<title>母亲节，为她发声</title>
+
+		<link rel="stylesheet" href="css/interlocution.css?t=1">
+	</head>
+	<body style="background: #f2f2f2;">
+		<div class="main-wrap">
+			<div class="answerBg-box">
+			</div>
+			<!--<div class="mainLogo">
+				<img src="img/man-top.jpg" />
+			</div>-->
+			
+			<div class="answerInput">
+				<div class="answerWords clearfix">
+					<div class="answerClose">
+						<a href="javascript:;"></a>
+						<!--<p><b>...</b></p>-->
+					</div>
+					<div class="WordsLeft" id="WordsLeft">
+						
+					</div>
+					<div class="answerButton">
+						<em></em>
+						提交回答
+					</div>
+				</div>
+				<textarea placeholder="回答问题限制150个字" maxlength="150"></textarea>
+			</div>
+			
+		</div>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/commonUtil.js"></script>
+		<script type="text/javascript" src="js/getUrlParaml.js"></script>
+		<script>
+			$(function(){
+				var apiUrl = "http://activity.peanut8.com/";
+				var id = UrlParm.parm("id");
+				$.ajax({
+					type: "get",
+					url: apiUrl + 'interlocution/answer',
+					data: {
+						id: id
+					},
+					dataType: 'json',
+					success: function(data) {
+						$("#WordsLeft").html(data.info.title);
+					},
+					error: function() {}
+				});
+				
+				$(".answerButton").click(function(){
+					if($(this).hasClass("answerButton2") == true){
+						return;
+					}
+					var answerContent = $(".answerInput textarea").val();
+					
+					$.ajax({
+						type: "post",
+						url: apiUrl + 'interlocution/saveAnswer',
+						data: {
+							id: id,
+							answer:answerContent
+						},
+						dataType: 'json',
+						success: function(data) {
+							commonUtils.showPop2(data.msg);
+							if(data.code == 1){
+								$(".answerButton").addClass("answerButton2");
+								setTimeout(function(){
+									window.location.href="addAnswer.html?id="+id;
+								},2000)
+								//(this).addClass("answerButton2");
+							}else{
+								$(".answerButton").removeClass("answerButton2");
+							}
+							
+						},
+						error: function() {}
+					});
+				})
+				
+				$(".answerClose a").click(function(){
+					window.location.href="addAnswer.html?id="+id;
+				})
+
+			})
+		</script>
+	</body>
+</html>

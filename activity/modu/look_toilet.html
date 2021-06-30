@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" /> -->
+    <!--重要meta, 必须!-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,shrink-to-fit=no" />
+    <meta name="MobileOptimized" content="240" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />  
+    <meta content="email=no" name="format-detection" />
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title>厕所查询</title>
+    <link rel="stylesheet" href="css/jquery-ui.min.css">
+    <link rel="stylesheet" href="css/com.css">
+</head>
+<body>
+    <div class="line-station">
+        <dl class="menu-dl">
+            <dd class="act"><em></em>站点</dd>
+        </dl>
+        <div class="menu-box">
+            <!-- 线路表单 -->
+            <form action="#" id="line_form">
+                <!-- 站点表单 -->
+                <div class="menu-formlist station-box" style="display: block;">
+                    <div class="start-line"><em class="circle"></em>
+                        <select name="" id="">
+                        </select>
+                        <img src="images/select_bottom.jpg" alt="" class="select-ico">
+                    </div>
+                    <div class="end-line"><em class="circle"></em><input type="search" id="toilet_station" placeholder="查询的站点"></div>
+                </div>
+            </form>
+            <div id="query-result" class="border-t" style="display: none;">
+                 <!--<div class="com-pad result-box">
+                       <div class="station-work-time-box border-b">
+                        <h3 class="result-title">为您找到此站有1个洗手间</h3>
+                        <div class="toilet-box"><em>洗手间位于此站C出口附近50米</em><br/>闸机外需要刷卡出站</div>
+                    </div>
+                    <div class="station-work-time-box border-b">
+                        <h3 class="result-title">
+                            此站没有洗手间
+                            <div class="desc1">为您找到最近<em>民治站</em>的1个洗手间</div>
+                        </h3>
+                        <div class="toilet-box"><em>洗手间位于此站C出口附近50米</em><br/>闸机外需要刷卡出站</div>
+                        <div class="route-text">前往路线</div>
+                        <ul class="station-name-list">
+                            <li class="lines-start">坪洲</li>
+                            <li class="lines-redline"><em></em><span class="change-info">1号线（罗宝线）机场东方向 3站</span></li>
+                            <li class="lines-start">世界之窗</li>
+                        </ul>
+
+                    </div> 
+                </div>-->
+                <!-- 厕所查询结果end -->
+            </div> 
+        </div>
+        <!-- menu-box end -->
+
+    </div>
+    <div class="line-switch">
+        <div class="lines-con">
+            <ul class="lines-list" id="lines-con">
+               <!--  <li class="act">
+                    <em class="line1"></em>
+                    <div class="t1">1号线</div>
+                    <div class="t2">罗宝线</div>
+                </li>-->
+            </ul>
+            <div class="lines-detail">
+                <div class="conbox">
+                    <div class="main-info">
+                        <div class="t1"></div>
+                        <div class="t2"><span class="start"></span><img src="images/to.png" alt="" class="to"><span class="end"></span></div>
+                        <div class="times" id="schedule_tims">
+                            <!-- <div class="weekday">工作日：<img src="images/start-time.png" alt=""> 6:30<img src="images/end-time.png" alt="" style="padding-left: 1.5rem;"> 23:00</div>
+                            <div class="weekend">周　未：<img src="images/start-time.png" alt=""> 6:30<img src="images/end-time.png" alt="" style="padding-left: 1.5rem;"> 23:00</div> -->
+                        </div>
+                        <img src="images/switch-station.png" alt="" class="switch-station"  id="switch-station" switchId = "1">
+                    </div>
+                    <div class="line-info">
+                        <ul class="station-name-list" id="station-info">
+                            <!-- <li class="lines-nochange">罗湖</li>
+                            <li class="lines-line"><em></em></li>
+                            <li class="lines-nochange">老街</li>
+                            <li class="lines-line"><em></em></li>
+                            <li class="lines-change">会展中心</li>
+                            <li class="lines-line"><em></em><span class="change-info">可换乘4、5、15、11号线</span></li>
+                            <li class="lines-change">车公庙</li>
+                            <li class="lines-line"><em></em></li>
+                            <li class="lines-nochange">坪洲</li>
+                            <li class="lines-line"><em></em></li>
+                            <li class="lines-nochange">宝体</li>
+                            <li class="lines-line"><em></em></li>
+                            <li class="lines-change">机场东</li> -->
+                            <!-- <li class="lines-noline"></li> --> <!-- 最后一个站不需要线 且有换乘信息要录入 -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <a href="javascript:;" class="fd-box"><img src="images/fd_img.png" alt=""></a>
+    <div class="line-look" tag="1"><img src="images/line_switch.jpg" alt=""></div>
+    <div class="location-city"><img src="images/location_ico.png" alt="">上海</div>
+    <div id="metro_line"></div>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="http://webapi.amap.com/subway?v=1.0&amp;key=6fa3a8e8c400740ceac3109b2a115e44&amp;callback=cbk"></script>
+    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/subway.js"></script>
+    <script type="text/javascript" src="js/lines.js"></script>
+    <script type="text/javascript">
+    $(function(){
+        window.addEventListener('resize', Rem, false);
+        Rem();
+
+        //计算查看线路弹窗的宽高、位置
+        var win_w = $(window).width();
+        var win_h = $(window).height();
+        var pad = parseFloat($(".line-look").css("right"));
+        var line_h = parseFloat($(".line-look").css("height"));
+        var lin_w = win_w-pad*2-2;
+        var lin_h = win_h-pad*2-line_h-2;
+        var lin_top = pad+1
+        $(".line-switch").css({"width":lin_w,"height":lin_h,"left":pad+"px","top":lin_top+"px"});
+        $(".lines-list").css("min-height",lin_h);
+        $(".line-station").css({"width":lin_w,"max-height":lin_h});
+
+        getLineId(1);//cityId
+        loadStation();//加载所有站点
+
+        
+
+
+
+
+    })
+    </script>
+</body>
+</html>

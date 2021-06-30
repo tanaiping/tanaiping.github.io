@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta http-equiv="Cache-Control" content="no-cache" />
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="MobileOptimized" content="240" />
+		<meta name="apple-touch-fullscreen" content="YES" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="email=no" name="format-detection" />
+		<!-- uc强制竖屏 -->
+		<meta name="screen-orientation" content="portrait">
+		<!-- QQ强制竖屏 -->
+		<meta name="x5-orientation" content="portrait">
+		<!-- UC强制全屏 -->
+		<meta name="full-screen" content="yes">
+		<!-- QQ强制全屏 -->
+		<meta name="x5-fullscreen" content="true">
+		<!-- UC应用模式 -->
+		<meta name="browsermode" content="application">
+		<!-- QQ应用模式 -->
+		<meta name="x5-page-mode" content="app">
+		<!-- windows phone 点击无高光 -->
+		<meta name="msapplication-tap-highlight" content="no">
+		<!-- 适应移动端end -->
+		<title>母亲节，为她发声</title>
+
+		<link rel="stylesheet" href="css/interlocution.css">
+	</head>
+
+	<body style="background: #f2f2f2;">
+		<input type="hidden" value="1" id="page" />
+		<div class="main-wrap">
+			<div class="answerBg-top">
+				<a href="submitProblem.html" class="addProblemBt addAnswerBt">
+					我是<b>妈妈</b>我要<em></em>添加问题
+				</a>
+				<a class="returnHome" href="index.html">
+					返回首页 <em></em>
+				</a>
+			</div>
+			<!--<div class="mainLogo">
+				<img src="img/man-top.jpg" />
+			</div>-->
+			<div class="answerInput addAnswerBox">
+				<div class="addAnswer clearfix">
+					<div class="problemLeft"></div>
+					<div class="problemRight" id="problemDiv">
+						
+					</div>
+				</div>
+				<div class="problemButton clearfix">
+					<div class="problemUsername fl">
+						题主昵称
+						<span></span>
+					</div>
+					<a class="addAnswerButton fr">
+						<em></em> 添加回答
+					</a>
+				</div>
+				<ul class="addAnswerWrap">
+
+				</ul>
+				<div class="tishi" style="display: none;">我也是有底线的~</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/getUrlParaml.js"></script>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script>
+			$(function() {
+				var apiUrl = "http://activity.peanut8.com/";
+				var id = UrlParm.parm("id");
+				var totalPage;
+				var page;
+				$.ajax({
+					type: "get",
+					url: apiUrl + 'interlocution/detail',
+					data: {
+						id: id
+					},
+					dataType: 'json',
+					async:false,
+					success: function(data) {
+						totalPage = data.totalPage;
+						page = data.page;
+						$("#problemDiv").html(data.info.title);
+						$(".problemUsername span").text(data.info.nickName);
+						var html2 = "";
+						for (var i = 0; i < data.list.length; i++) {
+							html2 += "<li><div class='addAnswer addAnswerList clearfix'><div class='answerLeft fl'>";
+							html2 += "<em></em><p>" + (i + 1) + "楼</p></div><div class='answerRight fl'>" + data.list[i].answer;
+							html2 += "</div></div></li>"
+						}
+						$(".addAnswerWrap").append(html2);
+					},
+					error: function() {}
+				});
+				if(totalPage > 1){
+					$(window).scroll(function () {
+						var totalheight = parseFloat($(window).height()) + parseFloat($(window).scrollTop());
+						var documentheight = parseFloat($(document).height());
+						//alert(documentheight - totalheight);
+						if (documentheight - totalheight == 0) {
+							++page;
+						    //var page = $("#page").val() * 1 + 1;
+						   // $("#page").val(page);
+							if(totalPage < page){
+								$(".tishi").show();
+								return;
+							}else{
+								$(".tishi").hide();
+							}
+							load(page);
+						}
+					});
+				}
+				function load(page) {
+					$.ajax({
+						type: "get",
+						url: apiUrl + 'interlocution/ajaxAnswer',
+						data: {
+							page: page,
+							id: id
+						},
+						dataType: 'json',
+						success: function(data) {
+							console.log(totalPage);
+							page3 = (data.page-1)*5+1;
+							var html = "";
+							for (var i = 0; i < data.list.length; i++) {
+								html += "<li><div class='addAnswer addAnswerList clearfix'><div class='answerLeft fl'>";
+								html += "<em></em><p>" + (page3+i) + "楼</p></div><div class='answerRight fl'>" + data.list[i].answer;
+								html += "</div></div></li>"
+							}
+							$(".addAnswerWrap").append(html);
+							//$("#page").val(page);
+						},
+						error: function() {}
+					});
+				}
+				
+				$(".addAnswerButton").click(function(){
+					window.location.href = "submitAnswer.html?id="+id;
+				})
+			});
+		</script>
+	</body>
+
+</html>

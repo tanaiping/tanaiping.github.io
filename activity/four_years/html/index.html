@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta http-equiv="x-rim-auto-match" content="none" />
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+	<meta name="copyright" content="Copyright (c)花生地铁wifi" />
+	<meta name="HandheldFriendly" content="true" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="keywords" content="花生,地铁,wifi,WIFI,花生地铁,花生地铁wifi,地铁wifi,花生wifi" />
+	<meta name="author" content="yerongtao" />
+	<title>花生四周年，抽周年大礼包</title>
+	<link rel="icon" href="http://www.wifi8.com/images/logo_icon.ico" type="image/x-icon" />
+	<link rel="stylesheet" type="text/css" href="../css/base.css" />
+	<link rel="stylesheet" type="text/css" href="../css/style.css?v=3.0" />
+</head>
+
+<body>
+	<div class="page bg-main">
+		<div class="container clearfix">
+			<div class="boxrules">
+				<a class="btn_rules" href="./rules.html"></a>
+				<a class="btn_prize" href="./prize.html"></a>
+			</div>
+			<div class="lottery clearfix">
+				<!-- <div class="scroll" id="win-scroll">
+					<ul class="line-1"></ul>
+				</div> -->
+				<div class="lottery-title"></div>
+				<div id="luck" class="luck">
+					<table>
+						<tr>
+							<td class="luck-unit luck-unit-0"></td>
+							<td class="luck-unit luck-unit-1"></td>
+							<td class="luck-unit luck-unit-2"></td>
+						</tr>
+						<tr>
+							<td class="luck-unit luck-unit-7"></td>
+							<td class="cjBtn" id="btn" onclick="luckDrawBack()"></td>
+							<td class="luck-unit luck-unit-3"></td>
+						</tr>
+						<tr>
+							<td class="luck-unit luck-unit-6"></td>
+							<td class="luck-unit luck-unit-5"></td>
+							<td class="luck-unit luck-unit-4"></td>
+						</tr>
+					</table>
+				</div>
+				<!-- <div class="chance">您还有 <strong id="chance">0</strong> 次机会可以抽奖</div> -->
+			</div>
+		</div>
+	</div>
+	<!-- 弹窗提示 -->
+	<div id="mask">
+		<!-- 没登录 -->
+		<div class="pop" id="nologin">
+			<em class="close"></em>
+			<!-- <div class="box_icon2"><img src="../images/face3.png" alt=""></div> -->
+			<!-- <p>你还没有登录</p>
+			<p class="p2">请先登录，再来参加活动哦</p> -->
+			<p class="nologin-h">请登入后再抽奖</p>
+			<div class="mobile-team">
+				<input class="mobile" id="mobile" type="number" maxlength="11" pattern="[0-9]*" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"  placeholder="请填写手机号">
+				<button class="get-code" id="get-code">发送验证码</button>
+			</div>
+			<input class="code" id="code" type="text" value="" placeholder="输入验证码">
+			<button class="btn btn-submit" onclick="telVerify()"></button>
+		</div>
+		<!-- 没机会 -->
+		<div class="pop" id="noChance">
+			<em class="close"></em>
+			<div class="box_icon2"><img src="../images/face3.png" alt=""></div>
+			<p>您的抽奖机会<br>已经用完啦</p>
+			<button class="btn btn-yes"></button>
+		</div>
+		<!-- 没抽中没机会 -->
+		<div class="pop" id="noAndno" style="display: block;">
+			<em class="close"></em>
+			<div class="box_icon"><img src="../images/face2.png" alt=""></div>
+			<p>心碎<br>与奖品擦肩而过了</p>
+			<button class="btn btn-yes"></button>
+		</div>
+		<!-- 没抽中有机会 -->
+		<div class="pop" id="noAndHave">
+			<em class="close"></em>
+			<div class="box_icon"><img src="../images/face2.png" alt=""></div>
+			<p>心碎<br>与奖品擦肩而过了</p>
+			<button class="btn btn-yes"></button>
+		</div>
+		<!-- 抽中了还有机会 -->
+		<div class="pop" id="drawAndHave">
+			<em class="close"></em>
+			<p class="p_top">哇，恭喜你获得</p>
+			<div class="box_img" id="prizeBox1"></div>
+			<button class="btn btn-yes"></button>
+		</div>
+		<!-- 抽中了没有机会 -->
+		<div class="pop" id="drawAndNo">
+			<em class="close"></em>
+			<p class="p_top">哇，恭喜你获得</p>
+			<div class="box_img" id="prizeBox2"></div>
+			<p class="p3">当前抽奖机会已用完了</p>
+			<button class="btn btn-yes"></button>
+		</div>
+	</div>
+	<div class="prompt" id="prompt"><em>提示信息</em></div>
+	<script src="http://cmsfile.wifi8.com/uploads/wifi/AppH5/api/zepto.min.js"></script>
+	<!-- <script src="http://cmsfile.wifi8.com/uploads/wifi/AppH5/api/zepto.cookie.min.js"></script>
+	<script src="http://cmsfile.wifi8.com/uploads/wifi/AppH5/api/nfygCommonPack.min.js"></script> -->
+	<!-- <script src="http://cmsfile.wifi8.com/uploads/wifi/AppH5/api/vconsole.min.js"></script> -->
+	<!-- <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script> -->
+	<script src="../js/public.js"></script>
+	<script src="../js/comm.js?v=7"></script>
+	<div style="display: none">
+		<script type="text/javascript" src="https://s23.cnzz.com/z_stat.php?id=1276201085&web_id=1276201085"></script>
+	</div>
+	<script>
+		var click = false;
+		$(function () {
+			getInitDataBack();
+			// var scroll_1 = 0
+			// var prizeArr = ["0.18元现金红包", "《蜘蛛侠：英雄远征》电影票", "幸运手链", "诺心蛋糕券（5-8人食）", "樊登读书月卡", "￥398酒店免费房",
+			// 	"《蜘蛛侠：英雄远征》电影票"
+			// ]
+			// bename();
+
+			// function bename() {
+			// 	var nameArr = ["0", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p",
+			// 		"q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+			// 		"花", "生", "王", "李", "张", "刘", "陈", "杨", "周", "赵", "吴", "孙", "徐", "林", "胡", "朱", "郭", "梁", "马",
+			// 		"高", "何", "郑", "罗", "宋", "谢", "叶", "韩", "任", "潘", "唐", "于", "冯", "董", "吕", "邓", "许", "曹", "曾",
+			// 		"沈", "卢", "余", "杜", "蒋", "汪", "丁", "方", "苏", "一", "二", "三", "大", "小", "多", "少", "圆", "白", "黄",
+			// 		"红", "蓝", "爱", "文", "博", "南", "雅", "菲"
+			// 	];
+			// 	var numArr = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+			// 	for (var i = 0; i < 50; i++) {
+			// 		if (Math.ceil(Math.random() * 100) < 10) {
+			// 			var firstName = nameArr[Math.ceil(Math.random() * 100)];
+			// 			var lastName = nameArr[Math.ceil(Math.random() * 100)];
+			// 			$('#win-scroll>.line-1').append('<li><p><span>' + firstName + '***' + lastName +
+			// 				'</span> 刚获得 ' + prizeArr[0] + '</p></li>');
+			// 		} else if (Math.ceil(Math.random() * 100) < 30 && Math.ceil(Math.random() * 100) >= 10) {
+			// 			var firstName = nameArr[Math.ceil(Math.random() * 100)];
+			// 			var lastName = nameArr[Math.ceil(Math.random() * 100)];
+			// 			$('#win-scroll>.line-1').append('<li><p><span>' + firstName + '***' + lastName +
+			// 				'</span> 刚获得 ' + prizeArr[1] + '</p></li>');
+			// 		} else if (Math.ceil(Math.random() * 100) < 50 && Math.ceil(Math.random() * 100) >= 30) {
+			// 			var firstName = nameArr[Math.ceil(Math.random() * 100)];
+			// 			var lastName = nameArr[Math.ceil(Math.random() * 100)];
+			// 			$('#win-scroll>.line-1').append('<li><p><span>' + firstName + '***' + lastName +
+			// 				'</span> 刚获得 ' + prizeArr[2] + '</p></li>');
+			// 		} else if (Math.ceil(Math.random() * 100) < 70 && Math.ceil(Math.random() * 100) >= 50) {
+			// 			var firstName = nameArr[Math.ceil(Math.random() * 100)];
+			// 			var lastName = nameArr[Math.ceil(Math.random() * 100)];
+			// 			$('#win-scroll>.line-1').append('<li><p><span>' + firstName + '***' + lastName +
+			// 				'</span> 刚获得 ' + prizeArr[3] + '</p></li>');
+			// 		} else if (Math.ceil(Math.random() * 100) < 80 && Math.ceil(Math.random() * 100) >= 70) {
+			// 			var firstName = nameArr[Math.ceil(Math.random() * 100)];
+			// 			var lastName = nameArr[Math.ceil(Math.random() * 100)];
+			// 			$('#win-scroll>.line-1').append('<li><p><span>' + firstName + '***' + lastName +
+			// 				'</span> 刚获得 ' + prizeArr[4] + '</p></li>');
+			// 		} else if (Math.ceil(Math.random() * 100) < 90 && Math.ceil(Math.random() * 100) >= 80) {
+			// 			var firstName = nameArr[Math.ceil(Math.random() * 100)];
+			// 			var lastName = nameArr[Math.ceil(Math.random() * 100)];
+			// 			$('#win-scroll>.line-1').append('<li><p><span>' + firstName + '***' + lastName +
+			// 				'</span> 刚获得 ' + prizeArr[5] + '</p></li>');
+			// 		} else {
+			// 			var firstName = nameArr[Math.ceil(Math.random() * 100)];
+			// 			var lastName = nameArr[Math.ceil(Math.random() * 100)];
+			// 			$('#win-scroll>.line-1').append('<li><p><span>' + firstName + '***' + lastName +
+			// 				'</span> 刚获得 ' + prizeArr[6] + '</p></li>');
+			// 		}
+			// 	}
+			// 	setInterval(() => {
+			// 		$(".line-1").css("marginLeft", scroll_1--);
+			// 	}, 25);
+			// }
+		})
+	</script>
+</body>
+
+</html>

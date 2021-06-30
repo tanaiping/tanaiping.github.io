@@ -1,0 +1,126 @@
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td {margin:0;padding:0; border:0;}
+html{font-size: 62.5%;-webkit-text-size-adjust:none;}
+*{outline: none;margin:0;padding:0;}
+body{background-color: #eee; font-family: 'STHeiti',Helvetica,Arial,sans-serif;font-size:1rem }
+table {border-collapse:collapse;border-spacing:0;}
+fieldset,img {border:0}
+address,caption,cite,code,dfn,strong,th,var{font-style:normal;font-weight:n6rmal}
+ol,ul {list-style:none}
+caption,th {text-align:left}
+h1,h2,h3,h4,h5,h6 {font-size:100%;font-weight:normal}
+q:before,q:after {content:''}
+abbr,acronym { border:0}
+a{text-decoration:none;color:#333;outline:none;hide-focus:expression(this.hideFocus=true);}
+em{font-style:normal;}
+input,a,textarea{ outline:none;}
+.fl{float:left;_display:inline} .fm{float:left;_display:inline;} .fr{float:right;_display:inline}
+span.fl,span.fm,span.fr{display:block;_display:inline;}
+.cb{clear:both} .cl{clear:left} .cr{clear:right}.tr{text-align: right;}
+.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+.clearfix{display:inline-block}* html .clearfix{height:1%}.clearfix{display:block}
+.clear{width:100%;height:1px;overflow:hidden;clear:both;}
+.tc{text-align: center;}
+a{text-decoration: none;}
+.cl{clear: both; overflow: hidden;}
+img{vertical-align: middle;}
+.fixed-header{position: fixed; left: 0px; top: 0px; width:100%; z-index: 100;}
+header{line-height: 4.4rem; color: #FFF; font-size: 1.8rem; background: none;text-align: center; position: relative; font-weight: 500;}
+header .back-ico{ width:1.1rem;text-align: center; line-height: 2rem; height: 2rem; display: block;position: absolute; left: 4%; top: 1rem;vertical-align: middle;}
+header .back-ico img{ height:2rem; vertical-align: middle; padding-right: 2rem;}
+header.scroll{color: #000; background-color: #FFF;border-bottom: 1px solid #eee;}
+ /* ad swiper */
+.swiper-container{width: 100%;}
+.swiper-container .swiper-slide img{width: 100%;}
+.swiper-container-horizontal>.swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction{bottom: .3rem;}
+.swiper-pagination-bullet{background-color: #571b03;}
+.swiper-pagination-bullet-active{background-color: #ffffff;}
+.swiper-container-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet{margin:0 .3rem;}
+/*  end  */
+section{background-color: #FFF; overflow: hidden;}
+.com-pad{margin: 0 4%}
+.pl-4{padding-left: 4%;}
+.title-com{line-height: 4.7rem; color: #333; font-size: 1.5rem; font-weight: 500;}
+.prime-listapp{padding-bottom: 1.8rem;}
+.prime-listapp li{width:33.3%; float: left;}
+.prime-listapp li:nth-child(3){width:33.4%;}
+.prime-listapp .app-list-elem{width: 100%; text-align: center;}
+.prime-listapp .app-list-elem img{width: 6.4rem; border-radius: 1rem;}
+.prime-listapp .app-list-elem .app-name{ font-weight: 500; white-space: nowrap;text-overflow:ellipsis; overflow: hidden; text-align: center; font-size: 1.5rem; color: #000; line-height: 2rem; padding-top: .7rem;}
+.prime-listapp .app-list-elem .app-explain{padding:0 .2rem; white-space: nowrap;text-overflow:ellipsis; overflow: hidden;color: #888888; font-size: 1.2rem; line-height: 1.8rem; padding-bottom: .6rem; display: block; text-align: center;}
+
+.prime-listapp .app-list-elem .down-btn,.hot-listapp .app-list-elem .down-btn,.hot-other li .down-btn,.ad-downbox .down-btn,.choice-list li .down-btn{ overflow: hidden; display: inline-block;position: relative; border:1px solid #999; font-size: 1.4rem; color: #555555; background-color: #FFF; width: 5.4rem; line-height: 2.6rem;text-align: center;border-radius: .3rem;}
+.prime-listapp .app-list-elem .open,.hot-listapp .app-list-elem .open,.hot-other li .open,.ad-downbox .open,.choice-list li .open{display: inline-block;border:1px solid #1fb5d5; color: #1fb5d5; font-size: 1.4rem; background-color: #FFF;width: 5.4rem; line-height: 2.6rem;border-radius: .3rem;}
+.prime-listapp .app-list-elem .install,.hot-listapp .app-list-elem .install,.hot-other li .install,.ad-downbox .install,.ad-downbox .install{display: inline-block;border:1px solid #06bc6d; font-size: 1.4rem; background-color: #FFF;  width: 5.4rem; line-height: 2.6rem;text-align: center;color: #06bc6d;}
+.prime-listapp .app-list-elem .down-btn em.percent,.hot-listapp .app-list-elem .down-btn em.percent,.hot-other li .down-btn em.percent,.choice-list li .down-btn em.percent,.ad-downbox .down-btn em.percent{ display:inline-block; position: absolute;left: 0px; top:0px; width:0; height: 100%; background-color: #06bc6d;}
+.prime-listapp .app-list-elem .down-btn span,.hot-listapp .app-list-elem .down-btn span,.hot-other li .down-btn span,.ad-downbox .down-btn span,.choice-list li .down-btn span{position: relative;z-index: 2; display: block;}
+
+.rank-bg{background: url(../images/rank_bg.jpg) left top no-repeat; background-size:100% 100%;}
+.hot-listapp{padding-bottom: 1.8rem;}
+.hot-listapp li{width:33.3%; float: left;}
+.hot-listapp li:nth-child(3){padding-top: 2rem;}
+.hot-listapp li:nth-child(1){position: relative; left: 33.4%;width:33.4%;}
+.hot-listapp li:nth-child(2){ padding-top: 2rem; position: relative; left:-33.3%;}
+.hot-listapp .rank-ico{text-align: center;padding-bottom: .4rem;}
+.hot-listapp .rank-ico img{width: 3rem;}
+.hot-listapp .app-list-elem img.app-img{ width: 6.4rem; height: 6.4rem; border-radius: 1rem;}
+.hot-listapp .app-list-elem .app-name{ font-weight: 500; white-space: nowrap;text-overflow:ellipsis; overflow: hidden; text-align: center; font-size: 1.5rem; color: #000; line-height: 2rem; height: 2rem; padding-top: .7rem;}
+.hot-listapp .app-list-elem .app-downnum{white-space: nowrap;text-overflow:ellipsis; overflow: hidden;color: #888888; font-size: 1.2rem; line-height: 1.8rem; padding-bottom: .6rem; display: block; text-align: center;}
+.hot-other li{padding: 1rem 0;position: relative; height: 6.4rem; border-bottom: 1px solid #eee;}
+.hot-other li:last-child{border-bottom: none;}
+.hot-other li .rank-num{position: absolute; left: 0px;top: 1rem; width: 2rem; height: 6.4rem; font-size: 1.5rem; color: #555555;line-height: 6.4rem;}
+.hot-other li .choice-appimg{position: absolute; left: 2rem; top: 1rem; width: 6.4rem; height: 6.4rem;border-radius: 1rem;}
+.hot-other li .down-btn{ position: absolute; right: 4%; top: 2.9rem; }
+.hot-other li .app-info{padding: 0 6rem 0 9.4rem;}
+.hot-other li .title{font-size: 1.7rem; color: #000000; font-weight: 500; line-height: 2.6rem; height: 2.6rem; white-space: nowrap; text-overflow:ellipsis; overflow: hidden;}
+.hot-other li .app-explain,.hot-other li .app-downnum{padding:0 .2rem; font-size: 1.2rem; color: #888; line-height: 1.8rem; height: 1.8rem; white-space: nowrap; text-overflow:ellipsis; overflow: hidden;}
+
+.mt5{margin-top: .5rem;}
+.ad-img-index{width: 100%;}
+.ad-downbox{position: relative;}
+.ad-desc{font-size: 1.5rem; color: #000000;padding: 1rem 7rem 1rem 0; line-height: 2.8rem;height: 2.8rem; white-space: nowrap;text-overflow:ellipsis; overflow: hidden; }
+.ad-downbox .down-btn{ position: absolute; right: 0%; top: 1rem; }
+
+.choice-list li{padding: 1rem 0;position: relative; height: 6.4rem; border-bottom: 1px solid #eee;}
+.choice-list li:last-child{border-bottom: none;}
+.choice-list li .choice-appimg{position: absolute; left: 0px; top: 1rem; width: 6.4rem; height: 6.4rem;border-radius: 1rem;}
+.choice-list li .down-btn{ position: absolute; right: 0px; top: 2.9rem;}
+.choice-list li .app-info{padding: 0 6rem 0 7rem;}
+.choice-list li .title{font-size: 1.7rem; color: #000000;  font-weight: 500; line-height: 2.6rem; height: 2.6rem;padding: .8rem 0 .4rem 0; white-space: nowrap; text-overflow:ellipsis; overflow: hidden;}
+.choice-list li .app-explain{padding:0 .2rem; font-size: 1.2rem; color: #888; line-height: 1.8rem; height: 1.8rem; white-space: nowrap; text-overflow:ellipsis; overflow: hidden;}
+.load-more{padding: 1rem 0; line-height: 3rem; height: 3rem; text-align: center; font-size: 1.2rem; color: #888; }
+.load-more img{height: 1.5rem; vertical-align: middle;padding: 0 .5rem;position: relative; top:-.2rem;}
+/*detail*/
+.detail-headbg{background:#FFF; padding: 4.4rem 4% 1.5rem 4%; overflow: hidden; }
+.detail-headbg .detail-title{position: relative; padding-left:8rem;height:7.2rem;}
+.detail-headbg .detail-appico{ width: 7.2rem; height: 7.2rem;border-radius: 1rem;position: absolute; left: 0px; top: 0px;}
+.detail-headbg .detail-title .app-name{ font-weight: 500; padding-top: .5rem; font-size: 1.7rem; color: #000000; line-height: 2.5rem;  white-space: nowrap; text-overflow:ellipsis; overflow: hidden;}
+.detail-headbg .detail-title .app-info{ font-size: 1.2rem; color: #999; line-height:1.2rem; height:1.2rem; margin: .2rem 0; position: relative;}
+.detail-headbg .detail-title .app-info .star01{display: inline-block; height:1.2rem;}
+.detail-headbg .detail-title .app-info .star02{position: absolute; left: 0px;top: 0px; height:1.2rem; overflow: hidden;}
+.detail-headbg .detail-title .app-info .star02 img{height: 1.2rem;}
+.detail-headbg .detail-title .app-tagbox{padding-top: .3rem;}
+.detail-headbg .detail-title .app-tagbox img{height: 1.6rem; margin-right:.4rem; display: inline-block;}
+.detail-headbg .detail-title .app-info .con-text{display: inline-block;padding-left: .3rem;}
+.detail-imgset{width: 100%;}
+.detail-imgset .swiper-slide{width:50%;}
+.detail-imgset img{width: 100%;}
+.app-intro{padding: 1.3rem 2rem 0 0; position: relative; line-height: 2rem;color: #888888; font-size: 1.3rem;}
+.app-intro pre{line-height: 2rem;color: #888888;  font-size: 1.3rem; font-weight:normal; display: block;background-color:white;padding:0;margin:0;word-break: break-all; word-wrap: break-word;border:none;}
+.more-intro{position: absolute; top: 2rem; right: 0px; background: url(../images/down.png) right center no-repeat; background-size:auto 46%; height: 2rem; padding-right: 2rem;}
+.more-intro.up{ background-image: url(../images/up.png);}
+
+.like-listapp li{float: left; width: 33.3%;}
+.like-listapp li:nth-child(2){width: 33.4%;}
+.space-bottom{width: 100%; height: 5.5rem; margin-top: .5rem;}
+.fixed-down{position: fixed; width: 100%; left: 0px; bottom: 0px; z-index: 3;}
+.fixed-down .fixed-pad{padding: 1rem 10%; background-color: #FFF;}
+.fixed-down .down-btn,.fixed-down .install{ border:none;  overflow: hidden;  position: relative; display: block; font-size: 1.5rem; color: #FFF; background-color: #2cc269; width:100%; text-align: center;line-height: 3.5rem;border-radius: 2rem;}
+.fixed-down .down-btn em.percent{ display: inline-block; position: absolute;left: 0px; top: 0px; width:0; height: 100%; background-color: #06bc6d; border-radius: 2rem 0 0 2rem;}
+.fixed-down .open{ display: block; font-size: 1.5rem; color: #FFF; background-color: #1fb5d5; width:100%; text-align: center;line-height: 3.5rem;border-radius: 2rem;}
+.fixed-down .downing{display: inline-block; font-size: 1.5rem; background-color: #eeeeee; width:100%;text-align: center;line-height: 3.5rem;color: #555555;}
+.fixed-down .down-btn span{position: relative;z-index: 2; display: block;}
+.am-pureview{background: url(../images/black_bg.png) repeat;}
+.am-pureview-direction,.am-pureview-actions,.am-pureview-bar{display: none;}
+.am-pureview-bar-active .am-pureview-nav{display: block;}
+.am-pureview-nav .am-active{background-color: #ffffff;}
+.am-pureview-nav li{background-color: #555555;}

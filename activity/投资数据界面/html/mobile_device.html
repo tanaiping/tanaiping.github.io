@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>移动设备</title>
+	<link rel="stylesheet" href="css/base.css" />
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<div class="main-wrap">
+				<div class="m-title">移动设备</div>
+				<table class="tab-com mb28 tab-4">
+					<tr>
+						<th class="th-02-mobile">手机型号</th>
+						<th class="th-08">占比</th>
+						<th class="th-02">手机型号</th>
+						<th class="th-08">占比</th>
+					</tr>
+				</table>
+				<table class="tab-com mb8 tab-4">
+					<tr>
+						<td>iphone6</td>
+						<td class="pl10">55%</td>
+						<td>iphone6</td>
+						<td class="pl10">55%</td>
+					</tr>
+				</table>
+				<table class="tab-com mb8 tab-4">
+					<tr>
+						<td>iphone6</td>
+						<td class="pl10">55%</td>
+						<td>iphone6</td>
+						<td class="pl10">55%</td>
+					</tr>
+				</table>
+
+				<table class="tab-com mb8 tab-4">
+					<tr>
+						<td>iphone6</td>
+						<td class="pl10">55%</td>
+						<td>iphone6</td>
+						<td class="pl10">55%</td>
+					</tr>
+				</table>
+				<table class="tab-com mb8 tab-4">
+					<tr>
+						<td>iphone6</td>
+						<td class="pl10">55%</td>
+						<td>iphone6</td>
+						<td class="pl10">55%</td>
+					</tr>
+				</table>
+				<table class="tab-com mb8 tab-4">
+					<tr>
+						<td>iphone6</td>
+						<td class="pl10">55%</td>
+						<td>iphone6</td>
+						<td class="pl10">55%</td>
+					</tr>
+				</table>
+	</div>
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script>
+	$(function(){
+		var mydate = new Date();
+		var myHours = mydate.getHours();
+		var myMin = mydate.getMinutes();
+		$(".time-txt").text(myHours+":"+myMin);
+		setInterval(function(){
+			 mydate = new Date();
+			 myHours = mydate.getHours();
+		 	 myMin = mydate.getMinutes();
+			 $(".time-txt").text(myHours+":"+myMin);
+			 console.log(myMin);
+		},1000);
+
+
+
+	})
+</script>
+</body>
+</html>

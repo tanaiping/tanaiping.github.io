@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="MobileOptimized" content="240" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />  
+    <meta content="email=no" name="format-detection" />
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title>我的奖品</title>
+    <style>
+        body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td {margin:0;padding:0; border:0;}
+        html{font-size: 62.5%;-webkit-text-size-adjust:none;}
+        *{outline: none;margin:0;padding:0;}
+        body{background-color: #f3f3f3; font-family: 'STHeiti',Helvetica,Arial,sans-serif;font-size:1rem }
+        table {border-collapse:collapse;border-spacing:0;}
+        fieldset,img {border:0}
+        address,caption,cite,code,dfn,strong,th,var{font-style:normal;font-weight:normal}
+        ol,ul {list-style:none}
+        caption,th {text-align:left}
+        h1,h2,h3,h4,h5,h6 {font-size:100%;font-weight:normal}
+        q:before,q:after {content:''}
+        abbr,acronym { border:0}
+        a{text-decoration:none;color:#333;outline:none;hide-focus:expression(this.hideFocus=true);}
+        em{font-style:normal;}
+        input,a,textarea{ outline:none;}
+        .fl{float:left;_display:inline} .fm{float:left;_display:inline;} .fr{float:right;_display:inline}
+        span.fl,span.fm,span.fr{display:block;_display:inline;}
+        .cb{clear:both} .cl{clear:left} .cr{clear:right}.tr{text-align: right;}
+        .clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+        .clearfix{display:inline-block}* html .clearfix{height:1%}.clearfix{display:block}
+        .clear{width:100%;height:1px;overflow:hidden;clear:both;}
+        .tc{text-align: center;}
+        a{text-decoration: none;}
+        .cl{clear: both; overflow: hidden;}
+        img{vertical-align: middle;}
+        .main-wrap{max-width: 750px; margin:0 auto; position: relative; background-color: #FFF;}
+        .contact-box{line-height: 2rem; height: 2rem; padding: 1.1rem 1.5rem; background-color: #fee92c; font-size: 1.3rem; color: #27262a;}
+        .contact-box em{font-size: 1.2rem; padding-right: 1rem;}
+        .contact-box img{vertical-align: middle; padding: 0 .5rem 0 1rem; height: 100%;}
+        .award-list li{position: relative; padding:1.5rem 3rem 1.5rem 11rem; height: 5.3rem; border-bottom: 1px solid #e3e3e3;}
+        .award-list li .award-img{width: 9rem; height: 5.3rem; position: absolute;left: 1.5rem; top: 1.5rem; border-radius: .5rem;}
+        .award-list li .r-ico{width: 1.2rem; height: 1.8rem;position: absolute; right: 1.5rem; top: 3.55rem;}
+        .award-list li h1{line-height: 3rem; color: #240201; line-height: 3rem; height: 3rem; padding: .5rem 0; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; font-size: 1.8rem;}
+        .award-list li .desc{font-size: 1.2rem; color: #999;line-height: 1.3rem; height: 1.3rem;}
+    </style>
+</head>
+<body style="background-color: #e8e7e7;">
+    <div class="main-wrap">
+        <div class="contact-box">
+            <span>客服专线：</span><img src="images/tel.png" alt=""><em class="tel">400-187-7877</em> <!-- <img src="images/qq.png" alt=""><em class="qq-num">582478754</em> -->
+        </div>
+        <div class="award-list">
+            <ul id="awards_list_id">
+            </ul>
+        </div>
+    </div>
+
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/public.js"></script>
+<script type="text/javascript" src="js/common_v5.js"></script>
+<script type="text/javascript">
+$(function(){
+   window.addEventListener('resize', Rem, false);
+   Rem();
+   
+   $(window).resize(function() {
+       window.location.reload();
+    });
+
+   $(".main-wrap").css("min-height",$(window).height());
+   
+   var activeType = GetQueryString("activeType");
+   var appkey = GetQueryString("appkey");
+   var uid = GetQueryString("uid");
+
+   console.info("activeType:"+activeType+", appkey:"+appkey+", uid:"+uid+", preUrl:"+preUrl);
+   
+	//获取广告
+	var param = buildMyParam(appkey,activeType,uid);
+	$.ajax({
+		url : preUrl+"active/award",
+		type: 'post',
+		data:param,
+		async:false,
+		success  : function(res) {
+			if(res.resultCode==0 && res.data!=null && undefined != res.data){
+				console.info("ad data:"+res);
+				var awards_arr = res.data;			
+				var html = "";
+				for(var i = 0;i<awards_arr.length;i++){
+					html+="<li>";
+					html+="<a href='"+awards_arr[i].actionInfo+"' class='awards-link' adId="+awards_arr[i].adId+" appkey='"+appkey+"'>";
+					html+="<img src='"+awards_arr[i].resUrl+"' alt='' class='award-img'>";
+					html+="<img src='images/r_ico.png' alt='' class='r-ico'>";
+					html+="<h1>"+awards_arr[i].title+"</h1>";
+					html+="</a>";
+				   html+="</li>";
+				}
+				//console.info(activeType+"html>>>"+html);
+				$("#awards_list_id").html(html);
+			}else{
+				$("#awards_list_id").html("");
+			}
+			
+		}
+	});
+	
+});
+
+function buildMyParam(appkey,activeType,uid){
+   var param = {};
+   param["appkey"] = appkey;
+   param["activeType"] = activeType;
+   param["uid"] = uid;
+   console.info("ad buildMyParam:"+JSON.stringify(param))
+   return JSON.stringify(param);
+}
+
+</script>
+</body>
+</html>

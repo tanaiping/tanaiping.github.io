@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="MobileOptimized" content="240" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />  
+    <meta content="email=no" name="format-detection" />
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title>大吉大利 开工有喜</title>
+    <link rel="stylesheet" href="css/base.css">
+    <style>
+      .award-box{padding: .45rem;}
+      .title{color: #fcf3d1; font-size: .4rem; line-height: .38rem; padding-bottom: .4rem;text-align: center;}
+      .award-list li{margin-bottom: .2rem;background-color: #FFF;border-radius: .1rem; padding: .2rem; display: flex; flex-direction: row; justify-content: space-between;}
+      .award-img{width: 1.5rem;height: 1.5rem;}
+      .look-btn{background-color: #E24E51; border-radius: .25rem;width: 1.28rem; height: .5rem; line-height: .5rem; font-size: .28rem; color: #FFE4BA; margin-top: 1.22rem;text-align: center;}
+      .award-info{display: flex; flex-direction: column;}
+      .award-name{font-size: .32rem;  line-height: .32rem; color: #333;padding-bottom: .13rem;}
+      .award-time{font-size: .24rem; color: #999; line-height: .23rem;}
+      .prompt{text-align: center;width: 90%;position: fixed;margin: auto;left: 0;right: 0;top: 40%;z-index: 1001;display: none;}
+      .prompt em{display: inline-block;background: rgba(0,0,0,0.75);padding: .75rem 1.25rem;border-radius: 2.5rem;color: #FFF;font-size: 1.6rem;line-height: 2.4rem;}
+      .nodata{text-align: center; line-height: 3rem; height: 3rem; color: #B8742B; font-size: .32rem;width: 100%;}
+    </style>
+</head>
+<body style="background-color: #d2303f">
+    <div class="main-wrap">
+        <div class="award-box">
+          <div class="title">我的奖品</div>
+          <ul class="award-list">
+            <!-- <li>
+                <img src="images/award.png" alt="" class="award-img">
+                <div class="award-info">
+                  <div class="award-name">未来生活券</div>
+                  <div class="award-time">中奖时间：2018-10-10</div>
+                </div>
+                <div class="look-btn">查看</div>
+            </li>
+            <li>
+                <img src="images/award.png" alt="" class="award-img">
+                <div class="award-info">
+                  <div class="award-name">未来生活券</div>
+                  <div class="award-time">中奖时间：2018-10-10</div>
+                </div>
+                <div class="look-btn">查看</div>
+            </li>
+            <li>
+                <img src="images/award.png" alt="" class="award-img">
+                <div class="award-info">
+                  <div class="award-name">未来生活券</div>
+                  <div class="award-time">中奖时间：2018-10-10</div>
+                </div>
+                <div class="look-btn">查看</div>
+            </li>
+            <li>
+                <div class="nodata">空空如也~</div>
+            </li> -->
+          </ul>
+        </div>
+    </div>
+<div class="prompt" id="prompt"><em>提示信息</em></div>
+<script src="js/jquery.min.js"></script>
+<script src="http://cmsfile.wifi8.com/uploads/wifi/AppH5/api/nfygCommonPack.min.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script src="js/public.js"></script>
+<script>
+  $(function(){
+    initAwardList();
+
+
+    //列表查看
+    $(document).on("click",".look-btn",function(){
+      var type = $(this).attr("type");
+      var prizeid = $(this).attr("prizeid");
+      var goodsid = $(this).attr("goodsid");//
+      if(type == 2){//实物
+        window.location.href = 'myDetail_goods.html?type='+type+'goodsid='+goodsid;
+      }else if(type == 3){//券码
+        window.location.href = 'myDetail_coupon.html?type='+type+'goodsid='+goodsid;
+      }
+    })
+
+    function initAwardList(){
+      if(!isApp){
+            nfyg.encrypt(mobile, function (data) {
+              mobile = data
+            })
+            var params = {
+              "tel":mobile,
+            }
+            console.log(params);
+          $.ajax({
+                type: "post",
+                url: basePath+'/20/godspeed/lists',
+                dataType: 'json',
+                data:JSON.stringify(params),
+                beforeSend: function (xhr) {
+                },
+                success: function(data) {
+                  console.log(data);
+                  var html = ''
+                  if(data.code==1){
+                    if(data.myPrizeList!=null&&data.myPrizeList.length>0){
+                        for(var i = 0;i<data.myPrizeList.length;i++){
+                          html +='<li prizeid ="'+data.myPrizeList[i].prizeId+'" goodsid ="'+data.myPrizeList[i].goodsid+'" type ="'+data.myPrizeList[i].type+'"><img src="'+data.myPrizeList[i].prizeImg+'" alt="" class="award-img">'+
+                        '<div class="award-info"><div class="award-name">'+data.myPrizeList[i].prizeName+'</div>'+
+                        '<div class="award-time">中奖时间：2018-10-10</div></div>'+
+                        '<div class="look-btn">查看</div></li>'
+                        }
+                    }
+                  }else{
+                    html += '<li><div class="nodata">您还没有奖品哦~</div></li>'
+                  }
+                  $(".award-list").html(html);
+                },
+                fail: function() {
+                  //layer.msg("网络异常，请稍后再试！", {icon: 5});
+                }
+            });
+      }
+    }
+
+
+
+  })
+</script>
+</body>
+</html>

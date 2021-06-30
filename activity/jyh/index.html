@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="MobileOptimized" content="240" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />  
+    <meta content="email=no" name="format-detection" />
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title>武汉军运会倒计时8天！</title>
+    <link rel="stylesheet" href="css/base.css">
+    <style>
+        body{background-color: #FFF;overflow: hidden;}
+        .main-wrap{width: 100%; max-width: 750px; margin:0 auto;}
+        video{width: 100%; display: block;object-fit:fill;}
+    </style>
+
+</head>
+<body>
+    <div class="main-wrap">
+        <video  src="http://cmsfile.wifi8.com/uploads/activity/vide/jyh.mp4" width="100%" height="100%"  preload="auto" playsinline  webkit-playsinline  autoplay   loop="loop"   id="myVideo"></video>
+    </div>
+
+<script src="js/zepto.min.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script src="js/public.js"></script>
+<script>
+    var h = $(window).height();
+    $("video").css("height",h+"px");
+    $(function(){
+        var url = 'http://activity.peanut8.com/act/2019/jyh/index.html';
+        var imgUrl = 'http://activity.peanut8.com/act/2019/jyh/images/share.jpg';
+        var title = '武汉军运会倒计时8天！';
+        var desc = '武汉军运会倒计时8天！';
+        var wx_url = window.location.href;
+        $.ajax({
+          type: "get",
+          url: 'http://activity.peanut8.com/WxShare/anxious',
+          data: {
+            url: wx_url
+          },
+          dataType: 'json',
+          success: function(data) {
+            if(data.code == 1) {
+              wx.config({
+                debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                appId: data.data.sharePackage.appId, // 必填，公众号的唯一标识
+                timestamp: data.data.sharePackage.timestamp, // 必填，生成签名的时间戳
+                nonceStr: data.data.sharePackage.nonceStr, // 必填，生成签名的随机串
+                signature: data.data.sharePackage.signature, // 必填，签名，见附录1
+                jsApiList: [
+                  'checkJsApi',
+                  'onMenuShareTimeline',
+                  'onMenuShareAppMessage'
+                ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+              });
+              var shareInfo = data.data.shareInfo;
+              wx.ready(function() {
+                //分享到朋友圈
+                wx.onMenuShareTimeline({
+                  title: title, // 分享标题
+                  desc: desc,
+                  link: url, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                  imgUrl: imgUrl, // 分享图标
+                  success: function() {
+
+                  },
+                  cancel: function(res) {
+
+                  }
+                });
+
+                //分享给朋友
+                wx.onMenuShareAppMessage({
+                  title: title, // 分享标题
+                  desc: desc, // 分享描述
+                  link: url, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                  imgUrl: imgUrl, // 分享图标
+                  success: function() {
+
+                  },
+                  cancel: function() {
+
+                  }
+                });
+              });
+            }
+          },
+          error: function() {}
+        })
+
+        //解决苹果不能自动播放   模拟点击
+        var video = document.getElementById("myVideo");
+        video.play();
+        document.addEventListener('WeixinJSBridgeReady',function(){
+            video.play();
+        },false);
+
+        function forceSafariPlayAudio() {
+            video.load(); // iOS 9   还需要额外的 load 一下, 否则直接 play 无效
+            video.play(); // iOS 7/8 仅需要 play 一下
+        }
+
+
+        // 可以自动播放时正确的事件顺序是
+        // loadstart
+        // loadedmetadata
+        // loadeddata
+        // canplay
+        // play
+        // playing
+        // 
+        // 不能自动播放时触发的事件是
+        // iPhone5  iOS 7.0.6 loadstart
+        // iPhone6s iOS 9.1   loadstart -> loadedmetadata -> loadeddata -> canplay
+        video.addEventListener('loadstart', function() {
+            log('loadstart');
+        }, false);
+        video.addEventListener('loadeddata', function() {
+            log('loadeddata');
+        }, false);
+        video.addEventListener('loadedmetadata', function() {
+            log('loadedmetadata');
+        }, false);
+        video.addEventListener('canplay', function() {
+            log('canplay');
+        }, false);
+        video.addEventListener('play', function() {
+            log('play');
+            // 当 audio 能够播放后, 移除这个事件
+            window.removeEventListener('touchstart', forceSafariPlayAudio, false);
+        }, false);
+        video.addEventListener('playing', function() {
+            log('playing');
+        }, false);
+        video.addEventListener('pause', function() {
+            log('pause');
+        }, false);
+
+        // 由于 iOS Safari 限制不允许 audio autoplay, 必须用户主动交互(例如 click)后才能播放 audio,
+        // 因此我们通过一个用户交互事件来主动 play 一下 audio.
+        window.addEventListener('touchstart', forceSafariPlayAudio, false);
+    })
+
+</script>
+<script>
+    
+</script>
+</body>
+</html>

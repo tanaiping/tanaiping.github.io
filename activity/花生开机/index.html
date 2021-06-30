@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="MobileOptimized" content="240" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />  
+    <meta content="email=no" name="format-detection" />
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title>明星祝你：花开生机，大吉大利！</title>
+    <link rel="stylesheet" href="css/base.css">
+    <style>
+        body{overflow: hidden;}
+        .main-wrap{width: 100%; max-width: 750px; margin:0 auto;}
+        .loading{width: 100%; height: 100%;background: url(loading.jpg) no-repeat;background-size: cover; position: absolute;left: 0px; top: 0px; z-index: 10;}
+    </style>
+</head>
+<body>
+    <div class="main-wrap">
+       <div class="loading"></div>
+       <video preload="auto" src="http://cmsfile.wifi8.com/uploads/activity/vide/video_ap.mp4" poster="video_img.jpg" height="auto"  controls=controls x-webkit-airplay="true" x5-playsinline="true" webkit-playsinline="true"  x5-video-player-type="h5" playsinline="true" id="sp"  autoplay="autoplay" loop="loop"  type="video/mp4"></video>
+    </div>  <!-- x5-video-player-type="h5" -->
+<script src="js/zepto.min.js"></script>
+<script>
+    $(function(){
+      var w = parseInt($(window).width());
+      var video = document.getElementById("sp"); 
+      $("#sp").css({"width":w+"px"});
+        var ua = navigator.userAgent.toLowerCase();
+        var isWeixin = ua.indexOf('micromessenger') != -1;
+        if (isWeixin) {  //微信内置浏览器  oncanplay  canplaythrough 不起作用
+            setTimeout(function(){
+              $(".loading").hide();
+              video.play();
+           },1500);
+        }else{
+             video.oncanplay=function(){
+              $(".loading").hide();
+              video.play();
+            }
+        }
+
+    })
+
+</script>
+</body>
+</html>

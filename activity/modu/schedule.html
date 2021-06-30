@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" /> -->
+    <!--重要meta, 必须!-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,shrink-to-fit=no" />
+    <meta name="MobileOptimized" content="240" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />  
+    <meta content="email=no" name="format-detection" />
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title>时刻表</title>
+    <link rel="stylesheet" href="css/jquery-ui.min.css">
+    <link rel="stylesheet" href="css/com.css">
+</head>
+<body>
+    <div class="com-wrap">
+        <div class="time-location"><img src="images/location_ico.png" alt="">上海</div>
+        <ul class="time-list" id="time-list">
+             <!--<li class="line1">
+                <div class="station-work-time-box">
+                    <div class="subway-namebox">
+                        <span>4号线（环中线）</span>
+                    </div>
+                    <div class="subway-timebox">
+                        <div class="direct">
+                            <img src="images/direct_ico.png" alt="">
+                            <span>黄贝岭</span>
+                        </div>
+                        <div class="times">
+                            <div class="weekday">工作日：<img src="images/start-time.png" alt=""> 6:30<img src="images/end-time.png" alt="" style="padding-left: 1.5rem;"> 23:00</div>
+                            <div class="weekday">周　未：<img src="images/start-time.png" alt=""> 6:30<img src="images/end-time.png" alt="" style="padding-left: 1.5rem;"> 23:00</div>
+                        </div>
+                    </div>
+                    <div class="subway-timebox">
+                        <div class="direct">
+                            <img src="images/direct_ico.png" alt="">
+                            <span>黄贝岭</span>
+                        </div>
+                        <div class="times">
+                            <div class="weekday">工作日：<img src="images/start-time.png" alt=""> 6:30<img src="images/end-time.png" alt="" style="padding-left: 1.5rem;"> 23:00</div>
+                            <div class="weekday">周　未：<img src="images/start-time.png" alt=""> 6:30<img src="images/end-time.png" alt="" style="padding-left: 1.5rem;"> 23:00</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="line3">
+                <div class="station-work-time-box">
+                    <div class="subway-namebox">
+                        <span>4号线（环中线）</span>
+                    </div>
+                    <div class="subway-timebox">
+                        <div class="direct">
+                            <img src="images/direct_ico.png" alt="">
+                            <span>黄贝岭</span>
+                        </div>
+                        <div class="times">
+                            <div class="weekday">工作日：<img src="images/start-time.png" alt=""> 6:30<img src="images/end-time.png" alt="" style="padding-left: 1.5rem;"> 23:00</div>
+                            <div class="weekday">周　未：<img src="images/start-time.png" alt=""> 6:30<img src="images/end-time.png" alt="" style="padding-left: 1.5rem;"> 23:00</div>
+                        </div>
+                    </div>
+                    <div class="subway-timebox">
+                        <div class="direct">
+                            <img src="images/direct_ico.png" alt="">
+                            <span>黄贝岭</span>
+                        </div>
+                        <div class="times">
+                            <div class="weekday">工作日：<img src="images/start-time.png" alt=""> 6:30<img src="images/end-time.png" alt="" style="padding-left: 1.5rem;"> 23:00</div>
+                            <div class="weekday">周　未：<img src="images/start-time.png" alt=""> 6:30<img src="images/end-time.png" alt="" style="padding-left: 1.5rem;"> 23:00</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="line4">
+                <div class="station-work-time-box">
+                    <div class="subway-namebox">
+                        <span>4号线（环中线）</span>
+                    </div>
+                    <div class="subway-timebox">
+                        <div class="direct">
+                            <img src="images/direct_ico.png" alt="">
+                            <span>黄贝岭</span>
+                        </div>
+                        <div class="times">
+                            <div class="weekday">工作日：<img src="images/start-time.png" alt=""> 6:30<img src="images/end-time.png" alt="" style="padding-left: 1.5rem;"> 23:00</div>
+                            <div class="weekday">周　未：<img src="images/start-time.png" alt=""> 6:30<img src="images/end-time.png" alt="" style="padding-left: 1.5rem;"> 23:00</div>
+                        </div>
+                    </div>
+                    <div class="subway-timebox">
+                        <div class="direct">
+                            <img src="images/direct_ico.png" alt="">
+                            <span>黄贝岭</span>
+                        </div>
+                        <div class="times">
+                            <div class="weekday">工作日：<img src="images/start-time.png" alt=""> 6:30<img src="images/end-time.png" alt="" style="padding-left: 1.5rem;"> 23:00</div>
+                            <div class="weekday">周　未：<img src="images/start-time.png" alt=""> 6:30<img src="images/end-time.png" alt="" style="padding-left: 1.5rem;"> 23:00</div>
+                        </div>
+                    </div>
+                </div>
+            </li> -->
+        </ul>
+    </div>
+    <script type="text/javascript" src="js/zepto.min.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/lines.js"></script>
+    <script type="text/javascript">
+    $(function(){
+        window.addEventListener('resize', Rem, false);
+        Rem();
+        showLinelist(1);//cityId
+
+    })
+    </script>
+</body>
+</html>

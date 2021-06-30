@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+<meta name="MobileOptimized" content="240" />
+<meta name="apple-touch-fullscreen" content="YES" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta content="telephone=no" name="format-detection" />  
+<meta content="email=no" name="format-detection" />
+<!-- uc强制竖屏 -->
+<meta name="screen-orientation" content="portrait">
+<!-- QQ强制竖屏 -->
+<meta name="x5-orientation" content="portrait">
+<!-- UC强制全屏 -->
+<meta name="full-screen" content="yes">
+<!-- QQ强制全屏 -->
+<meta name="x5-fullscreen" content="true">
+<!-- UC应用模式 -->
+<meta name="browsermode" content="application">
+<!-- QQ应用模式 -->
+<meta name="x5-page-mode" content="app">
+<!-- windows phone 点击无高光 -->
+<meta name="msapplication-tap-highlight" content="no">
+<!-- 适应移动端end -->
+<title>爱牙日</title>
+<link rel="stylesheet" type="text/css" href="css/com.css">
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/nfygInlay.js"></script> 
+</head>
+<body>
+<div class="main-wrap">
+    <img src="images/mainbg.jpg" alt="" class="index-bg">
+    <!--口腔 -->
+    <div class="tooth-box">
+        <div class="pr">
+            <div class="tooth-elem t1"></div>
+            <div class="tooth-elem t2"></div>
+            <div class="tooth-elem t3"></div>
+            <div class="tooth-elem t4"></div>
+            <div class="tooth-elem t5"></div>
+            <div class="tooth-elem t6 bad-tooth"></div>
+            <div class="tooth-elem t7"></div>
+            <div class="tooth-elem t8"></div>
+            <div class="tooth-elem t9"></div>
+            <div class="tooth-elem t10"></div>
+            <div class="tooth-elem t11"></div>
+            <div class="tooth-elem t12"></div>
+            <div class="tooth-elem t13"></div>
+            <div class="tooth-elem t14 bad-tooth"></div>
+            <div class="tooth-elem t15"></div>
+            <div class="tooth-elem t16"></div>
+            <div class="tooth-elem t17"></div>
+            <div class="tooth-elem t18"></div>
+            <div class="tooth-elem t19"></div>
+            <div class="tooth-elem t20 bad-tooth"></div>
+            <div class="tooth-elem t21"></div>
+            <div class="tooth-elem t22"></div>
+            <div class="tooth-elem t23"></div>
+            <div class="tooth-elem t24"></div>
+            <div class="tooth-elem t25"></div>
+            <div class="tooth-elem t26"></div>
+            <div class="tooth-elem t27"></div>
+            <div class="tooth-elem t28 bad-tooth"></div>
+            <div class="tooth-elem t29"></div>
+            <div class="tooth-elem t30"></div>
+            <div class="tooth-elem t31"></div>
+            <div class="tooth-elem t32"></div>
+        </div>
+    </div>
+
+    <!--底部 -->
+    <div class="footer-box">
+        <img src="images/footer-bg.png" alt="" class="footer-bg">
+        <ul class="tooth-list">
+            <li><img src="images/ya01.png" alt=""></li>
+            <li><img src="images/ya02.png" alt=""></li>
+            <li><img src="images/ya03.png" alt=""></li>
+            <li><img src="images/ya04.png" alt=""></li>
+        </ul>
+        <a href="javascript:;" class="fd-btn disabled"><img src="images/fd_btn_disabled.png" alt=""></a>
+    </div>
+
+
+
+    <div class="black-formsbg"  style="display: block;"></div>
+    <div class="forms-wrap rules-formbox"  >
+        <img src="images/rule_img.png" alt="">
+        <div class="confirm-btn"></div>
+    </div>
+    <div class="forms-wrap teeth01-formbox" >
+        <img src="images/pop03.png" alt="">
+        <div class="confirm-btn"></div>
+    </div>
+    <div class="forms-wrap teeth02-formbox" >
+        <img src="images/pop04.png" alt="">
+        <div class="confirm-btn"></div>
+    </div>
+    <div class="forms-wrap teeth03-formbox" >
+        <img src="images/pop02.png" alt="">
+        <div class="confirm-btn"></div>
+    </div>
+    <div class="forms-wrap teeth04-formbox">
+        <img src="images/pop01.png" alt="">
+        <div class="confirm-btn"></div>
+    </div>
+    <div class="forms-wrap loading-formbox">
+        <img src="images/loading.gif" alt="">
+    </div>
+    <div class="forms-wrap error-formbox" >
+        <img src="images/error.png" alt="">
+    </div>
+    <div class="forms-wrap outer-formbox" >
+        <img src="images/pop_outer.png" alt="">
+        <div class="confirm-btn"></div>
+    </div>
+    <div class="forms-wrap login-formbox" style="display: block;">
+        <img src="images/login.png" alt="">
+        <div class="confirm-btn"></div>
+    </div>
+</div>
+
+<script>
+$(function(){
+    var win_w = document.documentElement.clientWidth;
+    var main_h =parseFloat(win_w*1204/750);
+    $(".main-wrap").css("height",main_h+"px");
+
+    var teeth=0;     //用于标记点击的是哪颗坏牙齿
+    //点击牙齿
+    $(".tooth-elem").click(function(){
+        if (nfyg.isPlatform()==false) { 
+                //APP外
+                $(".black-formsbg,.outer-formbox").show();
+
+        　　}
+        else{
+            if($(this).hasClass('bad-tooth')){
+                var index = $(".bad-tooth").index(this)+1;
+                teeth=index;
+                $(".teeth0"+index+"-formbox,.black-formsbg").show();
+                
+            }else{
+                $(".error-formbox,.black-formsbg").show();
+            }
+        }
+    });
+
+    $(".confirm-btn,.black-formsbg").click(function(){
+        $(".black-formsbg,.forms-wrap").hide();
+        change(teeth);
+    });
+
+    //
+    $(".fd-btn").click(function() {
+        if(!$(this).hasClass('disabled')){
+            window.location.href="https://www.baidu.com/";
+        }
+        else{
+            //alert("no funciton");
+        }
+    });
+
+    function  change(index){
+        if(index>0){
+            if(index==1){
+                $(".tooth-list li").eq(1).addClass('checked').find('img').attr("src","images/ya02_checked.png");
+            }else if(index==2){
+                $(".tooth-list li").eq(2).addClass('checked').find('img').attr("src","images/ya03_checked.png");
+            }else if(index==3){
+                $(".tooth-list li").eq(0).addClass('checked').find('img').attr("src","images/ya01_checked.png");
+            }else{
+                $(".tooth-list li").eq(3).addClass('checked').find('img').attr("src","images/ya04_checked.png");
+            }
+        }
+
+        var len = $(".tooth-list").find('.checked').length;
+        if(len==4){
+           $(".fd-btn").removeClass('disabled').find('img').attr("src","images/fd_btn.png"); 
+        }
+    }
+
+});
+</script>
+</body>
+</html>

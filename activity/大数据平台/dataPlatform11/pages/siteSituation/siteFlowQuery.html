@@ -1,0 +1,55 @@
+<div style="">
+	<div class="clearfix">
+		<div class="dataQuery siteQuery">
+			<div class="dataBegin">开始日期<input type="text" id="siteStartTime"/>
+			</div>
+			
+			<div class="dataEnd">结束日期<input type="text" id="siteEndTime" />
+			站点选择一
+			<select id="select1">
+				<option>老街</option>
+				<option>坪洲</option>
+			</select>
+			<span>二</span>
+			<select id="select2">
+				<option>桃园</option>
+				<option>宝安中心</option>
+			</select>
+			<span>三</span>
+			<select id="select3">
+				<option>深大</option>
+				<option>大新</option>
+			</select>
+			</div>
+		</div>
+		<div class="queryBt">
+			<button type="button" ng-click="siteQueryBt()">查询</button>
+			<button type="button">导出</button>
+		</div>
+	</div>
+	
+	<div id="siteQueryChart" class="" style="width: 100%;height: 582px;margin-top: 50px;background: rgba(0,116,255,0.2);"></div>
+	
+	<div class="siteName-box fl_start">
+		<div><em></em>站点一</div>
+		<div><em></em>站点二</div>
+		<div><em></em>站点三</div>
+	</div>
+	
+	<table id="example1" class="table table-bordered table-striped" style="margin-top: 45px;background: rgba(255,255,255,0);">
+        <thead>
+            <tr>
+            	<th>站点</th>
+                <th>日期</th>
+                <th>人流数据</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in data">
+            	<td>{{item.station}}</td>
+                <td>{{item.date}}</td>
+                <td>{{item.uv}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

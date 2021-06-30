@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" /> -->
+    <!--重要meta, 必须!-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,shrink-to-fit=no" />
+    <meta name="MobileOptimized" content="240" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />  
+    <meta content="email=no" name="format-detection" />
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title>线路查询</title>
+    <link rel="stylesheet" href="css/jquery-ui.min.css">
+    <link rel="stylesheet" href="css/com.css">
+</head>
+<body>
+    <div class="line-station">
+        <dl class="menu-dl">
+            <dd class="act"><em></em>线路</dd>
+            <dd><em></em>站点</dd>
+        </dl>
+        <div class="menu-box">
+            <!-- 线路表单 -->
+            <form action="#" id="line_form">
+                <div class="menu-formlist line-box" style="display: block;">
+                    <div class="start-line"><em class="circle"></em><input type="search" id="start_line" value="南京西路"></div>
+                    <div class="end-line"><em class="circle"></em><input type="search" id="end_line" value="大木桥路"></div>
+                    <img src="images/switch-station.png" alt="" class="switch-img">
+                </div>
+                <!-- 站点表单 -->
+                <div class="menu-formlist station-box">
+                    <div class="start-line"><em class="circle"></em>
+                        <select name="" id="">
+                            <option value="-1">全部线路</option>
+                            <option value="0">1号线</option>
+                            <option value="1">2号线</option>
+                            <option value="2">3号线</option>
+                            <option value="2">4号线</option>
+                            <option value="2">5号线</option>
+                            <option value="2">6号线</option>
+                            <option value="2">7号线</option>
+                        </select>
+                        <img src="images/select_bottom.jpg" alt="" class="select-ico">
+                    </div>
+                    <div class="end-line"><em class="circle"></em><input type="search" id="end_station"></div>
+                </div>
+            </form>
+            <div id="query-result" class="border-t">
+                <div class="com-pad" style="display: none;">
+                    <dl class="line-menu-dl">
+                        <dd class="act">推荐线路</dd>
+                        <dd>线路二</dd>
+                    </dl>
+                    <div class="lines-box" style="display: block;">
+                       <div class="line-info border-b">
+                            <ul class="station-name-list">
+                                <li class="lines-start">罗湖</li>
+                                <li class="lines-redline"><em></em></li>
+                                <li class="lines-change">会展中心</li>
+                                <li class="lines-line"><em></em><span class="change-info">可换乘4、5、15、11号线</span></li>
+                                <li class="lines-nochange">车公庙</li>
+                            </ul>
+                        </div>
+                        <div class="line-detailinfo">
+                            <img src="images/station_num.png" alt="">
+                            <em class="t1">途经3站</em>
+                            <img src="images/time_ico.png" alt="">
+                            <em class="t2">预计时间10分钟</em>
+                            <img src="images/price_ico.png" alt="">
+                            <em class="t3">票价5元</em>
+                        </div>
+                    </div>
+                    <div class="lines-box">
+                       <div class="line-info border-b">
+                            <ul class="station-name-list">
+                                <li class="lines-start">坪洲</li>
+                                <li class="lines-redline"><em></em></li>
+                                <li class="lines-change">世界之窗</li>
+                                <li class="lines-line"><em></em><span class="change-info">可换乘4、5、15、11号线</span></li>
+                                <li class="lines-change">茶光</li>
+                                <li class="lines-line"><em></em><span class="change-info">可换乘4、5、15、11号线</span></li>
+                                <li class="lines-nochange">车公庙</li>
+                            </ul>
+                        </div>
+                        <div class="line-detailinfo">
+                            <img src="images/station_num.png" alt="">
+                            <em class="t1">途经5站</em>
+                            <img src="images/time_ico.png" alt="">
+                            <em class="t2">预计时间15分钟</em>
+                            <img src="images/price_ico.png" alt="">
+                            <em class="t3">票价8元</em>
+                        </div>
+                    </div>
+                </div>
+                <!-- 线路查询结果end -->
+                <div class="com-pad" >
+                    <div class="station-work-time-box border-b">
+                        <div class="subway-namebox">
+                            <em></em><!--  这个地方的颜色  需要到时定义线路数组的颜色值 然后根据几号线路取出相应的颜色赋上去 -->
+                            <span>1号线（罗宝线）</span>
+                        </div>
+                        <div class="subway-timebox">
+                            <div class="direct">
+                                <img src="images/direct_ico.png" alt="">
+                                <span>罗湖方向</span>
+                            </div>
+                            <div class="times">
+                                <div class="weekday">工作日：<img src="images/start-time.png" alt=""> 6:30<img src="images/end-time.png" alt="" style="padding-left: 1.5rem;"> 23:00</div>
+                                <div class="weekday">周　未：<img src="images/start-time.png" alt=""> 6:30<img src="images/end-time.png" alt="" style="padding-left: 1.5rem;"> 23:00</div>
+                            </div>
+                        </div>
+                        <div class="subway-timebox">
+                            <div class="direct">
+                                <img src="images/direct_ico.png" alt="">
+                                <span>机场东方向</span>
+                            </div>
+                            <div class="times">
+                                <div class="weekday">工作日：<img src="images/start-time.png" alt=""> 6:30<img src="images/end-time.png" alt="" style="padding-left: 1.5rem;"> 23:00</div>
+                                <div class="weekday">周　未：<img src="images/start-time.png" alt=""> 6:30<img src="images/end-time.png" alt="" style="padding-left: 1.5rem;"> 23:00</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="station-work-time-box border-b">
+                        <div class="subway-namebox">
+                            <em></em>
+                            <span>4号线（环中线）</span>
+                        </div>
+                        <div class="subway-timebox">
+                            <div class="direct">
+                                <img src="images/direct_ico.png" alt="">
+                                <span>黄贝岭</span>
+                            </div>
+                            <div class="times">
+                                <div class="weekday">工作日：<img src="images/start-time.png" alt=""> 6:30<img src="images/end-time.png" alt="" style="padding-left: 1.5rem;"> 23:00</div>
+                                <div class="weekday">周　未：<img src="images/start-time.png" alt=""> 6:30<img src="images/end-time.png" alt="" style="padding-left: 1.5rem;"> 23:00</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="station-detailinfo">
+                        <img src="images/high-speed.png" alt="">
+                        <em class="t1">高铁</em>
+                        <img src="images/plane.png" alt="">
+                        <em class="t2">机场</em>
+                        <img src="images/port.png" alt="">
+                        <em class="t3">口岸</em>
+                        <a href="javascript:;" class="station-detail-link">站点详情<img src="images/add_ico.png" alt=""></a>
+                    </div>
+                </div>
+                <!-- 站点查询结果end -->
+            </div> 
+        </div>
+        <!-- menu-box end -->
+
+    </div>
+    <div class="line-switch">
+        <div class="lines-con" id="lines-con">
+            <ul class="lines-list">
+                <li class="act">
+                    <em class="line1"></em>
+                    <div class="t1">1号线</div>
+                    <div class="t2">罗宝线</div>
+                </li>
+                <li>
+                    <em class="line2"></em>
+                    <div class="t1">2号线</div>
+                    <div class="t2">罗宝线</div>
+                </li>
+                <li>
+                    <em class="line3"></em>
+                    <div class="t1">3号线</div>
+                    <div class="t2">罗宝线</div>
+                </li>
+                <li>
+                    <em class="line4"></em>
+                    <div class="t1">4号线</div>
+                    <div class="t2">罗宝线</div>
+                </li>
+                <li>
+                    <em class="line5"></em>
+                    <div class="t1">5号线</div>
+                    <div class="t2">罗宝线</div>
+                </li>
+                <li>
+                    <em class="line6"></em>
+                    <div class="t1">6号线</div>
+                    <div class="t2">罗宝线</div>
+                </li>
+                <li>
+                    <em class="line7"></em>
+                    <div class="t1">7号线</div>
+                    <div class="t2">罗宝线</div>
+                </li>
+                <li>
+                    <em class="line8"></em>
+                    <div class="t1">8号线</div>
+                    <div class="t2">罗宝线</div>
+                </li>
+                <li>
+                    <em class="line9"></em>
+                    <div class="t1">9号线</div>
+                    <div class="t2">罗宝线</div>
+                </li>
+                <li>
+                    <em class="line10"></em>
+                    <div class="t1">10号线</div>
+                    <div class="t2">罗宝线</div>
+                </li>
+                <li>
+                    <em class="line11"></em>
+                    <div class="t1">11号线</div>
+                    <div class="t2">罗宝线</div>
+                </li>
+                <li>
+                    <em class="line12"></em>
+                    <div class="t1">12号线</div>
+                    <div class="t2">罗宝线</div>
+                </li>
+                <li>
+                    <em class="line13"></em>
+                    <div class="t1">13号线</div>
+                    <div class="t2">罗宝线</div>
+                </li>
+                <li>
+                    <em class="line16"></em>
+                    <div class="t1">16号线</div>
+                    <div class="t2">罗宝线</div>
+                </li>
+            </ul>
+            <div class="lines-detail">
+                <div class="conbox">
+                    <div class="main-info">
+                        <div class="t1">1号线（罗宝线）</div>
+                        <div class="t2"><span class="start">罗湖</span><img src="images/to.png" alt="" class="to"><span class="end">机场东</span></div>
+                        <div class="weekday">工作日：<img src="images/start-time.png" alt=""> 6:30<img src="images/end-time.png" alt="" style="padding-left: 1.5rem;"> 23:00</div>
+                        <div class="weekend">周　未：<img src="images/start-time.png" alt=""> 6:30<img src="images/end-time.png" alt="" style="padding-left: 1.5rem;"> 23:00</div>
+                        <img src="images/switch-station.png" alt="" class="switch-station">
+                    </div>
+                    <div class="line-info">
+                        <ul class="station-name-list">
+                            <li class="lines-nochange">罗湖</li>
+                            <li class="lines-line"><em></em></li>
+                            <li class="lines-nochange">老街</li>
+                            <li class="lines-line"><em></em></li>
+                            <li class="lines-change">会展中心</li>
+                            <li class="lines-line"><em></em><span class="change-info">可换乘4、5、15、11号线</span></li>
+                            <li class="lines-change">车公庙</li>
+                            <li class="lines-line"><em></em></li>
+                            <li class="lines-nochange">坪洲</li>
+                            <li class="lines-line"><em></em></li>
+                            <li class="lines-nochange">宝体</li>
+                            <li class="lines-line"><em></em></li>
+                            <li class="lines-change">机场东</li>
+                            <!-- <li class="lines-noline"></li> --> <!-- 最后一个站不需要线 且有换乘信息要录入 -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <a href="javascript:;" class="fd-box"><img src="images/fd_img.png" alt=""></a>
+    <div class="line-look" tag="1"><img src="images/line_switch.jpg" alt=""></div>
+    <div class="location-city"><img src="images/location_ico.png" alt="">上海</div>
+    <div id="metro_line"></div>
+    <!-- <script type="text/javascript" src="js/zepto.min.js"></script> -->
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="http://webapi.amap.com/subway?v=1.0&amp;key=6fa3a8e8c400740ceac3109b2a115e44&amp;callback=cbk"></script>
+    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/lines.js"></script>
+    <script type="text/javascript">
+    window.cbk = function() {
+        var mySubway = subway("metro_line", {
+            adcode: 3100,
+            theme: "colorful",
+            client: 0,
+            doubleclick: {
+                switch: true
+            }
+        });
+
+        //地铁加载完成，执行complete事件
+        mySubway.event.on("subway.complete", function(ev, info) {
+            var id = info.id;
+        });
+
+        //点击站点，显示此站点的信息窗体
+        mySubway.event.on("station.touch", function(ev, info) {
+            var id = info.id;
+            mySubway.stopAnimation();
+            mySubway.addInfoWindow(id, {});
+            var center = mySubway.getStCenter(id);
+            mySubway.setCenter(center);
+        });
+
+        //点击线路名，高亮此线路
+        mySubway.event.on("lineName.touch", function(ev, info) {
+            mySubway.showLine(info.id);
+            var select_obj = qs('#g-select');
+            mySubway.setFitView(select_obj);
+            var center = mySubway.getSelectedLineCenter();
+            mySubway.setCenter(center);
+        });
+
+        //点击空白, 关闭infowindow
+        mySubway.event.on("subway.touch", function() {
+            mySubway.clearInfoWindow();
+        });
+
+        //设置起点
+        mySubway.event.on("startStation.touch", function(ev, info) {
+            mySubway.stopAnimation();
+            mySubway.clearInfoWindow();
+            mySubway.setStart(info.id, {});
+            startInfo = info;
+            route();
+        });
+
+        //设置终点
+        mySubway.event.on("endStation.touch", function(ev, info) {
+            mySubway.stopAnimation();
+            mySubway.clearInfoWindow();
+            mySubway.setEnd(info.id, {});
+            endInfo = info;
+            route();
+        });
+
+        //路线规划
+        var startInfo = {},
+            endInfo = {};
+        function route() {
+            if (startInfo.id && endInfo.id) {
+                mySubway.route(startInfo.id, endInfo.id, {});
+                startInfo = {};
+                endInfo = {};
+            }
+        }
+
+        //-----------------------自定义事件 ------------------------------------
+
+        //线路查询 切换始、终点站
+        $(".switch-img").click(function(){
+            $(".route_close_btn").click(); //先要执行关键的按钮 。 不然两个互换始终点 点击的图标会消失
+            var chage;
+            var start = $("#start_line").val();
+            var end = $("#end_line").val();
+            change= start;
+            start = $("#start_line").val(end);
+            end = $("#end_line").val(change);
+            mySubway.route($("#start_line").val(), $("#end_line").val());
+            mySubway.setStart($("#start_line").val());
+            mySubway.setEnd($("#end_line").val());
+        });
+        //点击搜索事件
+        $("#start_line,#end_line").on('keypress',function(e) {  
+                var keycode = e.keyCode;  
+                var start = $("#start_line").val();
+                var end = $("#end_line").val();  
+                if(keycode=='13') {  
+                    e.preventDefault();    
+                    //请求搜索接口 
+                    if(start.trim()!=""&&end.trim()!=""){
+                        mySubway.clearRoute();
+                        mySubway.route(start, end);
+                        mySubway.setStart(start);
+                        mySubway.setEnd(end);
+                    }else{
+                        alert("您的输入有误！！！");
+                    }
+                }  
+         }); 
+
+    };
+    //window load
+    $(function(){
+        window.addEventListener('resize', Rem, false);
+        Rem();
+        var availableTags = [
+          "罗湖",
+          "坪洲",
+          "西乡",
+          "宝体",
+          "西丽",
+          "茶光",
+          "车公庙",
+          "老街",
+          "深圳北站",
+          "世界之窗",
+          "高新园",
+          "深圳大学",
+          "Haskell",
+          "Java",
+          "JavaScript",
+          "Lisp",
+          "Perl",
+          "PHP",
+          "Python",
+          "Ruby",
+          "Scala",
+          "Scheme"
+        ];
+        $( "#start_line" ).autocomplete({
+          source: availableTags
+        });
+         $( "#end_line" ).autocomplete({
+          source: availableTags
+        });
+          $( "#end_station" ).autocomplete({
+          source: availableTags
+        });
+
+        //计算查看线路弹窗的宽高、位置
+        var win_w = $(window).width();
+        var win_h = $(window).height();
+        var pad = parseFloat($(".line-look").css("right"));
+        var line_h = parseFloat($(".line-look").css("height"));
+        var lin_w = win_w-pad*2-2;
+        var lin_h = win_h-pad*2-line_h-2;
+        var lin_top = pad+1
+        $(".line-switch").css({"width":lin_w,"height":lin_h,"left":pad+"px","top":lin_top+"px"});
+        $(".lines-list").css("min-height",lin_h);
+        $(".line-station").css({"width":lin_w,"max-height":lin_h});
+
+        //切换线路 站点菜单
+        $(".menu-dl dd").click(function(){
+            var index = $(".menu-dl dd").index(this);
+            $(".menu-dl dd").removeClass('act').eq(index).addClass('act');
+            $(".menu-formlist").hide().eq(index).show();
+        });
+        //推荐线路  线路2
+        $(".line-menu-dl dd").click(function(){
+            var index = $(".line-menu-dl dd").index(this);
+            $(".line-menu-dl dd").removeClass('act').eq(index).addClass('act');
+            $(".lines-box").hide().eq(index).show();
+        });
+        
+        //查看线路说明
+        $(".line-look").click(function(){
+            var tag= $(this).attr("tag");
+            if(tag==1){
+                $(this).attr("tag","0").find("img").attr("src","images/line_close.jpg");
+                $(".line-switch").show();
+            }else{
+                $(this).attr("tag","1").find("img").attr("src","images/line_switch.jpg");
+                $(".line-switch").hide();
+            }
+        });
+       
+    })
+    </script>
+</body>
+</html>

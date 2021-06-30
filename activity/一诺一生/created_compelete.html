@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" /> -->
+    <!--重要meta, 必须!-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,shrink-to-fit=no" />
+    <meta name="MobileOptimized" content="240" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />  
+    <meta content="email=no" name="format-detection" />
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <title>一诺一生 雷凌"擎话型动派"</title>
+    <link rel="stylesheet" type="text/css" href="css/base.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
+<body>
+<div class="compelete-wrap">
+    <div class="compelete-box">
+        <img src="images/tag_img01.jpg" alt="" class="tag-scene-img">
+        <div class="love-user-name"><em class="get-from-name">666</em><img src="images/love_ico.jpg" alt=""><em class="get-to-name">888</em></div>
+        <div class="zan-num">1588</div>
+        <div class="love-text">北方有十二月的大雪南方有四季如春的我藏不住的欢喜北方有十春的岁月你眼四季如春的岁月你眼</div>
+    </div>
+    <div class="compelete-btnbox">
+        <!-- <img src="images/zan_btn.png" alt="" class="zan-btn"> -->
+        <img src="images/index_btn.png" alt="" class="backindex-btn">
+        <img src="images/enter_website.png" alt="" class="enter-btn">
+    </div>
+</div>
+<script src="js/zepto.min.js"></script>
+<script src="js/public.js"></script>
+<script>
+    $(function(){
+        Rem();
+        //背景适配
+        var win_w = parseInt($(window).width());
+        var win_h =parseInt($(window).height());
+        if(win_w<750){
+            $(".compelete-wrap").css("height",win_h+"px");
+        }
+        else{
+             h =1100*750/750;
+        $(".compelete-wrap").css("height",h+"px");
+        }
+
+        $(".enter-btn").click(function(){
+            window.location.href="";//官网地址
+        })
+       
+       $(".zan-btn").click(function(){
+            //if  没点过赞
+            var num = parseInt($(".zan-num").text());
+            $(".zan-btn").text(num+1);
+            //else 已点过赞
+            $(".compelete-wrap").append('<img src="images/tips.png"  class="zan-tips">');
+            // setTimeout(function(){$(".zan-tips").remove();},3000);
+       })
+    })
+</script>
+</body>
+</html>

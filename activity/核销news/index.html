@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+<meta name="MobileOptimized" content="240" />
+<meta name="apple-touch-fullscreen" content="YES" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta content="telephone=no" name="format-detection" />  
+<meta content="email=no" name="format-detection" />
+<!-- uc强制竖屏 -->
+<meta name="screen-orientation" content="portrait">
+<!-- QQ强制竖屏 -->
+<meta name="x5-orientation" content="portrait">
+<!-- UC强制全屏 -->
+<meta name="full-screen" content="yes">
+<!-- QQ强制全屏 -->
+<meta name="x5-fullscreen" content="true">
+<!-- UC应用模式 -->
+<meta name="browsermode" content="application">
+<!-- QQ应用模式 -->
+<meta name="x5-page-mode" content="app">
+<!-- windows phone 点击无高光 -->
+<meta name="msapplication-tap-highlight" content="no">
+<!-- 适应移动端end -->
+<title>佛罗伦萨小镇-后台</title>
+<link rel="stylesheet" href="css/com.css">
+</head>
+<body>
+<div class="main-wrap">
+    <div class="header"></div>
+    <div class="contain-box">
+        <div class="code-txt">券码</div>
+        <div class="code-input"><input type="text"></div>
+        <div class="user-status">使用状态：<em></em></div><!--(gray未使用)(green已使用)red不存在）-->
+        <ul class="btn-box">
+            <li><a href="javascript:;" class="query-btn">查询</a></li>
+            <li><a href="javascript:;" class="reagin-btn">重新输入</a></li>
+            <li><a href="javascript:;" class="submit-btn disabled">确认使用</a></li>
+        </ul>
+    </div>
+    <div class="footer"></div>
+</div>
+
+<div class="black-formsbg"></div>
+<div class="forms-wrap success">
+    <div class="forms-box">
+        <div class="t1">验证成功</div>
+        <a href="javascript:;" class="submit-forms">确认</a>
+    </div>
+</div>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script>
+$(function(){
+    //rem 设置
+    function Rem() {
+    var docEl = document.documentElement,
+    oSize = docEl.clientWidth / 37.5;
+
+    if (oSize > 20) {
+    oSize = 20; // 限制rem值 720 / 36 =20
+    }
+    //console.log(oSize);
+    docEl.style.fontSize = oSize + 'px';
+    }
+    function setSize(){
+        Rem();
+        var win_h = $(window).height();
+        $(".main-wrap").css("height",win_h);
+    }
+    window.addEventListener('resize', setSize, false);
+    setSize();
+
+    //查询
+    $(".query-btn").click(function(event) {
+        /* Act on the event */
+        var code_val = $(".code-input input").val().trim();
+
+        var query_code = 0 // 后台返回的状态值  0  未使用  1  已使用  2  不存在
+
+        if(query_code==0){//未使用
+            $(".user-status em").attr('class','gray').text("未使用");
+            $(".submit-btn").removeClass('disabled');
+        }else if(query_code==1){//已使用
+            $(".user-status em").attr('class','green').text("已使用");
+            if(!$(".submit-btn").hasClass('disabled')){
+                $(".submit-btn").addClass('disabled');
+            }
+        }else{//不存在
+            $(".user-status em").attr('class','red').text("不存在");
+            if(!$(".submit-btn").hasClass('disabled')){
+                $(".submit-btn").addClass('disabled');
+            }
+        }
+    });
+     //重置
+    $(".reagin-btn").click(function(event) {
+        /* Act on the event */
+        $(".code-input input").val("").focus();
+    });
+    //确认使用
+    $(".submit-btn").click(function(event) {
+        /* Act on the event */
+        if(!$(this).hasClass('disabled')){
+            $(".black-formsbg,.forms-wrap").show();
+        }
+
+    });
+    //确认关闭弹窗
+    $(".submit-forms").click(function(event) {
+        /* Act on the event */
+        $(".black-formsbg,.forms-wrap").hide();
+
+    });
+
+    
+
+ });
+</script>
+</body>
+</html>

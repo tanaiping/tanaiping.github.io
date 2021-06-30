@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="MobileOptimized" content="240" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />  
+    <meta content="email=no" name="format-detection" />
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title>保利城6期|保利·爱尚里</title>
+    <link rel="stylesheet" href="css/base.css">
+    <style>
+        body{background-color: #FFF;}
+        .main-wrap{width: 100%;  max-width: 750px; margin:0 auto; position: relative;}
+        .main-wrap img{width: 100%; padding-bottom: 1.3rem;}
+        .fixed-bottom{position: fixed; left: 0px; bottom:0px; background: url(images/fixed_bg.jpg) center top no-repeat; background-size: contain; width: 100%; height: 1.3rem;}
+        .fixed-bottom a{display: block; width: 6.66rem; height: .65rem; margin: .33rem;}
+    </style>
+
+</head>
+<body>
+    <div class="main-wrap">
+        <img src="images/bg.jpg?t=111" alt="">
+        <div class="fixed-bottom">
+          <a href="tel:027-86519999"></a>
+        </div>
+    </div>
+
+<script src="js/zepto.min.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script src="js/public.js"></script>
+<script>
+    $(function(){
+        var url = 'http://activity.peanut8.com/act/2019/bl/index.html';
+        var imgUrl = 'http://activity.peanut8.com/act/2019/bl/images/share.jpg';
+        var title = '保利城6期|保利·爱尚里';
+        var desc = '保利城6期|保利·爱尚里';
+        var wx_url = window.location.href;
+        $.ajax({
+          type: "get",
+          url: 'http://activity.peanut8.com/WxShare/anxious',
+          data: {
+            url: wx_url
+          },
+          dataType: 'json',
+          success: function(data) {
+            if(data.code == 1) {
+              wx.config({
+                debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                appId: data.data.sharePackage.appId, // 必填，公众号的唯一标识
+                timestamp: data.data.sharePackage.timestamp, // 必填，生成签名的时间戳
+                nonceStr: data.data.sharePackage.nonceStr, // 必填，生成签名的随机串
+                signature: data.data.sharePackage.signature, // 必填，签名，见附录1
+                jsApiList: [
+                  'checkJsApi',
+                  'onMenuShareTimeline',
+                  'onMenuShareAppMessage'
+                ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+              });
+              var shareInfo = data.data.shareInfo;
+              wx.ready(function() {
+                //分享到朋友圈
+                wx.onMenuShareTimeline({
+                  title: title, // 分享标题
+                  desc: desc,
+                  link: url, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                  imgUrl: imgUrl, // 分享图标
+                  success: function() {
+
+                  },
+                  cancel: function(res) {
+
+                  }
+                });
+
+                //分享给朋友
+                wx.onMenuShareAppMessage({
+                  title: title, // 分享标题
+                  desc: desc, // 分享描述
+                  link: url, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                  imgUrl: imgUrl, // 分享图标
+                  success: function() {
+
+                  },
+                  cancel: function() {
+
+                  }
+                });
+              });
+            }
+          },
+          error: function() {}
+        })
+    })
+
+</script>
+<script>
+    
+</script>
+</body>
+</html>

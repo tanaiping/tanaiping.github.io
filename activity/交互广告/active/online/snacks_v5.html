@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta http-equiv="Cache-Control" content="no-cache" />
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="MobileOptimized" content="240" />
+		<meta name="apple-touch-fullscreen" content="YES" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="email=no" name="format-detection" />
+		<!-- uc强制竖屏 -->
+		<meta name="screen-orientation" content="portrait">
+		<!-- QQ强制竖屏 -->
+		<meta name="x5-orientation" content="portrait">
+		<!-- UC强制全屏 -->
+		<meta name="full-screen" content="yes">
+		<!-- QQ强制全屏 -->
+		<meta name="x5-fullscreen" content="true">
+		<!-- UC应用模式 -->
+		<meta name="browsermode" content="application">
+		<!-- QQ应用模式 -->
+		<meta name="x5-page-mode" content="app">
+		<!-- windows phone 点击无高光 -->
+		<meta name="msapplication-tap-highlight" content="no">
+		<!-- 适应移动端end -->
+		<title>免费美食送不停</title>
+
+		<link rel="stylesheet" href="css/snacks_v1.css">
+		<link rel="stylesheet" href="css/swiper.min.css" />
+	</head>
+
+	<body style="background: #b32b39;">
+		<div class="main-wrap">
+			<div class="snacks-top fl_start">
+				<a href="javascript:;" id="snacks-rule"></a>
+				<a href="javascript:;" onclick="myawards(5)"></a>
+			</div>
+			<div class="dice">
+				<div class="dice-content dice-change"></div>
+			</div>
+			<div class="snacks-bt">
+				<a href="javascript:;"></a>
+			</div>
+			<div class="snacks-number today-nums">
+				抽奖次数 <em></em> 次
+			</div>
+			<div class="snacks-list">
+				<div class="swiper-container">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide snacks-item">
+							<img src="images/snacks/snacks-1.png" />
+						</div>
+						<div class="swiper-slide snacks-item">
+							<img src="images/snacks/snacks-2.png" />
+						</div>
+						<div class="swiper-slide snacks-item">
+							<img src="images/snacks/snacks-3.png" />
+						</div>
+						<div class="swiper-slide snacks-item">
+							<img src="images/snacks/snacks-4.png" />
+						</div>
+						<div class="swiper-slide snacks-item">
+							<img src="images/snacks/snacks-5.png" />
+						</div>
+						<div class="swiper-slide snacks-item">
+							<img src="images/snacks/snacks-6.png" />
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		
+		<!-- 中奖弹窗 begin -->
+		<div class="snacks-prize prize-popupWrap" id="prize-popupWrap" style="display: none;">
+			
+			<div class="prize-popupBox">
+				<div class="prize-popup" id="awards_ad_id">
+					<div class="prize-close" ></div>
+					<p class="prize-title" id="awards_title_id">恭喜你获得800元优惠券</p>
+					<div class="prize-contentWrap">
+						<a href="javascript:;" class="prize-content award-img click-link" id="award_img_id">
+							<img src="images/snacks/snacks1.png" />
+						</a>
+						<p class="" id="awards_subTitle_id">还没带上智能手表，你太low了</p>
+						<a href="javascript:;" class="prizeCen-bt click-get click-link" tagers="" appkey="" adId="" id="awards_btnTitle_id">点 击 领 取</a>
+					</div> 
+					<div class="snacksPrize-close" id="snacksPrize-close"></div>
+				</div>
+			</div>
+		</div>
+		<!-- 中奖弹窗 end -->
+		
+		<!-- 规则弹窗 begin -->
+		<div class="snacks-prize rule-popupWrap prize-popupWrap" id="rule-popupWrap" style="display: none;">
+			<div class="rule-popupBox prize-popupBox">
+				<div class="rule-popup ">
+					<div class="rule-close prize-close" id="snacksRule-close">
+					</div>
+					<div class="rule-content">
+						<p>参与活动即有机会获得幸运奖~每天抽奖机会8次免费。此活动为概率中奖，奖品数量有限，祝好运！</p>
+						<p>重要声明：</p>
+						<p>1.奖品将在活动结束后5-10个工作日安排发放,请耐心等待</p>
+						<p>2.优惠券类奖品的使用规则详见每个优惠券的介绍页</p>
+						<p>3.请兑换后仔细阅读使用流程,如有疑问,可直接联系客服专线:400-187-7877</p>
+						<p>4.通过非法途径获得奖品的,主办方有权不提供奖品</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 规则弹窗 begin -->
+		
+		<!-- 抽奖次数0 begin -->
+		<div class="snacks-prize prize-popupWrap prize-numWrap" id="prize-numWrap" style="display: none;">
+			<div class="prize-popupBox" id="prize-popupBox">
+				<!-- prize-num0  抽奖次数为0   -->
+				<!-- prize-numSb 错误提示 -->
+				<div class="prize-num prize-num0">
+					<div class="prize-word snacksPrize-numColse" id="snacksPrize-numColse"></div>
+				</div>
+			</div>
+		</div>
+		<!-- 抽奖次数0 end -->
+		
+		<script src="js/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript" src="js/swiper.min_v1.js"></script>
+		<script type="text/javascript" src="js/public.js"></script>
+		<script type="text/javascript" src="js/common_v5.js"></script>
+		<script type="text/javascript" src="js/snacks.js"></script>
+		
+		<script type="text/javascript">
+			$(function() {
+				var win_w = $(".main-wrap").width();
+				var swiper_space = parseFloat(win_w/320);
+				/* 奖品轮播 */
+				var swiper = new Swiper('.swiper-container', {
+					pagination: '.swiper-pagination',
+					slidesPerView: 4,
+					paginationClickable: true,
+					spaceBetween: 140*swiper_space,
+					freeMode: true
+				});
+				system();
+
+				/* 关闭奖品 */
+				$("#snacksPrize-close").click(function() {
+					$("#awards_ad_id").addClass("prizeClose");
+					setTimeout(function(){
+						$("#prize-popupWrap").hide();
+						$("#awards_ad_id").removeClass("prizeClose");
+					},900)
+				})
+				/* 关闭规则 */
+				$("#snacksRule-close").click(function() {
+						$("#rule-popupWrap").hide();
+				})
+
+				$("#snacks-rule").click(function() {
+					$("#rule-popupWrap").show();
+				})
+				/* 关闭失败  用完 */
+				$("#snacksPrize-numColse").click(function() {
+						$("#prize-numWrap").hide();
+				})
+				
+			})
+		</script>
+	</body>
+
+</html>

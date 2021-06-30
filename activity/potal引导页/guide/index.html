@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+<meta name="MobileOptimized" content="240" />
+<meta name="apple-touch-fullscreen" content="YES" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta content="telephone=no" name="format-detection" />  
+<meta content="email=no" name="format-detection" />
+<!-- uc强制竖屏 -->
+<meta name="screen-orientation" content="portrait">
+<!-- QQ强制竖屏 -->
+<meta name="x5-orientation" content="portrait">
+<!-- UC强制全屏 -->
+<meta name="full-screen" content="yes">
+<!-- QQ强制全屏 -->
+<meta name="x5-fullscreen" content="true">
+<!-- UC应用模式 -->
+<meta name="browsermode" content="application">
+<!-- QQ应用模式 -->
+<meta name="x5-page-mode" content="app">
+<!-- windows phone 点击无高光 -->
+<meta name="msapplication-tap-highlight" content="no">
+<!-- 适应移动端end -->
+<title>引导页</title>
+<style>
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td {margin:0;padding:0; border:0;}
+html{font-size: 62.5%;-webkit-text-size-adjust:none;}
+*{outline: none;margin:0;padding:0;}
+body{background-color: #FFF; font-family: 'STHeiti',Helvetica,Arial,sans-serif;font-size:1rem }
+table {border-collapse:collapse;border-spacing:0;}
+fieldset,img {border:0}
+address,caption,cite,code,dfn,strong,th,var{font-style:normal;font-weight:normal}
+ol,ul {list-style:none}
+caption,th {text-align:left}
+h1,h2,h3,h4,h5,h6 {font-size:100%;font-weight:normal}
+q:before,q:after {content:''}
+abbr,acronym { border:0}
+a{text-decoration:none;color:#333;outline:none;hide-focus:expression(this.hideFocus=true);}
+em{font-style:normal;}
+input,a,textarea{ outline:none;}
+.fl{float:left;_display:inline} .fm{float:left;_display:inline;} .fr{float:right;_display:inline}
+span.fl,span.fm,span.fr{display:block;_display:inline;}
+.cb{clear:both} .cl{clear:left} .cr{clear:right}.tr{text-align: right;}
+.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+.clearfix{display:inline-block}* html .clearfix{height:1%}.clearfix{display:block}
+.clear{width:100%;height:1px;overflow:hidden;clear:both;}
+.tc{text-align: center;}
+a{text-decoration: none;}
+.cl{clear: both; overflow: hidden;}
+img{vertical-align: middle;}
+a[title="站长统计"]{visibility: hidden;}
+ /* ad swiper */
+ .logo{text-align: center; height: 4.5rem; margin:2rem 0 3rem 0;}
+ .logo img{height: 100%;}
+ .title{color: #222222; font-size: 1.4rem; width: 80%; margin:0 auto 1rem auto;}
+ .step-list{width: 80%; margin: 0 auto;}
+ .step-list li{line-height: 2rem; height: 2rem; font-size: 1.4rem; margin-bottom:1rem; color: #222222;}
+ .step-list li em{background-color: #ff3735; color: #FFF; width: 1.6rem; height: 1.6rem; border-radius: 1rem; display: inline-block; text-align: center;line-height: 1.6rem; font-size: 1.1rem;}
+ .guide_bg{text-align: center;}
+ .guide_bg img{width: 70%;}
+.prompt-txt-red{ text-align: center; color: #ff8174; font-size: 1.2rem; line-height: 2rem;}
+.prompt-txt-gray{ text-align: right;color: #a7a5a5; font-size: 1.4rem; line-height: 3rem; display: block; text-decoration: underline; width: 85%; margin: 0 auto; margin-top: .5rem;}
+.down-btn{margin:0 auto; width: 85%; }
+.down-btn a{font-size: 1.8rem; color: #FFF; display:block;border-radius: 5rem;height: 4rem; line-height: 4rem; text-align: center;}
+.down-btn a.open-btn{  background-color: #6bd3f6; width: 48%; float: left;}
+.down-btn a.download-btn{ background-color: #ff3f36; width: 48%; float: right;}
+.down-btn a.open-btn{
+    background: -moz-linear-gradient(top, #6bd3f6 0%, #54b9ed 100%);
+    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#6bd3f6), color-stop(100%,#54b9ed));
+    background: -webkit-linear-gradient(top, #6bd3f6 0%,#54b9ed 100%);
+    background: -o-linear-gradient(top, #6bd3f6 0%,#54b9ed 100%);
+    background: -ms-linear-gradient(top, #6bd3f6 0%,#54b9ed 100%);
+    background: linear-gradient(to bottom, #6bd3f6 0%,#54b9ed 100%);
+}
+.down-btn a.download-btn{
+    background: -moz-linear-gradient(bottom, #ff3f36 0%, #ff724b 100%);
+    background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#ff3f36), color-stop(100%,#ff3f36));
+    background: -webkit-linear-gradient(top, #ff3f36 0%,#ff724b 100%);
+    background: -o-linear-gradient(bottom, #ff3f36 0%,#ff724b 100%);
+    background: -ms-linear-gradient(bottom, #ff3f36 0%,#ff724b 100%);
+    background: linear-gradient(to top, #ff3f36 0%,#ff724b 100%);
+}
+.prompt{ text-align: center; width: 100%;position: absolute; left: 0; top: 50%; display: none; z-index: 101;}
+.prompt em{display: inline; background-color: #1d1d1d;padding: 1rem 2rem; border-radius: 3rem; color: #FFF; font-size: 1.4rem;  margin-top: -1rem;}
+.fix-bottom{position: fixed;left: 0; bottom: 0rem; width: 100%; background-color: #FFF;}
+.black_bg{background-color: #000; opacity: .7; position: fixed;left: 0px; top: 0px; width: 100%; height: 100%; z-index: 20; display: none;}
+.no-net-wrap{ border-radius: .5rem; z-index: 100; position: absolute; left: 10%; top: 50%; margin-top: -19rem; width: 80%; overflow: hidden; display: none;}
+.no-net-wrap .net-con{background-color: #FFF; padding: 1.8rem 1.8rem 3.5rem 1.8rem;}
+.no-net-wrap .net-con .title{ font-size: 1.8rem; color: #000; line-height: 4rem; height: 4rem; text-align: center; padding-bottom: .7rem; }
+.no-net-wrap .net-con .net-step li{ font-size: 1.4rem; color: #333; line-height: 1.8rem; margin-bottom: 2.4rem; position: relative;  }
+.no-net-wrap .net-con .net-step li em{position: absolute;left: 0px; top:3px; white-space: nowrap; height: 1.8rem; color: #FFF; background-color: #fe7100; border-radius: .3rem; width: 4rem; text-align: center; font-size: 1.1rem;display: inline-block; }
+.no-net-wrap .net-con .net-step li .copty-btn{font-size: 1rem; padding: .1rem .3rem; border-radius: .3rem; margin-right: .3rem; border:1px solid #65b5d6; background-color: #FFF; color: #65b5d6; white-space: nowrap; }
+.no-net-wrap .net-con .net-step li strong{flex-wrap: wrap; font-weight: normal; line-height: 2.2rem; display: inline-block; padding-left: 4.8rem; }
+.known-btn{ font-size: 1.5rem; color:#fe7100; border:1px solid #fe7100; background-color: #FFF; border-radius: .3rem; display: block; width: 100%; line-height: 4.3rem; height: 4.3rem; text-align: center; cursor: pointer; }
+@media only screen and (min-device-width : 320px) and (max-device-height : 568px){ 
+     .down-btn{margin-bottom: 0rem;}
+     .step-list li{margin: .4rem 0;}
+}
+</style>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+</head>
+<body>
+<div class="logo"><img src="images/logo.jpg" alt=""></div>
+<div class="title">IOS如何上网？</div>
+<ul class="step-list">
+    <li><em>1</em> 打开花生地铁WiFi APP</li>
+    <li><em>2</em> 进入设置-WiFi,选择花生地铁WiFi</li>
+    <li><em>3</em> 关键！回到APP就能上网喽</li>
+</ul>
+<div  class="guide_bg"><img src="images/guide_bg.jpg" alt=""></div>
+<div class="prompt-txt-red">注意！一定要回到APP认证完成才可上网哦～</div>
+<div class="fix-bottom">
+    <div class="down-btn clearfix">
+        <a href="javascript:;" class="open-btn">打开APP</a>
+        <a href="javascript:;" class="download-btn">免流下载</a>
+    </div>
+    <a href="javascript:;" class="prompt-txt-gray">无法下载？</a>
+</div>
+<div class="prompt"><em>网络出了个小差，请重试</em></div>
+<div class="black_bg"></div>
+<div class="no-net-wrap">
+    <div class="net-con">
+        <h1 class="title">无法下载怎么办？</h1>
+        <ul class="net-step">
+            <li><em>方法 1</em><strong>打开浏览器点击任意网站，即可下载</strong></li>
+            <li><em>方法 2</em><strong>忽略WiFi连接前往各大应用市场 搜索 【花生地铁WiFi】下载</strong></li>
+            <li><em>方法 3</em><strong><span class="copty-btn">复制链接</span>在浏览器中粘贴并打开该链接即可下载</strong></li>
+        </ul>
+        <a href="javascript:;" class="known-btn">知道了</a>
+    </div>
+</div>
+<script>
+$(function(){
+	//rem 设置
+	function Rem() {
+	var docEl = document.documentElement,
+	oSize = docEl.clientWidth / 36;
+
+	if (oSize > 20) {
+	oSize = 20; // 限制rem值 720 / 36 =20
+	}
+	//console.log(oSize);
+	docEl.style.fontSize = oSize + 'px';
+	}
+	window.addEventListener('resize', Rem, false);
+	Rem();
+    //showPrompt();
+
+    function Copy(str){
+        var save = function(e){
+            e.clipboardData.setData('text/plain', str);
+            e.preventDefault();
+        }
+        document.addEventListener('copy', save);
+        document.execCommand('copy');
+        document.removeEventListener('copy',save);
+        //alert('恭喜复制成功！');
+        showPrompt('恭喜复制成功！');
+    }
+    $('.copty-btn').on('click', function(){
+        Copy(self.location.href);
+    });
+
+    $(".known-btn,.black_bg").click(function(){
+        $(".black_bg,.no-net-wrap").hide();
+    });
+    $(".prompt-txt-gray").click(function(){
+        $(".black_bg,.no-net-wrap").show();
+    });
+ });
+    function showPrompt(str){
+        $(".prompt em").text(str);
+        $(".prompt").show();
+        hidePrompt();
+    }
+    function hidePrompt(){
+        setInterval(function(){$(".prompt").hide()},3000);
+    }
+</script>
+<script src="http://s22.cnzz.com/z_stat.php?id=1262124223&web_id=1262124223" language="JavaScript"></script>
+</body>
+</html>

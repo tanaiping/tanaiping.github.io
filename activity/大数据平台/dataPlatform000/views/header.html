@@ -1,0 +1,82 @@
+<!-- TOP NAVBAR -->
+<!-- Header Navbar: style can be found in header.less -->
+<nav class="navbar navbar-static-top" role="navigation">
+    <div class="hidden-xs logo"><img src="img/logo.png" />
+    	花生地铁大数据
+	    <div class="header-time">
+	    	当前时间:<span>13:00:00</span>
+	    </div>
+    </div>
+    
+   
+
+    <div class="navbar-right" style="height: 102px;line-height: 102px;font-size: 20px;color: #2195f6;">
+    	<span style="margin-right: 84px;">用户：***</span>
+    	<span style="margin-right: 136px;">用户身份：地铁领导</span>
+    	<span style="color: #FFFFff;margin-right: 114px;">退出</span>
+    </div>
+</nav>
+
+<!-- /END OF TOP NAVBAR -->
+<script src="js/jquery.nanoscroller.js"></script>
+
+<script>
+//Enable sidebar toggle
+$("[data-toggle='offcanvas']").click(function() {
+
+    if ($(this).hasClass('active')) {
+        $(this).removeClass('active')
+
+        $('.leftmenu').animate({
+            left: 0
+        }, 500);
+        $(".navbar").animate({
+            left: 0
+        }, 500);
+
+        $(".right-side").animate({
+            "margin-left": "220px"
+        }, 500);
+    } else {
+        $(this).addClass('active')
+        //Else, enable content streching
+        $('.leftmenu').animate({
+            left: -220
+        }, 500);
+
+        $(".navbar").animate({
+            left: -220
+        }, 500);
+        $(".right-side").animate({
+            "margin-left": "0px"
+        }, 500);
+    }
+    return false;
+});
+
+
+// show skin select for a second
+setTimeout(function() {
+    $("[data-toggle='offcanvas']").addClass('active').trigger('click');
+}, 10)
+
+$("[data-toggle='tooltip']").tooltip();
+
+/*
+ * ADD SLIMSCROLL TO THE TOP NAV DROPDOWNS
+ * ---------------------------------------
+ */
+$(".navbar .menu").slimscroll({
+    height: "200px",
+    alwaysVisible: false,
+    size: "3px"
+}).css("width", "100%");
+
+(function($) {
+    $(".nano").nanoScroller();
+})(jQuery);
+
+$('.header-changer').styleSwitcher({
+             manageCookieLoad: false
+        });
+</script>

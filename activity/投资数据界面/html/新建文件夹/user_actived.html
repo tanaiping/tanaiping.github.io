@@ -1,0 +1,223 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>用户活跃数据</title>
+	<link rel="stylesheet" href="css/base.css" />
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<div class="main-wrap">
+		<div class="clearfix">
+			<div class="fl main-left">
+				<div class="m-title">用户活跃数据</div>
+				<div class="chart-box">
+					<ul class="chart-list">
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+					</ul>
+					<div id="chart1" style="height: 776px;"></div>
+					<div class="img-tag">
+						<div class="clearfix">
+							<div class="red-ico fl">Android活跃用户数</div>
+							<div class="yellow-ico fl">IOS活跃用户数</div>
+							<div class="green-ico fl">活跃用户数</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<div class="fr main-right">
+				<div class="r-bg">
+					<div class="statis-title-zs">实时DAU指数</div>
+					<div class="tab-zs-box">
+						<table class="tab01">
+							<tr><th>&nbsp;</th><th>IOS</th><th>Android</th></tr>
+							<tr>
+								<td>全国</td>
+								<td>124.6</td>
+								<td>145.6</td>
+							</tr>
+							<tr>
+								<td>上海</td>
+								<td>124.6</td>
+								<td>145.6</td>
+							</tr>
+							<tr>
+								<td>广州</td>
+								<td>124.6</td>
+								<td>145.6</td>
+							</tr>
+							<tr>
+								<td>武汉</td>
+								<td>124.6</td>
+								<td>145.6</td>
+							</tr>
+							<tr>
+								<td>昆明</td>
+								<td>124.6</td>
+								<td>145.6</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+
+				<div class="r-bg mt15">
+					<div class="zs-statis-box">
+						<div class="tel-title">IOS版本</div>
+						<ul class="zs-list">
+							<li>
+								<span>3.0.0</span>
+								<div class="progress pos-a"><span class="yellow" style="width: 95%"></span></div>
+							</li>
+							<li>
+								<span>2.2.0</span>
+								<div class="progress pos-a"><span class="green" style="width: 88%"></span></div>
+							</li>
+							<li>
+								<span>2.1.2</span>
+								<div class="progress pos-a"><span class="pink" style="width: 74%"></span></div>
+							</li>
+							<li>
+								<span>2.1.1</span>
+								<div class="progress pos-a"><span class="blue" style="width: 70%"></span></div>
+							</li>
+							<li>
+								<span>2.1.0</span>
+								<div class="progress pos-a"><span class="c05" style="width: 55%"></span></div>
+							</li>
+							<li>
+								<span>2.1.0以下</span>
+								<div class="progress pos-a"><span class="c06" style="width: 45%"></span></div>
+							</li>
+						</ul>
+						<div class="tel-title mt10">Android版本</div>
+						<ul class="zs-list">
+							<li>
+								<span>4.0.2</span>
+								<div class="progress pos-a"><span class="yellow" style="width: 95%"></span></div>
+							</li>
+							<li>
+								<span>4.0.1</span>
+								<div class="progress pos-a"><span class="green" style="width: 88%"></span></div>
+							</li>
+							<li>
+								<span>4.0.0</span>
+								<div class="progress pos-a"><span class="pink" style="width: 74%"></span></div>
+							</li>
+							<li>
+								<span>3.3.0</span>
+								<div class="progress pos-a"><span class="blue" style="width: 70%"></span></div>
+							</li>
+							<li>
+								<span>3.2.0</span>
+								<div class="progress pos-a"><span class="c05" style="width: 55%"></span></div>
+							</li>
+							<li>
+								<span>3.2.0以下</span>
+								<div class="progress pos-a"><span class="c06" style="width: 45%"></span></div>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="js/jqplot.js"></script>
+<script>
+	$(function(){
+		var myDate = new Date();
+		var year = myDate.getFullYear();
+		var month = myDate.getMonth()+1;
+		var day = myDate.getDate();
+		var strDate = year+"-"+month+"-"+day+"-sh-活跃数（单位：万）";
+		var data = [[10,20,30,40,50,60,70,80,90,93,104,183,224,135,154,180],[1,13,23,34,52,66,77,88,199,123,134,145,152,165,175,152,197,210],[10,22,35,52,65,87,95,110,118,192,134,145,288,320]];
+                     
+    var plot = $.jqplot('chart1', data, {  
+        title:{         // 标题属性  
+            text:strDate,         // 标题文本  
+            show:true,              // 是否阴影  
+            fontFamily:'微软雅黑',  // 标题字体   
+            fontSize:18,            // 标题字体大小  
+            textAlign:'left',       // 标题对齐方式  
+            textColor:'#a3b6e1',    // 标题颜色（也可以写作属性color）  
+            escapeHtml:false        // 是否转义HTML字符，值为false时，可以在text属性中使用HTML代码  
+        },  
+        axesDefaults:{  // 默认坐标轴属性    
+            min:0,  
+            tickOptions:{  
+                showMark:false,
+                fontSize:'18px',
+                showGridLine: true,
+                showTicks:true,
+                fontWeight:"bold",
+                color:'#FFF',
+            },
+            
+			
+        },  
+        axes:{          // 具体坐标轴属性  
+            xaxis:{  
+                label:'',  //日期
+                ticks:[[1,'1'], [2,'2'], [3,'3'], [4,'4'], [5,'4'], [6,'6'], [7,'7'], [8,'8'], [9,'9'], [10,'10'], [11,'11'], [12,'12'], [13,'13'], [14,'14'], [15,'15'], [16,'16'], [17,'17'], [18,'18'], [19,'19'], [20,'20'], [21,'21'], [22,'22'], [23,'23'], [24,'24']],   
+            },  
+            yaxis: {  
+                label: '',  //投放数量
+                ticks:['0','50','100','150','200','250','300','350'],
+            }  
+        },  
+        legend:{        // 图例属性  
+            show:false,
+            //location:'ne',
+            textColor:'#FFF',
+        },  
+        grid:{          // 背景网格属性   
+            borderWidth:1,  
+            shadow:false,
+            background:'transparent',
+            //gridLineColor:'#444a80',    //151c60
+            gridLineColor:'transparent',
+            borderColor:"#444a80", 
+        },  
+        seriesDefaults:{// 默认数据序列属性  
+            lineWidth:5,  
+            markerOptions:{  
+                show:true,
+                size:15,
+            },
+            showMarker:false,  
+
+        },  
+        series:[        // 具体数据序列属性  
+            {  
+                color:'#ff0000',  
+                label:'Android活跃用户数'  
+            },{  
+                color:'#f1c42a',  
+                label:'IOS活跃用户数'  
+            },{  
+                color:'#1fc877',  
+                label:'活跃用户数'  
+            }
+        ],  
+        highlighter:{  
+            show:true,  
+            tooltipAxes:'y',  
+            useAxesFormatters:false,  
+            //tooltipFormatString:'投放量：%d'  
+        }  
+    });  
+
+
+
+
+	})
+</script>
+</body>
+</html>

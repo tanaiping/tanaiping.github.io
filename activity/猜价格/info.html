@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+<meta name="MobileOptimized" content="240" />
+<meta name="apple-touch-fullscreen" content="YES" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta content="telephone=no" name="format-detection" />  
+<meta content="email=no" name="format-detection" />
+<!-- uc强制竖屏 -->
+<meta name="screen-orientation" content="portrait">
+<!-- QQ强制竖屏 -->
+<meta name="x5-orientation" content="portrait">
+<!-- UC强制全屏 -->
+<meta name="full-screen" content="yes">
+<!-- QQ强制全屏 -->
+<meta name="x5-fullscreen" content="true">
+<!-- UC应用模式 -->
+<meta name="browsermode" content="application">
+<!-- QQ应用模式 -->
+<meta name="x5-page-mode" content="app">
+<!-- windows phone 点击无高光 -->
+<meta name="msapplication-tap-highlight" content="no">
+<!-- 适应移动端end -->
+<title>猜价格</title>
+<link rel="stylesheet" type="text/css" href="css/com.css">
+<script type="text/javascript" src="js/zepto.min.js"></script>
+</head>
+<body style="background-color: #011125;">
+    <img src="images/mainbg.jpg" alt="" class="mainbg-info">
+    <div class="info-con">
+        <div class="logo"><img src="images/logo_1.png" alt=""></div>
+        <form>
+            <div class="form-txt">填下您的信息方便中奖联系哦</div>
+            <ul class="form-list">
+                <li><input type="text" id="name"><label for="name">填写姓名</label></li>
+                <li><input type="text" id="tel"><label for="tel">填写手机号码</label></li>
+                <li><a href="javascript:;" class="sub-btn">确定</a></li>
+            </ul>
+            <div class="form-errmsg"></div> <!-- 你还未填写手机号码   你还未填写姓名 -->
+        </form>
+    </div>
+
+<div class="black-formsbg"></div>
+    <div class="forms-wrap success-forms">
+        <img src="images/success_img.png" alt="">
+        <div class="confirm-btn"></div>
+    </div>
+<script>
+$(function(){
+    function Rem() {
+    var docEl = document.documentElement,
+    oSize = docEl.clientWidth / 36;
+    if (oSize > 20) {
+    oSize = 20; // 限制rem值 720 / 36 =20
+    }
+    //console.log(oSize);
+    docEl.style.fontSize = oSize + 'px';
+    }
+    function setSize(){
+        Rem();
+    }
+    setSize();
+    window.addEventListener('resize', setSize, false);
+
+    $(".form-list label").click(function(){
+        $(this).hide();
+    });
+
+    $(".form-list input").focus(function(){
+       $(this).siblings('label').hide();
+    });
+
+     $(".form-list input").blur(function(){
+        var input_val = $(this).val().trim();
+        if(input_val==""){
+            $(this).siblings('label').show();
+        }
+    });
+
+     $(".sub-btn").click(function(){
+        if($("#name").val()==""){
+            $(".form-errmsg").text("你还未填写姓名");
+            return false;
+        }else if($("#tel").val()==""){
+            $(".form-errmsg").text("你还未填写手机号码");
+            return false;
+        }else{
+            $(".form-errmsg").text("");
+            $(".black-formsbg,.success-forms").show();
+            return false;
+        }
+     });
+
+     //点关闭 确认 弹窗以外的区域  隐藏弹窗
+    $(".confirm-btn").click(function(){
+        $(".black-formsbg,.forms-wrap").hide();
+    });
+
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="MobileOptimized" content="240" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />  
+    <meta content="email=no" name="format-detection" />
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title>班尼路-简约生活</title>
+    <link rel="stylesheet" href="css/baleno25.css">
+</head>
+<body style="background-color: #ffffff">
+    <div class="main-wrap">
+       <div class="com-pad">
+         <div class="logo"><img src="images/logo.jpg" alt=""></div>
+         <div class="imgbox"><img src="images/img01.jpg" alt=""></div>
+         <div class="com-con com_1" style="display: block;">
+           <!-- <div class="btn-box"><img src="images/btn_20.jpg" alt=""></div> -->
+           <div class="rule-box pt30"><img src="images/rule_20.jpg" alt=""></div>
+         </div>
+         <div class="code-box"><img src="images/code.jpg" alt=""></div>
+       </div>
+    </div>
+<!--  弹层 -->
+<div class="white-formsbg-black"></div>
+<div class="forms-wrap success">
+    <a href="javascript:;" class="confirm-btn02"></a>
+</div>
+<script src="js/zepto.min.js"></script>
+<script src="js/public.js"></script>
+<script type="text/javascript">
+$(function(){
+   window.addEventListener('resize', Rem, false);
+   Rem();
+   // var ran = parseInt(Math.random()*3)+1;
+   // //console.log(ran);
+   // $(".com_"+ran).show();
+   $(".btn-box img").click(function(){
+      commonUtils.showPop2("领取成功，请在我的-卡包中查看");
+   })
+   
+})
+</script>
+</body>
+</html>

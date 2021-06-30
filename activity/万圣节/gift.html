@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+<meta name="MobileOptimized" content="240" />
+<meta name="apple-touch-fullscreen" content="YES" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta content="telephone=no" name="format-detection" />  
+<meta content="email=no" name="format-detection" />
+<!-- uc强制竖屏 -->
+<meta name="screen-orientation" content="portrait">
+<!-- QQ强制竖屏 -->
+<meta name="x5-orientation" content="portrait">
+<!-- UC强制全屏 -->
+<meta name="full-screen" content="yes">
+<!-- QQ强制全屏 -->
+<meta name="x5-fullscreen" content="true">
+<!-- UC应用模式 -->
+<meta name="browsermode" content="application">
+<!-- QQ应用模式 -->
+<meta name="x5-page-mode" content="app">
+<!-- windows phone 点击无高光 -->
+<meta name="msapplication-tap-highlight" content="no">
+<!-- 适应移动端end -->
+<title>万圣节</title>
+<link rel="stylesheet" href="css/com.css">
+</head>
+<body style="background-color: #862a54">
+<div class="main-wrap">
+    <img src="images/card_bg.jpg" alt="" class="card-bg">
+    <ul class="lottery-list clearfix">
+        <li><div class="lot-box"><img src="images/card/card1.png" alt=""></div></li>
+        <li><div class="lot-box"><img src="images/card/card6.png" alt=""></div></li>
+        <li><div class="lot-box"><img src="images/card/card8.png" alt=""></div></li>
+    </ul>
+    <a href="index.html" class="my-gift-btn"><img src="images/my_gift_btn.png" alt=""></a>
+    <div class="ad-box">
+        <img src="images/ad_cardImg.png" alt="">
+        <div class="pr">
+            <a href="https://www.xiaocunzhe.com/reg/registe/mobile/wifiReg?sourceChannel=wifi1888" class="ad-link"></a>
+        </div>
+    </div>
+    <div class="lottery-btn"><img src="images/lottery_btn.gif" alt="">
+    <div class="lottery-loadingbox">
+        <div class="pr">
+            <div class="loading-txt">技能冷却中...<em>7</em></div>
+        </div>
+    </div>
+    </div>
+    <ul class="card-list clearfix">
+        <li>
+            <div class="list-pad">
+                <img src="images/card/card8.png" alt="" class="card-img">
+                <div class="gift-num">
+                    <img src="images/num_bg.png" alt="" class="num-bg">
+                    <div class="num-val"><em>0</em>/5</div>
+                </div>
+                <img src="images/uncompleted_btn.png" alt="" class="complete-btn">
+            </div>
+        </li>
+        <li>
+            <div class="list-pad">
+                <img src="images/card/card7.png" alt="" class="card-img">
+                <div class="gift-num">
+                    <img src="images/num_bg.png" alt="" class="num-bg">
+                    <div class="num-val"><em>0</em>/5</div>
+                </div>
+                <img src="images/uncompleted_btn.png" alt="" class="complete-btn">
+            </div>
+        </li>
+        <li>
+            <div class="list-pad">
+                <img src="images/card/card5.png" alt="" class="card-img">
+                <div class="gift-num">
+                    <img src="images/num_bg.png" alt="" class="num-bg">
+                    <div class="num-val"><em>0</em>/5</div>
+                </div>
+                <img src="images/uncompleted_btn.png" alt="" class="complete-btn">
+            </div>
+        </li>
+        <li>
+            <div class="list-pad">
+                <img src="images/card/card6.png" alt="" class="card-img">
+                <div class="gift-num">
+                    <img src="images/num_bg.png" alt="" class="num-bg">
+                    <div class="num-val"><em>0</em>/5</div>
+                </div>
+                <img src="images/uncompleted_btn.png" alt="" class="complete-btn">
+            </div>
+        </li>
+        <li>
+            <div class="list-pad">
+                <img src="images/card/card4.png" alt="" class="card-img">
+                <div class="gift-num">
+                    <img src="images/num_bg.png" alt="" class="num-bg">
+                    <div class="num-val"><em>0</em>/5</div>
+                </div>
+                <img src="images/uncompleted_btn.png" alt="" class="complete-btn">
+            </div>
+        </li>
+    </ul>
+</div>
+
+<!--  弹层 -->
+<div class="white-formsbg-black"></div>
+<div class="forms-wrap success">
+    <div class="forms-box">
+        <img src="images/gift_app.png" alt="">
+        <a href="javascript:;" class="close-btn"></a>
+        <div class="confirm-btn"></div>
+    </div>
+</div>
+
+<script type="text/javascript" src="js/zepto.min.js"></script>
+
+<script>
+$(function(){
+    function Rem() {
+    var docEl = document.documentElement,
+    oSize = docEl.clientWidth / 36;
+
+    if (oSize > 20) {
+    oSize = 20; // 限制rem值 720 / 36 =20
+    }
+    //console.log(oSize);
+    docEl.style.fontSize = oSize + 'px';
+    }
+    function setSize(){
+        Rem();
+    }
+    Rem();
+    var win_w = document.documentElement.clientWidth;
+    var main_h =parseFloat(win_w*1204/750);
+    $(".main-wrap").css("height",main_h+"px");
+    var gift_num_w = $(".list-pad .gift-num").width();
+    var gift_num_h =parseFloat(gift_num_w*46/108);
+    $(".list-pad .gift-num").css({"height":gift_num_h+"px","line-height":(gift_num_h-1.5)+"px"});
+    
+  $(".close-btn,.confirm-btn").click(function(){
+    $(this).parents(".forms-wrap").hide();
+    $(".white-formsbg-black").hide();
+  });
+
+  //点召唤
+  $(".lottery-btn").click(function(){
+    if(!$(this).hasClass('disabled')){
+        var obj =$(this);
+        $(this).addClass('disabled').find('img').attr("src","images/loading.png");
+        var t = parseInt($(".loading-txt em").text());
+        //倒计时
+        var interval = setInterval(function(){
+             t--;
+            if(t==0){
+                obj.removeClass('disabled').find('img').attr("src","images/lottery_btn.gif");
+                $(".loading-txt em").text(7);
+                clearInterval(interval);
+            }else{
+               $(".loading-txt em").text(t); 
+            }
+        },1000);
+        var random = Math.random(1000000);
+        $(".main-wrap").append('<img src="images/comein.gif?'+random+'" id="comein" />');
+        setTimeout(function(){
+            //在这里写入抽到的3张图片
+            var list =["card1","card6","card8"];
+            $(".lottery-list li").each(function(i){
+                $(this).find("img").attr("src","images/card/"+list[i]+".png");
+            });
+            $(".lottery-list").show();
+        },700);
+        setTimeout(function(){$("#comein").remove();},1100);
+        setTimeout(function(){$(".main-wrap").append('<img src="images/comeout.gif?'+random+'" id="comeout" />');},6100);
+        setTimeout(function(){$(".lottery-list").hide()},6800);
+        setTimeout(function(){
+            //给卡片计数   
+            var card =[1,3,4];
+            for(var i=0;i<card.length;i++){
+                $(".card-list li").each(function(e){
+                    if(card[i]==e){
+                        var obj = $(this).find('.num-val em');
+                        var num = parseInt(obj.text());
+                        //卡片会一直加
+                        if(num==4){
+                            $(".success").show();
+                            $(".white-formsbg-black").show();
+                            $(this).find(".complete-btn").attr("src","images/completed_btn.png")
+                        }
+                        obj.text(num+1);
+
+                        //卡片到了5个的时候不加了
+                        // if(num<5){
+                        //     if(num==4){
+                        //         $(".success").show();
+                        //         $(".white-formsbg-black").show();
+                        //         $(this).find(".complete-btn").attr("src","images/completed_btn.png")
+                        //     }
+                        //     obj.text(num+1);
+                        // }
+                        
+                    }
+                })
+            }
+            $("#comeout").remove();
+        },7000);
+
+    }
+  });
+
+  //toast("异常toast");
+
+
+  function toast(str){
+    $("body").append('<div class="toast">'+str+'</div>');
+    var toast_w = parseInt($(".toast").width()/2);
+    $(".toast").css("marginLeft",-toast_w+"px");
+    setTimeout(function(){$(".toast").remove();},2000);
+  }
+
+});
+</script>
+</body>
+</html>

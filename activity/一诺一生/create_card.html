@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" /> -->
+    <!--重要meta, 必须!-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,shrink-to-fit=no" />
+    <meta name="MobileOptimized" content="240" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />  
+    <meta content="email=no" name="format-detection" />
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <title>一诺一生 雷凌"擎话型动派"</title>
+    <link rel="stylesheet" type="text/css" href="css/base.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
+<body>
+<div class="create-wrap">
+    <div class="rules-btn"></div>
+    <!--  留资  -->
+    <div class="part1-wrap">
+        <div class="lover-img">
+            <div class="userinfo-wrap">
+                <ul>
+                    <li>
+                       <div class="from"></div>
+                       <div class="input-box"><input type="text" placeholder="请输入你的名字" id="from_name"></div>
+                    </li>
+                    <li>
+                       <div class="to"></div>
+                       <div class="input-box"><input type="text" placeholder="请输入TA的名字" id="to_name"></div>
+                    </li>
+                    <li>
+                       <div class="tel"></div>
+                       <div class="input-box"><input type="text" maxlength="11" pattern="[0-9]*" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" placeholder="方便接收中奖通知"></div>
+                    </li>
+                    <li>
+                       <div class="input-box-yzm"><input type="text" placeholder="请输入验证码" maxlength="4"></div>
+                       <div class="get-yzm-btn">获取短信验证码</div>
+                       <div class="copyright"><input type="checkbox" checked="checked">我已同意将个人信息授权花生地铁使用</div>
+                    </li>
+                </ul>
+
+                <div class="made-card-btn disabled"></div>
+            </div>
+        </div>
+        
+        <!-- <div class="car"><img src="images/car.png" alt=""></div> -->
+    </div>
+
+    <!-- 生成卡片 -->
+    <div class="part2-wrap">
+        <div class="scene-wrap">
+            <img src="images/tag_img01.jpg" alt="" class="tag-scene-img">
+            <div class="love-user-name"><em class="get-from-name">自己的名字</em><img src="images/love_ico.jpg" alt=""><em class="get-to-name">对象名字</em></div>
+            <div class="lover-textarea">
+                <textarea id="textareaid"></textarea>
+            </div>
+            <div class="text-num">(<em class="red">0</em>/50)</div>
+        </div>
+        <div class="scene-tag">
+            <div class="tag-icon tag01 act"></div>
+            <div class="tag-icon tag02"></div>
+            <div class="tag-icon tag03"></div>
+            <div class="tag-icon tag04"></div>
+        </div>
+        <div class="creat-btn"></div>
+
+    </div>
+</div>
+
+
+<div class="black-bg"></div>
+<div class="rules-conwrap">
+    <div class="rules-content"></div>
+    <div class="close"></div>
+</div>
+<script src="js/zepto.min.js"></script>
+<script src="js/public.js"></script>
+<script>
+    $(function(){
+        Rem();
+        //背景适配
+        var win_w = parseInt($(window).width());
+        var win_h =parseInt($(window).height());
+        if(win_w<750){
+             h =1100*win_w/750;
+             $(".create-wrap").css("height",win_h+"px");
+        }
+        else{
+             h =1100*750/750;
+            $(".create-wrap").css("height",h+"px");
+        }
+
+        //关闭规则
+        $(".rules-conwrap .close").click(function(){
+            $(".black-bg,.rules-conwrap").hide();
+        })
+
+        $(".rules-btn").click(function(){
+            $(".black-bg,.rules-conwrap").show();
+        })
+
+        //获取验证码
+        $(".get-yzm-btn").click(function(){
+            if(!$(this).hasClass('disabled')){
+                time();
+            }
+        })
+        //提交个人信息
+        $(".made-card-btn").click(function(){
+            if(!$(this).hasClass('disabled')){
+                // commonUtils.showPop2("验证码错误");
+                $(".part1-wrap").hide();
+                $(".part2-wrap").show();
+                $(".get-from-name").text($("#from_name").val());
+                $(".get-to-name").text($("#to_name").val());
+            }
+            $(".create-wrap").addClass('create-wrap2');
+        })
+
+        var sceneText = ["思念是一种病\n病中有你\n我病得欢喜","我这一生的笔墨\n只为勾勒一个你","夏入凡界\n夜入秋雨\n你入我心","自从喜欢你\n我的PH\n总是小于7","北方有十二月的大雪\n南方有四季如春的岁月\n你眼里有我藏不住的欢喜","你不是全部\n但是你是唯一\n因为我喜欢你","想以云作衣裳花幻容\n对镜描唇红\n等夜风捎来晚安 酿情浓","我只想寐在花海里\n枕着你的情歌入梦\n让三千花色为你开作红颜万千","青春是从遇见你开始\n爱情是为认识你萌发\n任他似水流年，对你爱恋依旧深远","我也曾希望爱情能够永久\n你来了就不再走\n水断了就不再流"]
+        var scene_num = Math.floor(Math.random() * 10);
+        document.getElementById("textareaid").value=sceneText[scene_num]+"#一诺一生#";
+
+        getTextNum();
+        //切换场景
+        $(".scene-tag .tag-icon").click(function() {
+            if(!$(this).hasClass('act')){
+                 var index = $(".scene-tag .tag-icon").index(this)+1
+                 $(".scene-tag .tag-icon").removeClass('act');
+                 $(this).addClass('act');
+                 $(".tag-scene-img").attr("src","images/tag_img0"+index+".jpg");
+
+                scene_num = Math.floor(Math.random() * 10);
+                $(".lover-textarea textarea").val(sceneText[scene_num]+"#一诺一生#");
+            }
+        });
+
+        $(".creat-btn").click(function(){
+
+            var index =0;
+            $(".scene-tag .tag-icon").each(function(){
+                if($(this).hasClass('act')){
+                    index = $(".scene-tag .tag-icon").index(this);
+                }
+            })
+            $(".lover-textarea textarea").val();
+            console.log(index)
+        })
+
+        //搜索站点 keyup keydown 移动端不兼容  所以改用focus 模拟监控
+          function filter_time(callback){  
+            var time = setInterval(callback,100);  
+            $(this).bind('blur',function(){  
+                clearInterval(time);  
+            });  
+        }; 
+        //
+        $(".userinfo-wrap input").bind('focus',function(){filter_time(isCompelete)}); 
+
+        $(".lover-textarea textarea").bind('focus',function(){filter_time(getTextNum)}); 
+
+
+        function isCompelete(){
+            var flag=0;
+            $(".userinfo-wrap input").each(function(){
+                if($(this).val().trim()!=""){
+                    flag+=1;
+                }
+            })
+            if(flag==$(".userinfo-wrap input").length){
+                $(".made-card-btn").removeClass('disabled');
+            }else{
+                $(".made-card-btn").addClass('disabled');
+            }
+
+        }
+
+        //获取副文本框的文字个数
+        function getTextNum(){
+
+            var str = $(".lover-textarea textarea").val();
+            var thisCount = 0;
+            str.replace(/\n/g, function (m, i) {
+                //m为找到的{xx}元素、i为索引
+                thisCount++;
+              });
+            str = str.replace(/\n/g,"")
+            $(".text-num .red").text(str.length);
+            $(".lover-textarea textarea").attr("maxlength",50+thisCount);
+        }
+
+        //验证码倒计时
+        var wait = 120;
+        function time() {
+            if (wait == 0) {
+                $(".get-yzm-btn").removeClass("disabled");
+                $(".get-yzm-btn").html("获取短信验证码");
+                wait = 120;
+            } else {
+                $(".get-yzm-btn").addClass("disabled");
+                $(".get-yzm-btn").text("重新发送(" + wait + "s)");
+                wait--;
+                setTimeout(function() {
+                    time()
+                },1000)
+            }
+        }
+       
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="MobileOptimized" content="240" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />  
+    <meta content="email=no" name="format-detection" />
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title>大吉大利 开工有喜</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/style111.css">
+</head>
+<body>
+    <div class="main-wrap">
+        <div class="index-bg">
+          <div class="clound pos-1"></div>
+          <div class="clound pos-2"></div>
+          <div class="clound pos-3"></div>
+          <div class="top-wrap">
+            <div class="my-award"></div>
+            <div class="marquee-wrap">
+              <img src="images/tx.jpg" alt="" class="marquee-tx">
+              <div class="marquee-box">
+                <ul>
+                  <li>小开开获取一个红包小开开获取一个红包</li>
+                  <li>小开开获取一个红包</li>
+                  <li>小开开获取一个红包</li>
+                  <li>小开开获取一个红包</li>
+                  <li>小开开获取一个红包</li>
+                </ul>
+              </div>
+            </div>
+            <div class="rules-btn"></div>
+          </div>
+          <div class="act-time">1月31日-2月07日</div>
+          <div class="tc"><img src="images/big_text.png" alt="" class="big-text"></div>
+          <div class="cashout-wrap">
+            <div class="cashout-info">
+              <div class="my-wall"><em>我的红包</em><em>￥</em><span id="money"></span></div>
+              <div class="countdown"></div>
+            </div>
+            <div class="cashout-btn"></div>
+          </div>
+          <div class="invited-btn invited-index"></div>
+          <div class="invited-text tc">满10元可提现</div>
+          <div class="change-wrap">
+            <div style="padding: .45rem">
+              <div class="change-title">
+                <div class="title-l"></div>
+                <div class="title-text">今日还剩<span id="changeNum"></span>次翻牌机会</div>
+                <div class="title-r"></div>
+              </div>
+              <div class="change-box">
+                <div class="change-elem">
+                  <div class="click-me"></div>
+                </div>
+                <div class="change-elem">
+                  <div class="click-me"></div>
+                </div>
+                <div class="change-elem">
+                  <div class="click-me"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="invited-list-wrap">
+            <div class="invited-list-title">
+              <div class="title-l"></div>
+              <div class="title-text">好友助力记录</div>
+              <div class="title-r"></div>
+            </div>
+            <ul class="invited-list" id="heplList">
+              <!-- <li>
+                <div class="invited-box">
+                  <div class="invited-info">
+                    <img src="images/tx.jpg" alt="" class="invited-tx">
+                    <div class="invited-t">
+                      <div class="name">小开开</div>
+                      <div class="desc">大吉大利 零开工红包</div>
+                    </div>
+                  </div>
+                  <div class="invited-price">帮你获得<span>0.99</span></div>
+                </div>
+              </li> -->
+            </ul>
+          </div>
+        </div>
+    </div>
+<div class="prompt" id="prompt"><em>提示信息</em></div> <!--   promptShow("已复制成功！");错误提示 -->
+
+<div class="black-bg"></div>
+<img src="images/share1.png" alt="" class="share-img">
+<!--  开工红包  红包 $(".pop-redPackage,.black-bg").show(); -->
+<div class="popwrap pop-redPackage">
+  <div class="red-box">
+    <div class="red-title">恭喜获得</div>
+    <div class="red-num" id="red_package">4.99</div>
+    <div class="red-name">开工红包</div>
+  </div>
+  <div class="close-pop"></div>
+</div>
+
+<!--  实物奖品   $(".pop-goods,.black-bg").show(); -->
+<div class="popwrap pop-goods">
+  <div class="goods-box">
+    <div class="goods-img"><img src="images/tx.jpg" alt="" id="goods_img"></div>  <!--  商品图  420 X 218-->
+  </div>
+  <div class="close-pop"></div>
+</div>
+
+<!--  没中奖  文字提示   $(".pop-lose,.black-bg").show(); -->
+<div class="popwrap pop-lose">
+  <div class="lose-box">
+    <div class="lose-t1">改革春风吹满地，<br/>新的一年要争气！</div>
+    <div class="lose-t2">明天再来试哦~</div>
+    <img src="images/logo_pop.png" alt="" class="lose-logo">
+  </div>
+  <div class="close-pop"></div>
+</div>
+
+<!--在浏览器打开显示  APP的弹窗   $(".pop-goapp,.black-bg").show(); -->
+<div class="popwrap pop-goapp" >
+  <div class="goapp-box">
+    <div class="goapp-t">前往<span>花生地铁app</span>打开</div>
+  </div>
+  <div class="close-pop"></div>
+</div>
+
+<!--在浏览器打开显示  APP的弹窗   $(".pop-goapp,.black-bg").show(); -->
+<div class="popwrap pop-goapp" >
+  <div class="goapp-box">
+    <div class="goapp-t">前往<span>花生地铁app</span>打开</div>
+  </div>
+  <div class="close-pop"></div>
+</div>
+
+<!--分享者点开活动链接   $(".pop-invited,.black-bg").show(); -->
+<div class="popwrap pop-invited" >
+  <div class="invited-box-pop">
+    <img src="images/tx.jpg" alt="" class="tx-pop">
+    <div class="invited-name">小袋鼠</div>
+    <div class="invited-t3">我正在领花生地铁APP新春<br/>开工红包，拜托帮我助力一下</div>
+  </div>
+  <div class="invited-btn-pop">帮好友助力</div>
+  <div class="close-pop"></div>
+</div>
+
+<!--机会用完   $(".pop-useup,.black-bg").show(); -->
+<div class="popwrap pop-useup" >
+  <div class="useup-box">
+    <div class="useup-t1">今日机会已用完啦~</div>
+    <div class="useup-t2">邀请好友助力得开工红包</div>
+    <div class="useup-t3">满10元即可提现</div>
+  </div>
+  <div class="invited-btn-pop">邀请好友助力</div>
+  <div class="close-pop"></div>
+</div>
+
+
+<!--帮好友助力  APP的弹窗   $(".pop-success,.black-bg").show(); -->
+<div class="popwrap pop-success">
+  <div class="success-box">
+    <div class="success-t">大吉大利</div>
+  </div>
+  <div class="invited-btn-pop">帮好友助力</div>
+  <div class="close-pop"></div>
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="http://cmsfile.wifi8.com/uploads/wifi/AppH5/api/nfygCommonPack.min.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script src="js/jquery.liMarquee.js"></script>
+<script src="js/public.js"></script>
+<script src="js/newyear.js"></script>
+</html>

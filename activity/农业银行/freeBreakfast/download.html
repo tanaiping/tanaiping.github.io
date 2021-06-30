@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	    <meta http-equiv="Cache-Control" content="no-cache" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+	    <meta name="MobileOptimized" content="240" />
+	    <meta name="apple-touch-fullscreen" content="YES" />
+	    <meta name="apple-mobile-web-app-capable" content="yes" />
+	    <meta content="telephone=no" name="format-detection" />  
+	    <meta content="email=no" name="format-detection" />
+	    <!-- uc强制竖屏 -->
+	    <meta name="screen-orientation" content="portrait">
+	    <!-- QQ强制竖屏 -->
+	    <meta name="x5-orientation" content="portrait">
+	    <!-- UC强制全屏 -->
+	    <meta name="full-screen" content="yes">
+	    <!-- QQ强制全屏 -->
+	    <meta name="x5-fullscreen" content="true">
+	    <!-- UC应用模式 -->
+	    <meta name="browsermode" content="application">
+	    <!-- QQ应用模式 -->
+	    <meta name="x5-page-mode" content="app">
+	    <!-- windows phone 点击无高光 -->
+	    <meta name="msapplication-tap-highlight" content="no">
+	    <!-- 适应移动端end -->
+	    <title>广州农行-真功夫元气早餐券</title>
+	    
+	    <link rel="stylesheet" href="css/index.css">
+	</head>
+	<body style="background: #181818;">
+		<div class="main-wrap">
+			<div class="mainBg downloadBg">
+				<!--<div class="explain" id="explain">活动说明</div>-->
+				<div class="activeBtWrap downloadWrap">
+					<div class="activeBt" id="downloadBt"></div>
+					<div class="activeBt activeLook" id="activeLook" style="visibility: hidden;"></div>
+				</div>
+			</div>
+			
+			<!--说明 弹出 -->
+			<div class="popuBox" id="popuBox" style="display: none;">
+				<div class="popuContent">
+					<div class="contentTop"></div>
+					<div class="wordsBox">
+						<div class="logoBox fl_start">
+							<em></em>
+							<em></em>
+						</div>
+						<div class="words">
+							<p><b>活动时间：</b>8月1日00:00-8月5日00:00</p>
+							<p><b>活动内容：</b>农业银行掌上银行6分钱兑真功夫元气早餐</p>
+							<p><b>活动规则：</b>参与用户在活动页面点击抢兑，跳转到农业银行掌上银行支付，付款成功即可获得兑换券，可直接到真功夫任意门店免费兑换。</p>
+							<p><b>本活动仅限广州用户参与。</b></p>
+						</div>
+						<div class="closeBt" id="closeBt"></div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- 成功 -->
+			<div class="popuBox" id="succeedBox" style="display: none;">
+				<div class="popuContent succeedCon">
+					<div class="succeedImg"></div>
+					<!-- 真功夫元气早餐券已发送至您的卡包，可到广州任意真功夫门店使用噢. -->
+					<p></p>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script>
+			$(function(){
+				var downLoad = "http://mobile.abchina.com/download/clientDownload/zh_CN/MB_Index.aspx";
+				$('#downloadBt').click(function(){
+					window.location.href = downLoad;//打开app下载地址
+				})
+			})
+		</script>
+	</body>
+</html>

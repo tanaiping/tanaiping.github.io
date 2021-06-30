@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+<meta name="MobileOptimized" content="240" />
+<meta name="apple-touch-fullscreen" content="YES" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta content="telephone=no" name="format-detection" />  
+<meta content="email=no" name="format-detection" />
+<!-- uc强制竖屏 -->
+<meta name="screen-orientation" content="portrait">
+<!-- QQ强制竖屏 -->
+<meta name="x5-orientation" content="portrait">
+<!-- UC强制全屏 -->
+<meta name="full-screen" content="yes">
+<!-- QQ强制全屏 -->
+<meta name="x5-fullscreen" content="true">
+<!-- UC应用模式 -->
+<meta name="browsermode" content="application">
+<!-- QQ应用模式 -->
+<meta name="x5-page-mode" content="app">
+<!-- windows phone 点击无高光 -->
+<meta name="msapplication-tap-highlight" content="no">
+<title>7.6地铁么么哒</title>  
+<link rel="stylesheet" href="css/com.css">
+
+</head>  
+<body>
+    <!-- 选择模板模块 -->
+    <div class="tem-wrap">
+        <div class="main-top"><a href="javascript:history.go(-1);" class="pre-back"><img src="images/back_ico.png" alt="" class="back-ico">返回</a>参与活动</div>
+        <div class="template-title">选择中意模板</div>
+        <ul class="template-list">
+            <li class="red">性感</li>
+            <li>八眉</li>
+            <li class="red">禁欲</li>
+            <li>舞王</li>
+            <li>演员</li>
+            <li class="red">成熟</li>
+            <li>鲜肉</li>
+            <li class="red">秀色</li>
+            <li class="red">男神</li>
+            <li>富豪</li>
+            <li class="red">萌妹</li>
+            <li>颜值</li>
+            <li>女神</li>
+            <li class="red">可爱</li>
+            <li>妖艳</li>
+            <li class="red">俏皮</li>
+        </ul>
+        <!-- 以下是模板图片 对应上面的类型 方便脚本根据类型调用相应的图片 -->
+        <ul class="template-list-img">
+            <li><img src="images/template/template-img1.png" alt=""></li>
+            <li><img src="images/template/template-img2.png" alt=""></li>
+            <li><img src="images/template/template-img3.png" alt=""></li>
+            <li><img src="images/template/template-img4.png" alt=""></li>
+            <li><img src="images/template/template-img5.png" alt=""></li>
+            <li><img src="images/template/template-img6.png" alt=""></li>
+            <li><img src="images/template/template-img7.png" alt=""></li>
+            <li><img src="images/template/template-img8.png" alt=""></li>
+            <li><img src="images/template/template-img9.png" alt=""></li>
+            <li><img src="images/template/template-img10.png" alt=""></li>
+            <li><img src="images/template/template-img11.png" alt=""></li>
+            <li><img src="images/template/template-img12.png" alt=""></li>
+            <li><img src="images/template/template-img13.png" alt=""></li>
+            <li><img src="images/template/template-img14.png" alt=""></li>
+            <li><img src="images/template/template-img15.png" alt=""></li>
+            <li><img src="images/template/template-img16.png" alt=""></li>
+        </ul>
+        <input type="file" accept="image/*"  id="camera_input" /><!-- 调用相机和相册  隐藏的 capture="camera" -->
+       
+        <!-- display none  end  -->
+        <div class="marie-imgbox"><img src="images/marie.jpg" alt=""></div>
+        <a href="javascript:;" class="my-play" style="margin-bottom: 6.5rem" id="camera-btn01">去拍照</a>
+        <div class="footer">
+            <div class="partner-box"><img src="images/partner.jpg" alt=""></div>
+        </div>
+    </div>
+    
+
+    <!--  图片合成 预览 -->
+    <div class="preview-wrap">
+        <div class="main-top"><a href="javascript:;" class="pre-back preview-back"><img src="images/back_ico.png" alt="" class="back-ico">返回</a>参与活动</div>
+        <div class="posr-box">
+            <img src="images/preview-wrapbg.jpg" alt="" class="preview-wrapbg">
+            <div class="preview-con">
+                <div class="pre-space"></div>
+                <div class="photo-frame">
+                  <canvas id="c1"></canvas> 
+                  <img src="" alt="" id="self_img"> <!-- 自己拍照的图存在这里  隐藏的 -->
+                  <img src="" alt="" id="template_img2">
+                  <canvas id="mycanvas"></canvas>
+                  <input type="file" accept="image/*"  id="camera_input" /><!-- 调用相机和相册  隐藏的 capture="camera" -->
+                  <img src="" alt="" id="preview_img">
+                  <img src="images/photo-frame.png" alt="" class="pf-img">
+                  <input type="hidden" value="" id="preview_input_val">  <!-- 合成图片的隐藏域 -->
+                </div>
+                <div class="img-info"><img src="images/img_info.png" alt=""></div>
+                <!-- <a href="javascript:;" class="leave-btn"><img src="images/leave-btn.png" alt=""></a> -->
+                <div class="say-something">
+                    <input type="text" class="say-input">
+                    <span class="place-holder"><img src="images/say_ico.jpg" alt="">说些什么</span>
+                </div>
+                <div class="upload-box">
+                    <a href="javascript:;" class="re-picture-btn"><img src="images/re-picture-img.png" alt="重拍" id="camera-btn02"></a>
+                    <a href="javascript:;" class="upload-btn preview-btn" id="upload-btn"><img src="images/preview-img.png" alt=""></a>
+                </div>
+                <div class="marie-imgbox"><img src="images/marie.png" alt=""></div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="partner-box"><img src="images/partner.jpg" alt=""></div>
+        </div>
+    </div>
+
+    <div class="white-formsbg"></div>
+    <div class="fixed-box-loadImg">
+        <div class="forms-wrap">
+            <div class="loading-img"><img src="images/uploadImg.gif" alt=""></div>
+            <div class="load-txt">正在上传中 请稍后...</div>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/jquery.js"></script>  
+    <script src="js/alloy_paper.js"></script>  
+    <script src="js/alloy_finger.js"></script>   
+    <script type="text/javascript" src="js/common.js"></script> 
+
+    <script>
+        $(function(){
+            //适配各个分辨率 设置模板元素的高
+            function setTemplateHeight(){
+                var li_width =parseInt($(".template-list li").width());
+                var li_height =parseInt(li_width*174/150);
+                $(".template-list li").css("height",li_height+"px");
+                $(".template-list li").css("line-height",(li_height*0.75)+"px");
+            } 
+            setTemplateHeight();
+            window.addEventListener('resize', setTemplateHeight, false);
+
+            //选择模板类型的事件
+            $(".template-list li").click(function(){
+                var index = $(".template-list li").index(this);
+                if(!$(this).hasClass('checked')){
+                    $(".template-list li").removeClass('checked').find(".selected").remove();
+                    $(this).addClass('checked').append('<span class="selected"><img src="images/selected_ico.png" alt=""></span>');
+                    //选中的模板类型 li上面有个class = checked
+                    //根据选择类型来确定使用的图片对象
+                    var tem_img_src = $(".template-list-img li").eq(index).find("img").attr("src");
+                    $("#template_img2").attr("src",tem_img_src);
+                }
+            });
+
+            //预览返回到选择模板
+                $(".preview-back").click(function(){
+                    $(".tem-wrap").show();
+                    $(".preview-wrap").hide();
+                    $("body").stop().animate({scrollTop:"0px"},200);
+                    $("#preview_img").attr("src","");
+                    setTemplateHeight();
+                   
+                })
+            //preview-con  height
+            //适配各个分辨率 设置模板元素的高
+            function setPreHeight(){
+                var $winW = parseInt($(window).width());
+                var pre_height =parseInt($winW*1906/750);
+                $(".preview-con").css("height",pre_height+"px");
+            } 
+            setPreHeight();
+            window.addEventListener('resize', setPreHeight, false);
+
+            $(".place-holder").click(function(){
+                $(".say-input").focus();
+            });
+            $(".say-input").focus(function(){
+                $(".place-holder").hide();
+            });
+            $(".say-input").blur(function(){
+                if($(".say-input").val().trim()==""){
+                    $(".place-holder").show();
+                }
+            });
+
+            // $(".upload-btn").click(function(){
+            //     $(".fixed-box-loadImg").show();
+            //     $(".white-formsbg").show();
+            // });
+
+
+
+
+            function getObjectURL(file) {      
+                var url = null ;      
+                if (window.createObjectURL!=undefined) { // basic      
+                    url = window.createObjectURL(file) ;      
+                } else if (window.URL!=undefined) { // mozilla(firefox)      
+                    url = window.URL.createObjectURL(file) ;      
+                } else if (window.webkitURL!=undefined) { // webkit or chrome      
+                    url = window.webkitURL.createObjectURL(file) ;      
+                }      
+                return url ;      
+            }   
+            $("#camera-btn01,#camera-btn02").click(function(){
+                $("#camera_input").click();
+            });
+              
+            var canvas = document.getElementById("mycanvas");  //画布
+            var image1 = document.getElementById("template_img2");
+            var image2 = document.getElementById("self_img");    //自己上传的图
+            
+            var c1 = document.getElementById("c1");    
+            c1.width = 300;  
+            c1.height = 300;  
+            var ctx1 = c1.getContext("2d");  
+            $(document).on("change","#camera_input",function(e){
+                $('#c1').show(); 
+                $('#self_img').hide(); 
+                $("#preview_img").hide();
+                $("#upload-btn").attr("class","upload-btn preview-btn");
+                $("#upload-btn").find("img").attr("src","images/preview-img.png"); 
+                var $input_file = '<input type="file" accept="image/*"  id="camera_input" />'// 解决上传同一张图没反应的情况   remove  然后再append
+                upimgurl = getObjectURL(this.files[0]);      
+                upimg = new Image();      
+                upimg.src = upimgurl;      
+                upimg.onload = function(){   
+                    ctx1.clearRect(0,0,c1.width,c1.height);  
+                      
+                    var Stage = AlloyPaper.Stage, Bitmap = AlloyPaper.Bitmap,Loader=AlloyPaper.Loader;  
+                    var stage = new Stage("#c1");  
+                    stage.autoUpdate=false;  
+                    var ld = new Loader();  
+                    ld.loadRes2([  
+                        { id: "test", src: upimgurl },  
+                    ]);  
+                    ld.complete(function () {  
+                        var bmp = new Bitmap(ld.get("test"));  
+                        bmp.originX = 0.5;  
+                        bmp.originY = 0.5;  
+                        bmp.x = stage.width / 2;  
+                        bmp.y = stage.height / 2;  
+                        stage.add(bmp);  
+              
+                        //stage.update();  
+                        updateStage();  
+                        var initScale = 1;  
+                        new AlloyFinger(bmp, {  
+                            multipointStart: function () {  
+                                initScale = bmp.scaleX;  
+                            },  
+                            rotate: function (evt) {  
+                                bmp.rotation += evt.angle;  
+                                //stage.update();  
+                                updateStage();  
+                            },  
+                            pinch: function (evt) {  
+                                bmp.scaleX = bmp.scaleY = initScale * evt.scale;  
+                                //stage.update();  
+                                updateStage();  
+                            },  
+                            pressMove: function (evt) {  
+                                bmp.x += evt.deltaX;  
+                                bmp.y += evt.deltaY;  
+                                evt.preventDefault();  
+                                //stage.update();  
+                                updateStage();  
+                            }  
+              
+                        });  
+                    });  
+                    //将上传的图片画入canvas圆中  
+                    function updateStage(){  
+                        ctx1.beginPath();  
+                        ctx1.rect(0, 0, c1.width, c1.height);
+                        ctx1.save();  
+                        ctx1.clip();  
+                        stage.update();  
+                        ctx1.restore();  
+                        //whiteText();  
+                    }  
+                };   
+                 if($(".template-list li").hasClass('checked')){
+                       $(".tem-wrap").hide();
+                       $(".preview-wrap").show();
+                       $("body").stop().animate({scrollTop:"0px"},200);
+                }
+                else{
+                    toast("请选择模板类型");
+                }
+                $("#camera_input").remove();
+                $("#mycanvas").after($input_file); // 解决上传同一张图没反应的情况   remove  然后再append
+            });  
+              
+            function whiteText(){  
+                ctx1.font = 'bold 40px "PingFangSC-Regular","sans-serif","STHeitiSC-Light","微软雅黑","Microsoft YaHei"';  
+                ctx1.fillStyle = '#f00';    
+                ctx1.textBaseline="middle";    
+                ctx1.textAlign="center";    
+                ctx1.fillText('测试文字',c1.width/2,c1.height/2);  
+            }  
+              
+            $('.preview-btn').on('click',function(){  
+                $('#self_img').attr('src',c1.toDataURL("image/jpg"));  
+                $('#self_img').show();  
+                 $('#c1').hide();  
+                 setTimeout(function(){
+                    canvas = convertImageToCanvas(image1,image2);
+                    $("#preview_img").attr("src",convertCanvasToImage(canvas).src);
+                    $("#preview_input_val").val(convertCanvasToImage(canvas).src);
+                    $("#preview_img").show();
+                    $("#upload-btn").attr("class","upload-btn");
+                    $("#upload-btn").find("img").attr("src","images/upload-img.png");
+               },800);
+            });  
+
+            // Converts image to canvas; returns new canvas element
+            function convertImageToCanvas(image1,image2) {
+                canvas.width ="300";
+                canvas.height = "300";
+                // 在canvas绘制前填充白色背景   
+                canvas.getContext("2d").fillStyle = "#FFFFFF";   
+                canvas.getContext("2d").fillRect(0, 0, canvas.width, canvas.height);
+                canvas.getContext("2d").drawImage(image2, 0, 0,300,300); //self_img 上传的图  width  height  伸展或缩小图像宽高  320
+                canvas.getContext("2d").drawImage(image1, 0, 0,300,300);
+                return canvas;
+            }
+
+            // Converts canvas to an image
+            function convertCanvasToImage(canvas) {
+                    var image = new Image();
+                    image.setAttribute('crossOrigin', 'Anonymous'); //解决跨域问题
+                    image.src = canvas.toDataURL("image/jpeg",0.6);
+                    return image;
+                }
+
+            })
+    </script>
+</body>  
+</html>  
+

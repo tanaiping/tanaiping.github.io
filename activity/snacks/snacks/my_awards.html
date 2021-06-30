@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="MobileOptimized" content="240" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />  
+    <meta content="email=no" name="format-detection" />
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title>我的奖品</title>
+    <style>
+        body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td {margin:0;padding:0; border:0;}
+        html{font-size: 62.5%;-webkit-text-size-adjust:none;}
+        *{outline: none;margin:0;padding:0;}
+        body{background-color: #f3f3f3; font-family: 'STHeiti',Helvetica,Arial,sans-serif;font-size:1rem }
+        table {border-collapse:collapse;border-spacing:0;}
+        fieldset,img {border:0}
+        address,caption,cite,code,dfn,strong,th,var{font-style:normal;font-weight:normal}
+        ol,ul {list-style:none}
+        caption,th {text-align:left}
+        h1,h2,h3,h4,h5,h6 {font-size:100%;font-weight:normal}
+        q:before,q:after {content:''}
+        abbr,acronym { border:0}
+        a{text-decoration:none;color:#333;outline:none;hide-focus:expression(this.hideFocus=true);}
+        em{font-style:normal;}
+        input,a,textarea{ outline:none;}
+        .fl{float:left;_display:inline} .fm{float:left;_display:inline;} .fr{float:right;_display:inline}
+        span.fl,span.fm,span.fr{display:block;_display:inline;}
+        .cb{clear:both} .cl{clear:left} .cr{clear:right}.tr{text-align: right;}
+        .clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+        .clearfix{display:inline-block}* html .clearfix{height:1%}.clearfix{display:block}
+        .clear{width:100%;height:1px;overflow:hidden;clear:both;}
+        .tc{text-align: center;}
+        a{text-decoration: none;}
+        .cl{clear: both; overflow: hidden;}
+        img{vertical-align: middle;}
+        .main-wrap{max-width: 750px; margin:0 auto; position: relative; background-color: #FFF;}
+        .contact-box{line-height: 2rem; height: 2rem; padding: 1.1rem 1.5rem; background-color: #e50048; font-size: 1.4rem; color: #FFF; position: relative;}
+        .contact-box em{font-size: 1.2rem; padding-right: 1rem;}
+        .contact-box img{vertical-align: middle; padding: 0 .5rem 0 1rem; height: 100%;}
+        .contact-box .input-address-link{position: absolute;right: 1.5rem; top: 1.1rem; line-height: 2rem; height: 2rem; font-size: 1.4rem; color: #FFF;}
+        .award-list li{position: relative; padding:1.5rem 3rem 1.5rem 11rem; height: 5.3rem; border-bottom: 1px solid #e3e3e3;}
+        .award-list li .award-img{width: 9rem; height: 5.3rem; position: absolute;left: 1.5rem; top: 1.5rem; border-radius: .5rem;}
+        .award-list li .r-ico{width: 1.2rem; height: 1.8rem;position: absolute; right: 1.5rem; top: 3.55rem;}
+        .award-list li h1{line-height: 3rem; color: #240201; line-height: 3rem; height: 3rem; padding: .5rem 0; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; font-size: 1.8rem;}
+        .award-list li .desc{font-size: 1.2rem; color: #999;line-height: 1.3rem; height: 1.3rem;}
+
+        .white-formsbg-black{position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; z-index: 101; background-color: #000; opacity: .7; display: none;}
+        .forms-wrap{position: absolute; left: 50%; z-index: 102;  display: none; top: 50%;
+            animation: showModal .5s ease-in-out;
+        }
+        @keyframes showModal{
+            0% {
+                -webkit-transform: scale(.05);
+                transform: scale(.05);
+            }
+            100% {
+                -webkit-transform: scale(1);
+                transform: scale(1);
+            }
+        }
+        .address-con{padding: 0 1.3rem;}
+        .address{width:30rem; height: 45rem; margin-top: -22.5rem; background: url(images/snacks/address.png) no-repeat; background-size: 100% 100%; margin-left: -15rem;}
+        .address .say-hi{padding-top: 5.5rem; line-height: 3rem; height: 3rem; color: #FFF; font-size: 2rem;text-align: center; text-indent: -1.8rem;}
+        .address .t1{margin-top: 1.6rem; padding: 1.4rem 0; line-height: 2rem; height: 2rem; font-size: 1.4rem; color: #717171;}
+        .address .input-box{ padding: 1.1rem 1rem; line-height: 2rem; height: 2rem;}
+        .address .username{border:1px solid #adaca8; border-radius:.5rem .5rem 0 0;}
+        .address .tel{border:solid #adaca8; border-width:0px 1px;}
+        .address .address_detail{border:1px solid #adaca8; border-radius:0 0 .5rem .5rem;}
+        .address .remarks{border:1px solid #adaca8; border-radius:.5rem; margin-top: .8rem;}
+        .address .input-box input{width: 100%; font-size: 1.6rem; line-height: 2rem; background: transparent; border:none; color: #8d8d8d;}
+        .address .t2{ color: #8d8d8d; font-size: 1.4rem; padding-top: .9rem; line-height: 2.3rem; height: 2.3rem;}
+        .address .error-msg{ line-height: 3rem; height: 3rem; color: red; font-size: 1.4rem;text-align: center;}
+        .address .get-btn{background: url(images/snacks/pop_btn.png) no-repeat; background-size: 100% 100%; margin:0 auto; width: 18.5rem; height: 4rem; line-height: 4rem; text-align: center; font-size: 2.2rem; color: #FFF;}
+
+        .address .close-btn{ width: 4.2rem; height: 4.2rem; position: absolute; right: 0rem; top: 0rem;background: url(images/snacks/close02.png) no-repeat; background-size: 100% 100%; margin-right: -1.8rem;}
+        @media (max-width: 320px){
+            .address{width:29rem; height: 45rem; margin-top: -22.5rem;margin-left: -14.5rem;}
+            .address .close-btn{ width: 3.6; height: 3.6; margin-right: -1rem;}
+        }
+    </style>
+</head>
+<body style="background-color: #e8e7e7;">
+    <div class="main-wrap">
+        <div class="contact-box">
+            <span>客服专线：</span><img src="images/tel.png" alt=""><em class="tel">400-187-7877</em> 
+            <div class="input-address-link">去填写地址></div>
+        </div>
+        <div class="award-list">
+            <ul id="awards_list_id">
+                <li>
+                    <a href="http://www.xwcms.net/js/qttx/28689.html" class="awards-link" adid="203" appkey="31EA50F47795495A912C5B399F9F7EC0"><img src="images/award_img.jpg" alt="" class="award-img"><img src="images/r_ico.png" alt="" class="r-ico"><h1>标题</h1></a>
+                </li>
+                 <li>
+                    <a href="http://www.xwcms.net/js/qttx/28689.html" class="awards-link" adid="203" appkey="31EA50F47795495A912C5B399F9F7EC0"><img src="images/award_img.jpg" alt="" class="award-img"><img src="images/r_ico.png" alt="" class="r-ico"><h1>标题</h1></a>
+                </li>
+                 <li>
+                    <a href="http://www.xwcms.net/js/qttx/28689.html" class="awards-link" adid="203" appkey="31EA50F47795495A912C5B399F9F7EC0"><img src="images/award_img.jpg" alt="" class="award-img"><img src="images/r_ico.png" alt="" class="r-ico"><h1>标题</h1></a>
+                </li>
+                 <li>
+                    <a href="http://www.xwcms.net/js/qttx/28689.html" class="awards-link" adid="203" appkey="31EA50F47795495A912C5B399F9F7EC0"><img src="images/award_img.jpg" alt="" class="award-img"><img src="images/r_ico.png" alt="" class="r-ico"><h1>标题</h1></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <!-- 填写地址 begin -->
+    <div class="white-formsbg-black"></div>
+    <div class="forms-wrap address">
+    <div class="forms-box">
+        <div class="address-con">
+            <form action="">
+                <div class="say-hi">hi~幸运的小勇子</div>
+                <div class="t1">请完成以下领奖信息哦</div>
+                <div class="username input-box"><input type="text" placeholder="姓名"></div>
+                <div class="tel input-box"><input type="text" placeholder="联系电话" maxlength="11" pattern="[0-9]*" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"></div>
+                <div class="address_detail input-box"><input type="text" placeholder="详细地址"></div>
+                <div class="remarks input-box"><input type="text" placeholder="备注"></div>
+                <div class="t2">注：快递默认到付，如有其他需求请备注</div>
+                <div class="error-msg">错误信息</div>
+                <div class="get-btn">领取</div>
+            </form>
+        </div>
+        <a href="javascript:;" class="close-btn"></a>
+    </div>
+</div>
+    <!-- 抽奖次数0 end -->
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/public.js"></script>
+<script type="text/javascript">
+$(function(){
+   window.addEventListener('resize', Rem, false);
+   Rem();
+   $(".main-wrap").css("min-height",$(window).height());
+   $(".close-btn").click(function(){
+        $(".white-formsbg-black,.address").hide();
+   });
+   $(".input-address-link").click(function(){
+        $(".white-formsbg-black,.address").show();
+   });
+});
+
+</script>
+</body>
+</html>

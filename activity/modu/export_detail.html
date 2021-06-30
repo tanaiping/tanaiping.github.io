@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" /> -->
+    <!--重要meta, 必须!-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,shrink-to-fit=no" />
+    <meta name="MobileOptimized" content="240" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />  
+    <meta content="email=no" name="format-detection" />
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title>出口信息-详情</title>
+    <link rel="stylesheet" href="css/jquery-ui.min.css">
+    <link rel="stylesheet" href="css/com.css">
+</head>
+<body>
+    <img src="images/exprot_img.jpg" alt="" class="export-img" id="export-img">
+    <div class="com-wrap export-wrap bg-white">
+        <ul id="export_list">
+            <!--  <li>
+               <div class="title"><em class="ex01">A出口</em></div>
+               <dl>
+                    <dd>COCO PARK1</dd>
+                    <dd>COCO PARK2</dd>
+                    <dd>COCO PARK3</dd>
+                </dl> 
+            </li>
+           <li>
+               <div class="title"><em class="ex02">B出口</em></div>
+               <dl>
+                    <dd>COCO PARK1</dd>
+                    <dd>COCO PARK2</dd>
+                    <dd>COCO PARK3</dd>
+                </dl> 
+            </li>
+            <li>
+               <div class="title"><em class="ex03">C出口</em></div>
+               <dl>
+                    <dd>COCO PARK1</dd>
+                    <dd>COCO PARK2</dd>
+                    <dd>COCO PARK3</dd>
+                </dl> 
+            </li>
+            <li>
+               <div class="title"><em class="ex04">D出口</em></div>
+               <dl>
+                    <dd>COCO PARK1</dd>
+                    <dd>COCO PARK2</dd>
+                    <dd>COCO PARK3</dd>
+                </dl> 
+            </li>
+            <li>
+               <div class="title"><em class="ex05">E出口</em></div>
+               <dl>
+                    <dd>COCO PARK1</dd>
+                    <dd>COCO PARK2</dd>
+                    <dd>COCO PARK3</dd>
+                </dl> 
+            </li> -->
+        </ul>
+    </div>
+    <div class="com-wrap export-wrap"><img src="images/ad-img.jpg" alt="" class="ad-img"></div>
+    <script type="text/javascript" src="js/zepto.min.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/lines.js"></script>
+    <script type="text/javascript" src="js/subway.js"></script>
+    <script type="text/javascript">
+        $(function(){ 
+            var export_val=localStorage.getItem("key");//获取存储的变量key的值;
+            console.log(export_val);
+            var exprot_json = $.parseJSON(export_val)
+            if(exprot_json!=""&&exprot_json!=undefined){
+                $("#export-img").attr("src",exprot_json.exitImage);  
+                console.log(exprot_json.exitList.length);
+                var html=""
+                for(var i=0;i<exprot_json.exitList.length;i++){
+                    var num = i%5+1;
+                    html+='<li>'
+                    html+='<div class="title"><em class="ex0'+num+'">'+exprot_json.exitList[i].exitName+'</em></div>'
+                    /*  现在接口里面没有bulidlist  先屏蔽 */
+                    // if(exprot_json.exitList[i].buildList){
+                    //     html+='<dl>'
+                    //     for(var j=0;i<exprot_json.exitList[i].buildList.length;j++){
+                    //          html+='<dd>'+exprot_json.exitList[i].buildList[j].buildName+'</dd>'
+                    //     }
+                    //     html+='</dl>'
+                    // }
+                    html+='<dl>'
+                    html+='<dd>'+exprot_json.exitList[i].exitDesc+'</dd>'
+                    html+='</dl>'
+                    //以上先用出口描述代替
+                    html+='</li>'
+                }
+                console.log(html);
+                $("#export_list").append(html);
+            }
+        })
+    </script>
+</body>
+</html>

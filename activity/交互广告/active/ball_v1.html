@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta http-equiv="Cache-Control" content="no-cache" />
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="MobileOptimized" content="240" />
+		<meta name="apple-touch-fullscreen" content="YES" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="email=no" name="format-detection" />
+		<!-- uc强制竖屏 -->
+		<meta name="screen-orientation" content="portrait">
+		<!-- QQ强制竖屏 -->
+		<meta name="x5-orientation" content="portrait">
+		<!-- UC强制全屏 -->
+		<meta name="full-screen" content="yes">
+		<!-- QQ强制全屏 -->
+		<meta name="x5-fullscreen" content="true">
+		<!-- UC应用模式 -->
+		<meta name="browsermode" content="application">
+		<!-- QQ应用模式 -->
+		<meta name="x5-page-mode" content="app">
+		<!-- windows phone 点击无高光 -->
+		<meta name="msapplication-tap-highlight" content="no">
+		<!-- 适应移动端end -->
+		<title>免费美食送不停</title>
+
+		<link rel="stylesheet" href="css/ballMachine.css">
+		<link rel="stylesheet" href="css/swiper.min.css" />
+	</head>
+
+	<body style="background: #4b2173;">
+		<div class="main-wrap">
+			<div class="ernic-title">
+				<img src="images/ballImg/ernie-title.png" />
+			</div>
+
+			<div class="ernic-btWrap fl_start">
+				<div class="rule-bt ernic-bt"></div>
+				<a href="javascript:;" class="prize-bt ernic-bt" onclick="myawards(4)"></a>
+			</div>
+			<div class="machine-wrapper">
+				<div class="machine">
+					<div class="light light-one light-active" style=""></div>
+					<div class="light light-two light-hiden" style=""></div>
+					<div class="light light-three light-hiden" style=""></div>
+					<div class="light light-four light-hiden" style=""></div>
+					<div class="light light-five light-hiden" style=""></div>
+					<div class="light light-six light-hiden" style=""></div>
+					<div class="light light-serven light-hiden" style=""></div>
+					<div class="light light-eight light-hiden" style=""></div>
+					<div class="light light-nine light-hiden" style=""></div>
+					<div class="light light-ten light-hiden" style=""></div>
+					<div class="light light-eleven light-hiden" style=""></div>
+					<div class="light light-twelve light-hiden" style=""></div>
+					<div class="light light-thirteen light-hiden" style=""></div>
+					<div class="light light-fourteen light-hiden" style=""></div>
+					<div class="light light-fifteen light-hiden" style=""></div>
+					<div class="light light-sixteen light-hiden" style=""></div>
+
+					<span class="triangle "></span>
+    			
+					<span class="glass"></span>
+					<div class="ball-pool" style="">
+						<div class="ball-poolImg" id="ball-poolImg" style="display: none;"></div>
+						<div style="position: absolute;z-index: 4;top: 0;margin-top: 1rem;">
+							<div id="screen" class="canvas">
+								<div id="inner">
+									<div class="ballImg ballImg-one"></div>
+									<div class="ballImg ballImg-two"></div>
+									<div class="ballImg ballImg-three"></div>
+									<div class="ballImg ballImg-four"></div>
+									<div class="ballImg ballImg-five"></div>
+									<div class="ballImg ballImg-sex"></div>
+									<div class="ballImg ballImg-seven"></div>
+									<div class="ballImg ballImg-eight"></div>
+									<div class="ballImg ballImg-nine"></div>
+									<div class="ballImg ballImg-ten"></div>
+									<div class="ballImg ballImg-eleven"></div>
+									<div class="ballImg ballImg-twelve"></div>
+									<div class="ballImg ballImg-thirteen"></div>
+									<div class="ballImg ballImg-fourteen"></div>
+								</div>
+							</div>
+							
+							<div class="canvas" id="screen2" style="display: none;">
+								<div class="top-demo group inner">
+									<div class="ballImg2 one"></div>
+									<div class="ballImg2 two"></div>
+									<div class="ballImg2 three"></div>
+									<div class="ballImg2 four"></div>
+									<div class="ballImg2 five"></div>
+									<div class="ballImg2 sex"></div>
+									<div class="ballImg2 seven"></div>
+									<div class="ballImg2 eight"></div>
+									<div class="ballImg2 nine"></div>
+									<div class="ballImg2 ten"></div>
+									<div class="ballImg2 eleven"></div>
+									<div class="ballImg2 twelve"></div>
+									<div class="ballImg2 thirteen"></div>
+									<div class="ballImg2 fourteen"></div>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+				<div class="hose-wrap">
+					<div class="renic-zg fl_start">
+						<div class="hose hose-left"></div>
+						<div class="prize-number today-nums" id="prize-number">剩余免费<em></em>次</div>
+						<div class="hose hose-right"></div>
+					</div>
+					<div class="ballOut">
+						<div class="ballOut-img" id="ballOut-img" style="display: none;"></div>
+					</div>
+					<!-- 开始按钮 begin -->
+					<div class="play-bt" id="play-bt">
+						<a class="start-bt" id="start"></a>
+					</div>
+					<!-- 开始按钮 end -->
+				</div>
+			</div>
+			<div class="prize-list clearfix">
+				<div class="swiper-container">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide prize-item">
+							<img src="images/ballImg/prize-one.png" />
+						</div>
+						<div class="swiper-slide prize-item">
+							<img src="images/ballImg/prize-two.png" />
+						</div>
+						<div class="swiper-slide prize-item">
+							<img src="images/ballImg/prize-three.png" />
+						</div>
+						<div class="swiper-slide prize-item">
+							<img src="images/ballImg/prize-four.png" />
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<!-- 中奖弹窗 begin -->
+		<div class="prize-popupWrap" id="prize-popupWrap" style="display: none;">
+			
+			<div class="prize-popupBox">
+				<div class="prize-popup" id="awards_ad_id">
+					<div class="colorRibbon colorRibbon-one"></div>
+					<div class="colorRibbon colorRibbon-two"></div>
+					<div class="colorRibbon colorRibbon-three"></div>
+					<div class="colorRibbon colorRibbon-four"></div>
+					
+					<div class="prize-close" id="prize-close"></div>
+					<p class="prize-title" id="awards_title_id">恭喜你获得800元优惠券</p>
+					<div class="prize-contentWrap">
+						<a href="javascript:;" class="prize-content award-img click-link" id="award_img_id">
+							<img src="images/ballImg/redBag.png" />
+						</a>
+						<p class="" id="awards_subTitle_id">还没带上智能手表，你太low了</p>
+						<a href="javascript:;" class="prizeCen-bt click-get click-link" tagers="" appkey="" adId="" id="awards_btnTitle_id">立即领取</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 中奖弹窗 end -->
+
+		<!-- 规则弹窗 begin -->
+		<div class="rule-popupWrap prize-popupWrap" id="rule-popupWrap" style="display: none;">
+			<div class="rule-popupBox prize-popupBox">
+				<div class="rule-popup ">
+					<div class="rule-close prize-close" id="rule-close">
+					</div>
+					<div class="rule-content">
+						<p>参与活动即有机会获得幸运奖~每天抽奖机会8次免费。此活动为概率中奖，奖品数量有限，祝好运！</p>
+						<p class="rule-ptwo">重要声明：</p>
+						<p>1.奖品将在活动结束后5-10个工作日安排发放,请耐心等待</p>
+						<p>2.优惠券类奖品的使用规则详见每个优惠券的介绍页</p>
+						<p>3.请兑换后仔细阅读使用流程,如有疑问,可直接联系客服专线:400-187-7877</p>
+						<p>4.通过非法途径获得奖品的,主办方有权不提供奖品</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 规则弹窗 begin -->
+
+		<!-- 抽奖次数0 begin -->
+		<div class="prize-popupWrap prize-numWrap" id="prize-numWrap" style="display: none;">
+			<div class="prize-popupBox">
+				<div class="prize-num">
+					<div class="prize-numColse" id="prize-numColse"></div>
+					<div class="prize-word">
+						<p>今日挑战次数已用完，</p>
+						<p>明天再来尝试吧！</p>
+						<div></div>
+						
+					</div>
+				</div>
+			</div>
+		</div>		
+		<!-- 抽奖次数0 end -->
+
+		<script src="js/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript" src="js/swiper.min.js"></script>
+		<script type="text/javascript" src="js/public.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
+		<script type="text/javascript" src="js/jquery.circulate.js"></script>
+		<script type="text/javascript" src="js/jquery.easing.1.2.js"></script>
+		<script type="text/javascript" src="js/ball.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				/* 奖品轮播 */
+				var swiper = new Swiper('.swiper-container', {
+					pagination: '.swiper-pagination',
+					slidesPerView: 4,
+					paginationClickable: true,
+					spaceBetween: 30
+				});
+				setInterval(function() {
+					var obj = $(".machine .light-active");
+					var len = $(".machine .light").length;
+					var index = $(".machine .light").index(obj)+1;
+					$(".machine .light").eq(index%len).removeClass("light-hiden").addClass("light-active");
+					$(".machine .light").eq(index%len).siblings(".light").removeClass("light-active").addClass("light-hiden")
+				}, 50);
+
+				/* 关闭奖品 */
+				$("#prize-close").click(function() {
+					$(".prize-popup").addClass("prizePopup");
+					setTimeout(function(){
+						$("#prize-popupWrap").hide();
+						$(".prize-popup").removeClass("prizePopup");
+					},900)
+				})
+				/* 关闭规则 */
+				$("#rule-close").click(function() {
+					$("#rule-popupWrap").hide();
+				})
+
+				$(".rule-bt").click(function() {
+					$("#rule-popupWrap").show();
+				})
+
+				/* 开始抽奖 */
+				$("#play-bt a").click(function() {})
+
+				/* 次数已用完 */
+				$("#prize-numColse").click(function() {
+					$("#prize-numWrap").hide();
+				})
+				system();
+				// var prizeNum = $(".today-nums em").text();
+				// if(prizeNum <= 0 || prizeNum == '') {
+				// 	// $("#prize-numWrap").show();
+				// 	$(".play-bt #start").css("opacity", 0.8);
+				// }
+
+			})
+		</script>
+	</body>
+
+</html>

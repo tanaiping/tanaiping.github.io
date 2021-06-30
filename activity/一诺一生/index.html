@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" /> -->
+    <!--重要meta, 必须!-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,shrink-to-fit=no" />
+    <meta name="MobileOptimized" content="240" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />  
+    <meta content="email=no" name="format-detection" />
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <title>一诺一生 雷凌"擎话型动派"</title>
+    <link rel="stylesheet" type="text/css" href="css/base.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
+<body>
+<div class="index-wrap">
+    <div class="rules-btn"></div>
+    <div class="btn-wrap">
+        <a href="gift.html" class="love-btn"></a>  <!--  <a href="create_card.html" class="look-love-btn"></a>   -->
+        <div class="btn-two">
+            <a href="create_card.html" class="ranklist-btn"></a>
+            <a href="gift.html" class="gift-btn"></a>
+        </div>
+    </div>
+</div>
+<div class="loading-wrap">
+    <img src="images/loading_img01.png" alt="" class="loading-img">
+    <div class="loading-bx">
+        <div class="pr"><em></em></div>
+    </div>
+</div>
+<div class="black-bg"></div>
+<div class="rules-conwrap">
+    <div class="rules-content"></div>
+    <div class="close"></div>
+</div>
+<script src="js/zepto.min.js"></script>
+<script src="js/public.js"></script>
+<script>
+    $(function(){
+        Rem();
+        //背景适配
+        var win_w = parseInt($(window).width());
+        var win_h =parseInt($(window).height());
+        if(win_w<750){
+            $(".index-wrap").css("height",win_h+"px");
+        }
+        else{
+             h =1100*750/750;
+            $(".index-wrap").css("height",h+"px");
+        }
+        if(win_w<750){
+           $(".loading-wrap").css("height",win_h+"px");
+        }
+        else{
+             h =1100*750/750;
+             $(".loading-wrap").css("height",h+"px");
+        }
+
+        var flag = 0;
+        var interval;
+        $(window).on("load",function(){
+            interval = setInterval(loading,1500);
+        })
+
+
+        function loading(){
+            var num = Math.floor(Math.random() * 4)+1;
+            if(flag==3){
+                clearInterval(interval);
+                $(".index-wrap").show();
+                $(".loading-wrap").hide();
+                return ;
+            }
+            if(flag==0){
+                $(".loading-bx em").addClass("loading");
+            }
+            flag++;
+            $(".loading-img").attr("src","images/loading_img0"+num+".png");
+            interval = setInterval(loading,1500);
+        }
+        
+
+       
+        //关闭规则
+        $(".rules-conwrap .close").click(function(){
+            $(".black-bg,.rules-conwrap").hide();
+        })
+
+        $(".rules-btn").click(function(){
+            $(".black-bg,.rules-conwrap").show();
+        })
+       
+    })
+</script>
+</body>
+</html>

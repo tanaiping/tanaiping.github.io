@@ -1,0 +1,394 @@
+/*body{background-color: #05286a;}*/
+.main-wrap{width: 1460px;position: relative;padding: 50px 70px 0 70px;}
+.subway-star{width: 1460px; height: 1177px; position: relative;}
+.subway-wrap{width: 1288px; height: 1177px; background: url(../images/subway/subway_bg.png) no-repeat;position: relative; margin:0 auto;}
+.subway-opacity{background: url(../images/subway/subway-opacity.png) no-repeat;}
+
+.pt200{padding-top: 200px;}
+.user-data{position: absolute; left: 0px; top: 20px;width: 1460px;text-align: center;}
+.user-data .data-num{font-size: 65px; color: #FFF; line-height: 100px; height: 100px;text-align: center;}
+/*animation:myscale .8s infinite;
+-webkit-animation:myscale .8s infinite;*/ /* Safari å’Œ Chrome */
+@keyframes myscale{
+from {transform:scale(1)}
+50% {transform:scale(1.06)}
+to {transform:scale(1)}
+}
+
+@-webkit-keyframes myscale{
+from {transform:scale(1)}
+50% {transform:scale(1.06)}
+to {transform:scale(1)}
+
+}
+.user-data .data-desc{text-align: center;}
+.user-data .data-desc span{display: inline-block;background: url(../images/subway/time.png) left center no-repeat; padding-left: 35px; line-height: 30px; height: 30px; font-size: 26px; color: #F0F0F1;letter-spacing:2px;}
+.user-data .data-desc span em{padding-right: 6px;}
+/*数字滚动插件的CSS可调整样式*/
+.mt-number-animate{ font-family: arial; line-height:100px; height: 100px;/*设置数字显示高度*/; font-size: 65px;/*设置数字大小*/ overflow: hidden; display: inline-block; position: relative;}
+.mt-number-animate .mt-number-animate-dot{ width: 16px;/*设置分割符宽度*/ line-height: 100px; float: left; text-align: center;}
+.mt-number-animate .mt-number-animate-dom{ width: 42px;/*设置单个数字宽度*/ text-align: center; float: left; position: relative; top: 0;}
+.mt-number-animate .mt-number-animate-dom .mt-number-animate-span{ width: 100%; float: left;}
+
+.opacity_bg{width: 380px; height: 90px; position: absolute; right: 10px; top: 0px;background: url(../images/subway/opacity_bg.png) repeat; padding: 50px 0; border-radius: 30px;}
+.opacity_bg .t1{text-align: center; line-height: 50px;height: 50px; font-size: 45px; color: #FFF;}
+.opacity_bg .t2{ text-align: center; line-height: 40px; height: 40px; font-size: 22px; color: #FFF; }
+
+
+.tips-station{position: absolute; background:url(../images/subway/tipsbg.png) center bottom no-repeat; width: 150px; height: 84px; z-index: 12;}
+.tips-station .tips-box{ padding:10px 5px 5px 5px; height: 50px; background:url(../images/subway/sub_ico.png) 10px 10px no-repeat; border-radius: 3px; color: #1c1c1c; font-size: 16px; overflow: hidden;white-space: nowrap;}
+.tips-station .text-indent{text-indent: 30px; line-height: 22px; height: 22px; padding-bottom: 3px;}
+.tips-station .tips-box .station_name{max-width: 64px;overflow: hidden;}
+.tips-station .tips-box  em{float: left;}
+
+
+.station{cursor: pointer; z-index: 10;}
+
+.s1-1{position: absolute; left: 637px; top: 25px; width: 10px; height: 10px; padding: 8px;}
+.s1-2{position: absolute; left: 637px; top: 56px; width: 10px; height: 10px; padding: 8px;}
+.s1-3{position: absolute; left: 637px; top: 85px; width: 10px; height: 10px; padding: 8px;}
+.s1-4{position: absolute; left: 637px; top: 114px; width: 10px; height: 10px; padding: 8px;}
+.s1-5{position: absolute; left: 637px; top: 142px; width: 10px; height: 10px; padding: 8px;}
+.s1-6{position: absolute; left: 637px; top: 174px; width: 10px; height: 10px; padding: 8px;}
+.s1-7{position: absolute; left: 637px; top: 202px; width: 10px; height: 10px; padding: 8px;}
+.s1-8{position: absolute; left: 637px; top: 231px; width: 10px; height: 10px; padding: 8px;}
+.s1-9{position: absolute; left: 637px; top: 259px; width: 10px; height: 10px; padding: 8px;}
+.s1-10{position: absolute; left: 637px; top: 288px; width: 10px; height: 10px; padding: 8px;}
+.s1-11{position: absolute; left: 637px; top: 317px; width: 10px; height: 10px; padding: 8px;}
+.s1-12{position: absolute; left: 637px; top: 346px; width: 10px; height: 10px; padding: 8px;}
+.s1-13{position: absolute; left: 625px; top: 424px; width: 10px; height: 10px; padding: 8px;}
+.s1-14{position: absolute; left: 604px; top: 479px; width: 10px; height: 10px; padding: 8px;}/* change*/
+.s1-15{position: absolute; left: 625px; top: 510px; width: 10px; height: 10px; padding: 8px;}
+.s1-16{position: absolute; left: 668px; top: 569px; width: 10px; height: 10px; padding: 8px;}
+.s1-17{position: absolute; left: 668px; top: 595px; width: 10px; height: 10px; padding: 8px;}
+.s1-18{position: absolute; left: 586px; top: 618px; width: 10px; height: 10px; padding: 8px;}
+.s1-19{position: absolute; left: 506px; top: 618px; width: 10px; height: 10px; padding: 8px;}
+.s1-20{position: absolute; left: 469px; top: 648px; width: 10px; height: 10px; padding: 8px;}
+.s1-21{position: absolute; left: 431px; top: 685px; width: 10px; height: 10px; padding: 8px;}
+.s1-22{position: absolute; left: 382px; top: 734px; width: 10px; height: 10px; padding: 8px;}
+.s1-23{position: absolute; left: 357px; top: 820px; width: 10px; height: 10px; padding: 8px;}
+.s1-24{position: absolute; left: 335px; top: 851px; width: 10px; height: 10px; padding: 8px;}
+.s1-25{position: absolute; left: 312px; top: 871px; width: 10px; height: 10px; padding: 8px;}
+.s1-26{position: absolute; left: 291px; top: 892px; width: 10px; height: 10px; padding: 8px;}
+.s1-27{position: absolute; left: 272px; top: 910px; width: 10px; height: 10px; padding: 8px;}
+.s1-28{position: absolute; left: 255px; top: 920px; width: 10px; height: 10px; padding: 8px;}/* 1 end */
+.s2-1{position: absolute; left: 45px; top: 517px; width: 10px; height: 10px; padding: 8px;}
+.s2-2{position: absolute; left: 90px; top: 517px; width: 10px; height: 10px; padding: 8px;}
+.s2-3{position: absolute; left: 135px; top: 517px; width: 10px; height: 10px; padding: 8px;}
+.s2-4{position: absolute; left: 184px; top: 517px; width: 10px; height: 10px; padding: 8px;}
+.s2-5{position: absolute; left: 220px; top: 517px; width: 10px; height: 10px; padding: 8px;}
+.s2-6{position: absolute; left: 255px; top: 517px; width: 10px; height: 10px; padding: 8px;}
+.s2-7{position: absolute; left: 291px; top: 517px; width: 10px; height: 10px; padding: 8px;}
+.s2-8{position: absolute; left: 343px; top: 517px; width: 10px; height: 10px; padding: 8px;}
+.s2-9{position: absolute; left: 443px; top: 541px; width: 10px; height: 10px; padding: 8px;}
+.s2-10{position: absolute; left: 505px; top: 570px; width: 10px; height: 10px; padding: 8px;}
+.s2-11{position: absolute; left: 590px; top: 570px; width: 10px; height: 10px; padding: 8px;}
+.s2-12{position: absolute; left: 722px; top: 570px; width: 10px; height: 10px; padding: 8px;}
+.s2-13{position: absolute; left: 801px; top: 570px; width: 10px; height: 10px; padding: 8px;}
+.s2-14{position: absolute; left: 844px; top: 608px; width: 10px; height: 10px; padding: 8px;}
+.s2-15{position: absolute; left: 883px; top: 644px; width: 10px; height: 10px; padding: 8px;}
+.s2-16{position: absolute; left: 953px; top: 717px; width: 10px; height: 10px; padding: 8px;}
+.s2-17{position: absolute; left: 953px; top: 737px; width: 10px; height: 10px; padding: 8px;}
+.s2-18{position: absolute; left: 953px; top: 819px; width: 10px; height: 10px; padding: 8px;}
+.s2-19{position: absolute; left: 1016px; top: 829px; width: 10px; height: 10px; padding: 8px;}
+.s2-20{position: absolute; left: 1044px; top: 829px; width: 10px; height: 10px; padding: 8px;}
+.s2-21{position: absolute; left: 1073px; top: 829px; width: 10px; height: 10px; padding: 8px;}
+.s2-22{position: absolute; left: 1103px; top: 829px; width: 10px; height: 10px; padding: 8px;}
+.s2-23{position: absolute; left: 1132px; top: 829px; width: 10px; height: 10px; padding: 8px;}
+.s2-24{position: absolute; left: 1160px; top: 829px; width: 10px; height: 10px; padding: 8px;}
+.s2-25{position: absolute; left: 1189px; top: 829px; width: 10px; height: 10px; padding: 8px;}
+.s2-26{position: absolute; left: 1189px; top: 854px; width: 10px; height: 10px; padding: 8px;}
+.s2-27{position: absolute; left: 1189px; top: 880px; width: 10px; height: 10px; padding: 8px;}
+.s2-28{position: absolute; left: 1189px; top: 905px; width: 10px; height: 10px; padding: 8px;}
+.s2-29{position: absolute; left: 1189px; top: 931px; width: 10px; height: 10px; padding: 8px;}/* 2 end */
+.s3-1{position: absolute; left: 844px; top: 25px; width: 10px; height: 10px; padding: 8px;}
+.s3-2{position: absolute; left: 844px; top: 52px; width: 10px; height: 10px; padding: 8px;}
+.s3-3{position: absolute; left: 844px; top: 81px; width: 10px; height: 10px; padding: 8px;}
+.s3-4{position: absolute; left: 844px; top: 109px; width: 10px; height: 10px; padding: 8px;}
+.s3-5{position: absolute; left: 844px; top: 136px; width: 10px; height: 10px; padding: 8px;}
+.s3-6{position: absolute; left: 844px; top: 163px; width: 10px; height: 10px; padding: 8px;}
+.s3-7{position: absolute; left: 844px; top: 187px; width: 10px; height: 10px; padding: 8px;}
+.s3-8{position: absolute; left: 844px; top: 214px; width: 10px; height: 10px; padding: 8px;}
+.s3-9{position: absolute; left: 844px; top: 242px; width: 10px; height: 10px; padding: 8px;}
+.s3-10{position: absolute; left: 844px; top: 270px; width: 10px; height: 10px; padding: 8px;}
+.s3-11{position: absolute; left: 844px; top: 295px; width: 10px; height: 10px; padding: 8px;}
+.s3-12{position: absolute; left: 844px; top: 320px; width: 10px; height: 10px; padding: 8px;}
+.s3-13{position: absolute; left: 825px; top: 340px; width: 10px; height: 10px; padding: 8px;}
+.s3-14{position: absolute; left: 782px; top: 381px; width: 10px; height: 10px; padding: 8px;}
+.s3-15{position: absolute; left: 748px; top: 417px; width: 10px; height: 10px; padding: 8px;}
+.s3-16{position: absolute; left: 709px; top: 457px; width: 10px; height: 10px; padding: 8px;}
+.s3-17{position: absolute; left: 566px; top: 403px; width: 10px; height: 10px; padding: 8px;}
+.s3-18{position: absolute; left: 505px; top: 403px; width: 10px; height: 10px; padding: 8px;}
+.s3-19{position: absolute; left: 445px; top: 403px; width: 10px; height: 10px; padding: 8px;}
+.s3-20{position: absolute; left: 373px; top: 425px; width: 10px; height: 10px; padding: 8px;}
+.s3-21{position: absolute; left: 341px; top: 550px; width: 10px; height: 10px; padding: 8px;}
+.s3-22{position: absolute; left: 341px; top: 630px; width: 10px; height: 10px; padding: 8px;}
+.s3-23{position: absolute; left: 357px; top: 710px; width: 10px; height: 10px; padding: 8px;}
+.s3-24{position: absolute; left: 383px; top: 788px; width: 10px; height: 10px; padding: 8px;}
+.s3-25{position: absolute; left: 403px; top: 820px; width: 10px; height: 10px; padding: 8px;}
+.s3-26{position: absolute; left: 375px; top: 851px; width: 10px; height: 10px; padding: 8px;}/* 3 end */
+.s4-1{position: absolute; left: 442px; top: 751px; width: 10px; height: 10px; padding: 8px;}
+.s4-2{position: absolute; left: 505px; top: 751px; width: 10px; height: 10px; padding: 8px;}
+.s4-3{position: absolute; left: 548px; top: 751px; width: 10px; height: 10px; padding: 8px;}
+.s4-4{position: absolute; left: 621px; top: 751px; width: 10px; height: 10px; padding: 8px;}
+.s4-5{position: absolute; left: 677px; top: 751px; width: 10px; height: 10px; padding: 8px;}
+.s4-6{position: absolute; left: 739px; top: 751px; width: 10px; height: 10px; padding: 8px;}
+.s4-7{position: absolute; left: 802px; top: 777px; width: 10px; height: 10px; padding: 8px;}
+.s4-8{position: absolute; left: 836px; top: 777px; width: 10px; height: 10px; padding: 8px;}
+.s4-9{position: absolute; left: 896px; top: 734px; width: 10px; height: 10px; padding: 8px;}
+.s4-10{position: absolute; left: 884px; top: 557px; width: 10px; height: 10px; padding: 8px;}
+.s4-11{position: absolute; left: 884px; top: 530px; width: 10px; height: 10px; padding: 8px;}
+.s4-12{position: absolute; left: 860px; top: 493px; width: 10px; height: 10px; padding: 8px;}
+.s4-13{position: absolute; left: 828px; top: 464px; width: 10px; height: 10px; padding: 8px;}
+.s4-14{position: absolute; left: 780px; top: 462px; width: 10px; height: 10px; padding: 8px;}/* 3 end */
+.s5-1{position: absolute; left: 237px; top: 960px; width: 10px; height: 10px; padding: 8px;}
+.s5-2{position: absolute; left: 237px; top: 984px; width: 10px; height: 10px; padding: 8px;}
+.s5-3{position: absolute; left: 237px; top: 1007px; width: 10px; height: 10px; padding: 8px;}
+.s5-4{position: absolute; left: 237px; top: 1030px; width: 10px; height: 10px; padding: 8px;}
+.s5-5{position: absolute; left: 237px; top: 1054px; width: 10px; height: 10px; padding: 8px;}
+.s5-6{position: absolute; left: 237px; top: 1077px; width: 10px; height: 10px; padding: 8px;}
+.s5-7{position: absolute; left: 237px; top: 1102px; width: 10px; height: 10px; padding: 8px;}
+.s5-8{position: absolute; left: 213px; top: 1102px; width: 10px; height: 10px; padding: 8px;}
+.s5-9{position: absolute; left: 187px; top: 1102px; width: 10px; height: 10px; padding: 8px;}
+.s5-10{position: absolute; left: 161px; top: 1102px; width: 10px; height: 10px; padding: 8px;}/* 5 end */
+
+.s6-1{position: absolute; left: 1095px; top: 124px; width: 10px; height: 10px; padding: 8px;}
+.s6-2{position: absolute; left: 1095px; top: 183px; width: 10px; height: 10px; padding: 8px;}
+.s6-3{position: absolute; left: 1095px; top: 239px; width: 10px; height: 10px; padding: 8px;}
+.s6-4{position: absolute; left: 1095px; top: 294px; width: 10px; height: 10px; padding: 8px;}
+.s6-5{position: absolute; left: 1095px; top: 350px; width: 10px; height: 10px; padding: 8px;}
+.s6-6{position: absolute; left: 1095px; top: 405px; width: 10px; height: 10px; padding: 8px;}
+.s6-7{position: absolute; left: 1095px; top: 461px; width: 10px; height: 10px; padding: 8px;}
+.s6-8{position: absolute; left: 1095px; top: 578px; width: 10px; height: 10px; padding: 8px;}
+.s6-9{position: absolute; left: 1095px; top: 608px; width: 10px; height: 10px; padding: 8px;}
+.s6-10{position: absolute; left: 1079px; top: 631px; width: 10px; height: 10px; padding: 8px;}
+.s6-11{position: absolute; left: 1036px; top: 636px; width: 10px; height: 10px; padding: 8px;}
+.s6-12{position: absolute; left: 1009px; top: 636px; width: 10px; height: 10px; padding: 8px;}
+.s6-13{position: absolute; left: 979px; top: 636px; width: 10px; height: 10px; padding: 8px;}
+.s6-14{position: absolute; left: 950px; top: 636px; width: 10px; height: 10px; padding: 8px;}
+.s6-15{position: absolute; left: 921px; top: 636px; width: 10px; height: 10px; padding: 8px;}
+.s6-16{position: absolute; left: 862px; top: 710px; width: 10px; height: 10px; padding: 8px;}
+.s6-17{position: absolute; left: 802px; top: 813px; width: 10px; height: 10px; padding: 8px;}
+.s6-18{position: absolute; left: 778px; top: 838px; width: 10px; height: 10px; padding: 8px;}
+.s6-19{position: absolute; left: 734px; top: 880px; width: 10px; height: 10px; padding: 8px;}
+.s6-20{position: absolute; left: 734px; top: 898px; width: 10px; height: 10px; padding: 8px;}
+.s6-21{position: absolute; left: 734px; top: 930px; width: 10px; height: 10px; padding: 8px;}
+.s6-22{position: absolute; left: 734px; top: 954px; width: 10px; height: 10px; padding: 8px;}
+.s6-23{position: absolute; left: 696px; top: 958px; width: 10px; height: 10px; padding: 8px;}
+.s6-24{position: absolute; left: 670px; top: 958px; width: 10px; height: 10px; padding: 8px;}/* 6 end */
+
+.s7-1{position: absolute; left: 538px; top: 25px; width: 10px; height: 10px; padding: 8px;}
+.s7-2{position: absolute; left: 538px; top: 51px; width: 10px; height: 10px; padding: 8px;}
+.s7-3{position: absolute; left: 538px; top: 76px; width: 10px; height: 10px; padding: 8px;}
+.s7-4{position: absolute; left: 538px; top: 102px; width: 10px; height: 10px; padding: 8px;}
+.s7-5{position: absolute; left: 538px; top: 129px; width: 10px; height: 10px; padding: 8px;}
+.s7-6{position: absolute; left: 538px; top: 153px; width: 10px; height: 10px; padding: 8px;}
+.s7-7{position: absolute; left: 538px; top: 177px; width: 10px; height: 10px; padding: 8px;}
+.s7-8{position: absolute; left: 538px; top: 203px; width: 10px; height: 10px; padding: 8px;}
+.s7-9{position: absolute; left: 538px; top: 228px; width: 10px; height: 10px; padding: 8px;}
+.s7-10{position: absolute; left: 538px; top: 252px; width: 10px; height: 10px; padding: 8px;}
+.s7-11{position: absolute; left: 538px; top: 278px; width: 10px; height: 10px; padding: 8px;}
+.s7-12{position: absolute; left: 538px; top: 302px; width: 10px; height: 10px; padding: 8px;}
+.s7-13{position: absolute; left: 538px; top: 326px; width: 10px; height: 10px; padding: 8px;}
+.s7-14{position: absolute; left: 531px; top: 350px; width: 10px; height: 10px; padding: 8px;}
+.s7-15{position: absolute; left: 513px; top: 369px; width: 10px; height: 10px; padding: 8px;}
+.s7-16{position: absolute; left: 506px; top: 460px; width: 10px; height: 10px; padding: 8px;}
+.s7-17{position: absolute; left: 506px; top: 522px; width: 10px; height: 10px; padding: 8px;}
+.s7-18{position: absolute; left: 506px; top: 684px; width: 10px; height: 10px; padding: 8px;}
+.s7-19{position: absolute; left: 508px; top: 793px; width: 10px; height: 10px; padding: 8px;}
+.s7-20{position: absolute; left: 544px; top: 826px; width: 10px; height: 10px; padding: 8px;}
+.s7-21{position: absolute; left: 591px; top: 864px; width: 10px; height: 10px; padding: 8px;}
+.s7-22{position: absolute; left: 650px; top: 880px; width: 10px; height: 10px; padding: 8px;}
+.s7-23{position: absolute; left: 690px; top: 880px; width: 10px; height: 10px; padding: 8px;}
+.s7-24{position: absolute; left: 846px; top: 880px; width: 10px; height: 10px; padding: 8px;}
+.s7-25{position: absolute; left: 890px; top: 880px; width: 10px; height: 10px; padding: 8px;}
+.s7-26{position: absolute; left: 924px; top: 855px; width: 10px; height: 10px; padding: 8px;}
+.s7-27{position: absolute; left: 1003px; top: 796px; width: 10px; height: 10px; padding: 8px;}/* 7 end */
+
+.s8-1{position: absolute; left: 1009px; top: 186px; width: 10px; height: 10px; padding: 8px;}
+.s8-2{position: absolute; left: 1009px; top: 218px; width: 10px; height: 10px; padding: 8px;}
+.s8-3{position: absolute; left: 1009px; top: 251px; width: 10px; height: 10px; padding: 8px;}
+.s8-4{position: absolute; left: 1009px; top: 282px; width: 10px; height: 10px; padding: 8px;}
+.s8-5{position: absolute; left: 1009px; top: 315px; width: 10px; height: 10px; padding: 8px;}
+.s8-6{position: absolute; left: 1009px; top: 344px; width: 10px; height: 10px; padding: 8px;}
+.s8-7{position: absolute; left: 985px; top: 372px; width: 10px; height: 10px; padding: 8px;}
+.s8-8{position: absolute; left: 958px; top: 401px; width: 10px; height: 10px; padding: 8px;}
+.s8-9{position: absolute; left: 853px; top: 386px; width: 10px; height: 10px; padding: 8px;}
+.s8-10{position: absolute; left: 828px; top: 381px; width: 10px; height: 10px; padding: 8px;}
+.s8-11{position: absolute; left: 732px; top: 381px; width: 10px; height: 10px; padding: 8px;}
+.s8-12{position: absolute; left: 704px; top: 409px; width: 10px; height: 10px; padding: 8px;}
+.s8-13{position: absolute; left: 676px; top: 501px; width: 10px; height: 10px; padding: 8px;}
+.s8-14{position: absolute; left: 676px; top: 619px; width: 10px; height: 10px; padding: 8px;}
+.s8-15{position: absolute; left: 676px; top: 661px; width: 10px; height: 10px; padding: 8px;}
+.s8-16{position: absolute; left: 676px; top: 712px; width: 10px; height: 10px; padding: 8px;}
+.s8-17{position: absolute; left: 676px; top: 802px; width: 10px; height: 10px; padding: 8px;}
+.s8-18{position: absolute; left: 649px; top: 898px; width: 10px; height: 10px; padding: 8px;}
+.s8-19{position: absolute; left: 649px; top: 919px; width: 10px; height: 10px; padding: 8px;}
+.s8-20{position: absolute; left: 648px; top: 955px; width: 10px; height: 10px; padding: 8px;}
+.s8-21{position: absolute; left: 632px; top: 982px; width: 10px; height: 10px; padding: 8px;}
+.s8-22{position: absolute; left: 632px; top: 1009px; width: 10px; height: 10px; padding: 8px;}
+.s8-23{position: absolute; left: 632px; top: 1037px; width: 10px; height: 10px; padding: 8px;}
+.s8-24{position: absolute; left: 632px; top: 1064px; width: 10px; height: 10px; padding: 8px;}
+.s8-25{position: absolute; left: 632px; top: 1092px; width: 10px; height: 10px; padding: 8px;}
+.s8-26{position: absolute; left: 632px; top: 1119px; width: 10px; height: 10px; padding: 8px;}/* 7 end */
+
+/* 16号线 */
+.s16-1{position: absolute; left: 1207px; bottom: 27px; width: 10px; height: 10px; padding: 8px;}
+.s16-2{position: absolute; left: 1178px; bottom: 57px; width: 10px; height: 10px; padding: 8px;}
+.s16-3{position: absolute; left: 1150px; bottom: 84px; width: 10px; height: 10px; padding: 8px;}
+.s16-4{position: absolute; left: 1127px; bottom: 112px; width: 10px; height: 10px; padding: 8px;}
+.s16-5{position: absolute; left: 1092px; bottom: 112px; width: 10px; height: 10px; padding: 8px;}
+.s16-6{position: absolute; left: 1056px; bottom: 112px; width: 10px; height: 10px; padding: 8px;}
+.s16-7{position: absolute; left: 1022px; bottom: 112px; width: 10px; height: 10px; padding: 8px;}
+.s16-8{position: absolute; left: 988px; bottom: 112px; width: 10px; height: 10px; padding: 8px;}
+.s16-9{position: absolute; left: 954px; bottom: 112px; width: 10px; height: 10px; padding: 8px;}
+.s16-10{position: absolute; left: 954px; bottom: 143px; width: 10px; height: 10px; padding: 8px;}
+.s16-11{position: absolute; left: 954px; bottom: 173px; width: 10px; height: 10px; padding: 8px;}
+.s16-12{position: absolute; left: 954px; bottom: 229px; width: 10px; height: 10px; padding: 8px;}
+/* 13 */
+.s13-1{position: absolute; left: 635px; bottom: 345px; width: 10px; height: 10px; padding: 8px;}
+.s13-2{position: absolute; left: 635px; bottom: 379px; width: 10px; height: 10px; padding: 8px;}
+.s13-3{position: absolute; left: 635px; bottom: 466px; width: 10px; height: 10px; padding: 8px;}
+.s13-4{position: absolute; left: 618px; bottom: 510px; width: 10px; height: 10px; padding: 8px;}
+.s13-5{position: absolute; left: 594px; bottom: 552px; width: 10px; height: 10px; padding: 8px;}
+.s13-7{position: absolute; left: 594px; bottom: 637px; width: 10px; height: 10px; padding: 8px;}
+.s13-8{}
+.s13-9{position: absolute; left: 550px; bottom: 690px; width: 10px; height: 10px; padding: 8px;}
+.s13-11{position: absolute; left: 474px; bottom: 690px; width: 10px; height: 10px; padding: 8px;}
+.s13-12{position: absolute; left: 445px; bottom: 690px; width: 10px; height: 10px; padding: 8px;}
+.s13-13{}
+.s13-14{position: absolute; left: 340px; bottom: 759px; width: 10px; height: 10px; padding: 8px;}
+.s13-15{position: absolute; left: 314px; bottom: 786px; width: 10px; height: 10px; padding: 8px;}
+.s13-16{position: absolute; left: 273px; bottom: 786px; width: 10px; height: 10px; padding: 8px;}
+.s13-17{position: absolute; left: 234px; bottom: 786px; width: 10px; height: 10px; padding: 8px;}
+.s13-18{position: absolute; left: 190px; bottom: 786px; width: 10px; height: 10px; padding: 8px;}
+.s13-19{position: absolute; left: 147px; bottom: 786px; width: 10px; height: 10px; padding: 8px;}
+/* 12 */
+.s12-1{position: absolute; left: 1224px; bottom: 564px; width: 10px; height: 10px; padding: 8px;}
+.s12-2{position: absolute; left: 1224px; bottom: 600px; width: 10px; height: 10px; padding: 8px;}
+.s12-3{position: absolute; left: 1190px; bottom: 600px; width: 10px; height: 10px; padding: 8px;}
+.s12-4{position: absolute; left: 1151px; bottom: 600px; width: 10px; height: 10px; padding: 8px;}
+.s12-5{position: absolute; left: 1096px; bottom: 600px; width: 10px; height: 10px; padding: 8px;}
+.s12-6{position: absolute; left: 1066px; bottom: 610px; width: 10px; height: 10px; padding: 8px;}
+.s12-7{position: absolute; left: 1066px; bottom: 640px; width: 10px; height: 10px; padding: 8px;}
+.s12-8{position: absolute; left: 1028px; bottom: 659px; width: 10px; height: 10px; padding: 8px;}
+.s12-9{position: absolute; left: 987px; bottom: 659px; width: 10px; height: 10px; padding: 8px;}
+.s12-10{position: absolute; left: 947px; bottom: 659px; width: 10px; height: 10px; padding: 8px;}
+.s12-11{position: absolute; left: 906px; bottom: 659px; width: 10px; height: 10px; padding: 8px;}
+.s12-13{position: absolute; left: 838px; bottom: 636px; width: 10px; height: 10px; padding: 8px;}
+.s12-14{position: absolute; left: 780px; bottom: 635px; width: 10px; height: 10px; padding: 8px;}
+.s12-15{position: absolute; left: 548px; bottom: 467px; width: 10px; height: 10px; padding: 8px;}
+.s12-16{position: absolute; left: 480px; bottom: 331px; width: 10px; height: 10px; padding: 8px;}
+.s12-17{position: absolute; left: 265px; bottom: 332px; width: 10px; height: 10px; padding: 8px;}
+.s12-18{position: absolute; left: 226px; bottom: 332px; width: 10px; height: 10px; padding: 8px;}
+.s12-19{position: absolute; left: 187px; bottom: 332px; width: 10px; height: 10px; padding: 8px;}
+.s12-20{position: absolute; left: 148px; bottom: 332px; width: 10px; height: 10px; padding: 8px;}
+.s12-21{position: absolute; left: 110px; bottom: 332px; width: 10px; height: 10px; padding: 8px;}
+.s12-22{position: absolute; left: 110px; bottom: 305px; width: 10px; height: 10px; padding: 8px;}
+.s12-23{position: absolute; left: 110px; bottom: 278px; width: 10px; height: 10px; padding: 8px;}
+
+/* 11 */
+.s11-1{position: absolute; left: 1113px; bottom: 174px; width: 10px; height: 10px; padding: 8px;}
+.s11-2{position: absolute; left: 1053px; bottom: 174px; width: 10px; height: 10px; padding: 8px;}
+.s11-3{position: absolute; left: 1009px; bottom: 174px; width: 10px; height: 10px; padding: 8px;}
+.s11-4{position: absolute; left: 892px; bottom: 174px; width: 10px; height: 10px; padding: 8px;}
+.s11-5{position: absolute; left: 836px; bottom: 174px; width: 10px; height: 10px; padding: 8px;}
+.s11-6{position: absolute; left: 766px; bottom: 174px; width: 10px; height: 10px; padding: 8px;}
+.s11-7{position: absolute; left: 704px; bottom: 174px; width: 10px; height: 10px; padding: 8px;}
+.s11-8{position: absolute; left: 566px; bottom: 264px; width: 10px; height: 10px; padding: 8px;}
+.s11-9{position: absolute; left: 537px; bottom: 288px; width: 10px; height: 10px; padding: 8px;}
+.s11-10{position: absolute; left: 452px; bottom: 358px; width: 10px; height: 10px; padding: 8px;}
+.s11-11{position: absolute; left: 446px; top: 350px; width: 10px; height: 10px; padding: 8px;}
+.s11-12{position: absolute; left: 431px; top: 328px; width: 10px; height: 10px; padding: 8px;}
+.s11-13{position: absolute; left: 411px; top: 301px; width: 10px; height: 10px; padding: 8px;}
+.s11-14{position: absolute; left: 390px; top: 274px; width: 10px; height: 10px; padding: 8px;}
+.s11-15{position: absolute; left: 372px; top: 249px; width: 10px; height: 10px; padding: 8px;}
+.s11-16{position: absolute; left: 352px; top: 223px; width: 10px; height: 10px; padding: 8px;}
+.s11-17{position: absolute; left: 338px; top: 201px; width: 10px; height: 10px; padding: 8px;}
+.s11-18{position: absolute; left: 320px; top: 177px; width: 10px; height: 10px; padding: 8px;}
+.s11-19{position: absolute; left: 302px; top: 154px; width: 10px; height: 10px; padding: 8px;}
+.s11-20{position: absolute; left: 282px; top: 124px; width: 10px; height: 10px; padding: 8px;}
+.s11-21{position: absolute; left: 282px; top: 88px; width: 10px; height: 10px; padding: 8px;}
+.s11-22{position: absolute; left: 282px; top: 51px; width: 10px; height: 10px; padding: 8px;}
+.s11-23{position: absolute; left: 282px; top: 18px; width: 10px; height: 10px; padding: 8px;}
+
+.s11-24{position: absolute; left: 250px; top: 124px; width: 10px; height: 10px; padding: 8px;}
+.s11-25{position: absolute; left: 215px; top: 124px; width: 10px; height: 10px; padding: 8px;}
+.s11-26{position: absolute; left: 182px; top: 124px; width: 10px; height: 10px; padding: 8px;}
+.s11-27{position: absolute; left: 147px; top: 124px; width: 10px; height: 10px; padding: 8px;}
+.s11-28{position: absolute; left: 114px; top: 124px; width: 10px; height: 10px; padding: 8px;}
+.s11-29{position: absolute; left: 80px; top: 124px; width: 10px; height: 10px; padding: 8px;}
+.s11-30{position: absolute; left: 47px; top: 124px; width: 10px; height: 10px; padding: 8px;}
+/* 10 */
+.s10-1{position: absolute; left: 54px; bottom: 520px; width: 10px; height: 10px; padding: 8px;}
+.s10-2{position: absolute; left: 98px; bottom: 520px; width: 10px; height: 10px; padding: 8px;}
+.s10-3{position: absolute; left: 140px; bottom: 520px; width: 10px; height: 10px; padding: 8px;}
+.s10-4{position: absolute; left: 182px; bottom: 520px; width: 10px; height: 10px; padding: 8px;}
+.s10-5{position: absolute; left: 209px; bottom: 520px; width: 10px; height: 10px; padding: 8px;}
+.s10-6{position: absolute; left: 247px; bottom: 520px; width: 10px; height: 10px; padding: 8px;}
+.s10-7{position: absolute; left: 284px; bottom: 520px; width: 10px; height: 10px; padding: 8px;}
+.s10-9{position: absolute; left: 401px; bottom: 521px; width: 10px; height: 10px; padding: 8px;}
+.s10-10{position: absolute; left: 432px; bottom: 520px; width: 10px; height: 10px; padding: 8px;}
+.s10-12{position: absolute; left: 722px; bottom: 513px; width: 10px; height: 10px; padding: 8px;}
+.s10-13{position: absolute; left: 722px; bottom: 582px; width: 10px; height: 10px; padding: 8px;}
+.s10-14{position: absolute; left: 727px; bottom: 640px; width: 10px; height: 10px; padding: 8px;}
+.s10-15{position: absolute; left: 756px; bottom: 666px; width: 10px; height: 10px; padding: 8px;}
+.s10-16{position: absolute; left: 780px; bottom: 690px; width: 10px; height: 10px; padding: 8px;}
+.s10-17{position: absolute; left: 823px; bottom: 736px; width: 10px; height: 10px; padding: 8px;}
+.s10-19{position: absolute; left: 891px; top: 349px; width: 10px; height: 10px; padding: 8px;}
+.s10-20{position: absolute; left: 915px; top: 326px; width: 10px; height: 10px; padding: 8px;}
+.s10-21{position: absolute; left: 915px; top: 294px; width: 10px; height: 10px; padding: 8px;}
+.s10-22{position: absolute; left: 915px; top: 266px; width: 10px; height: 10px; padding: 8px;}
+.s10-23{position: absolute; left: 915px; top: 240px; width: 10px; height: 10px; padding: 8px;}
+.s10-24{position: absolute; left: 915px; top: 214px; width: 10px; height: 10px; padding: 8px;}
+.s10-25{position: absolute; left: 915px; top: 187px; width: 10px; height: 10px; padding: 8px;}
+.s10-26{position: absolute; left: 177px; bottom: 551px; width: 10px; height: 10px; padding: 8px;}
+.s10-27{position: absolute; left: 174px; bottom: 581px; width: 10px; height: 10px; padding: 8px;}
+/* 9 */
+.s9-1{position: absolute; left: 70px; bottom: 177px; width: 10px; height: 10px; padding: 8px;}
+.s9-2{position: absolute; left: 70px; bottom: 208px; width: 10px; height: 10px; padding: 8px;}
+.s9-3{position: absolute; left: 70px; bottom: 240px; width: 10px; height: 10px; padding: 8px;}
+.s9-4{position: absolute; left: 70px; bottom: 272px; width: 10px; height: 10px; padding: 8px;}
+.s9-5{position: absolute; left: 70px; bottom: 304px; width: 10px; height: 10px; padding: 8px;}
+.s9-6{position: absolute; left: 70px; bottom: 336px; width: 10px; height: 10px; padding: 8px;}
+.s9-7{position: absolute; left: 70px; bottom: 365px; width: 10px; height: 10px; padding: 8px;}
+.s9-8{position: absolute; left: 70px; bottom: 397px; width: 10px; height: 10px; padding: 8px;}
+.s9-9{position: absolute; left: 88px; bottom: 416px; width: 10px; height: 10px; padding: 8px;}
+.s9-10{position: absolute; left: 127px; bottom: 416px; width: 10px; height: 10px; padding: 8px;}
+.s9-11{position: absolute; left: 165px; bottom: 416px; width: 10px; height: 10px; padding: 8px;}
+.s9-12{position: absolute; left: 204px; bottom: 416px; width: 10px; height: 10px; padding: 8px;}
+.s9-13{position: absolute; left: 242px; bottom: 416px; width: 10px; height: 10px; padding: 8px;}
+.s9-14{position: absolute; left: 280px; bottom: 416px; width: 10px; height: 10px; padding: 8px;}
+.s9-15{position: absolute; left: 319px; bottom: 416px; width: 10px; height: 10px; padding: 8px;}
+.s9-16{position: absolute; left: 591px; bottom: 467px; width: 10px; height: 10px; padding: 8px;}
+.s9-17{position: absolute; left: 762px; bottom: 454px; width: 10px; height: 10px; padding: 8px;}
+.s9-18{position: absolute; left: 819px; bottom: 510px; width: 10px; height: 10px; padding: 8px;}
+.s9-19{position: absolute; left: 967px; bottom: 458px; width: 10px; height: 10px; padding: 8px;}
+
+.station.act{background: url(../images/subway/green.png) center center no-repeat; opacity: 1;animation:light_red .8s infinite;
+-webkit-animation:light_red .8s infinite; /* Safari 和 Chrome */}
+@keyframes light_red{
+from {opacity:1;transform:scale(1);}
+to {opacity:1;transform:scale(1.4);}
+}
+
+@-webkit-keyframes light_red{
+from {opacity:1;transform:scale(1);}
+to {opacity:1;transform:scale(1.4);}
+}
+
+.tips-stationclick{position: absolute; background:url(../images/subway/ico01.png) center bottom no-repeat;padding-bottom: 14px; width: 150px; height: 60px; z-index: 12;}
+.tips-stationclick .tips-box{ padding:10px 5px 5px 5px; height: 50px; background: #FFF url(../images/subway/sub_ico.png) 10px 10px no-repeat; border-radius: 3px; color: #1c1c1c; font-size: 16px; overflow: hidden;white-space: nowrap;}
+.tips-stationclick .text-indent{text-indent: 30px; line-height: 22px; height: 22px; padding-bottom: 3px;}
+.tips-stationclick .tips-box .station_name{max-width: 64px;overflow: hidden;}
+.tips-stationclick .tips-box  em{float: left;}
+
+.flow-wrap{position: absolute; left: -40px; top:-20px; width: 230px; background: url(../images/subway/flow_bg.png) repeat; border-radius: 10px; padding: 15px 15px 30px 15px;}
+.flow-wrap .title{background: url(../images/subway/ico2.png) left center no-repeat; text-indent: 50px; line-height: 45px; height: 45px; font-size: 16px; color: #FFF;}
+.flow-wrap .times-over{ font-size: 16px; color: #7d8db8; text-align: center; line-height: 24px; height: 24px;}
+.flow-wrap h3{line-height: 50px; height: 50px; margin: 40px 0 30px 0; position: relative; color: #208def; font-size: 20px;}
+.flow-wrap h3 em{position: absolute; right: 0px; top: 0px;line-height: 40px; height: 40px; display: block;}
+.flow-wrap .flow-person{font-size: 16px; line-height: 24px;height: 24px; margin:10px 0 7px 0; position: relative;}
+.flow-wrap .flow-person .station-num{position: absolute; right: 0px; top: 0px; display: block; line-height: 26px; height: 26px;}
+.flow-wrap .percent{width: 100%; height: 10px; background-color: #464c8f; border-radius: 20px; overflow: hidden;}
+.flow-wrap .percent em{display: block;height: 10px;width: 0px;background-color: #2dcedf; border-radius: 20px;}

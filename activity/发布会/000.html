@@ -1,0 +1,499 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>花生地铁大数据</title>
+	<link rel="stylesheet" href="css/base.css" />
+	<link rel="stylesheet" href="css/main.css" />
+	<link rel="stylesheet" href="css/subway.css" />
+</head>
+<body>
+	<!-- header start  -->
+	<div class="header">
+		<div class="main-wrap clearfix">
+			<div class="fl logo">花生地铁大数据</div>
+			<div class="fr menu-list">
+				<a href="index.html" class="m01 act">首页</a>
+				<a href="product.html" class="m02">产品介绍</a>
+				<a href="user_monitor.html" class="m03">用户监测图</a>
+				<a href="javascript:;" class="m04">站厅热力图</a>
+				<a href="javascript:;" class="m05">线路热力图</a>
+				<a href="javascript:;" class="m06">灯箱广告监测</a>
+				<a href="javascript:;" class="m07">数据接口</a>
+			</div>
+		</div>
+	</div>
+	<!-- header end  -->
+	<div class="main-wrap">
+		<div class="user-data">
+			<div class="data-num" id="cur_data"></div>
+			<div class="data-desc"><span><em id="time">08:52:11</em>花生地铁WiFi当前覆盖用户数</span></div>
+		</div>
+		<!-- 用户覆盖数 end  -->
+		<div class="subway-con01">
+			<div class="subway-wrap">
+				<div id="echarts-box"></div>
+				<div class="s1-1 station" station-name="富锦路"></div>
+				<div class="s1-2 station" station-name="友谊西路"></div>
+				<div class="s1-3 station" station-name="宝安公路"></div>
+				<div class="s1-4 station" station-name="共富新村"></div>
+				<div class="s1-5 station" station-name="呼兰路"></div>
+				<div class="s1-6 station" station-name="通河新村"></div>
+				<div class="s1-7 station" station-name="共康路"></div>
+				<div class="s1-8 station" station-name="彭浦新村"></div>
+				<div class="s1-9 station" station-name="汶水路"></div>
+				<div class="s1-10 station" station-name="上海马戏城"></div>
+				<div class="s1-11 station" station-name="延长路"></div>
+				<div class="s1-12 station" station-name="中山北路"></div>
+				<div class="s1-13 station" station-name="上海火车站"></div>
+				<div class="s1-14 station" station-name="汉中路"></div>
+				<div class="s1-15 station" station-name="新闸路"></div>
+				<div class="s1-16 station" station-name="人民广场"></div>
+				<div class="s1-17 station" station-name="黄陂南路"></div>
+				<div class="s1-18 station" station-name="陕西南路"></div>
+				<div class="s1-19 station" station-name="常熟路"></div>
+				<div class="s1-20 station" station-name="衡山路"></div>
+				<div class="s1-21 station" station-name="徐家汇"></div>
+				<div class="s1-22 station" station-name="上海体育馆"></div>
+				<div class="s1-23 station" station-name="漕宝路"></div>
+				<div class="s1-24 station" station-name="上海南站"></div>
+				<div class="s1-25 station" station-name="锦江乐园"></div>
+				<div class="s1-26 station" station-name="莲花路"></div>
+				<div class="s1-27 station" station-name="外环路"></div>
+				<div class="s1-28 station" station-name="莘庄"></div>
+
+				<div class="s2-1 station" station-name="徐泾东"></div>
+				<div class="s2-2 station" station-name="虹桥火车站"></div>
+				<div class="s2-3 station" station-name="虹桥2号航站楼"></div>
+				<div class="s2-4 station" station-name="淞虹路"></div>
+				<div class="s2-5 station" station-name="北新泾"></div>
+				<div class="s2-6 station" station-name="威宁路"></div>
+				<div class="s2-7 station" station-name="娄山关路"></div>
+				<div class="s2-8 station" station-name="中山公园"></div>
+				<div class="s2-9 station" station-name="江苏路"></div>
+				<div class="s2-10 station" station-name="静安寺"></div>
+				<div class="s2-11 station" station-name="南京西路"></div>
+				<div class="s2-12 station" station-name="南京东路"></div>
+				<div class="s2-13 station" station-name="陆家嘴"></div>
+				<div class="s2-14 station" station-name="东昌路"></div>
+				<div class="s2-15 station" station-name="世纪大道"></div>
+				<div class="s2-16 station" station-name="上海科技馆"></div>
+				<div class="s2-17 station" station-name="世纪公园"></div>
+				<div class="s2-18 station" station-name="龙阳路"></div>
+				<div class="s2-19 station" station-name="张江高科"></div>
+				<div class="s2-20 station" station-name="金科路"></div>
+				<div class="s2-21 station" station-name="广兰路"></div>
+				<div class="s2-22 station" station-name="唐镇"></div>
+				<div class="s2-23 station" station-name="创新中路"></div>
+				<div class="s2-24 station" station-name="华夏东路"></div>
+				<div class="s2-25 station" station-name="川沙"></div>
+				<div class="s2-26 station" station-name="凌空路"></div>
+				<div class="s2-27 station" station-name="远东大道"></div>
+				<div class="s2-28 station" station-name="海天三路"></div>
+				<div class="s2-29 station" station-name="浦东国际机场"></div>
+
+				<div class="s3-1 station" station-name="江杨北路"></div>
+				<div class="s3-2 station" station-name="铁力路"></div>
+				<div class="s3-3 station" station-name="友谊路"></div>
+				<div class="s3-4 station" station-name="宝杨路"></div>
+				<div class="s3-5 station" station-name="水产路"></div>
+				<div class="s3-6 station" station-name="淞滨路"></div>
+				<div class="s3-7 station" station-name="张华浜"></div>
+				<div class="s3-8 station" station-name="淞发路"></div>
+				<div class="s3-9 station" station-name="长江南路"></div>
+				<div class="s3-10 station" station-name="殷高西路"></div>
+				<div class="s3-11 station" station-name="江湾镇"></div>
+				<div class="s3-12 station" station-name="大柏树"></div>
+				<div class="s3-13 station" station-name="赤峰路"></div>
+				<div class="s3-14 station" station-name="虹口足球场"></div>
+				<div class="s3-15 station" station-name="东宝兴路"></div>
+				<div class="s3-16 station" station-name="宝山路"></div>
+				<div class="s3-17 station" station-name="中潭路"></div>
+				<div class="s3-18 station" station-name="镇坪路"></div>
+				<div class="s3-19 station" station-name="曹杨路"></div>
+				<div class="s3-20 station" station-name="金沙江路"></div>
+				<div class="s3-21 station" station-name="延安西路"></div>
+				<div class="s3-22 station" station-name="虹桥路"></div>
+				<div class="s3-23 station" station-name="宜山路"></div>
+				<div class="s3-24 station" station-name="漕溪路"></div>
+				<div class="s3-25 station" station-name="龙漕路"></div>
+				<div class="s3-26 station" station-name="石龙路"></div>
+
+				<div class="s4-1 station" station-name="上海体育场"></div>
+				<div class="s4-2 station" station-name="东安路"></div>
+				<div class="s4-3 station" station-name="大木桥路"></div>
+				<div class="s4-4 station" station-name="鲁班路"></div>
+				<div class="s4-5 station" station-name="西藏南路"></div>
+				<div class="s4-6 station" station-name="南浦大桥"></div>
+				<div class="s4-7 station" station-name="塘桥"></div>
+				<div class="s4-8 station" station-name="蓝村路"></div>
+				<div class="s4-9 station" station-name="浦电路"></div>
+				<div class="s4-10 station" station-name="浦东大道"></div>
+				<div class="s4-11 station" station-name="杨树浦路"></div>
+				<div class="s4-12 station" station-name="大连路"></div>
+				<div class="s4-13 station" station-name="临平路"></div>
+				<div class="s4-14 station" station-name="海伦路"></div>
+
+				<div class="s5-1 station" station-name="春申路"></div>
+				<div class="s5-2 station" station-name="银都路"></div>
+				<div class="s5-3 station" station-name="颛桥"></div>
+				<div class="s5-4 station" station-name="北桥"></div>
+				<div class="s5-5 station" station-name="剑川路"></div>
+				<div class="s5-6 station" station-name="东川路"></div>
+				<div class="s5-7 station" station-name="金平路"></div>
+				<div class="s5-8 station" station-name="华宁路"></div>
+				<div class="s5-9 station" station-name="文井路"></div>
+				<div class="s5-10 station" station-name="闵行开发区"></div>
+
+				<div class="s6-1 station" station-name="港城路"></div>
+				<div class="s6-2 station" station-name="外高桥保税区北"></div>
+				<div class="s6-3 station" station-name="航津路"></div>
+				<div class="s6-4 station" station-name="外高桥保税区南"></div>
+				<div class="s6-5 station" station-name="洲海路"></div>
+				<div class="s6-6 station" station-name="五洲大道"></div>
+				<div class="s6-7 station" station-name="东靖路"></div>
+				<div class="s6-8 station" station-name="五莲路"></div>
+				<div class="s6-9 station" station-name="博兴路"></div>
+				<div class="s6-10 station" station-name="金桥路"></div>
+				<div class="s6-11 station" station-name="云山路"></div>
+				<div class="s6-12 station" station-name="德平路"></div>
+				<div class="s6-13 station" station-name="北洋泾路"></div>
+				<div class="s6-14 station" station-name="民生路"></div>
+				<div class="s6-15 station" station-name="源深体育中心"></div>
+				<div class="s6-16 station" station-name="浦电路"></div>
+				<div class="s6-17 station" station-name="上海儿童医学中心"></div>
+				<div class="s6-18 station" station-name="临沂新村"></div>
+				<div class="s6-19 station" station-name="高科西路"></div>
+				<div class="s6-20 station" station-name="东明路"></div>
+				<div class="s6-21 station" station-name="高青路"></div>
+				<div class="s6-22 station" station-name="华夏西路"></div>
+				<div class="s6-23 station" station-name="上南路"></div>
+				<div class="s6-24 station" station-name="灵岩南路"></div>
+
+				<div class="s7-1 station" station-name="美兰湖"></div>
+				<div class="s7-2 station" station-name="罗南新村"></div>
+				<div class="s7-3 station" station-name="潘广路"></div>
+				<div class="s7-4 station" station-name="刘行"></div>
+				<div class="s7-5 station" station-name="顾村公园"></div>
+				<div class="s7-6 station" station-name="祁华路"></div>
+				<div class="s7-7 station" station-name="上海大学"></div>
+				<div class="s7-8 station" station-name="南陈路"></div>
+				<div class="s7-9 station" station-name="上大路"></div>
+				<div class="s7-10 station" station-name="场中路"></div>
+				<div class="s7-11 station" station-name="大场镇"></div>
+				<div class="s7-12 station" station-name="行知路"></div>
+				<div class="s7-13 station" station-name="大华三路"></div>
+				<div class="s7-14 station" station-name="新村路"></div>
+				<div class="s7-15 station" station-name="岚皋路"></div>
+				<div class="s7-16 station" station-name="长寿路"></div>
+				<div class="s7-17 station" station-name="昌平路"></div>
+				<div class="s7-18 station" station-name="肇嘉浜路"></div>
+				<div class="s7-19 station" station-name="龙华中路"></div>
+				<div class="s7-20 station" station-name="后滩"></div>
+				<div class="s7-21 station" station-name="长清路"></div>
+				<div class="s7-22 station" station-name="耀华路"></div>
+				<div class="s7-23 station" station-name="云台路"></div>
+				<div class="s7-24 station" station-name="杨高南路"></div>
+				<div class="s7-25 station" station-name="锦绣路"></div>
+				<div class="s7-26 station" station-name="芳华路"></div>
+				<div class="s7-27 station" station-name="花木路"></div>
+
+				<div class="s8-1 station" station-name="市光路"></div>
+				<div class="s8-2 station" station-name="嫩江路"></div>
+				<div class="s8-3 station" station-name="翔殷路"></div>
+				<div class="s8-4 station" station-name="黄兴公园"></div>
+				<div class="s8-5 station" station-name="延吉中路"></div>
+				<div class="s8-6 station" station-name="黄兴路"></div>
+				<div class="s8-7 station" station-name="江浦路"></div>
+				<div class="s8-8 station" station-name="鞍山新村"></div>
+				<div class="s8-9 station" station-name="四平路"></div>
+				<div class="s8-10 station" station-name="曲阳路"></div>
+				<div class="s8-11 station" station-name="西藏北路"></div>
+				<div class="s8-12 station" station-name="中兴路"></div>
+				<div class="s8-13 station" station-name="曲阜路"></div>
+				<div class="s8-14 station" station-name="大世界"></div>
+				<div class="s8-15 station" station-name="老西门"></div>
+				<div class="s8-16 station" station-name="陆家浜路"></div>
+				<div class="s8-17 station" station-name="中华艺术宫"></div>
+				<div class="s8-18 station" station-name="成山路"></div>
+				<div class="s8-19 station" station-name="杨思"></div>
+				<div class="s8-21 station" station-name="凌兆新村"></div>
+				<div class="s8-20 station" station-name="东方体育中心"></div>
+				<div class="s8-22 station" station-name="芦恒路"></div>
+				<div class="s8-23 station" station-name="浦江镇"></div>
+				<div class="s8-24 station" station-name="江月路"></div>
+				<div class="s8-25 station" station-name="联航路"></div>
+				<div class="s8-26 station" station-name="沈杜公路"></div>
+
+				<!-- 16号线   begin -->
+				<div class="s16-1 station" station-name="滴水湖"></div>
+				<div class="s16-2 station" station-name="临港大道"></div>
+				<div class="s16-3 station" station-name="书院"></div>
+				<div class="s16-4 station" station-name="惠南东"></div>
+				<div class="s16-5 station" station-name="惠南"></div>
+				<div class="s16-6 station" station-name="野生动物园"></div>
+				<div class="s16-7 station" station-name="新场"></div>
+				<div class="s16-8 station" station-name="航头东"></div>
+				<div class="s16-9 station" station-name="鹤沙航城"></div>
+				<div class="s16-10 station" station-name="周浦东"></div>
+				<div class="s16-11 station" station-name="罗山路"></div>
+				<div class="s16-12 station" station-name="华夏中路"></div>
+				<!-- 16号线 end -->
+				
+				<!-- 13 begin-->
+				<div class="s13-1 station" station-name="世博大道"></div>
+				<div class="s13-2 station" station-name="世博会博物馆"></div>
+				<div class="s13-3 station" station-name="马当路"></div>
+				<div class="s13-4 station" station-name="新天地"></div>
+				<div class="s13-5 station" station-name="淮海中路"></div>
+				<div class="s13-7 station" station-name="自然博物馆"></div>
+				<div class="s13-9 station" station-name="江宁路"></div>
+				<div class="s13-11 station" station-name="武宁路"></div>
+				<div class="s13-12 station" station-name="隆德路"></div>
+				<div class="s13-14 station" station-name="大渡河路"></div>
+				<div class="s13-15 station" station-name="真北路"></div>
+				<div class="s13-16 station" station-name="祁连山南路"></div>
+				<div class="s13-17 station" station-name="丰庄"></div>
+				<div class="s13-18 station" station-name="金沙江西路"></div>
+				<div class="s13-19 station" station-name="金运路"></div>
+				<!-- 13 end-->
+				
+				<!-- 11 begin -->
+				<div class="s11-1 station" station-name="迪士尼"></div>
+				<div class="s11-2 station" station-name="康新公路"></div>
+				<div class="s11-3 station" station-name="秀沿路"></div>
+				<div class="s11-4 station" station-name="御桥"></div>
+				<div class="s11-5 station" station-name="浦三路"></div>
+				<div class="s11-6 station" station-name="三林东"></div>
+				<div class="s11-7 station" station-name="三林"></div>
+				<div class="s11-8 station" station-name="龙耀路"></div>
+				<div class="s11-9 station" station-name="云锦路"></div>
+				<div class="s11-10 station" station-name="上海游泳馆"></div>
+				<div class="s11-11 station" station-name="枫桥路"></div>
+				<div class="s11-12 station" station-name="真如"></div>
+				<div class="s11-13 station" station-name="上海西站"></div>
+				<div class="s11-14 station" station-name="李子园"></div>
+				<div class="s11-15 station" station-name="祁连山路"></div>
+				<div class="s11-16 station" station-name="武威路"></div>
+				<div class="s11-17 station" station-name="桃浦新村"></div>
+				<div class="s11-18 station" station-name="南翔"></div>
+				<div class="s11-19 station" station-name="马陆"></div>
+				<div class="s11-20 station" station-name="嘉定新城"></div>
+				<div class="s11-21 station" station-name="白银路"></div>
+				<div class="s11-22 station" station-name="嘉定西"></div>
+				<div class="s11-23 station" station-name="嘉定北"></div>
+
+				<div class="s11-24 station" station-name="上海赛车场"></div>
+				<div class="s11-25 station" station-name="昌吉东路"></div>
+				<div class="s11-26 station" station-name="上海汽车城"></div>
+				<div class="s11-27 station" station-name="安亭"></div>
+				<div class="s11-28 station" station-name="兆丰路"></div>
+				<div class="s11-29 station" station-name="光明路"></div>
+				<div class="s11-30 station" station-name="花桥"></div>
+				<!-- 11 end -->
+				
+				<!-- 12 begin -->
+				<div class="s12-1 station" station-name="金海路"></div>
+				<div class="s12-2 station" station-name="申江路"></div>
+				<div class="s12-3 station" station-name="金京路"></div>
+				<div class="s12-4 station" station-name="杨高北路"></div>
+				<div class="s12-5 station" station-name="巨峰路"></div>
+				<div class="s12-6 station" station-name="东陆路"></div>
+				<div class="s12-7 station" station-name="复兴岛"></div>
+				<div class="s12-8 station" station-name="爱国路"></div>
+				<div class="s12-9 station" station-name="隆昌路"></div>
+				<div class="s12-10 station" station-name="宁国路"></div>
+				<div class="s12-11 station" station-name="江浦公园"></div>
+				<div class="s12-13 station" station-name="提篮桥"></div>
+				<div class="s12-14 station" station-name="国际客运中心"></div>
+				<div class="s12-15 station" station-name="嘉善路"></div>
+				<div class="s12-16 station" station-name="龙华"></div>
+				<div class="s12-17 station" station-name="桂林公园"></div>
+				<div class="s12-18 station" station-name="虹漕路"></div>
+				<div class="s12-19 station" station-name="虹梅路"></div>
+				<div class="s12-20 station" station-name="东兰路"></div>
+				<div class="s12-21 station" station-name="顾戴路"></div>
+				<div class="s12-22 station" station-name="虹莘路"></div>
+				<div class="s12-23 station" station-name="七莘路"></div>
+				<!-- 12 end -->
+				
+				<!-- 10 begin-->
+				<div class="s10-1 station" station-name="航中路"></div>
+				<div class="s10-2 station" station-name="紫藤路"></div>
+				<div class="s10-3 station" station-name="龙柏新村"></div>
+				<div class="s10-4 station" station-name="龙溪路"></div>
+				<div class="s10-5 station" station-name="水城路"></div>
+				<div class="s10-6 station" station-name="伊犁路"></div>
+				<div class="s10-7 station" station-name="宋园路"></div>
+				<div class="s10-9 station" station-name="交通大学"></div>
+				<div class="s10-10 station" station-name="上海图书馆"></div>
+				<div class="s10-12 station" station-name="豫园"></div>
+				
+				<div class="s10-14 station" station-name="天潼路"></div>
+				<div class="s10-15 station" station-name="四川北路"></div>
+				<div class="s10-17 station" station-name="邮电新村"></div>
+				<div class="s10-19 station" station-name="同济大学"></div>
+				<div class="s10-20 station" station-name="国权路"></div>
+				<div class="s10-21 station" station-name="五角场"></div>
+				<div class="s10-22 station" station-name="江湾体育场"></div>
+				<div class="s10-23 station" station-name="三门路"></div>
+				<div class="s10-24 station" station-name="殷高东路"></div>
+				<div class="s10-25 station" station-name="新江湾城"></div>
+				
+				<div class="s10-26 station" station-name="上海动物园"></div>
+				<div class="s10-27 station" station-name="虹桥1号航站楼"></div>
+				<!-- 10 end-->
+				
+				<!-- 9 begin -->
+				<div class="s9-1 station" station-name="松江南站"></div>
+				<div class="s9-2 station" station-name="醉白池"></div>
+				<div class="s9-3 station" station-name="松江体育中心"></div>
+				<div class="s9-4 station" station-name="松江新城"></div>
+				<div class="s9-5 station" station-name="松江大学城"></div>
+				<div class="s9-6 station" station-name="洞泾"></div>
+				<div class="s9-7 station" station-name="佘山"></div>
+				<div class="s9-8 station" station-name="泗泾"></div>
+				<div class="s9-9 station" station-name="九亭"></div>
+				<div class="s9-10 station" station-name="中春路"></div>
+				<div class="s9-11 station" station-name="七宝"></div>
+				<div class="s9-12 station" station-name="星中路"></div>
+				<div class="s9-13 station" station-name="合川路"></div>
+				<div class="s9-14 station" station-name="漕河泾开发区"></div>
+				<div class="s9-15 station" station-name="桂林路"></div>
+				<div class="s9-16 station" station-name="马当路"></div>
+				<div class="s9-17 station" station-name="小南门"></div>
+				<div class="s9-18 station" station-name="商城路"></div>
+				<div class="s9-19 station" station-name="杨高中路"></div>
+				<!-- 9 end -->
+
+				<div class="line1-1 line1 lines" lines-name="1号线"></div>
+				<div class="line1-2 line1 lines" lines-name="1号线"></div>
+				<div class="line2-1 line2 lines" lines-name="2号线"></div>
+				<div class="line2-2 line2 lines" lines-name="2号线"></div>
+				<div class="line3-1 line3 lines" lines-name="3号线"></div>
+				<div class="line3-2 line3 lines" lines-name="3号线"></div>
+				<div class="line4-1 line4 lines" lines-name="4号线"></div>
+				<div class="line5-1 line5 lines" lines-name="5号线"></div>
+				<div class="line6-1 line6 lines" lines-name="6号线"></div>
+				<div class="line6-2 line6 lines" lines-name="6号线"></div>
+				<div class="line7-1 line7 lines" lines-name="7号线"></div>
+				<div class="line7-2 line7 lines" lines-name="7号线"></div>
+				<div class="line8-1 line8 lines" lines-name="8号线"></div>
+				<div class="line8-2 line8 lines" lines-name="8号线"></div>
+				<div class="line9-1 line9 lines" lines-name="9号线"></div>
+				<div class="line9-2 line9 lines" lines-name="9号线"></div>
+				<div class="line10-1 line10 lines" lines-name="10号线"></div>
+				<div class="line10-2 line10 lines" lines-name="10号线"></div>
+				<div class="line11-1 line11 lines" lines-name="11号线"></div>
+				<div class="line11-2 line11 lines" lines-name="11号线"></div>
+				<div class="line12-1 line12 lines" lines-name="12号线"></div>
+				<div class="line13-1 line13 lines" lines-name="13号线"></div>
+				<div class="line13-2 line13 lines" lines-name="13号线"></div>
+				<div class="line16-1 line16 lines" lines-name="16号线"></div>
+				
+			</div>
+		</div>
+		<!-- subway end  -->
+	</div>
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="js/animate_num.js"></script>
+<script>
+	$(function(){
+		getUserData();
+		setInterval(getUserData,3000);
+
+		topStation();//调用top10的站点
+		setInterval(topStation,36000); //调用top10的站点  每10分钟刷新一次
+		//
+		function getUserData(){
+			var mydate = new Date();
+			var h = mydate.getHours(); //获取当前小时数(0-23)
+			var m = mydate.getMinutes(); //获取当前分钟数(0-59)
+			var s = mydate.getSeconds(); //获取当前秒数(0-59)
+			if (h<10) {h = "0" +h;}
+	        if (m<10) {m = "0" +m;}
+	        if (s<10) {s = "0" +s;}
+			var time_text = h+":"+m+":"+s;
+			$("#time").text(time_text);
+		}
+
+		var numRun2 = $("#cur_data").numberAnimate({num:'15343242', speed:2000, symbol:","});
+		  var nums2 = 15343242;
+		  setInterval(function(){
+		    nums2+= 1433;
+		    console.log(nums2);
+		    numRun2.resetData(nums2);
+		  },3000);
+
+		//移入站点出来站点名称以及人数,移出隐藏
+		var stationTimeout;
+		$(".station").hover(function(){
+			clearTimeout(stationTimeout);
+			var obj = $(this).parents(".subway-wrap");
+			var $this_left = parseInt($(this).css("left"))-87;
+			var $this_top = parseInt($(this).css("top"))+13-128;
+			if($(".tips-station").length==0){
+				obj.append('<div class="tips-station"><div class="tips-box">'+
+						   '<p>站台：<em id="station_name"></em></p>'+
+						   '<p>人数：<em>153254</em></p></div></div>');
+			}else{
+				$(".tips-station").show();
+			}
+			$("#station_name").text($(this).attr("station-name"));
+			$(".tips-station").css({"left":$this_left+"px","top":$this_top+"px"});
+		},function(){
+			stationTimeout = setTimeout(function(){$(".tips-station").hide();},100);
+		});
+		$(".subway-wrap").on("mouseover",".tips-station",function(){
+	      clearTimeout(stationTimeout);
+	    });
+	    $(".subway-wrap").on("mouseout",".tips-station",function(){
+	      stationTimeout = setTimeout(function(){$(".tips-station").hide();},100);
+	    });
+
+	    //移入站点出来站点名称以及人数,移出隐藏
+		var linesTimeout;
+		$(".lines").hover(function(){
+			clearTimeout(linesTimeout);
+			var obj = $(this).parents(".subway-wrap");
+			var $this_left = parseInt($(this).css("left"))-87;
+			var $this_top = parseInt($(this).css("top"))+13-128;
+			if($(".tips-lines").length==0){
+				obj.append('<div class="tips-lines"><div class="tips-box">'+
+						   '<p>线路：<em id="lines_name"></em></p>'+
+						   '<p>人数：<em>153254</em></p></div></div>');
+			}else{
+				$(".tips-lines").show();
+			}
+			$("#lines_name").text($(this).attr("lines-name"));
+			$(".tips-lines").css({"left":$this_left+"px","top":$this_top+"px"});
+		},function(){
+			linesTimeout = setTimeout(function(){$(".tips-lines").hide();},100);
+		});
+		$(".subway-wrap").on("mouseover",".tips-lines",function(){
+	      clearTimeout(linesTimeout);
+	    });
+	    $(".subway-wrap").on("mouseout",".tips-lines",function(){
+	      linesTimeout = setTimeout(function(){$(".tips-lines").hide();},100);
+	    });
+
+		//热门站点TOP10 定义
+		function topStation(){
+			var top10_station = ["杨高南路","云锦路","真北路","世博大道","江苏路","黄陂南路","汶水路","武宁路","通河新村","桂林路"];
+			for(var i=0;i<top10_station.length;i++){
+				var sta_name =top10_station[i];
+				$(".station").each(function(){
+					if($(this).attr("station-name")===sta_name){
+						$(this).addClass('act');
+					}
+				})
+			}
+		}
+
+
+
+		
+	})
+</script>
+</body>
+</html>

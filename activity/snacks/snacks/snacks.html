@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta http-equiv="Cache-Control" content="no-cache" />
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="MobileOptimized" content="240" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="email=no" name="format-detection" />
+		
+		<!-- windows phone 点击无高光 -->
+		<meta name="msapplication-tap-highlight" content="no">
+		<!-- 适应移动端end -->
+		<title>免费美食送不停</title>
+
+		<link rel="stylesheet" href="css/swiper.min.css" />
+		<link rel="stylesheet" href="css/snacks.css">
+	</head>
+
+	<body style="background: #b32b39;">
+		<div class="main-wrap">
+			<div class="snacks-top fl_start">
+				<a href="javascript:;" id="snacks-rule"></a>
+				<a href="my_awards.html" ></a>
+			</div>
+			<div class="dice">
+				<div class="dice-content dice-change"></div>
+			</div>
+			<div class="snacks-bt">
+				<a href="javascript:;"></a>
+			</div>
+			<div class="snacks-number today-nums">
+				抽奖次数 <em>6</em> 次
+			</div>
+			<div class="snacks-list">
+				<div class="swiper-container">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide snacks-item">
+							<img src="images/snacks/snacks-1.png" />
+						</div>
+						<div class="swiper-slide snacks-item">
+							<img src="images/snacks/snacks-2.png" />
+						</div>
+						<div class="swiper-slide snacks-item">
+							<img src="images/snacks/snacks-3.png" />
+						</div>
+						<div class="swiper-slide snacks-item">
+							<img src="images/snacks/snacks-4.png" />
+						</div>
+						<div class="swiper-slide snacks-item">
+							<img src="images/snacks/snacks-5.png" />
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		
+		<!-- 中奖弹窗 begin -->
+		<div class="snacks-prize prize-popupWrap" id="prize-popupWrap" style="display: none;">
+			
+			<div class="prize-popupBox">
+				<div class="prize-popup" id="awards_ad_id">
+					<div class="prize-close" ></div>
+					<p class="prize-title" id="awards_title_id">恭喜你获得800元优惠券</p>
+					<div class="prize-contentWrap">
+						<a href="javascript:;" class="prize-content award-img click-link" id="award_img_id">
+							<img src="images/snacks/snacks1.png" />
+						</a>
+						<p class="" id="awards_subTitle_id">还没带上智能手表，你太low了</p>
+						<a href="javascript:;" class="prizeCen-bt click-get click-link" tagers="" appkey="" adId="" id="awards_btnTitle_id">点 击 领 取</a>
+					</div> 
+					<div class="snacksPrize-close" id="snacksPrize-close"></div>
+				</div>
+			</div>
+		</div>
+		<!-- 中奖弹窗 end -->
+		
+		<!-- 规则弹窗 begin -->
+		<div class="snacks-prize rule-popupWrap prize-popupWrap" id="rule-popupWrap" style="display: none;">
+			<div class="rule-popupBox prize-popupBox">
+				<div class="rule-popup ">
+					<div class="rule-close prize-close" id="snacksRule-close">
+					</div>
+					<div class="rule-content">
+						<p>活动规则</p>
+						<p>1、此活动为概率中奖，奖品数量有限。</p>
+						<p>2、12.20-12.21活动预热期，开放机票、健身卡奖品，每名用户每天2次抽奖机会。</p>
+						<p>3、12.22-12.25活动期间，全部奖品开放，每名用户每天6次抽奖机会，限当天使用</p>
+						<p>4、红包存放于支付宝卡包，可在所有支持支付宝付款线下店使用，至领取日有效期3天！</p>
+						<p>5、实物奖品在中奖后的10个工作日内寄出，请及时填写准确地址，没填视为主动放弃；使用快递到付，拒收视为放弃奖品</p>
+						<p>6、本活动解释权归花生地铁WiFi所有</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 规则弹窗 begin -->
+		
+		<!-- 抽奖次数0 begin -->
+		<div class="snacks-prize prize-popupWrap prize-numWrap" id="prize-numWrap" style="display: none;">
+			<div class="prize-popupBox" id="prize-popupBox">
+				<!-- prize-num0  抽奖次数为0   -->
+				<!-- prize-numSb 错误提示 -->
+				<div class="prize-num prize-num0">
+					<div class="prize-word snacksPrize-numColse" id="snacksPrize-numColse"></div>
+				</div>
+			</div>
+		</div>
+		<!-- 抽奖次数0 end -->
+
+		<!-- 未登录 begin -->
+		<div class="snacks-prize prize-popupWrap prize-loginWrap" id="prize-loginWrap" style="display: none;">
+			<div class="prize-popupBox" id="prize-popupBox">
+				<div class="prize-num prize-unlogined">
+					<div class="prize-btn snacksPrize-numColse" id="snacksPrize-loginColse">知道了</div>
+				</div>
+			</div>
+		</div>
+		<!-- 未登录 end -->
+		<!-- 引导 begin -->
+		<div class="snacks-prize prize-popupWrap" id="guideWrap" style="display: block;">
+			<div class="prize-popupBox">
+				<div class="guide guide-one"></div>
+				<div class="guide guide-two"></div>
+			</div>
+		</div>
+		<!-- 引导 end -->
+		
+		<script src="js/zepto.min.js"></script>
+		<script type="text/javascript" src="js/swiper.min.js"></script>
+		<script type="text/javascript" src="js/public.js"></script>
+		<script type="text/javascript" src="js/snacks.js"></script>
+		
+		<script type="text/javascript">
+			$(function() {
+				var win_w = $(".main-wrap").width();
+				var swiper_space = parseFloat(win_w/320);
+				/* 奖品轮播 */
+				var swiper = new Swiper('.swiper-container', {
+					pagination: '.swiper-pagination',
+					slidesPerView: 4,
+					paginationClickable: true,
+					spaceBetween: 200*swiper_space,
+					freeMode: true
+				});
+				/* 关闭奖品 */
+				$("#snacksPrize-close").click(function() {
+					$("#awards_ad_id").addClass("prizeClose");
+					setTimeout(function(){
+						$("#prize-popupWrap").hide();
+						$("#awards_ad_id").removeClass("prizeClose");
+					},900)
+				})
+				/* 关闭规则 */
+				$("#snacksRule-close").click(function() {
+						$("#rule-popupWrap").hide();
+				})
+
+				$("#snacks-rule").click(function() {
+					$("#rule-popupWrap").show();
+				})
+				/* 关闭失败  用完 */
+				$("#snacksPrize-numColse").click(function() {
+						$("#prize-numWrap").hide();
+				});	
+				/* 关闭失败  用完 */
+				$("#snacksPrize-loginColse").click(function() {
+						$("#prize-loginWrap").hide();
+				});
+				/* 关闭引导*/
+				$("#guideWrap").click(function() {
+					$("#guideWrap").hide();
+				})
+				var img = new Image();
+				console.log("xx");
+				img.src ="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=619444398,63439158&fm=11&gp=0.jpg";
+				$(".snacks-item img").attr("src","https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=619444398,63439158&fm=11&gp=0.jpg");
+				console.log(img[0].fileSize);			
+			})
+		</script>
+	</body>
+
+</html>

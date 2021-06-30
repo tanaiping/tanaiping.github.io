@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+<meta name="MobileOptimized" content="240" />
+<meta name="apple-touch-fullscreen" content="YES" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta content="telephone=no" name="format-detection" />  
+<meta content="email=no" name="format-detection" />
+<!-- uc强制竖屏 -->
+<meta name="screen-orientation" content="portrait">
+<!-- QQ强制竖屏 -->
+<meta name="x5-orientation" content="portrait">
+<!-- UC强制全屏 -->
+<meta name="full-screen" content="yes">
+<!-- QQ强制全屏 -->
+<meta name="x5-fullscreen" content="true">
+<!-- UC应用模式 -->
+<meta name="browsermode" content="application">
+<!-- QQ应用模式 -->
+<meta name="x5-page-mode" content="app">
+<!-- windows phone 点击无高光 -->
+<meta name="msapplication-tap-highlight" content="no">
+<!-- 适应移动端end -->
+<title>佛罗伦萨小镇</title>
+<link rel="stylesheet" href="css/com_gz.css">
+</head>
+<body>
+<div class="main-wrap">
+    <div class="header">
+        <div class="t1">佛罗伦萨小镇上海名品奥特莱斯 </div>
+        <div class="t2">50元现金礼遇</div>
+        <a href="javascript:;" class="click-btn">立即领取</a>
+    </div>
+    <div class="code-bg">
+        <div class="t1">券码</div>
+        <div class="t2">点击上方领取键生成券码</div>
+        <div class="msg">截图券码保存至相册使用</div>
+    </div>
+    <div class="img-contain">
+        <img src="images/sh_img03.png" alt="">
+        <img src="images/sh_img04.png" alt="">
+        <img src="images/sh_img05.png" alt="">
+        <img src="images/sh_img06.png" alt="">
+        <img src="images/sh_img07.png" alt="">
+        <img src="images/sh_img08.png" alt="">
+        <img src="images/sh_img09.png" alt="">
+        <img src="images/sh_img10.png" alt="">
+        <img src="images/sh_img11.png" alt="">
+        <img src="images/sh_img12.png" alt="">
+        <img src="images/sh_img13.png" alt="">
+        <img src="images/sh_img14.png" alt="">
+        <img src="images/sh_img15.png" alt="">
+        <img src="images/sh_img16.png" alt="">
+        <img src="images/sh_img17.png" alt="">
+        <img src="images/sh_img18.png" alt="">
+        <img src="images/sh_img19.png" alt="">
+        <img src="images/sh_img20.png" alt="">
+        <img src="images/sh_img21.png" alt="">
+        <img src="images/sh_img22.png" alt="">
+    </div>
+</div>
+
+
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/com.js"></script>
+<script>
+$(function(){
+   
+    window.addEventListener('resize', setSize, false);
+    setSize();
+
+    //确认使用
+    $(".click-btn").click(function(event) {
+        /* Act on the event */
+        var login_status =0  //App外
+        if(login_status==0){
+                commonUtils.showPop2("仅支持花生地铁WiFiApp内领取",2000,1.6);
+        }else{
+
+            if(!$(this).hasClass('disabled')){
+                $(".code-bg .t2").addClass('active').text("BDDCTEADGHYRE");
+                $(".header .t1").text("恭喜获得上海佛罗伦萨小镇");
+                
+                $(this).addClass('disabled').text("已领取");
+            }
+        }
+
+    });
+
+    
+
+ });
+</script>
+</body>
+</html>

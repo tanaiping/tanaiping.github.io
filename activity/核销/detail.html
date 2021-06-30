@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+<meta name="MobileOptimized" content="240" />
+<meta name="apple-touch-fullscreen" content="YES" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta content="telephone=no" name="format-detection" />  
+<meta content="email=no" name="format-detection" />
+<!-- uc强制竖屏 -->
+<meta name="screen-orientation" content="portrait">
+<!-- QQ强制竖屏 -->
+<meta name="x5-orientation" content="portrait">
+<!-- UC强制全屏 -->
+<meta name="full-screen" content="yes">
+<!-- QQ强制全屏 -->
+<meta name="x5-fullscreen" content="true">
+<!-- UC应用模式 -->
+<meta name="browsermode" content="application">
+<!-- QQ应用模式 -->
+<meta name="x5-page-mode" content="app">
+<!-- windows phone 点击无高光 -->
+<meta name="msapplication-tap-highlight" content="no">
+<!-- 适应移动端end -->
+<title>券码验证码平台</title>
+<link rel="stylesheet" href="css/com.css">
+</head>
+<body>
+<div class="main-con">
+    <div class="header"><a href="javascript:history.go(-1);"><img src="images/back.png" alt="" class="back-ico">返回</a></div>
+    <div class="pos-con01">
+        <div class="title">券码</div>
+        <div class="num">646-763-098-099</div>
+        <div class="shop">商家：宋记香辣蟹记</div>
+        <div class="date">有效日期:2017.7.20-2018.12.30</div>
+    </div>
+    <div class="pos-con02">使用状态:<em>未使用</em></div>
+    <div class="btn-box">
+        <div class="clearfix">
+            <div class="again-btn fl"><img src="images/again_btn.png" alt=""></div>
+            <div class="submit-btn fr"><img src="images/submit_btn.png" alt=""></div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script>
+$(function(){
+    //rem 设置
+    function Rem() {
+    var docEl = document.documentElement,
+    oSize = docEl.clientWidth / 36;
+
+    if (oSize > 20) {
+    oSize = 15; // 限制rem值 720 / 36 =20
+    }
+    //console.log(oSize);
+    docEl.style.fontSize = oSize + 'px';
+    }
+    function setSize(){
+        Rem();
+        var win_h = $(window).height();
+        var btn_w =parseInt(win_h*750/1334*0.60);
+        var marginL =parseInt(btn_w/2);
+        $(".btn-box").css("width",btn_w+"px"); 
+        $(".btn-box").css("marginLeft",-marginL+"px");
+        $(".main-con").css("height",win_h);
+    }
+    window.addEventListener('resize', setSize, false);
+    setSize();
+
+    $(".again-btn").click(function(){
+       window.location.href="index.html"
+    })
+
+    $(".submit-btn").click(function(){
+       alert("提交成功！")
+    })
+
+     
+
+ });
+</script>
+</body>
+</html>

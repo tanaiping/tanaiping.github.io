@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+<meta name="MobileOptimized" content="240" />
+<meta name="apple-touch-fullscreen" content="YES" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta content="telephone=no" name="format-detection" />  
+<meta content="email=no" name="format-detection" />
+<!-- uc强制竖屏 -->
+<meta name="screen-orientation" content="portrait">
+<!-- QQ强制竖屏 -->
+<meta name="x5-orientation" content="portrait">
+<!-- UC强制全屏 -->
+<meta name="full-screen" content="yes">
+<!-- QQ强制全屏 -->
+<meta name="x5-fullscreen" content="true">
+<!-- UC应用模式 -->
+<meta name="browsermode" content="application">
+<!-- QQ应用模式 -->
+<meta name="x5-page-mode" content="app">
+<!-- windows phone 点击无高光 -->
+<meta name="msapplication-tap-highlight" content="no">
+<!-- 适应移动端end -->
+<title>地铁配对</title>
+<link rel="stylesheet" type="text/css" href="css/com.css">
+<script type="text/javascript" src="js/jquery.js"></script>  
+</head>
+<body>
+<div class="swiper-container-horizontal main-wrap" >  
+    <img src="images/gift_bg.jpg" alt=""  class="gift-bgimg">
+    <a href="javascript:history.go(-1);" class="gift-back"><img src="images/back.png" alt=""></a>
+    <a href="template.html" class="going-play"><img src="images/going_play.png" alt=""></a>
+    <ul class="gift-list clearfix">
+        <li>
+            <img src="images/gift01.png" alt="" class="gift-img">
+            <div class="get-status"><img src="images/unprize.png" alt=""></div>  <!--  已中奖的 图片名  prized -->
+        </li>
+        <li>
+            <img src="images/gift02.png" alt="" class="gift-img">
+            <div class="get-status"><img src="images/unprize.png" alt=""></div>  <!--  已中奖的 图片名  prized -->
+        </li>
+        <li>
+            <img src="images/gift03.png" alt="" class="gift-img">
+            <div class="get-status"><img src="images/unprize.png" alt=""></div>  <!--  已中奖的 图片名  prized -->
+            <div class="clicked-status"><a href="javascript:;"><img src="images/clicked_get.png" alt=""></a></div>  <!--  可领取的 图片名  click_get -->
+        </li>
+        <li>
+            <img src="images/gift04.png" alt="" class="gift-img">
+             <div class="get-status"><img src="images/prized.png" alt=""></div>  <!--  已中奖的 图片名  prized -->
+        </li>
+        <li>
+            <img src="images/gift05.png" alt="" class="gift-img">
+            <div class="get-status"><img src="images/unprize.png" alt=""></div>  <!--  已中奖的 图片名  prized -->
+        </li>
+        <li>
+            <img src="images/gift11.png" alt="" class="gift-img">
+            <div class="get-status"><img src="images/unprize.png" alt=""></div>  <!--  已中奖的 图片名  prized -->
+        </li>
+        <li>
+            <img src="images/gift12.png" alt="" class="gift-img">
+            <div class="get-status"><img src="images/unprize.png" alt=""></div>  <!--  已中奖的 图片名  prized -->
+            <div class="clicked-status"><a href="javascript:;"><img src="images/clicked_get.png" alt=""></a></div>  <!--  可领取的 图片名  click_get -->
+        </li>
+        <li>
+            <img src="images/gift13.png" alt="" class="gift-img">
+            <div class="get-status"><img src="images/unprize.png" alt=""></div>  <!--  已中奖的 图片名  prized -->
+            <div class="clicked-status"><a href="javascript:;"><img src="images/click_get.png" alt=""></a></div>  <!--  可领取的 图片名  click_get -->
+        </li>
+        <li>
+            <img src="images/gift14.png" alt="" class="gift-img">
+            <div class="get-status"><img src="images/unprize.png" alt=""></div>  <!--  已中奖的 图片名  prized -->
+            <div class="clicked-status"><a href="javascript:;"><img src="images/clicked_get.png" alt=""></a></div>  <!--  可领取的 图片名  click_get -->
+        </li>
+        <li>
+            <img src="images/gift15.png" alt="" class="gift-img">
+            <div class="get-status"><img src="images/unprize.png" alt=""></div>  <!--  已中奖的 图片名  prized -->
+        </li>
+
+    </ul>
+</div>
+<script>
+$(function(){
+    // var win_w = $(window).width();
+    // var win_h = $(window).height();
+    var win_w = window.screen.width;
+    var win_h = window.screen.height;
+    var dp = window.devicePixelRatio;
+    // console.log(win_w + "==="+dp);
+    if(win_w<win_h){
+        var tanslate_value =parseInt((win_h-win_w)/2);
+        var value = 'rotate(90deg) translateX('+tanslate_value+'px) translateY('+tanslate_value+'px)';
+        $(".main-wrap").css({"width":win_h,"height":win_w}).css('transform',value);
+        $(".gift-bgimg").css({"width":win_h,"height":win_w});
+        
+        
+    }else{
+        $(".main-wrap").css({"width":win_w,"height":win_h});
+        $(".gift-bgimg").css({"width":win_w,"height":win_h});
+    }
+
+
+
+
+});
+</script>
+</body>
+</html>

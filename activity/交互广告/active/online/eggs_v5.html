@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="MobileOptimized" content="240" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />  
+    <meta content="email=no" name="format-detection" />
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title>亿万红包等你抢</title>
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <link rel="stylesheet" href="css/egg_v1.css">
+    <script src="js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="js/swiper.min_v1.js"></script> 
+	<script type="text/javascript" src="js/public.js"></script>
+	
+    <script>
+        $(function(){
+            //页面加载就读取cookie
+			 appkey = GetQueryString("appkey");
+			 console.info("appkey="+ appkey);
+            var cookie_load = eval('(' + cookie.getCookie(appkey+"_2_cookie_egg") + ')');
+            if(cookie_load!=null){
+                var eggStr = JSON.stringify(cookie_load);
+                var arr = eval(eggStr);
+                for(var i=0;i<arr.length;i++){
+                    $(".eggs-box").eq(arr[i]).addClass('disabled').find(".egg1").addClass('hidden');
+                }
+            }
+            console.info("页面加载时的egg cookie="+JSON.stringify(cookie_load));
+        })
+    </script>
+</head>
+<body style="background-color: #8a0c0e;">
+    <div class="main-wrap">
+        <img src="images/eggs/main_bg.jpg" alt="" class="main-bg">
+        <div class="rules-btn"><img src="images/eggs/rules_btn.png" alt=""></div>
+       <a href="#" class="myawards-btn" onclick="myawards(2)"><img src="images/eggs/myawards_btn.png" alt=""></a>
+        <div class="hammer"><img src="images/eggs/chui_btn.png" alt="" class="chuizi-btn rotateInit"></div>
+        <div class="today-nums"><div class="txt">当前还有<em>8</em>次砸蛋机会</div></div>
+        <!-- Swiper -->
+        <div class="bottom-swiperbox">
+            <div class="tip"><img src="images/eggs/awards_tips.png" alt=""></div>
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><div class="swiper-img"><img src="images/eggs/swiper01.png" alt=""></div></div>
+                    <div class="swiper-slide"><div class="swiper-img"><img src="images/eggs/swiper02.png" alt=""></div></div>
+                    <div class="swiper-slide"><div class="swiper-img"><img src="images/eggs/swiper03.png" alt=""></div></div>
+                    <div class="swiper-slide"><div class="swiper-img"><img src="images/eggs/swiper04.png" alt=""></div></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="eggs-box egg_num1">
+            <div class="egg1"><img src="images/eggs/egg1.png" alt=""></div>
+            <span class="egg2"><img src="images/eggs/egg2.png" alt=""></span>
+            <span class="egg3"><img src="images/eggs/egg3.png" alt=""></span>
+            <span class="egg4"><img src="images/eggs/egg4.png" alt=""></span>
+        </div>
+        <div class="eggs-box egg_num2">
+            <div class="egg1"><img src="images/eggs/egg1.png" alt=""></div>
+            <span class="egg2"><img src="images/eggs/egg2.png" alt=""></span>
+            <span class="egg3"><img src="images/eggs/egg3.png" alt=""></span>
+            <span class="egg4"><img src="images/eggs/egg4.png" alt=""></span>
+        </div>
+        <div class="eggs-box egg_num3">
+            <div class="egg1"><img src="images/eggs/egg1.png" alt=""></div>
+            <span class="egg2"><img src="images/eggs/egg2.png" alt=""></span>
+            <span class="egg3"><img src="images/eggs/egg3.png" alt=""></span>
+            <span class="egg4"><img src="images/eggs/egg4.png" alt=""></span>
+        </div>
+         <div class="eggs-box egg_num4">
+            <div class="egg1"><img src="images/eggs/egg1.png" alt=""></div>
+            <span class="egg2"><img src="images/eggs/egg2.png" alt=""></span>
+            <span class="egg3"><img src="images/eggs/egg3.png" alt=""></span>
+            <span class="egg4"><img src="images/eggs/egg4.png" alt=""></span>
+        </div>
+        <div class="eggs-box egg_num5">
+            <div class="egg1"><img src="images/eggs/egg1.png" alt=""></div>
+            <span class="egg2"><img src="images/eggs/egg2.png" alt=""></span>
+            <span class="egg3"><img src="images/eggs/egg3.png" alt=""></span>
+            <span class="egg4"><img src="images/eggs/egg4.png" alt=""></span>
+        </div>
+        <div class="eggs-box egg_num6">
+            <div class="egg1"><img src="images/eggs/egg1.png" alt=""></div>
+            <span class="egg2"><img src="images/eggs/egg2.png" alt=""></span>
+            <span class="egg3"><img src="images/eggs/egg3.png" alt=""></span>
+            <span class="egg4"><img src="images/eggs/egg4.png" alt=""></span>
+        </div>
+         <div class="eggs-box egg_num7">
+            <div class="egg1"><img src="images/eggs/egg1.png" alt=""></div>
+            <span class="egg2"><img src="images/eggs/egg2.png" alt=""></span>
+            <span class="egg3"><img src="images/eggs/egg3.png" alt=""></span>
+            <span class="egg4"><img src="images/eggs/egg4.png" alt=""></span>
+        </div>
+        <div class="eggs-box egg_num8">
+            <div class="egg1"><img src="images/eggs/egg1.png" alt=""></div>
+            <span class="egg2"><img src="images/eggs/egg2.png" alt=""></span>
+            <span class="egg3"><img src="images/eggs/egg3.png" alt=""></span>
+            <span class="egg4"><img src="images/eggs/egg4.png" alt=""></span>
+        </div>
+        <div class="eggs-box egg_num9">
+            <div class="egg1"><img src="images/eggs/egg1.png" alt=""></div>
+            <span class="egg2"><img src="images/eggs/egg2.png" alt=""></span>
+            <span class="egg3"><img src="images/eggs/egg3.png" alt=""></span>
+            <span class="egg4"><img src="images/eggs/egg4.png" alt=""></span>
+        </div>
+
+    </div>
+
+
+<!--  弹层 -->
+<div class="white-formsbg-black"></div>
+<div class="forms-wrap rules">
+    <div class="forms-box">
+        <div class="rules-con">
+            <img src="images/eggs/rule_bg.png" alt="">
+            <ul>
+                <li>参与活动即有机会获得幸运奖~每天抽奖机会8次免费。此活动为概率中奖，奖品数量有限，祝好运！</li>
+                <li class="strong">重要声明：</li>
+                <li>1.奖品将在活动结束后5-10个工作日安排发放,请耐心等待</li>
+                <li>2.优惠券类奖品的使用规则详见每个优惠券的介绍页</li>
+                <li>3.请兑换后仔细阅读使用流程,如有疑问,可直接联系客服专线:400-187-7877</li>
+                <li>4.通过非法途径获得奖品的,主办方有权不提供奖品</li>
+            </ul>
+        </div>
+        <a href="javascript:;" class="close-btn"><img src="images/eggs/pop-close.png" alt=""></a>
+    </div>
+</div>
+<!-- rules end -->
+<div class="forms-wrap awards">
+    <div class="forms-box">
+        <div class="awards-con" id="awards_ad_id">
+            <img src="images/eggs/gift_pop.png" alt="">
+            <a href="javascript:;" class="close-btn"><img src="images/eggs/pop-close2.png" alt=""></a>
+            <div class="title" id="awards_title_id">恭喜获取80元话费</div>
+            <a href="javascript:;" class="award-img click-link" id="award_img_id"><img src="images/eggs/1.jpg" alt=""></a>
+            <div class="sub-title" id="awards_subTitle_id">还没戴上职能手表！你太OUT了</div>
+            <a href="javascript:;" class="click-get click-link" tagers="" appkey="" adId="" id="awards_btnTitle_id">点击领取</a>
+            <img src="images/eggs/sidai.png" alt="" class="sidai">
+            <img src="images/eggs/coin.png" alt="" class="coin">
+        </div>
+    </div>
+</div>
+<!-- rules end -->
+<div class="forms-wrap end-failed">
+    <div class="forms-box">
+        <div class="end-failed-con">
+            <div class="t1">挑战失败，<br /> 再来尝试一次吧！</div> <!-- 今日挑战次数已用完，<br/> 明天再来尝试吧！ -->
+            <a href="javascript:;" class="close-btn"><img src="images/eggs/pop-close.png" alt=""></a>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="js/common_v5.js"></script>
+<script type="text/javascript">
+$(function(){
+   window.addEventListener('resize', Rem, false);
+   Rem();
+   mainH();
+   // $(window).resize(function() {
+   //     window.location.reload();
+   //  });
+   var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        slidesPerView: 4,
+        paginationClickable: true,
+        spaceBetween: 0,
+        freeMode: true
+    });
+
+   var i=0;
+   var beat;
+   function eggs(num){
+          beat = setTimeout(eggs,2000);
+         xxx(num);
+   }
+   function xxx(num){
+     var len = $(".eggs-box .egg1").length; 
+     $(".eggs-box .egg1").removeClass('beat');
+     $(".eggs-box .egg1").each(function(index){
+        if(i==len){
+            i=0;
+        }
+        if(index==i){
+            if(!$(this).hasClass('hidden')){
+                $(this).addClass('beat');
+            }else{
+                clearTimeout(beat);
+                beat = setTimeout(eggs,0);
+            }
+        }
+     })
+     i++;
+   }
+   //遍历蛋的动画
+   eggs(i);
+
+   $(".rules-btn").click(function(){
+        $(".white-formsbg-black,.rules").removeClass('hidden').show();
+   });
+
+
+   var activeType = 2;
+   
+   	 //uid 存在cookies里面 key appkey_activeType_uid
+	  uid = cookie.getCookie("uid");
+	 console.info("uid init:"+uid);
+	 if(uid=='' || undefined == uid){
+		uid = guid();
+		cookie.setCookie("uid",uid);			
+	 }
+	 console.info("uid:"+uid);
+   
+  // var appkey = "EC2AB829ABF44D97B5DE5BBEF84627DF"; //获取地址栏appkey参数
+    console.info("appkey appkey="+ appkey);
+    //今日剩余次数  key = appkey_activeType
+     var init_count = cookie.getCookie(appkey+"_"+activeType);
+     if(init_count!=null && undefined != init_count){
+        $(".today-nums em").text(init_count)
+     }else{
+        init_count=8;
+        $(".today-nums em").text(8)
+     }
+   //砸蛋
+   $(".eggs-box").click(function(){
+        if(!$(this).hasClass('disabled')&&!$(this).hasClass('unclick')){
+             var count = cookie.getCookie(appkey+"_"+activeType);
+             if(count==null || undefined == count){
+                count=8;
+             }
+            if(count>0){
+                var index = $(".eggs-box").index(this);
+                var $this = $(this);
+                var left = $(this).offset().left;
+                var top = $(this).offset().top;
+                var width = $(".hammer").width();
+                var height = $(".hammer").height();
+                var win_w = $(window).width();
+                $(".eggs-box").addClass('unclick');
+                if(win_w>750){
+                    left = left-(win_w-750)/2;
+                }
+                $(".hammer").animate({left: (left+(width/2))+"px", "top":(top-height)+"px"},100,function(){
+                    var $hammer = $(this);
+                    $this.find('.egg1').addClass('hidden');
+                    $this.find('.egg2').css('display', 'block');
+                    $(this).addClass('rotate');
+                    
+                    setTimeout(function(){
+                        $hammer.find('.chuizi').removeClass('rotate')
+                        $hammer.removeAttr('style');
+                        $this.find('.egg2').hide();
+                        $this.addClass('disabled');
+                    },800);
+                    //cookie 记录哪些蛋被砸碎了
+					//appkey+"_"+activeType
+					
+                    var cookie_eggs = eval('(' + cookie.getCookie(appkey+"_"+activeType+"_cookie_egg") + ')');
+                    if(cookie_eggs!=null && undefined != cookie_eggs){
+                        cookie_eggs.push(index);
+                    }else{
+                        cookie_eggs = [];
+                        cookie_eggs.push(index);
+                    }
+                    cookie.setCookie(appkey+"_"+activeType+"_cookie_egg",JSON.stringify(cookie_eggs));
+                    handle(500);
+                    setTimeout(function(){$(".eggs-box").removeClass('unclick');},500);
+                });
+            }else{
+                $(".end-failed-con .t1").html("今日挑战次数已用完，<br/> 明天再来尝试吧！");
+                $(".white-formsbg-black,.end-failed").removeClass('hidden').show();
+            }
+        }
+   })
+   /*  static page  end */
+   system();
+    //获取广告处理入口
+   function handle(time){
+	
+	 //今日剩余次数  key = appkey_activeType
+	if(!todayNums(appkey,activeType)){
+		$(".white-formsbg-black,.end-failed").removeClass('hidden').show();
+		$(".end-failed .t1").html("今日挑战次数已用完，<br/> 明天再来尝试吧！");
+	} else {
+		getAd(appkey,activeType,platform,time);
+	}
+
+
+   }
+})
+</script>
+</body>
+</html>

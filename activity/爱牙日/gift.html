@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+<meta name="MobileOptimized" content="240" />
+<meta name="apple-touch-fullscreen" content="YES" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta content="telephone=no" name="format-detection" />  
+<meta content="email=no" name="format-detection" />
+<!-- uc强制竖屏 -->
+<meta name="screen-orientation" content="portrait">
+<!-- QQ强制竖屏 -->
+<meta name="x5-orientation" content="portrait">
+<!-- UC强制全屏 -->
+<meta name="full-screen" content="yes">
+<!-- QQ强制全屏 -->
+<meta name="x5-fullscreen" content="true">
+<!-- UC应用模式 -->
+<meta name="browsermode" content="application">
+<!-- QQ应用模式 -->
+<meta name="x5-page-mode" content="app">
+<!-- windows phone 点击无高光 -->
+<meta name="msapplication-tap-highlight" content="no">
+<!-- 适应移动端end -->
+<title>爱牙日</title>
+<link rel="stylesheet" type="text/css" href="css/com.css">
+<script type="text/javascript" src="js/zepto.min.js"></script>
+</head>
+<body style="background-color: #e6e6e7;">
+    <div class="gift-main">
+        <div class="lottery-box">
+            <img src="images/lot01.jpg" alt="">
+        </div>
+        <div class="lotter-btnbox">
+            <img src="images/lotterying.gif" alt="">
+            <a href="javascript:;" class="lot-linkout"></a>
+        </div>
+        <div class="line"></div>
+        <div class="tc"><span class="gift-title">以下为已获得奖品</span></div>
+        <ul class="gift-list">
+            <li><a href="javascript:;"><img src="images/gift01.jpg" alt=""></a></li>
+            <li><a href="javascript:;"><img src="images/gift02.jpg" alt=""></a></li>
+        </ul>
+    </div>
+<script>
+$(function(){
+   //rem 设置
+    function Rem() {
+    var docEl = document.documentElement,
+    oSize = docEl.clientWidth / 36;
+
+    if (oSize > 20) {
+    oSize = 20; // 限制rem值 720 / 36 =20
+    }
+    //console.log(oSize);
+    docEl.style.fontSize = oSize + 'px';
+    }
+    window.addEventListener('resize', Rem, false);
+    Rem();
+
+    var loop;
+    var imgs = ["lot01.jpg", "lot02.jpg"];
+    lottery(0);  //  0 1 为中奖  -1为没中奖
+    function lottery(random){
+        if(random>=0){
+            var lottery_MAX = parseInt(imgs.length*10)+parseInt(random);
+            var i=0;
+            console.log(random);
+            var interval = setInterval(function(){
+                if(i<=lottery_MAX){
+                    var y = i%imgs.length;
+                    $(".lottery-box img").attr("src","images/"+imgs[y]);
+                    i++;
+                }
+                else{
+                    clearInterval(interval);
+                    $(".lotter-btnbox img").attr("src","images/success_btn.png");
+                    $(".lot-linkout").attr("href","https://www.baidu.com/"); //领奖外链
+                }
+            },200);
+        }else{
+            var i=0;
+            loop = setInterval(function(){
+                var y = i%imgs.length;
+                $(".lottery-box img").attr("src","images/"+imgs[y]);
+                i++;
+            },200);
+            setTimeout(function(){
+                $(".lotter-btnbox img").attr("src","images/lose_btn.png");
+                $(".lot-linkout").attr("href","javascript:;"); 
+        },2000);
+        }
+    }
+
+
+});
+</script>
+</body>
+</html>

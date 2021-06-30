@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta http-equiv="Cache-Control" content="no-cache" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="MobileOptimized" content="240" />
+		<meta name="apple-touch-fullscreen" content="YES" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="email=no" name="format-detection" />
+		<!-- uc强制竖屏 -->
+		<meta name="screen-orientation" content="portrait">
+		<!-- QQ强制竖屏 -->
+		<meta name="x5-orientation" content="portrait">
+		<!-- UC强制全屏 -->
+		<meta name="full-screen" content="yes">
+		<!-- QQ强制全屏 -->
+		<meta name="x5-fullscreen" content="true">
+		<!-- UC应用模式 -->
+		<meta name="browsermode" content="application">
+		<!-- QQ应用模式 -->
+		<meta name="x5-page-mode" content="app">
+		<!-- windows phone 点击无高光 -->
+		<meta name="msapplication-tap-highlight" content="no">
+		<!-- 适应移动端end -->
+		<title>广州农行-真功夫元气早餐券</title>
+
+		<link rel="stylesheet" href="css/index.css">
+	</head>
+
+	<body>
+		<div class="main-wrap">
+			<div class="mainBg">
+				<div class="explain" id="explain">活动说明</div>
+				<div class="activeBtWrap">
+					<div class="activeBt" id="activeBt"></div>
+					<div class="activeBt activeLook" id="activeLook" style="visibility: hidden;"></div>
+				</div>
+				<div class="code-box"><img src="img/code.png" alt=""></div>
+			</div>
+
+			<!--说明 弹出 -->
+			<div class="popuBox" id="popuBox" style="display: none;">
+				<div class="popuContent">
+					<div class="contentTop"></div>
+					<div class="wordsBox">
+						<div class="logoBox fl_start">
+							<em></em>
+							<em></em>
+						</div>
+						<div class="words">
+							<p><b>活动时间：</b>2018年9月26日-2019年1月31日(早餐券兑换有效期至2019年2月28日)</p>
+							<p><b>活动内容：</b>中国农业银行APP 6分钱兑真功夫元气早餐</p>
+							<p><b>活动规则：</b>1.广州地区参与用户在中国农业银行APP首页轮播图点击进入活动。</br>2.花生地铁APP受邀客户输入花生地铁APP登陆手机号，其他渠道受邀客户输入手机号及邀请码后，成功支付6分钱即可获得真功夫“鲜香肉酱蒸米粉+热豆浆（小）”早餐券一份。</br>3.客户凭券可到广州指定的真功夫门店兑换该产品，门店范围详见早餐券页面。</br>4.活动期间每个客户仅限参与一次活动，数量有限，先到先得。</p>
+							<p><b>本活动仅限广州用户参与。</b></p>
+						</div>
+						<div class="closeBt" id="closeBt"></div>
+					</div>
+				</div>
+			</div>
+
+			<!-- 成功 -->
+			<div class="popuBox" id="succeedBox" style="display: none;">
+				<div class="popuContent succeedCon">
+					<div class="succeedImg"></div>
+					<!-- 真功夫元气早餐券已发送至您的卡包，可到广州任意真功夫门店使用噢. -->
+					<p></p>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script src="js/jweixin-1.0.0.js"></script>
+		<script>
+			$(function() {
+				var ipUrl = 'https://cmsapi.wifi8.com';
+				var downLoad = "http://mobile.abchina.com/download/clientDownload/zh_CN/MB_Index.aspx";
+				function htmlFontSize(){
+				    var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+				    var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+				    var width = w > h ? h : w;
+				    width = width > 720 ? 720 : width
+				    var fz = ~~(width*100000/36)/10000
+				    document.getElementsByTagName("html")[0].style.cssText = 'font-size: ' + fz +"px";
+				    var realfz = ~~(+window.getComputedStyle(document.getElementsByTagName("html")[0]).fontSize.replace('px','')*10000)/10000
+				    if (fz !== realfz) {
+				        document.getElementsByTagName("html")[0].style.cssText = 'font-size: ' + fz * (fz / realfz) +"px";
+				    }
+				}
+				htmlFontSize();
+				function is_qq() {
+					var ua = navigator.userAgent.toLowerCase();
+					if(ua.match(/QQ\/[0-9]/i)) {
+						return true;
+					} else {
+						return false;
+					}
+				}
+
+				function get_os() {
+					var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+					if(userAgent.match(/iPad/i) || userAgent.match(/iPhone/i) || userAgent.match(/iPod/i)) {
+						return 2;
+					} else {
+						return 1;
+					}
+				}
+
+				//判断微信
+				function is_weixn() {
+					var ua = navigator.userAgent.toLowerCase();
+					if(ua.match(/MicroMessenger/i) == "micromessenger") {
+						return true;
+					} else {
+						return false;
+					}
+				}
+
+				function loaction() {
+					window.location.href = "bankabc://app";
+					window.setTimeout(function() {
+						window.location.href = downLoad; //打开app下载地址
+					}, 2000)
+
+				}
+				$('#activeBt').click(function() {
+					if(is_weixn() == true) {
+						window.location.href = "download.html";
+					} else if(is_qq() == true) {
+						if(get_os() == 2) {
+							window.location.href = "download.html";
+						} else {
+							loaction();
+						}
+					} else {
+						loaction();
+					}
+				})
+
+				//说明弹窗
+				$('#explain').click(function() {
+					$('#popuBox').show();
+				})
+				//close弹窗
+				$('#closeBt').click(function() {
+					$('#popuBox').hide();
+				})
+
+				//close弹窗
+				$('#succeedBox').click(function() {
+					$('#succeedBox').hide();
+				})
+				var urlID = window.location.href.split('#')[0];
+				var htmlurl = window.location.href + "?&amp;";
+				urlID = urlID.replace(/&/g, '%26');
+				$.ajax({
+					type: "get",
+					url: 'https://cmsapi.wifi8.com/wxconfig',
+					dataType: 'json',
+					async: true,
+					data: "url=" + urlID,
+					success: function(data) {
+						wx.config({
+							debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+							appId: data.appId, // 必填，公众号的唯一标识
+							timestamp: data.timeStamp, // 必填，生成签名的时间戳
+							nonceStr: data.nonceStr, // 必填，生成签名的随机串
+							signature: data.signature, // 必填，签名，见附录1
+							jsApiList: [
+								'checkJsApi',
+								'onMenuShareTimeline',
+								'hideOptionMenu',
+								'onMenuShareAppMessage'
+							] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+						});
+					}
+				});
+				wx.ready(function() {
+					//分享到朋友圈
+					wx.onMenuShareTimeline({
+						title: '厉害了，真功夫早餐只要六分钱!', // 分享标题
+						desc: '天下没有免费的午餐，却有6分钱的元气早餐！',
+						link: htmlurl, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+						imgUrl: 'https://cmsfile.wifi8.com/uploads/activity/act/freeBreakfast/img/share.png', // 分享图标
+						success: function() {
+						},
+						cancel: function(res) {
+						}
+					});
+
+					//分享给朋友
+					wx.onMenuShareAppMessage({
+						title: '厉害了，真功夫早餐只要六分钱!', // 分享标题
+						desc: '天下没有免费的午餐，却有6分钱的元气早餐！',
+						link: htmlurl, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+						imgUrl: 'https://cmsfile.wifi8.com/uploads/activity/act/freeBreakfast/img/share.png', // 分享图标
+						success: function() {
+						},
+						cancel: function() {
+						}
+					});
+					wx.error(function(res) {
+						alert(res.errMsg); //打印错误消息。及把 debug:false,设置为debug:ture就可以直接在网页上看到弹出的错误提示
+					});
+				});
+			})
+			function reShare() {
+				var title = '厉害了，真功夫早餐只要六分钱!';
+				var url = 'https://cmsfile.wifi8.com/uploads/activity/act/freeBreakfast/main.html';
+				var imgUrl = 'https://cmsfile.wifi8.com/uploads/activity/act/freeBreakfast/img/share.png';
+				var text = "天下没有免费的午餐，却有6分钱的元气早餐！";
+				return {
+					"title": title,
+					"url": url,
+					"imgUrl": imgUrl,
+					"text": text
+				}
+			}
+		</script>
+	</body>
+</html>

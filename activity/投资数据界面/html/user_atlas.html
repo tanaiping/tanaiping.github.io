@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>用户图谱</title>
+	<link rel="stylesheet" href="css/base.css" />
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<div class="main-wrap">
+		<div class="clearfix">
+			<div class="fl main-left">
+				<div class="m-title">用户图谱</div>
+				<table class="tab-com mb28">
+					<tr>
+						<th class="th-01">mac</th>
+						<th class="th-02">手机号码</th>
+						<th class="th-03">所在地</th>
+						<th class="th-04">正在使用软件</th>
+						<th class="th-05">最新访问</th>
+					</tr>
+				</table>
+				<table class="tab-com mb8">
+					<tr>
+						<td>14025oas </td>
+						<td>153XXXX5486</td>
+						<td class="pl10">上海</td>
+						<td class="pl10">淘宝</td>
+						<td class="pl10">baidu.com</td>
+					</tr>
+				</table>
+				<table class="tab-com mb8">
+					<tr>
+						<td>14025oas </td>
+						<td>153XXXX5486</td>
+						<td class="pl10">上海</td>
+						<td class="pl10">淘宝</td>
+						<td class="pl10">baidu.com</td>
+					</tr>
+				</table>
+
+				<table class="tab-com mb8">
+					<tr>
+						<td>14025oas </td>
+						<td>153XXXX5486</td>
+						<td class="pl10">上海</td>
+						<td class="pl10">淘宝</td>
+						<td class="pl10">baidu.com</td>
+					</tr>
+				</table>
+				<table class="tab-com mb8">
+					<tr>
+						<td>14025oas </td>
+						<td>153XXXX5486</td>
+						<td class="pl10">上海</td>
+						<td class="pl10">淘宝</td>
+						<td class="pl10">baidu.com</td>
+					</tr>
+				</table>
+				<table class="tab-com mb8">
+					<tr>
+						<td>14025oas </td>
+						<td>153XXXX5486</td>
+						<td class="pl10">上海</td>
+						<td class="pl10">淘宝</td>
+						<td class="pl10">baidu.com</td>
+					</tr>
+				</table>
+			</div>
+			<div class="fr main-right">
+				<div class="r-bg">
+					<div class="time-title">当前时间</div>
+					<div class="time-img">
+						<img src="images/time-img.jpg" alt="" />
+						<div class="time-txt">0:35</div>
+					</div>
+				</div>
+
+				<div class="r-bg">
+					<div class="statis-title">实时DAU指数</div>
+					<ul class="statis-list">
+						<li>
+							<div class="are-size"><em>上海</em>120M</div>
+							<div class="progress"><span class="yellow" style="width: 50%"></span></div>
+						</li>
+						<li>
+							<div class="are-size"><em>广州</em>80M</div>
+							<div class="progress"><span class="green" style="width: 85%"></span></div>
+						</li>
+						<li>
+							<div class="are-size"><em>武汉</em>50M</div>
+							<div class="progress"><span   class="pink" style="width: 67%"></span></div>
+						</li>
+						<li>
+							<div class="are-size"><em>昆明</em>20M</div>
+							<div class="progress"><span class="blue" style="width: 20%"></span></div>
+						</li>
+					</ul>
+				</div>
+
+			</div>
+		</div>
+	</div>
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script>
+	$(function(){
+		var mydate = new Date();
+		var myHours = mydate.getHours();
+		var myMin = mydate.getMinutes();
+		$(".time-txt").text(myHours+":"+myMin);
+		setInterval(function(){
+			 mydate = new Date();
+			 myHours = mydate.getHours();
+		 	 myMin = mydate.getMinutes();
+			 $(".time-txt").text(myHours+":"+myMin);
+			 console.log(myMin);
+		},1000);
+
+
+
+	})
+</script>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+    <meta charset="utf-8">  
+    <title>Canvas+AlloyFinger —— test</title>  
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>  
+    <style>  
+    @charset "utf-8";  
+    @media screen and (min-width:320px) and (max-width:359px){html{font-size:12px;}body{ font-size:1.2rem;}}  
+    @media screen and (min-width:360px) and (max-width:374px){html{font-size:13.5px;}}  
+    @media screen and (min-width:375px) and (max-width:383px){html{font-size:14.07px;}}  
+    @media screen and (min-width:384px) and (max-width:392px){html{font-size:14.38px;}}  
+    @media screen and (min-width:393px) and (max-width:410px){html{font-size:14.75px;}}  
+    @media screen and (min-width:411px) and (max-width:413px){html{font-size:15.41px;}}  
+    @media screen and (min-width:414px) and (max-width:479px){html{font-size:15.52px;}}  
+    @media screen and (min-width:480px) and (max-width:511px){html{font-size:18px;}}  
+    @media screen and (min-width:512px) and (max-width:639px){html{font-size:19.19px;}}  
+    @media screen and (min-width:640px){html{font-size:24px;}}  
+    *{ margin:0; padding:0; box-sizing:border-box;}  
+    html , body{ display:block; width:100%; height:100%; max-width:640px; min-width:320px; margin:0 auto;}  
+    canvas{ width:100%; height:100%; vertical-align:middle;}  
+    #c1{ display:block; width: 150px; height: 300px;position: relative;z-index: 2; }  
+      
+    #mycanvas{width: 300px; height: 300px;}
+    .canvasBg{ width:2.5rem; height:2.8rem; line-height:1.4rem; text-align:center; font-size:.8rem; color:#fff; border-top-left-radius:.2rem; border-bottom-left-radius:.2rem; background-color:rgba(0,0,0,.7); position:fixed; right:0; top:24rem; cursor:pointer;}  
+      
+      
+    #self_img{ display:block; width:150px;height: 300px; display:none;}  
+    #showImgBtn{width:5rem; height:5rem; line-height:5rem; text-align:center; border-radius:50%; background-color:#eee; position:absolute; left:50%; margin-left:-2.5rem; bottom:1rem;}  
+
+    .img-wrap{width: 300px; height: 300px; position: relative; margin: 20px auto;}
+    #template_img{position:absolute;left: 0px; top:0px; width: 300px; height: 300px;}
+    #preview_img{width: 300px; height: 300px;position: absolute;left: 0px; top: 0px;}
+    </style>  
+</head>  
+<body>  
+<!-- <script type="text/javascript" src="http://code.jquery.com/jquery-2.0.0.min.js"></script>   -->
+<script type="text/javascript" src="js/jquery.js"></script>  
+<!-- <script type="text/javascript" src="js/jpeg_encoder_basic.js" ></script>
+<script type="text/javascript" src="js/uploadImage.js" ></script>  
+<script type="text/javascript" src="js/exif.js"></script> -->
+<script src="alloy_file/alloy_paper.js"></script>  
+<script src="alloy_file/alloy_finger.js"></script>  
+<div class="img-wrap">
+  <canvas id="c1"></canvas> 
+  <img src="" alt="" id="self_img"> <!-- 自己拍照的图存在这里  隐藏的 -->
+  <img src="images/template-img2.png" alt="" id="template_img">
+  <canvas id="mycanvas" style="display: none;"></canvas>
+  <img src="" alt="" id="preview_img" style="display: none;">
+</div>
+<input type="file" accept="image/*"  id="camera_input"  style="display:none;"/><!-- 调用相机和相册  隐藏的 capture="camera" -->
+<input type="hidden" value="" id="preview_input_val">  <!-- 合成图片的隐藏域 -->
+ 
+<!-- <input type="file" id="upfile" accept="image/*" style="display:none;" />   -->
+<div class="canvasBg">上传<br>图片</div>  
+  
+<!-- <img id="showImg" src="" />   -->
+<div id="showImgBtn">生成图片</div>  
+  
+<script>  
+function getObjectURL(file) {      
+    var url = null ;      
+    if (window.createObjectURL!=undefined) { // basic      
+        url = window.createObjectURL(file) ;      
+    } else if (window.URL!=undefined) { // mozilla(firefox)      
+        url = window.URL.createObjectURL(file) ;      
+    } else if (window.webkitURL!=undefined) { // webkit or chrome      
+        url = window.webkitURL.createObjectURL(file) ;      
+    }      
+    return url ;      
+}   
+$('.canvasBg').on('click',function(){  
+    $('#camera_input').trigger('click'); 
+    //$("#camera_input").click(); 
+});  
+  
+var canvas = document.getElementById("mycanvas");  //画布
+var image1;
+var image2 = document.getElementById("self_img");    //自己上传的图
+image1 = document.getElementById("template_img");
+var c1 = document.getElementById("c1");    
+c1.width = 150;  
+c1.height = 300;  
+var ctx1 = c1.getContext("2d");  
+$(document).on("change","#camera_input",function(e){
+    $('#c1').show(); 
+    $('#self_img').hide(); 
+    $("#preview_img").hide(); 
+    var $input_file = '<input type="file" accept="image/*"  id="camera_input"  style="display:none;"/>'// 解决上传同一张图没反应的情况   remove  然后再append
+    upimgurl = getObjectURL(this.files[0]);      
+    upimg = new Image();      
+    upimg.src = upimgurl;      
+    upimg.onload = function(){   
+        ctx1.clearRect(0,0,c1.width,c1.height);  
+          
+        var Stage = AlloyPaper.Stage, Bitmap = AlloyPaper.Bitmap,Loader=AlloyPaper.Loader;  
+        var stage = new Stage("#c1");  
+        stage.autoUpdate=false;  
+        var ld = new Loader();  
+        ld.loadRes2([  
+            { id: "test", src: upimgurl },  
+        ]);  
+        ld.complete(function () {  
+            var bmp = new Bitmap(ld.get("test"));  
+            bmp.originX = 0.5;  
+            bmp.originY = 0.5;  
+            bmp.x = stage.width / 2;  
+            bmp.y = stage.height / 2;  
+            stage.add(bmp);  
+  
+            //stage.update();  
+            updateStage();  
+            var initScale = 1;  
+            new AlloyFinger(bmp, {  
+                multipointStart: function () {  
+                    initScale = bmp.scaleX;  
+                },  
+                rotate: function (evt) {  
+                    bmp.rotation += evt.angle;  
+                    //stage.update();  
+                    updateStage();  
+                },  
+                pinch: function (evt) {  
+                    bmp.scaleX = bmp.scaleY = initScale * evt.scale;  
+                    //stage.update();  
+                    updateStage();  
+                },  
+                pressMove: function (evt) {  
+                    bmp.x += evt.deltaX;  
+                    bmp.y += evt.deltaY;  
+                    evt.preventDefault();  
+                    //stage.update();  
+                    updateStage();  
+                }  
+  
+            });  
+        });  
+        //将上传的图片画入canvas圆中  
+        function updateStage(){  
+            ctx1.beginPath();  
+            ctx1.rect(0, 0, c1.width, c1.height);
+            ctx1.save();  
+            ctx1.clip();  
+            stage.update();  
+            ctx1.restore();  
+            //whiteText();  
+        }  
+    };   
+    $("#camera_input").remove();
+    $("#mycanvas").after($input_file); // 解决上传同一张图没反应的情况   remove  然后再append
+});  
+  
+function whiteText(){  
+    ctx1.font = 'bold 40px "PingFangSC-Regular","sans-serif","STHeitiSC-Light","微软雅黑","Microsoft YaHei"';  
+    ctx1.fillStyle = '#f00';    
+    ctx1.textBaseline="middle";    
+    ctx1.textAlign="center";    
+    ctx1.fillText('测试文字',c1.width/2,c1.height/2);  
+}  
+  
+$('#showImgBtn').on('click',function(){  
+    $('#self_img').attr('src',c1.toDataURL("image/jpg"));  
+    $('#self_img').show();  
+     $('#c1').hide();  
+     setTimeout(function(){
+        canvas = convertImageToCanvas(image1,image2);
+        $("#preview_img").attr("src",convertCanvasToImage(canvas).src);
+        $("#preview_input_val").val(convertCanvasToImage(canvas).src);
+        $("#preview_img").show();
+   },800);
+});  
+
+// Converts image to canvas; returns new canvas element
+function convertImageToCanvas(image1,image2) {
+    canvas.width ="300";
+    canvas.height = "300";
+    // 在canvas绘制前填充白色背景   
+    canvas.getContext("2d").fillStyle = "#FFFFFF";   
+    canvas.getContext("2d").fillRect(0, 0, canvas.width, canvas.height);
+    canvas.getContext("2d").drawImage(image2, 0, 0,150,300); //self_img 上传的图  width  height  伸展或缩小图像宽高  320
+    canvas.getContext("2d").drawImage(image1, 0, 0,300,300);
+    return canvas;
+}
+
+// Converts canvas to an image
+function convertCanvasToImage(canvas) {
+    var image = new Image();
+    image.setAttribute('crossOrigin', 'Anonymous'); //解决跨域问题
+    image.src = canvas.toDataURL("image/jpeg",0.6);
+    return image;
+}
+  
+</script>  
+</body>  
+</html>  

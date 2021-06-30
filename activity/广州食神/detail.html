@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+<meta name="MobileOptimized" content="240" />
+<meta name="apple-touch-fullscreen" content="YES" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta content="telephone=no" name="format-detection" />  
+<meta content="email=no" name="format-detection" />
+<!-- uc强制竖屏 -->
+<meta name="screen-orientation" content="portrait">
+<!-- QQ强制竖屏 -->
+<meta name="x5-orientation" content="portrait">
+<!-- UC强制全屏 -->
+<meta name="full-screen" content="yes">
+<!-- QQ强制全屏 -->
+<meta name="x5-fullscreen" content="true">
+<!-- UC应用模式 -->
+<meta name="browsermode" content="application">
+<!-- QQ应用模式 -->
+<meta name="x5-page-mode" content="app">
+<!-- windows phone 点击无高光 -->
+<meta name="msapplication-tap-highlight" content="no">
+<!-- 适应移动端end -->
+<title>现金券</title>
+<link rel="stylesheet" href="css/com.css">
+</head>
+<body>
+    <div class="detail-wrap">
+        <div class="com-wrap">
+            <div class="detail-imgbox"><img src="images/quan/1.jpg" alt=""></div>
+            <div class="detail-title">用券指南</div>
+            <div class="save-msg">请截图保存优惠码</div>
+            <div class="quan-code"><em>券码</em><span>648599</span></div>
+            <div class="txt-img"><img src="images/txt_msg.png" alt=""></div>
+            <div class="detail-desc">
+                <p>
+                1.到店请出示优惠码与工作人员核对使用。<br />
+                <span style="white-space: nowrap;">2.请在优惠券有效期内使用，活动期内，每人每日限参与一次抽券。</span><br />
+                3.到店使用，只限堂食<br />
+                4.本券不可同时享受商家其他优惠<br />
+                5.节假日通用，无需预约，高峰期可能要等位</p>
+                <p class="pt20">本券有效期：2017年8月5日-9月9日</p>
+                <p class="pt20">商家地址：<br />
+                客村店: 广州海珠区新港中路354号自编2栋珠影-蓝谷创意园101铺（3号线客村站）<br />
+                江南西店:广州市海珠区江南西路紫丹大街46号（2号线江南西站）<br />
+                中山三路店：广州越秀区中山三路仁兴街18号（1号线烈士陵园站）<br />
+                体育西店：天河区体育西横街144号首层（3号线体育西路）
+                </p>
+                <p class="pt20">*本券使用最终解释权归商家所有</p>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script>
+$(function(){
+    //rem 设置
+    function Rem() {
+    var docEl = document.documentElement,
+    oSize = docEl.clientWidth / 36;
+
+    if (oSize > 20) {
+    oSize = 20; // 限制rem值 720 / 36 =20
+    }
+    //console.log(oSize);
+    docEl.style.fontSize = oSize + 'px';
+    }
+    function setSize(){
+        Rem();
+    }
+    setSize();
+    window.addEventListener('resize', setSize, false);
+
+    $(".detail-desc *").css("white-space","normal");
+});
+</script>
+</body>
+</html>

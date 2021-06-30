@@ -1,0 +1,59 @@
+*{box-sizing:border-box;-webkit-tap-highlight-color:rgba(0,0,0,0);-webkit-touch-callout:none}
+a,input,textarea,select,button{outline:0}a{text-decoration:none;-webkit-tap-highlight-color:rgba(0,0,0,0)}
+body,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select{margin:0;padding:0}
+body{font-family:"Microsoft YaHei","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%}
+a{text-decoration:none}
+a:hover{text-decoration:none}a:active{text-decoration:none}em{font-style:normal}li{list-style:none}img{width:100%;height:auto;border:0;vertical-align:middle}
+table{border-collapse:collapse;border-spacing:0}a,input,textarea,select,button{outline:0}
+p{word-wrap:break-word;display:block;-webkit-margin-before:1em;-webkit-margin-after:1em;-webkit-margin-start:0;-webkit-margin-end:0;margin:0;padding:0}
+.clearfix:before,.clearfix:after{content:" ";display:table}.clearfix:after{clear:both}.text-center{text-align:center}.pull-left{float:left}.pull-right{float:right}
+.prompt{text-align: center;width: 90%;position: fixed;margin: auto;left: 0;right: 0;top: 40%;z-index: 1001;display: none;}
+.prompt em{display: inline-block;background: rgba(0,0,0,0.75);padding: 0.15rem 0.25rem;border-radius: 0.5rem;color: #FFF;font-size: 0.32rem;line-height: 0.48rem;}
+.filter{opacity:.6;background-color:rgba(255,255,255,0.8)}
+input::-webkit-input-placeholder {color: #999999;}input:-moz-placeholder {color: #999999;}input::-moz-placeholder {color: #999999;}input:-ms-input-placeholder {color: #999999;}
+.page-loading{position:fixed;z-index:100;left:0;right:0;top:0;bottom:0;margin:auto;background-color:#ffd800}
+.page-loading .loader{position:absolute;top:calc(50% - 1.25em);left:calc(50% - 1.25em);width:2.5em;height:2.5em;transform:rotate(165deg)}
+.page-loading .loader:before,.page-loading .loader:after{content:'';position:absolute;top:50%;left:50%;display:block;width:.5em;height:.5em;border-radius:.25em;transform:translate(-50%,-50%)}
+.page-loading .loader:before{animation:before 2s infinite}.page-loading .loader:after{animation:after 2s infinite}
+.prompt{text-align: center;width: 90%;position: fixed;margin: auto;left: 0;right: 0;top: 40%;z-index: 1001;display: none;}
+.prompt em{display: inline-block;background: rgba(0,0,0,0.75);padding: .75rem 1.25rem;border-radius: 2.5rem;color: #FFF;font-size: 1.6rem;line-height: 2.4rem;}
+@keyframes before{0%{width:.5em;box-shadow:1em -0.5em rgba(225,20,98,0.75),-1em .5em rgba(111,202,220,0.75)}35%{width:2.5em;box-shadow:0 -0.5em rgba(225,20,98,0.75),0 .5em rgba(111,202,220,0.75)}70%{width:.5em;box-shadow:-1em -0.5em rgba(225,20,98,0.75),1em .5em rgba(111,202,220,0.75)}100%{box-shadow:1em -0.5em rgba(225,20,98,0.75),-1em .5em rgba(111,202,220,0.75)}}@keyframes after{0%{height:.5em;box-shadow:.5em 1em rgba(61,184,143,0.75),-0.5em -1em rgba(233,169,32,0.75)}35%{height:2.5em;box-shadow:.5em 0 rgba(61,184,143,0.75),-0.5em 0 rgba(233,169,32,0.75)}70%{height:.5em;box-shadow:.5em -1em rgba(61,184,143,0.75),-0.5em 1em rgba(233,169,32,0.75)}100%{box-shadow:.5em 1em rgba(61,184,143,0.75),-0.5em -1em rgba(233,169,32,0.75)}}
+.tc{text-align: center;}
+.index-bg{background:#FFF url(../images/bg.jpg) center top no-repeat; background-size: contain; height: 60.2rem; max-width: 750px; position: relative; margin: 0 auto; }
+.metro-map{position: absolute; left: 3.6rem; top: 36rem;}
+.mapbox{position: relative;width: 28.55rem; height: 20.6rem;  border-radius: 1.5rem; overflow: hidden;}
+.loca-1{ z-index: 10; position: absolute;width: 9.8rem;display:flex; flex-direction: column; display: none;}
+.loca-2{ z-index: 10; position: absolute;width: 9.8rem;display:flex; flex-direction: column; display: none;} 
+.loca-3{ z-index: 10; position: absolute;width: 9.8rem;display:flex; flex-direction: column; display: none;}
+.location-link{ display: block; width: 9.8rem; height: 3.4rem; position: relative;}
+ .bling1{
+    -webkit-animation: scaleout 1.8s infinite ease-in-out;
+    animation: scaleout 1.8s infinite ease-in-out;
+  }
+  @-webkit-keyframes scaleout {
+    0% { -webkit-transform: scale(1.0) }
+    100% {
+      -webkit-transform: scale(1.1);
+      opacity: 0;
+    }
+  }
+  @keyframes scaleout {
+    0% {
+      transform: scale(1.0);
+      -webkit-transform: scale(1.0);
+    } 100% {
+        transform: scale(1.1);
+        -webkit-transform: scale(1.1);
+        opacity: 0;
+      }
+  }
+
+.loca-ico{width:1.4rem; position: absolute; left: 1.2rem; top: .8rem;}
+
+@-webkit-keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 1; }
+    50.01% { opacity: 0; }
+    100% { opacity: 0.1; }
+}
+.com-img{width: 100%;display: block;}

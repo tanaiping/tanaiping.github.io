@@ -1,0 +1,128 @@
+<!-- sidebar: style can be found in sidebar.less -->
+<section class="sidebar">
+	<ul id="menu" class="sidebar-menu">
+		<li class="treeview active">
+			<a href="#!/">
+				<span class="hide-menu">城市情况</span>
+			</a>
+			<ul class="treeview-menu li-one">
+				<li class="show">
+					<a href="#!/">实时星光图</a>
+				</li>
+				<li>
+					<a href="#!/flowQuery">历史人流查询</a>
+				</li>
+			</ul>
+		</li>
+		<li class="treeview active">
+			<a href="#">
+				<span>路线情况</span>
+			</a>
+			<ul class="treeview-menu li-two">
+				<li>
+					<a href="#!/diagram">实时曲线图</a>
+				</li>
+				<li>
+					<a href="#!/travelCombination">实时TOP出行组合</a>
+				</li>
+				<li>
+					<a href="#!/lineFlowQuery">历史人流查询</a>
+				</li>
+
+			</ul>
+		</li>
+		<li class="treeview active">
+			<a href="#!/">
+				<span>站点情况</span>
+			</a>
+			<ul class="treeview-menu li-three">
+				<li>
+					<a href="#!/numberOfSites">实时TOP站点人数</a>
+				</li>
+				<li>
+					<a href="#!/siteFlowQuery">历史人流查询</a>
+				</li>
+			</ul>
+		</li>
+		<!--<li class="treeview active">
+			<a href="#!/">
+				<span>列车情况</span>
+			</a>
+			<ul class="treeview-menu li-four">
+				<li>
+					<a href="#!/positionAndNumber">实时列车位置和人数</a>
+				</li>
+				<li>
+					<a href="#!/carCongestion">实时车厢拥堵情况</a>
+				</li>
+
+				<li>
+					<a href="#!/timetable">历史列车到站时刻表</a>
+				</li>
+			</ul>
+		</li>-->
+	</ul>
+
+</section>
+<!-- /.sidebar -->
+
+<script>
+	/* Sidebar tree view */
+	(function($) {
+		
+		$(".sidebar .treeview").tree();
+		var sidebarUrl = window.location.hash;
+		var subUrl = sidebarUrl.substr(3);
+		console.log(sidebarUrl.substr(3));
+	 	if(subUrl == "flowQuery"){
+	 		$(".treeview-menu li").removeClass("show");
+	 		$(".li-one li:last-child()").addClass("show");
+	 	}else if(subUrl == "diagram"){
+	 		$(".treeview-menu li").removeClass("show");
+	 		$(".li-two li:first-child()").addClass("show");
+	 	}else if(subUrl == "travelCombination"){
+	 		$(".treeview-menu li").removeClass("show");
+	 		$(".li-two li:nth-child(2)").addClass("show");
+	 	}else if(subUrl == "lineFlowQuery"){
+	 		$(".treeview-menu li").removeClass("show");
+	 		$(".li-two li:last-child()").addClass("show");
+	 	}else if(subUrl == "numberOfSites"){
+	 		$(".treeview-menu li").removeClass("show");
+	 		$(".li-three li:first-child()").addClass("show");
+	 	}else if(subUrl == "siteFlowQuery"){
+	 		$(".treeview-menu li").removeClass("show");
+	 		$(".li-three li:last-child()").addClass("show");
+	 	}else if(subUrl == "positionAndNumber"){
+	 		$(".treeview-menu li").removeClass("show");
+	 		$(".li-four li:last-child()").addClass("show");
+	 	}else if(subUrl == "carCongestion"){
+	 		$(".treeview-menu li").removeClass("show");
+	 		$(".li-four li:nth-child(2)").addClass("show");
+	 	}else if(subUrl == "timetable"){
+	 		$(".treeview-menu li").removeClass("show");
+	 		$(".li-four li:last-child()").addClass("show");
+	 	}
+		
+		$(".treeview-menu li").click(function(){
+			$(this).addClass("show").siblings().removeClass("show");
+			$(this).parent().parent().siblings().children(".treeview-menu").children().removeClass("show");
+		})
+	})(jQuery);
+
+	$('#menu').slicknav();
+	//Activate tooltips
+	$("[data-toggle='tooltip']").tooltip();
+
+	function fix_sidebar() {
+		//Make sure the body tag has the .fixed class
+		if(!$("body").hasClass("fixed")) {
+			return;
+		}
+
+		//Add slimscroll
+		$(".sidebar").slimscroll({
+			height: ($(window).height() - $(".header").height()) + "px",
+			color: "rgba(0,0,0,0.3)"
+		});
+	}
+</script>

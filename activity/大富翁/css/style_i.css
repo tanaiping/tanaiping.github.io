@@ -1,0 +1,379 @@
+.my-register {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #7043B2 url(../images/bg_register.png) no-repeat top center /contain;
+  background-size: 100% auto;
+}
+
+.main .logo {
+  position: absolute;
+  width: 1rem;
+  height: 0.36rem;
+  margin-top: 0.2rem;
+  margin-left: 0.2rem;
+}
+
+.main .title {
+  width: 5.82rem;
+  margin: auto;
+  display: block;
+  top: 0.9rem;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.main .register-prize {
+  width: 6.86rem;
+  height: 3.89rem;
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 2.3rem;
+}
+
+.main .registe-info {
+  width: 90%;
+  height: 4.6rem;
+  margin: auto;
+  background: #592A8A;
+  border: 2px solid rgba(255, 255, 255, 0.19);
+  box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.30);
+  border-radius: 8px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 6.8rem;
+}
+
+.main .registe-info .tips {
+  font-size: 0.28rem;
+  color: #FFFFFF;
+  text-align: center;
+  margin-top: 0.25rem;
+}
+
+.main .registe-info input {
+  position: relative;
+  display: block;
+  padding: 0.1rem 0.25rem;
+  width: 6.2rem;
+  height: 0.88rem;
+  font-size: 0.3rem;
+  -webkit-appearance: none;
+  /* color: #231714; */
+  border-radius: 5px;
+  border: 1px solid #D8D8D8;
+  color: #5F2B91;
+  margin: auto;
+  margin-top: 0.3rem;
+}
+
+.main .registe-info .code-team {
+  position: relative;
+}
+
+.main .registe-info .get-code {
+  position: absolute;
+  width: 2.5rem;
+  height: 0.88rem;
+  line-height: 0.68rem;
+  padding: 0.1rem 0.3rem;
+  top: 0rem;
+  margin: auto;
+  z-index: 9;
+  right: 0;
+  text-align: center;
+  font-size: 0.24rem;
+  color: #5F2B91;
+  letter-spacing: 0;
+}
+
+.main .registe-info .btn-register {
+  width: 6.2rem;
+  height: 0.98rem;
+  background: url(../images/btn_register.png) no-repeat center /contain;
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  margin-top: 0.3rem;
+}
+
+.my-record {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #7043B2 url(../images/bg_record.png) repeat-y top center /contain;
+  background-size: 100% auto;
+}
+
+.my-record .title {
+  position: relative;
+  width: 5.16rem;
+  margin: auto;
+  display: block;
+  margin-top: 0.5rem;
+}
+
+.my-record .prize-img {
+  position: relative;
+  width: 6.66rem;
+  margin: auto;
+  display: block;
+  margin-top: 0.3rem;
+}
+
+.my-record .info {
+  position: relative;
+  width: 90%;
+  height: 2.47rem;
+  background: #fff;
+  border-radius: 8px;
+  margin: auto;
+  margin-top: -1.2rem;
+  z-index: 9;
+  padding: 0.15rem 0.3rem;
+}
+
+.my-record .info .date,
+.my-record .list .list-title {
+  font-size: 0.28rem;
+  line-height: 0.42rem;
+  color: #333333;
+  text-align: center;
+  font-weight: bold;
+  padding-bottom: 0.08rem;
+}
+
+.my-record .info ul li {
+  display: flex;
+}
+
+.my-record .info ul li p {
+  /* opacity: 0.8; */
+  font-size: 0.26rem;
+  line-height: 0.5rem;
+  color: #666666;
+  /* flex: 1; */
+}
+
+.my-record .info ul li p.left {
+  flex: 60%
+}
+
+.my-record .info ul li p.right {
+  flex: 40%
+}
+
+.my-record .info ul li p span {
+  font-size: 0.28rem;
+  color: #7043B2;
+  text-align: center;
+  font-weight: 500;
+}
+
+.my-record .info .tips {
+  opacity: 0.6;
+  font-size: 0.24rem;
+  line-height: 0.4rem;
+  color: #666666;
+  padding: 0.2rem 0 0.1rem 0;
+}
+
+.my-record .btn {
+  background: #9252D5;
+  border-radius: 8px;
+  width: 90%;
+  height: 1.15rem;
+  margin: auto;
+  margin-top: 0.25rem;
+  display: flex;
+}
+
+.my-record .btn .text {
+  font-size: 0.36rem;
+  color: #FFFFFF;
+  /* text-align: center; */
+  flex: 55%;
+  margin: auto;
+  /* font-weight: bold; */
+  margin-left: 0.3rem;
+}
+
+.my-record .btn .btn-invitation {
+  flex: 45%;
+  background: url(../images/btn_invitation.png) no-repeat center right /contain;
+  width: 1.87rem;
+  height: 0.58rem;
+  margin: auto;
+  margin-right: 0.3rem;
+}
+
+.my-record .list {
+  position: relative;
+  width: 90%;
+  /* height: 2.47rem; */
+  background: #fff;
+  border-radius: 8px;
+  margin: auto;
+  margin-top: 0.2rem;
+  margin-bottom: 0.5rem;
+  z-index: 9;
+  padding: 0.15rem 0.3rem;
+}
+
+
+.my-record .list .list-th {
+  font-size: 0.24rem;
+  line-height: 0.48rem;
+  color: #999999;
+  text-align: center;
+  display: flex;
+  background: #F5F5F5;
+  margin: 0.2rem 0 0.1rem 0;
+}
+
+.my-record .list .list-th .name {
+  flex: 42%;
+  text-align: left;
+}
+
+.my-record .list .list-th .tel {
+  flex: 38%;
+  text-align: left;
+}
+
+.my-record .list .list-th .speed {
+  flex: 20%;
+}
+
+.my-record .list .list-td {
+  font-size: 0.28rem;
+  color: #333333;
+}
+
+.my-record .list .list-td li {
+  display: flex;
+  height: 1rem;
+  padding: 0.1rem 0;
+  border-bottom: #E2E2E2 solid 1px;
+}
+
+.my-record .list .list-td li:last-child {
+  border: none;
+}
+
+.my-record .list .list-td li .name {
+  flex: 42%;
+  text-align: left;
+  margin: auto;
+}
+
+.my-record .list .list-td li .name .nikename {
+  font-size: 0.28rem;
+  line-height: 0.42rem;
+  padding: 0.05rem 0;
+  color: #333333;
+}
+
+.my-record .list .list-td li .name .time {
+  font-size: 0.22rem;
+  line-height: 0.3rem;
+  color: #999;
+
+}
+
+.my-record .list .list-td li .tel {
+  flex: 38%;
+  text-align: left;
+  margin: auto;
+}
+
+.my-record .list .list-td li .btn-share {
+  background: url(../images/btn_to_1.png) no-repeat center /contain;
+  flex: 20%;
+}
+.my-record .list .list-td li .btn-share.share-status-0{
+  background: url(../images/btn_to_0.png) no-repeat center /contain;
+}
+.my-record .list .list-td li .btn-share.share-status-1{
+  background: url(../images/btn_to_1.png) no-repeat center /contain;
+}
+.my-record .list .list-td li .btn-share.share-status-2{
+  background: url(../images/btn_to_2.png) no-repeat center /contain;
+}
+
+.mask .mask-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+}
+
+.mask .vcode {
+  position: absolute;
+  width: 6.53rem;
+  height: 6.55rem;
+  background: url(../images/bg_mask.png) no-repeat center /contain;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  border-radius: 5px;
+  z-index: 10;
+}
+
+.mask .vcode .title-vcode {
+  width: 70%;
+  display: block;
+  margin: auto;
+  margin-top: 1rem;
+}
+
+.mask .vcode .box_img {
+  margin: auto;
+  margin-top: 1.55rem;
+  text-align: center;
+}
+
+.mask .vcode .txt_span {
+  margin: auto;
+  font-size: 0.24rem;
+  color: #FFFFFF;
+  text-align: center;
+  /* padding: 0.2rem; */
+}
+
+.mask .vcode #code_input {
+  position: relative;
+  display: block;
+  padding: 0.1rem 0.25rem;
+  width: 3.7rem;
+  height: 0.88rem;
+  font-size: 0.3rem;
+  -webkit-appearance: none;
+  border-radius: 5px;
+  border: 1px solid #D8D8D8;
+  color: #5F2B91;
+  margin: auto;
+  margin-top: 0.4rem;
+  text-align: center;
+}
+
+.mask .vcode #submit_picCode {
+  width: 3.70rem;
+  height: 0.98rem;
+  background: url(../images/btn_mask_yes.png) no-repeat center /contain;
+  margin: auto;
+  margin-top: 0.5rem;
+}
+
+.no-list {
+  text-align: center;
+  font-size: 0.28rem;
+  line-height: 0.52rem;
+}

@@ -1,0 +1,96 @@
+<!-- sidebar: style can be found in sidebar.less -->
+<section class="sidebar">
+	<ul id="menu" class="sidebar-menu">
+		<li class="treeview active">
+			<a href="#!/">
+				<span class="hide-menu">城市情况</span>
+			</a>
+			<ul class="treeview-menu">
+				<li class="show">
+					<a href="#!/">实时星光图</a>
+				</li>
+				<li>
+					<a href="#!/flowQuery">历史人流查询</a>
+				</li>
+			</ul>
+		</li>
+		<li class="treeview active">
+			<a href="#">
+				<span>路线情况</span>
+			</a>
+			<ul class="treeview-menu">
+				<li>
+					<a href="#!/diagram">实时曲线图</a>
+				</li>
+				<li>
+					<a href="#!/travelCombination">实时TOP出行组合</a>
+				</li>
+				<li>
+					<a href="#!/lineFlowQuery">历史人流查询</a>
+				</li>
+
+			</ul>
+		</li>
+		<li class="treeview active">
+			<a href="#!/">
+				<span>站点情况</span>
+			</a>
+			<ul class="treeview-menu">
+				<li>
+					<a href="#!/numberOfSites">实时TOP站点人数</a>
+				</li>
+				<li>
+					<a href="#!/siteFlowQuery">历史人流查询</a>
+				</li>
+			</ul>
+		</li>
+		<li class="treeview active">
+			<a href="#!/">
+				<span>列车情况</span>
+			</a>
+			<ul class="treeview-menu">
+				<li>
+					<a href="#!/positionAndNumber">实时列车位置和人数</a>
+				</li>
+				<li>
+					<a href="#!/carCongestion">实时车厢拥堵情况</a>
+				</li>
+
+				<li>
+					<a href="#!/timetable">历史列车到站时刻表</a>
+				</li>
+			</ul>
+		</li>
+	</ul>
+
+</section>
+<!-- /.sidebar -->
+
+<script>
+	/* Sidebar tree view */
+	(function($) {
+		$(".sidebar .treeview").tree();
+		
+		$(".treeview-menu li").click(function(){
+			$(this).addClass("show").siblings().removeClass("show");
+			$(this).parent().parent().siblings().children(".treeview-menu").children().removeClass("show");
+		})
+	})(jQuery);
+
+	$('#menu').slicknav();
+	//Activate tooltips
+	$("[data-toggle='tooltip']").tooltip();
+
+	function fix_sidebar() {
+		//Make sure the body tag has the .fixed class
+		if(!$("body").hasClass("fixed")) {
+			return;
+		}
+
+		//Add slimscroll
+		$(".sidebar").slimscroll({
+			height: ($(window).height() - $(".header").height()) + "px",
+			color: "rgba(0,0,0,0.3)"
+		});
+	}
+</script>

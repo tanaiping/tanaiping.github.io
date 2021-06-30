@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta http-equiv="Cache-Control" content="no-cache" />
+		<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" /> -->
+		<!--重要meta, 必须!-->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,shrink-to-fit=no" />
+		<meta name="MobileOptimized" content="240" />
+		<meta name="apple-touch-fullscreen" content="YES" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="email=no" name="format-detection" />
+		<!-- uc强制竖屏 -->
+		<meta name="screen-orientation" content="portrait">
+		<!-- QQ强制竖屏 -->
+		<meta name="x5-orientation" content="portrait">
+		<!-- UC强制全屏 -->
+		<meta name="full-screen" content="yes">
+		<!-- QQ强制全屏 -->
+		<meta name="x5-fullscreen" content="true">
+		<!-- UC应用模式 -->
+		<meta name="browsermode" content="application">
+		<!-- QQ应用模式 -->
+		<meta name="x5-page-mode" content="app">
+		<!-- windows phone 点击无高光 -->
+		<meta name="msapplication-tap-highlight" content="no">
+		<title>一诺一生 雷凌"擎话型动派"</title>
+		<link rel="stylesheet" type="text/css" href="css/base.css" />
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		<style>
+			
+		</style>
+	</head>
+
+	<body>
+		<div class="gift-wrap">
+			<div class="rules-btn rules-btn1"></div>
+			<div class="giftBox">
+				<div class="giftTitle"></div>
+				<ul class="gift">
+					<li class="fl-start">
+						<div class="giftLeft">
+							<em></em>
+							<p>云南双人6天旅游卡</p>
+							<p>（价值2165元/张）</p>
+						</div>
+						<div class="giftRight">
+							<img src="images/no1_gift.jpg" />
+						</div>
+					</li>
+					<li class="fl-start">
+						<div class="giftLeft">
+							<em></em>
+							<p>云南双人6天旅游卡</p>
+							<p>（价值2165元/张）</p>
+						</div>
+						<div class="giftRight">
+							<img src="images/no2_gift.jpg" />
+						</div>
+					</li>
+					<li class="fl-start">
+						<div class="giftLeft">
+							<em></em>
+							<p>云南双人6天旅游卡</p>
+							<p>（价值2165元/张）</p>
+						</div>
+						<div class="giftRight">
+							<img src="images/no3_gift.jpg" />
+						</div>
+					</li>
+					<li class="fl-start">
+						<div class="giftLeft">
+							<em></em>
+							<p>云南双人6天旅游卡</p>
+							<p>（价值2165元/张）</p>
+						</div>
+						<div class="giftRight">
+							<img src="images/no4_gift.jpg" />
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="giftBtBox">
+				<a href="create_card.html" class="look-love-btn"></a>  <!--  <a href="create_card.html" class="look-love-btn"></a>   -->
+				<div class="returnRanklist fl-between">
+					<a href="index.html" class="return-btn"></a>
+					<a href="" class="ranklist-btn"></a>
+				</div>
+			</div>
+		</div>
+		<div class="black-bg"></div>
+		<div class="rules-conwrap">
+			<div class="rules-content"></div>
+			<div class="close"></div>
+		</div>
+		<script src="js/zepto.min.js"></script>
+		<script>
+			$(function(){
+				$('.close').click(function(){
+					$('.black-bg').hide();
+					$('.rules-conwrap').hide();
+				})
+				$('.rules-btn').click(function(){
+					$('.black-bg').show();
+					$('.rules-conwrap').show();
+				})
+
+                //背景适配
+                var win_w = parseInt($(window).width());
+                var win_h =parseInt($(window).height());
+                if(win_w<750){
+                     h =1100*win_w/750;
+                     $(".gift-wrap").css("height",win_h+"px");
+                }
+                else{
+                     h =1100*750/750;
+                    $(".gift-wrap").css("height",h+"px");
+                }
+			})
+		</script>
+	</body>
+</html>

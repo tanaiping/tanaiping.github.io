@@ -1,0 +1,67 @@
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td {margin:0;padding:0; border:0;}
+html{font-size: 62.5%;-webkit-text-size-adjust:none;}
+*{outline: none;margin:0;padding:0;}
+body{background-color: #FFF; font-family: 'STHeiti',Helvetica,Arial,sans-serif;font-size:1rem }
+table {border-collapse:collapse;border-spacing:0;}
+fieldset,img {border:0}
+address,caption,cite,code,dfn,strong,th,var{font-style:normal;font-weight:n6rmal}
+ol,ul {list-style:none}
+caption,th {text-align:left}
+h1,h2,h3,h4,h5,h6 {font-size:100%;font-weight:normal}
+q:before,q:after {content:''}
+abbr,acronym { border:0}
+a{text-decoration:none;color:#333;outline:none;hide-focus:expression(this.hideFocus=true);}
+em{font-style:normal;}
+input,a,textarea{ outline:none;}
+.fl{float:left;_display:inline} .fm{float:left;_display:inline;} .fr{float:right;_display:inline}
+span.fl,span.fm,span.fr{display:block;_display:inline;}
+.cb{clear:both} .cl{clear:left} .cr{clear:right}.tr{text-align: right;}
+.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+.clearfix{display:inline-block}* html .clearfix{height:1%}.clearfix{display:block}
+.clear{width:100%;height:1px;overflow:hidden;clear:both;}
+.tc{text-align: center;}
+a{text-decoration: none;}
+.cl{clear: both; overflow: hidden;}
+img{vertical-align: middle;}
+
+body{background-color: #FFF;}
+.main-wrap{padding: 1.5rem 7% 0 7%;}
+.partner-box{ padding: 1rem 0; position: relative;}
+.partner-box img{width: 100%;}
+.main-imgbox{position: relative; padding-top: .8rem; width: 100%;}
+.main-imgbox .main-img{width: 100%;}
+.main-imgbox .card-btn{position: absolute; right: 0px; top: 1rem; width: 6.4rem; height: 2.8rem;z-index: 2;display: block;}
+.main-imgbox .card-btn img{width: 100%;}
+.lottery-box{ margin-top: 1rem; margin-bottom: 3.7rem; position: relative;}
+.lottery-box .lottery-listwrap{position: absolute; left: 4.38%; top: 11.66%; width: 87%; overflow: hidden;}
+.lottery-box .lottery-list img{width: 100%;}
+.lottery-box .lottery-img-kuang{width: 100%;position: relative;z-index: 2;}
+.lottery-box .lottery-btn{position: absolute; z-index: 3; left: 50%; top:85.2%; width: 19.3rem; height: 7.5rem; margin-left: -9.65rem; }
+.lottery-box .lottery-btn img{width: 100%;}
+.txt-img{text-align: center;width: 100%; padding: 1.5rem 0; }
+.txt-img img{width: 100%;}
+
+.header{padding: 1rem 1.5rem;height: 2rem; background-color: #fff100; font-size: 2.2rem; color: #221815; line-height: 2rem; text-align: center;position: relative;}
+.header a{position: absolute;left: 1.5rem; top: 1rem;}
+.header .back-ico{height: 2rem; vertical-align: top; padding-right: .5rem;}
+.quan-list{padding: 2rem 1.5rem;}
+.quan-list li{background-color: #FFF;margin-bottom: 1.8rem; padding: 1.3rem;}
+.quan-list li .listimgbox{border:1px solid #c1c2c3;}
+.quan-list li .listimgbox img{width: 100%;}
+.quan-list li .desc{padding: .8rem 0 0 7rem; height: 1.8rem; line-height: 1.8rem;position: relative; font-size: 1.5rem; color: #221815; white-space: nowrap; text-overflow:ellipsis; overflow: hidden;}
+.quan-list li .desc label{position: absolute;left: 0px; top: .8rem; font-size: 1rem; background-color: #c6171f; color: #FFF; border-radius: 5px; width: 6rem; text-align: center;display: block;}
+
+.detail-wrap{margin:2.5rem 1.8rem;}
+.detail-wrap .con{padding: 2rem 0;background-color: #FFF; }
+.detail-wrap .con .detail-section{padding: 0 2rem;}
+.detail-wrap .con .detail-title{ line-height: 2.5rem; height: 2.5rem; font-size: 1.5rem; color: #221815; text-align: center; font-weight: bolder;}
+.detail-wrap .con .detail-img{width: 100%; padding: 1.5rem 0;}
+.detail-wrap .con .linebg-img,.detail-wrap .con .detail-section img,.detail-wrap .con .detail-section2 img{width: 100%; display: block;}
+.detail-wrap .con .jm{text-align: center; font-size: 2.2rem; color: #221815; line-height: 4rem; height: 4rem;}
+.detail-wrap .con .jm-num{color: #e60012; font-size: 3.4rem; font-family: Arial;text-align: center; line-height: 5rem; height: 5rem;}
+
+.white-formsbg-black{position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; z-index: 101; background-color: #000; opacity: .7; display: none;}
+.forms-wrap{position: fixed; left: 15%; top:51%;  width: 70%; z-index: 102; display: none;}
+.forms-wrap img{width: 100%;}
+.forms-wrap .close-form{position: absolute; right: 0px; top: 2%; width:17%; height: 30%; }
+.know-btn{position: absolute; left: 32%; bottom: 10%; width: 28%; height: 28%;}

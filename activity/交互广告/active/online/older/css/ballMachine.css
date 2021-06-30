@@ -1,0 +1,227 @@
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td {margin:0;padding:0; border:0;}
+html{font-size: 100px;width: 100%;height: 100%;}
+*{outline: none;margin:0;padding:0;}
+body{width: 100%;height: 100%;margin:0rem;padding:0rem;font-family: 'STHeiti',Helvetica,Arial,sans-serif;line-height:0.15rem;-webkit-tap-highlight-color:rgba(0,0,0,0);font-size:0.14rem;background-color: #fff;}
+fieldset,img {border:0}
+abbr,acronym,select { border:0;-webkit-appearance: none;outline:none;}
+a{text-decoration:none;color:#333;outline:none;hide-focus:expression(this.hideFocus=true);-webkit-tap-highlight-color: rgba(0, 0, 0, 0);}
+ul{list-style:none;}
+input,a,textarea{ outline:none;}
+.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+a{text-decoration: none;}
+img{vertical-align: middle;}
+i{font-style: normal;}
+.main-wrap{max-width: 750px; margin:0 auto; position: relative;background: url(../images/ballImg/ernie-bg.png) no-repeat;height: 6.07rem;background-size: 100%;;}
+.ernic-title{padding: 0.08rem 0.205rem 0rem 0.205rem;}
+.ernic-title img{width: 100%;}
+
+.ernic-btWrap{padding:0 0.18rem;position: absolute;width: 90%;z-index: 99;}
+.ernic-btWrap .ernic-bt{width: 0.42rem;height: 0.45rem;border-radius: 18px;border-radius: 0.2rem;}
+.ernic-btWrap .prize-bt{background: url(../images/ballImg/prize_bt.png) no-repeat;background-size: 100%; display: block;}
+.ernic-btWrap .rule-bt{background: url(../images/ballImg/rule_bt.png) no-repeat;background-size: 100%;}
+
+.machine-wrapper{position: absolute;z-index: 2;width: 100%;top: 1.2rem;}
+.machine-wrapper .machine{margin: 0 0.33rem;background: url(../images/ballImg/ernic-wrap.png) no-repeat;background-size: 100% 100%;height: 3.01rem;border-radius: 2rem;}
+.machine .triangle{width: 1.31rem;height: 1.135rem;display: inline-block;position:absolute;z-index:3;left: 50%;margin-left: -0.655rem;margin-top: 0.75rem;}
+.machine .triangle{background: url(../images/ballImg/ernic-xz.png) no-repeat;background-size: 100% 100%;}
+/* 中心杆旋转动画 begin */
+.machine .pillar{
+	transform-origin:50% 66%;/*定义动画的旋转中心点*/
+	animation: mypin .6s linear 0s 5;
+	/*animation-delay:.3s;
+	animation-iteration-count:1;*/
+}
+@keyframes mypin {
+	0%{
+		transform: rotate(0deg)
+	}
+	50%{
+		transform: rotate(180deg)
+	}
+	100%{
+		transform:rotate(360deg);
+	}
+}
+/* 中心杆旋转动画 end */
+.machine .glass{width: 1.61rem;height: 1.01rem;display: inline-block;position: absolute;z-index: 4;top: 0.34rem;left: 50%;margin-left: -0.72rem;}
+.machine .glass{background: url(../images/ballImg/qanuymlqa1.png) no-repeat;background-size: 100% 100%;}
+.hose-wrap{position: absolute;z-index: -1;width: 100%;bottom: -10%;}
+.hose-wrap .hose{width: 0.27rem;height: 0.545rem;}
+.hose-wrap .hose-left, .hose-wrap .hose-right{background: url(../images/ballImg/renic-zg.png) no-repeat;background-size: 100% 100%;}
+.hose-wrap .renic-zg{margin: 0 1.17rem;}
+.fl_start{display: flex;display: -webkit-flex;justify-content: space-between;-webkit-justify-content: space-between;}
+.fl_between{display: flex;display: -webkit-flex;justify-content: flex-start;-webkit-justify-content: flex-start;}
+.ballOut{background: url(../images/ballImg/ernic-out.png) no-repeat;width: 0.74rem;height: 0.58rem;background-size: 100% 100%;}
+.ballOut, .play-bt{position: absolute;z-index: 1;right: 0.32rem;bottom: 0.26rem;}
+.ballOut{opacity: .8;}
+.play-bt{bottom: -0.58rem;left: 50%;right: 0;margin-left: -0.9rem;animation: pulseBtn 3s infinite;}
+@keyframes pulseBtn{
+	0%, 100% {
+	    -webkit-transform: scaleY(1);
+	    transform: scaleY(1);
+	}
+	50% {
+	    -webkit-transform: scaleY(1.1);
+	    transform: scaleY(1.1);
+	}
+}
+.play-bt .start-bt{background: url(../images/ballImg/ernic-bt.png) no-repeat;width: 1.8rem;height: 0.575rem;background-size: 100% 100%;display: inline-block;}
+/* 蓝色球掉落动画 begin */
+.ballOut-img{background: url(../images/ballImg/blue.png) no-repeat;background-size: 0.26rem 0.26rem;margin-left: -0.2rem;height: 0.26rem;width: 0.26rem;border-radius: 0.2rem;margin-top: -0.07rem;}
+.ballOut-img{animation:myfirst .6s;-webkit-animation:myfirst .6s;opacity: 0.6;}
+@keyframes myfirst
+{
+	0%   {margin-left:-0.07rem; margin-top:-0.1rem;}
+	25%  {margin-left:0.1rem; margin-top:0rem;}
+	50%  {margin-left:0.42rem; margin-top:0.15rem;}
+	75%  {margin-left:0.47rem; margin-top:0.7rem;}
+	100% {margin-left:0.1rem; margin-top:0.2rem;opacity: 0.8;}
+}
+
+@-webkit-keyframes myfirst /* Safari and Chrome */
+{
+	0%   {margin-left:-0.07rem; margin-top:-0.1rem;}
+	25%  {margin-left:0.1rem; margin-top:0rem;}
+	50%  {margin-left:0.45rem; margin-top:0.15rem;}
+	75%  {margin-left:0.47rem; margin-top:0.7rem;}
+	100% {margin-left:0.1rem; margin-top:0.2rem;opacity: 0.8;}
+}
+/* 蓝色球掉落动画 end */
+.prize-list{height: 0.74rem;margin: 4rem 0.19rem 0;padding: 0.075rem 0 0.075rem 0.11rem;}
+.prize-list .prize-item{width: 0.75rem !important;height: 0.74rem !important;background: #FFFFFF;border-radius: 0.04rem;margin-right: 0.11rem !important;overflow: hidden;}
+.prize-item img{width: 100%;height: 100%;}
+
+.prize-popupWrap{position: fixed;top: 0;height: 100%;z-index: 999;width: 100%;}
+.prize-popupBox{max-width: 670px;height: 100%;background: rgba(0,0,0,0.5);margin: 0 auto;padding: 0.5rem 0.2rem 0;}
+.rule-popupBox{padding: 0.9rem 0.15rem 0;max-width: 690px;}
+
+.prize-popup{background: url(../images/ballImg/Prize.png) no-repeat;background-size: 100% 100%;height: 4.29rem;animation: showModal .5s ease-in-out;position: relative;}
+@keyframes showModal{
+	0% {
+		-webkit-transform: scale(.05);
+		transform: scale(.05);
+	}
+	100% {
+		-webkit-transform: scale(1);
+		transform: scale(1);
+	}
+}
+
+.prize-close{height: 0.3rem;}
+.prize-title{color: #FFFFFF;text-align: center;margin-top: 1.05rem;font-size: 0.16rem;}
+.prize-contentWrap{margin:0.32rem 0.2rem 0;}
+.prize-content{margin: 0 0.15rem;height: 1.59rem; display: block;}
+.prize-content img{width: 100%;height: 100%;}
+.prize-contentWrap p{text-align: center;margin: 0.1rem 0;color: #FFFFFF; font-size: 0.12rem;}
+.prizeCen-bt{background: url(../images/ballImg/cen-bt.png) no-repeat;background-size: 100% 100%;display: block;width: 1.69rem;height: 0.44rem;margin: 0 auto;line-height: 0.44rem;text-align: center;font-size: 0.18rem;color: #5e4610;}
+
+.rule-popup{background: url(../images/ballImg/rule.png) no-repeat;background-size: 100% 100%;height: 2.99rem;animation: showModal2 .5s ease-in-out;}
+@keyframes showModal2{
+	0% {
+		-webkit-transform: scale(.05);
+		transform: scale(.05);
+	}
+	100% {
+		-webkit-transform: scale(1);
+		transform: scale(1);
+	}
+}
+
+.rule-content{margin: 0.46rem 0.4rem 0;color: #47392b;font-size: 0.12rem;text-align: justify;height: 2.1rem;overflow: auto;}
+.rule-content p{margin-top: 0.05rem;}
+.rule-ptwo{color: #c8640d;font-size: 0.14rem;}
+
+.prize-number{width: 1rem;color: #FFFFFF;line-height: 0.76rem;text-align: center;height: 0.5rem;font-size: 0.12rem;}
+.prize-number em{color: #fcea08;font-size: 0.14rem; font-style: normal;}
+
+.ball-pool{height: 2.25rem;position: absolute;z-index: 4;top: 50%;left: 50%;width: 2.3rem;margin-top: -1.125rem;margin-left: -1.16rem;border-radius: 1.2rem;}
+.ball-poolImg{height: 1.1rem;background: url(../images/ballImg/ball-all.png) no-repeat;background-size: 100% 100%;margin: 1.13rem auto 0;width: 2.15rem;}
+
+/*.ballImg-wrap{border-radius: 2rem;height: 100%;}*/
+.ballImg{width: 0.32rem !important;height: 0.32rem !important;border-radius: 0.2rem;position: absolute;z-index: 4;}
+.ballImg-one{background: url(../images/ballImg/ballImg.png) 0rem 0rem no-repeat;background-size:2.185rem 0.32rem;top: 1.14rem;left: 0.32rem;}
+.ballImg-two{background: url(../images/ballImg/ballImg.png) -1.86rem 0rem no-repeat;background-size:2.185rem 0.32rem;top: 1.35rem;left: 0.08rem;}
+.ballImg-three{background: url(../images/ballImg/ballImg.png) -1.48rem 0rem no-repeat;background-size:2.185rem 0.32rem;top: 1.62rem;left: 0.25rem;}
+.ballImg-four{background: url(../images/ballImg/ballImg.png) -1.86rem 0rem no-repeat;background-size:2.185rem 0.32rem;    top: 1.32rem;left: 1.9rem;}
+.ballImg-five{background: url(../images/ballImg/ballImg.png) -1.86rem 0rem no-repeat;background-size:2.185rem 0.32rem;top: 1.50rem;left: 0.56rem;}
+.ballImg-sex{background: url(../images/ballImg/ballImg.png) -1.86rem 0rem no-repeat;background-size:2.185rem 0.32rem;top: 1.81rem;left: 0.52rem;}
+.ballImg-seven{background: url(../images/ballImg/ballImg.png) -1.86rem 0rem no-repeat;background-size:2.185rem 0.32rem;top: 1.91rem;left: 0.83rem;}
+.ballImg-eight{background: url(../images/ballImg/ballImg.png) -1.12rem 0rem no-repeat;background-size:2.185rem 0.32rem;top: 1.58rem;left: 0.88rem;}
+.ballImg-nine{background: url(../images/ballImg/ballImg.png) -1.86rem 0rem no-repeat;background-size:2.185rem 0.32rem;top: 1.31rem;left: 1.04rem;}
+.ballImg-ten{background: url(../images/ballImg/ballImg.png) -1.86rem 0rem no-repeat;background-size:2.185rem 0.32rem;top: 1.58rem;left: 1.22rem;}
+.ballImg-eleven{background: url(../images/ballImg/ballImg.png) -0.38rem 0rem no-repeat;background-size:2.185rem 0.32rem;top: 1.9rem;left: 1.16rem;}
+.ballImg-twelve{background: url(../images/ballImg/ballImg.png) -1.86rem 0rem no-repeat;background-size:2.185rem 0.32rem;top: 1.79rem;left: 1.47rem;}
+.ballImg-thirteen{background: url(../images/ballImg/ballImg.png) -0.746rem 0rem no-repeat;background-size:2.185rem 0.32rem;top: 1.59rem;left: 1.73rem;}
+.ballImg-fourteen{background: url(../images/ballImg/ballImg.png) -1.86rem 0rem no-repeat;background-size:2.185rem 0.32rem;top: 1.38rem;left: 1.49rem;}
+
+#screen { width: 2.3rem; height: 1.2rem; position: relative;margin: 0 auto;vertical-align: bottom}
+#inner { position: absolute; left:0px; top:0px; width:100%; height:100%; }
+.canvas{margin-top: 1rem;border-top-left-radius: 0.08rem;
+    border-bottom-left-radius: 1.15rem;
+    border-bottom-right-radius: 1.18rem;
+    border-top-right-radius: 0.14rem;
+    overflow: hidden;
+    }
+.prize-num{height: 1.6rem;background: #FFFFFF;border-radius: 0.12rem;margin-top: 60%;position: relative;}  
+.prize-numColse{position: absolute;z-index: 1;top: -0.1rem;right: -0.1rem;background: url(../images/ballImg/colse.png) no-repeat;width: 0.3rem;height: 0.3rem;background-size: 100% 100%;border-radius: 0.5rem;}
+
+.prize-word p{color: #483a34;font-size: 0.16rem;margin-top: 0.1rem;text-align: center;}
+.prize-word{position: absolute;z-index: 1;top: 50%;margin-top: -0.28rem;width: 100%;}
+
+.light{width: 0.15rem;height: 0.15rem;position: absolute;z-index: 1;}
+.light-hiden{background: url(../images/ballImg/light-on.png) no-repeat;background-size: 100% 100%;}
+.light-active{background: url(../images/ballImg/light.png) no-repeat;background-size: 100% 100%;}
+
+.light-one{top: 0.08rem;left: 1.78rem;}
+.light-two{top: 0.18rem;left: 2.32rem;}
+.light-three{top: 0.45rem;left: 2.75rem;}
+.light-four{top: 0.86rem;left: 3.05rem;}
+.light-five{top: 1.45rem;left: 3.17rem;}
+.light-six{top: 2rem;left: 3.04rem;}
+.light-serven{top: 2.4rem;left: 2.74rem;}
+.light-eight{top: 2.67rem;left: 2.34rem;}
+.light-nine{top: 2.78rem;left: 1.78rem;}
+
+
+.light-ten{top: 2.67rem;left: 1.24rem;}
+.light-eleven{top: 2.4rem;left: 0.82rem;}
+.light-twelve{top: 2rem;left: 0.52rem;}
+.light-thirteen{top: 1.45rem;left: 0.4rem;}
+.light-fourteen{top: 0.86rem;left: 0.52rem;}
+.light-fifteen{top: 0.45rem;left: 0.82rem;}
+.light-sixteen{top: 0.18rem;left: 1.24rem;}
+
+.colorRibbon{position: absolute;z-index: 1;top: 0;}
+.colorRibbon-one{background: url(../images/ballImg/cd2.png) no-repeat;background-size: 100% 100%;width: 0.345rem;height: 0.315rem;top: 1.1rem;left: 0.15rem;}
+.colorRibbon-two{background: url(../images/ballImg/cd3.png) no-repeat;background-size: 100% 100%;width: 0.225rem;height: 0.255rem;top: 1.56rem;left: 1.5rem;}
+.colorRibbon-three{background: url(../images/ballImg/cd.png) no-repeat;background-size: 100% 100%;width: 0.335rem;height: 0.26rem;top: 1.42rem;left: 2.44rem;}
+.colorRibbon-four{background: url(../images/ballImg/cd4.png) no-repeat;background-size: 100% 100%;width: 0.335rem;height: 0.26rem;top: 0.36rem;left: 1.74rem;}
+
+@media (min-width : 320px){
+    html{font-size: 85.34px;}
+}
+@media (min-width: 360px) {
+    html{font-size: 96px;}
+}
+@media (min-width : 375px){
+    html{font-size:100px;}
+}
+@media (min-width : 384px){
+    html{font-size:102.5px;}
+}
+@media (min-width : 411px){
+    html{font-size: 110px;}
+}
+@media (min-width : 414px){
+    html{font-size: 110.5px;}
+}
+@media (min-width: 600px) {
+    html{font-size: 160.4px;}
+}
+@media (min-width: 768px) {
+    html{font-size: 200.4px;}
+}
+@media (min-width : 800px){
+    html{font-size: 200.6px;}
+}
+

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+<meta name="MobileOptimized" content="240" />
+<meta name="apple-touch-fullscreen" content="YES" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta content="telephone=no" name="format-detection" />  
+<meta content="email=no" name="format-detection" />
+<!-- uc强制竖屏 -->
+<meta name="screen-orientation" content="portrait">
+<!-- QQ强制竖屏 -->
+<meta name="x5-orientation" content="portrait">
+<!-- UC强制全屏 -->
+<meta name="full-screen" content="yes">
+<!-- QQ强制全屏 -->
+<meta name="x5-fullscreen" content="true">
+<!-- UC应用模式 -->
+<meta name="browsermode" content="application">
+<!-- QQ应用模式 -->
+<meta name="x5-page-mode" content="app">
+<!-- windows phone 点击无高光 -->
+<meta name="msapplication-tap-highlight" content="no">
+<title>demo1</title>  
+<style>
+    .c1{width: 600px; height: 300px; margin:100px auto; position: relative;}
+    .c1 #preview{position: absolute;left: 0;top: 0px;}
+    .c1 .c-img{position: absolute;right: 0px; top: 0px; width: 300px; height: 300px;}
+    .c1 #mycanvas{position: absolute;left: 0;top: 0px; width: 600px; height: 300px;z-index: 1000;}
+</style>
+</head>  
+<body>  
+<a href="javascript:;" class="btn">开始拍照</a>
+<input type="file" accept="image/*" capture="camera" id="caption" style="display: none;" />
+
+<div class="c1">
+    <canvas id="mycanvas"></canvas>
+    <img src="" alt="" id="preview" style="width:300px; height:300px; display: none;">
+    <img src="images/111.jpg" alt="" class="c-img" id="testimg">
+</div>
+
+
+<img src="images/111.jpg" alt="" style="width: 600px; height:300px;" id="hc_pic">
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script>
+    $(function(){
+        //点击开始拍照 调用摄像头
+        $(".btn").click(function(){
+            $("#caption").click();
+        });
+        var canvas = document.getElementById("mycanvas");
+        var image = document.getElementById("testimg");
+        //判断是否选取图片
+        $("#caption").change(function(){
+            console.log($("#caption").val());
+            //$(".preview").attr("src",$("#caption").val()).show();
+            var $file = $(this);
+            var fileObj = $file[0];
+            var windowURL = window.URL || window.webkitURL;
+            var dataURL;
+            var $img = $("#preview");
+
+            if (fileObj && fileObj.files && fileObj.files[0]) {
+                dataURL = windowURL.createObjectURL(fileObj.files[0]);
+                $img.attr('src', dataURL);
+            } else {
+                dataURL = $file.val();
+                var imgObj = document.getElementById("preview");
+                // 两个坑:
+                // 1、在设置filter属性时，元素必须已经存在在DOM树中，动态创建的Node，也需要在设置属性前加入到DOM中，先设置属性在加入，无效；
+                // 2、src属性需要像下面的方式添加，上面的两种方式添加，无效；
+                imgObj.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
+                imgObj.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = dataURL;
+
+            }
+            $img.show();
+        
+
+            ///----------------------------------
+            //需要放到服务器上看效果  不然嘴跨域 会报错
+                canvas = convertImageToCanvas(image);
+                console.log(convertCanvasToImage(canvas));
+                $("body").append(convertCanvasToImage(canvas));
+        });
+
+        // var imgsrc="";
+        //  $("#hc_pic").attr("src",imgsrc);
+
+        
+        // Converts image to canvas; returns new canvas element
+        function convertImageToCanvas(image) {
+           // var canvas = document.createElement("canvas");
+            canvas.width = image.width;
+            canvas.height = image.height;
+            canvas.getContext("2d").drawImage(image, 0, 0);
+            return canvas;
+        }
+
+        // Converts canvas to an image
+        function convertCanvasToImage(canvas) {
+            var image = new Image();
+            image.setAttribute('crossOrigin', 'Anonymous'); //解决跨域问题
+            image.src = canvas.toDataURL("image/jpeg");
+            return image;
+        }
+    })
+
+
+</script>
+</body>  
+</html>  

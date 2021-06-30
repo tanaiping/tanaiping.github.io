@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="MobileOptimized" content="240" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />  
+    <meta content="email=no" name="format-detection" />
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title>花点时间游武汉</title>
+    <link rel="stylesheet" href="css/base.css">
+    <style>
+        /*body{overflow: hidden;}*/
+        .main-wrap{width: 100%; max-width: 750px; margin:0 auto;}
+        .bg01{background: url(images/bg01.jpg) center top no-repeat; background-size: cover; width: 100%; height: 16.2rem;}
+        .bg02{background: url(images/bg02.jpg) center top no-repeat; background-size: cover; width: 100%; height: 17.05rem;}
+        .bg03{background: url(images/bg03.jpg) center top no-repeat; background-size: cover; width: 100%; height: 21.1rem; display:flex; justify-content: center; align-items: center;}
+        .bg04{background: url(images/bg04.jpg) center top no-repeat; background-size: cover; width: 100%; height: 12.95rem;}
+        .video-box{position: relative; width: 34rem; height: 19.5rem; background: url(images/vbg.png) repeat; border-radius: .6rem; overflow: hidden;}
+        .video-wrap{ width: 32.8rem; height: 18.3rem; position: absolute;left: .6rem; top: .6em; overflow: hidden;border-radius: .6rem;}
+        video{ width: 100%;}
+       @media screen and ( max-width: 750px ) {
+          body{overflow: hidden;}
+        }
+    </style> 
+</head>
+<body>
+    <div class="main-wrap">
+       <div class="bg01"></div>
+       <div class="bg02"></div>
+       <div class="bg03">
+         <div class="video-box">
+           <!-- <div class="video-controls"></div> -->
+           <div class="video-wrap">
+           <video preload="auto" src="http://cmsfile.wifi8.com/uploads/activity/vide/video319.mp4" poster="images/videbg.png"  controls=controls x-webkit-airplay="true" x5-playsinline="true" webkit-playsinline="true"  x5-video-player-type="h5" playsinline="true" id="sp"  autoplay="true"  loop="loop"  type="video/mp4"></video>
+           </div>
+         </div>
+       </div>
+       <div class="bg04"></div>
+<script src="js/zepto.min.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script>
+    (function (doc, win) {
+        var docEl = doc.documentElement,
+            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function () {
+                var clientWidth = docEl.clientWidth;
+                if (!clientWidth) return;
+                if(clientWidth>=750){
+                    docEl.style.fontSize = '20px';
+                }else{
+                    docEl.style.fontSize = 20 * (clientWidth / 750) + 'px';
+                }
+            };
+
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+    })(document, window);
+
+    $(function(){
+        
+        //微信分享
+        var url = 'http://activity.peanut8.com/act/2019/319/tourwuhan/index.html';
+        var imgUrl = 'http://activity.peanut8.com/act/2019/319/tourwuhan/images/share.jpg';
+        var title = '花点时间游武汉';
+        var desc = '花点时间游武汉';
+        var wx_url = window.location.href;
+        $.ajax({
+          type: "get",
+          url: 'http://activity.peanut8.com/WxShare/anxious',
+          data: {
+            url: wx_url
+          },
+          dataType: 'json',
+          success: function(data) {
+            if(data.code == 1) {
+              wx.config({
+                debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                appId: data.data.sharePackage.appId, // 必填，公众号的唯一标识
+                timestamp: data.data.sharePackage.timestamp, // 必填，生成签名的时间戳
+                nonceStr: data.data.sharePackage.nonceStr, // 必填，生成签名的随机串
+                signature: data.data.sharePackage.signature, // 必填，签名，见附录1
+                jsApiList: [
+                  'checkJsApi',
+                  'onMenuShareTimeline',
+                  'onMenuShareAppMessage'
+                ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+              });
+              var shareInfo = data.data.shareInfo;
+              wx.ready(function() {
+                //分享到朋友圈
+                wx.onMenuShareTimeline({
+                  title: title, // 分享标题
+                  desc: desc,
+                  link: url, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                  imgUrl: imgUrl, // 分享图标
+                  success: function() {
+
+                  },
+                  cancel: function(res) {
+
+                  }
+                });
+
+                //分享给朋友
+                wx.onMenuShareAppMessage({
+                  title: title, // 分享标题
+                  desc: desc, // 分享描述
+                  link: url, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                  imgUrl: imgUrl, // 分享图标
+                  success: function() {
+
+                  },
+                  cancel: function() {
+
+                  }
+                });
+              });
+            }
+          },
+          error: function() {}
+        })
+
+    })
+
+</script>
+</body>
+</html>

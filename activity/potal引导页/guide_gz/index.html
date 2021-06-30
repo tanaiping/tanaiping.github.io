@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+<meta name="MobileOptimized" content="240" />
+<meta name="apple-touch-fullscreen" content="YES" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta content="telephone=no" name="format-detection" />  
+<meta content="email=no" name="format-detection" />
+<!-- uc强制竖屏 -->
+<meta name="screen-orientation" content="portrait">
+<!-- QQ强制竖屏 -->
+<meta name="x5-orientation" content="portrait">
+<!-- UC强制全屏 -->
+<meta name="full-screen" content="yes">
+<!-- QQ强制全屏 -->
+<meta name="x5-fullscreen" content="true">
+<!-- UC应用模式 -->
+<meta name="browsermode" content="application">
+<!-- QQ应用模式 -->
+<meta name="x5-page-mode" content="app">
+<!-- windows phone 点击无高光 -->
+<meta name="msapplication-tap-highlight" content="no">
+<!-- 适应移动端end -->
+<title>引导页</title>
+<link rel="stylesheet" type="text/css" href="css/swiper.min.css">
+<link rel="stylesheet" type="text/css" href="css/com.css">
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/swiper.min.js"></script>
+</head>
+<body>
+<div class="logo"><img src="images/logo.jpg" alt=""></div>
+<!-- Swiper -->
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">
+        <a href="javascript:;">
+            <div class="title">第1步：打开花生地铁WiFiAPP</div>
+            <img src="images/guide_01.jpg" alt="">
+        </a>
+        </div>
+        <div class="swiper-slide">
+        <a href="javascript:;">
+        <div class="title">第2步：进入设置-WiFi 选择花生地铁WiFi</div>
+        <img src="images/guide_02.jpg" alt="">
+        </a>
+        </div>
+        <div class="swiper-slide">
+        <a href="javascript:;">
+        <div class="title">第1步：关键！回到APP就能上网喽</div>
+        <img src="images/guide_03.jpg" alt="">
+        </a>
+        </div>
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+
+</div>
+<div class="prompt-txt-red">注意！一定要回到APP认证完成才可上网哦～</div>
+<div class="down-btn clearfix">
+<a href="javascript:;" class="open-btn">打开APP</a>
+<a href="javascript:;" class="download-btn">免流下载</a>
+</div>
+<div class="prompt-txt-gray">如无法下载请前往各应用市场搜索[花生地铁WiFi]</div>
+<script>
+$(function(){
+	//rem 设置
+	function Rem() {
+	var docEl = document.documentElement,
+	oSize = docEl.clientWidth / 36;
+
+	if (oSize > 20) {
+	oSize = 20; // 限制rem值 720 / 36 =20
+	}
+	//console.log(oSize);
+	docEl.style.fontSize = oSize + 'px';
+	}
+	window.addEventListener('resize', Rem, false);
+	Rem();
+	//swiper 初始化
+	var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        loop: false,
+        autoplay: 2000,
+        autoplayDisableOnInteraction: false,
+        paginationBulletRender: function (swiper, index, className) {
+            return '<span class="' + className + '">'+(index+1)+'</span>';
+        }
+    });
+ })
+</script>
+<script src="http://s22.cnzz.com/z_stat.php?id=1262124223&web_id=1262124223" language="JavaScript"></script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="MobileOptimized" content="240" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />  
+    <meta content="email=no" name="format-detection" />
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title>广州地铁</title>
+    <link rel="stylesheet" href="css/base.css">
+    <style>
+       .main-wrap{width: 100%; max-width: 750px; margin:0 auto;}
+       .header{background-color: #FC4443; line-height: 4rem; height: 4rem; color:#FFF; font-weight: bold;text-align: center; font-size: 1.8rem;position: fixed; left: 0; top: 0; width: 100%;z-index: 10000;} 
+       .nav-list{display: flex;flex-direction: row; border-bottom: 1px solid #ccc; position: fixed; left: 0; top: 4rem; width: 100%;background-color: #FFF;z-index: 10000;}
+       .nav-list li{    
+          font-size: 1.6rem;
+          line-height: 3.6rem;
+          height: 3.6rem;
+          width: 20%;
+          vertical-align: middle;
+          white-space: nowrap;
+          text-align: center;
+        }
+        .act {
+            color: #f85959;
+        }
+        .con-box{padding: 7.6rem 0 4.5rem 0;}
+        .con-list li a{display: block;}
+        .con-list li .con-main{
+          display: flex;
+          padding: 1rem 0;
+          margin: 0 1rem;
+          height: 11rem;
+          border-bottom: 1px solid #f5f5f5;
+          color: red;
+          position: relative;
+          justify-content: space-between;
+
+        }
+        .con-list li h3{
+          color: #333;
+          line-height: 2rem;
+          height: 6rem;
+          word-break: break-all;
+          font-size: 1.4rem;
+
+        }
+        .con-list li span{
+          position: absolute;
+          left: 0;
+          bottom: 1rem;
+          color: #999;
+        }
+        .con-list li .txt-wrap{
+            width: 65%;
+            height: 9rem;
+        }
+        .con-list li .img-wrap{
+            overflow: hidden;
+            width: 33%;
+            height: 9rem;
+            background-size: cover;
+            background-position: center center;
+        }
+        .footer{
+          text-align: center;
+          color: #fff;
+          line-height: 3rem;
+          background-color: #999;
+          font-size: 1.2rem;
+        }
+        .down-btn{
+          height: 4rem;
+          line-height: 4rem;
+          background-color: #fc4443;
+          color: #FFF;
+          font-size: 1.6rem;
+          position: fixed;
+          width: 100%;
+          left: 0; 
+          bottom: 0;
+          text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="main-wrap">
+      <div class="header">广州地铁</div>
+      <ul class="nav-list">
+        <li channelKey = "835519373702598656" class="act">广州</li>
+        <li channelKey = "835519474143596544">娱乐</li>
+        <li channelKey = "835522506776383488">体育</li>
+        <li channelKey = "835522653165981696">美食</li>
+        <li channelKey = "835522792748224512">财经</li>
+      </ul>
+      <div class="con-box">
+        <ul class="con-list">
+        </ul>
+      </div>
+      <div class="footer">粤ICP备12000340号</div>
+      <div class="down-btn">下载app</div>
+      
+<script src="js/zepto.min.js"></script>
+<!-- <script src="js/vconsole.min.js"></script> -->
+<script src="js/public.js?v=3"></script>
+<script src="js/common.js"></script>
+</body>
+</html>

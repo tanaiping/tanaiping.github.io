@@ -1,0 +1,61 @@
+<div id="" class="numberOfSites" style="width: 100%;background: rgba(0,116,255,0.2);">
+	
+	<h1>实时站点人流排行榜</h1>
+	<div class="numberList-box clearfix">
+		<div class="numberList-left fl">
+			<div class="numberTop clearfix">
+				<div class="fl">站点</div>
+				<div class="fr">人数</div>
+			</div>
+			<ul>
+				<li ng-repeat="(index,list) in data | limitTo:10">
+					<div class="clearfix">
+						<span class="fl">{{list.name}}</span>
+						<span class="fr">{{list.uv}}</span>
+					</div>
+					<div class="number-box number-bg">
+						<div class="number-bg number-color" style="width: {{list.scale}};"></div>
+					</div>
+				</li>
+					
+			</ul>
+		</div>
+		<div class="numberList-right fr">
+			<div class="numberTop clearfix">
+				<div class="fl">站点</div>
+				<div class="fr">人数</div>
+			</div>
+			<ul>
+				<li ng-repeat="(index,list2) in data | limitTo:-10">
+						<div class="clearfix">
+							<span class="fl">{{list2.name}}</span>
+							<span class="fr">{{list2.uv}}</span>
+						</div>
+						<div class="number-box number-bg">
+							<div class="number-bg number-color" style="width: {{list2.scale}};"></div>
+						</div>
+					
+				</li>
+				
+					
+			</ul>
+		</div>
+	</div>
+	
+</div>
+<table id="example1" class="table table-bordered table-striped" style="margin-top: 45px;background: rgba(255,255,255,0);">
+        <thead>
+            <tr>
+            	<th>站点</th>
+                <th>日期</th>
+                <th>人流数据</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in data">
+            	<td>{{item.name}}</td>
+                <td>{{item.date}}</td>
+                <td>{{item.uv}}</td>
+            </tr>
+        </tbody>
+    </table>

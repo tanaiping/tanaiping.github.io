@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+<meta name="MobileOptimized" content="240" />
+<meta name="apple-touch-fullscreen" content="YES" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta content="telephone=no" name="format-detection" />  
+<meta content="email=no" name="format-detection" />
+<!-- uc强制竖屏 -->
+<meta name="screen-orientation" content="portrait">
+<!-- QQ强制竖屏 -->
+<meta name="x5-orientation" content="portrait">
+<!-- UC强制全屏 -->
+<meta name="full-screen" content="yes">
+<!-- QQ强制全屏 -->
+<meta name="x5-fullscreen" content="true">
+<!-- UC应用模式 -->
+<meta name="browsermode" content="application">
+<!-- QQ应用模式 -->
+<meta name="x5-page-mode" content="app">
+<!-- windows phone 点击无高光 -->
+<meta name="msapplication-tap-highlight" content="no">
+<!-- 适应移动端end -->
+<title>券码验证码平台</title>
+<link rel="stylesheet" href="css/com.css">
+</head>
+<body>
+<div class="main-wrap">
+    <div class="yzm-wrap">
+        <div class="yzm-inputbox">
+            <input type="text" placeholder="输入券码">
+        </div>
+        <div class="error-wrap"></div>
+    </div>
+    <div class="select-box"><div class="select-btn"></div></div>
+</div>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script>
+$(function(){
+    //rem 设置
+    function Rem() {
+    var docEl = document.documentElement,
+    oSize = docEl.clientWidth / 36;
+
+    if (oSize > 20) {
+    oSize = 15; // 限制rem值 720 / 36 =20
+    }
+    //console.log(oSize);
+    docEl.style.fontSize = oSize + 'px';
+    }
+    function setSize(){
+        Rem();
+        var win_h = $(window).height();
+        var input_w =parseInt(win_h*750/1334*0.64);
+        var marginL =parseInt(input_w/2);
+        $(".yzm-wrap").css("width",input_w+"px"); 
+        $(".yzm-wrap").css("marginLeft",-marginL+"px");
+        $(".main-wrap").css("height",win_h);
+    }
+    window.addEventListener('resize', setSize, false);
+    setSize();
+
+
+    $(".select-btn").click(function(){
+        //点提交校验的时候 如验证失败
+        $(".error-wrap").text("券码不存在 请重新输入").addClass('show');
+        window.location.href="detail.html";
+    })
+
+ });
+</script>
+</body>
+</html>

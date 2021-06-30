@@ -1,0 +1,356 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>用户活跃数据</title>
+	<link rel="stylesheet" href="css/base.css" />
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<div class="main-wrap">
+			<div class="m-title">用户活跃数据</div>
+			<div class="chart-box">
+				<!-- <ul class="chart-list">
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul> -->
+				<div id="chart1" style="height: 776px;"></div>
+				<div class="img-tag">
+					<div class="clearfix">
+						<div class="line1 fl">1号线</div>
+						<div class="line2 fl">2号线</div>
+						<div class="line3 fl">3号线</div>
+						<div class="line4 fl">4号线</div>
+						<div class="line5 fl">5号线</div>
+						<div class="line6 fl">6号线</div>
+						<div class="line7 fl">7号线</div>
+						<div class="line8 fl">8号线</div>
+						<div class="line9 fl">9号线</div>
+						<div class="line10 fl">10号线</div>
+						<div class="line11 fl">11号线</div>
+						<div class="line12 fl">12号线</div>
+						<div class="line13 fl">13号线</div>
+					</div>
+				</div>
+			</div>
+	</div>
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<!-- <script src="http://echarts.baidu.com/build/dist/echarts-all.js"></script> -->
+
+	 <!-- <script src="js/echarts.js"></script> -->
+	 	<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts-all-3.js"></script>
+       <!-- <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script> -->
+       <!-- <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script> -->
+       <!-- <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script> -->
+       <!-- <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script> -->
+       <!-- <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script> -->
+       <!-- <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script> -->
+<script>
+	$(function(){
+		var myChart3 = echarts.init(document.getElementById('chart1'));
+	 
+	 
+	 var app = {};
+	 option = null;
+	 option = {
+	     title: {
+	         text: "2018-03-08-线路人流数（单位：万）",
+	          textStyle: {
+			        fontSize: 18,
+			        fontWeight: 'bolder',
+			        color: '#a3b6e1'          // 主标题文字颜色
+			    },
+	     },
+	     tooltip: {
+	         trigger: 'axis'
+	     },
+	     legend: {
+	         data:['Android活跃用户数','IOS活跃用户数','活跃用户数'],
+	         show:false
+	     },
+	     grid: {
+	         left: '0%',
+	         right: '1%',
+	         bottom: '0%',
+	         containLabel: true,
+	     },
+	     toolbox: {
+	         feature: {
+	             saveAsImage: {}
+	         }
+	     },
+	     xAxis: [{
+	         type: 'category',
+	         boundaryGap: false,
+	         data:[1, 2, 3, 4, 5, 6, 7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24],
+        	 axisLine:{
+			    lineStyle:{
+			    color: '#fffffd',
+			    width: 2,
+			    type: 'solid'
+				}  
+        	 },
+        	 axisLabel:{
+		    	 	 textStyle: {
+		    	 	 	fontSize:16,
+		    	 	 }
+		    	 }
+	     }],
+	     yAxis: [ 
+	              {
+	          type: 'value',
+	          axisLine:{
+				    lineStyle:{
+				    color: '#1aca7f',
+				    width: 2,
+				    type: 'solid',
+
+					}  
+		    	 },
+		    axisLabel:{
+		    	 	 textStyle: {
+		    	 	 	fontSize:16,
+		    	 	 }
+		    	 }
+	          },
+	         
+	     ],
+	     series: [
+	        
+	         {
+	             name:'1号线',
+	             type:'line',
+	             stack: 'ALL',
+	             data:[10,20,30,40,50,60,70,80,90,93,104,183,224,135,154,180],
+		        itemStyle : {  
+                        normal : {
+                        	color: "#fe0000",  
+                            lineStyle:{  
+                                color:'#fe0000',width:7,
+                                
+                            }  
+                        },
+                    }, 
+                symbolSize : 10,
+				smooth: true, 
+				
+
+	         }, {
+	             name:'2号线',
+	             type:'line',
+	             stack: 'ALL',
+	             data:[10,22,35,52,65,87,95,110,118,192,134,1465,288,320],
+		         itemStyle : {  
+                        normal : {  
+                        	color: "#f0c807", 
+                            lineStyle:{  
+                                color:'#f0c807',width:7,
+                                
+                            }  
+                        }  
+                    }, 
+                    symbolSize : 10,
+				smooth: true, //更线条更圆滑
+	         }, 
+	         {
+	             name:'3号线',
+	             type:'line',
+	             stack: 'ALL',
+	             data:[1,13,23,34,52,66,77,88,199,123,134,145,152,165,175,152,197,210],
+		        itemStyle : {  
+                        normal : {  
+                        	color: "#1fc877", 
+                            lineStyle:{  
+                                color:'#1fc877',width:7,
+                                
+                            }  
+                        }  
+                    },
+                symbolSize : 10,
+				smooth: true, //更线条更圆滑
+	         }, 
+	         {
+	             name:'4号线',
+	             type:'line',
+	             stack: 'ALL',
+	             data:[1,13,23,34,52,66,77,88,199,123,134,145,152,165,175,152,197,210],
+		        itemStyle : {  
+                        normal : {
+                       		color: "#00b5ff",  
+                            lineStyle:{  
+                                color:'#00b5ff',width:7,
+                                
+                            }  
+                        }  
+                    },
+                symbolSize : 10,
+				smooth: true, //更线条更圆滑
+	         }, 
+	         {
+	             name:'5号线',
+	             type:'line',
+	             stack: 'ALL',
+	             data:[1,13,23,34,52,66,77,88,199,123,134,145,152,165,175,152,197,210],
+		        itemStyle : {  
+                        normal : {
+                        	color:'#db14fd',  
+                            lineStyle:{  
+                                color:'#db14fd',width:7,
+                                
+                            }  
+                        }  
+                    },
+                symbolSize : 10,
+				smooth: true, //更线条更圆滑
+	         }, 
+	         {
+	             name:'6号线',
+	             type:'line',
+	             stack: 'ALL',
+	             data:[1,13,23,34,52,66,77,88,199,123,134,145,152,165,175,152,197,210],
+		        itemStyle : {  
+                        normal : {
+                        	color:'#dd637d',  
+                            lineStyle:{  
+                                color:'#dd637d',width:7,
+                                
+                            }  
+                        }  
+                    },
+                symbolSize : 10,
+				smooth: true, //更线条更圆滑
+	         }, 
+	         {
+	             name:'7号线',
+	             type:'line',
+	             stack: 'ALL',
+	             data:[1,13,23,34,52,66,77,88,199,123,134,145,152,165,175,152,197,210],
+		        itemStyle : {  
+                        normal : {  
+                            color:'#0aadcc',
+                            lineStyle:{  
+                                color:'#0aadcc',width:7,
+                                
+                            }  
+                        }  
+                    },
+                symbolSize : 10,
+				smooth: true, //更线条更圆滑
+	         }, 
+	         {
+	             name:'8号线',
+	             type:'line',
+	             stack: 'ALL',
+	             data:[1,13,23,34,52,66,77,88,199,123,134,145,152,165,175,152,197,210],
+		        itemStyle : {  
+                        normal : {  
+                            color:'#f00c88',
+                            lineStyle:{  
+                                color:'#f00c88',width:7,
+                                
+                            }  
+                        }  
+                    },
+                symbolSize : 10,
+				smooth: true, //更线条更圆滑
+	         }, 
+	         {
+	             name:'9号线',
+	             type:'line',
+	             stack: 'ALL',
+	             data:[1,13,23,34,52,66,77,88,199,123,134,145,152,165,175,152,197,210],
+		        itemStyle : {  
+                        normal : {  
+                            color:'#14bd1b',
+                            lineStyle:{  
+                                color:'#14bd1b',width:7,
+                                
+                            }  
+                        }  
+                    },
+                symbolSize : 10,
+				smooth: true, //更线条更圆滑
+	         }, 
+	         {
+	             name:'10号线',
+	             type:'line',
+	             stack: 'ALL',
+	             data:[1,13,23,34,52,66,77,88,199,123,134,145,152,165,175,152,197,210],
+		        itemStyle : {  
+                        normal : {
+                        	color:'#1b86bd',  
+                            lineStyle:{  
+                                color:'#1b86bd',width:7,
+                                
+                            }  
+                        }  
+                    },
+                symbolSize : 10,
+				smooth: true, //更线条更圆滑
+	         }, 
+	         {
+	             name:'11号线',
+	             type:'line',
+	             stack: 'ALL',
+	             data:[1,13,23,34,52,66,77,88,199,123,134,145,152,165,175,152,197,210],
+		        itemStyle : {  
+                        normal : {
+                        	color:'#ff530e',  
+                            lineStyle:{  
+                                color:'#ff530e',width:7,
+                                
+                            }  
+                        }  
+                    },
+                symbolSize : 10,
+				smooth: true, //更线条更圆滑
+	         }, 
+	         {
+	             name:'12号线',
+	             type:'line',
+	             stack: 'ALL',
+	             data:[1,13,23,34,52,66,77,88,199,123,134,145,152,165,175,152,197,210],
+		        itemStyle : {  
+                        normal : {
+                        	color:'#6f0eff',  
+                            lineStyle:{  
+                                color:'#6f0eff',width:7,
+                                
+                            }  
+                        }  
+                    },
+                symbolSize : 10,
+				smooth: true, //更线条更圆滑
+	         }, 
+	         {
+	             name:'13号线',
+	             type:'line',
+	             stack: 'ALL',
+	             data:[1,13,23,34,52,66,77,88,199,123,134,145,152,165,175,152,197,210],
+		        itemStyle : {  
+                        normal : {
+                        	color:'#ffab30',  
+                            lineStyle:{  
+                                color:'#ffab30',width:7,
+                                
+                            }  
+                        }  
+                    },
+                symbolSize : 10,
+				smooth: true, //更线条更圆滑
+	         }
+	     ],
+	     
+	 };
+	 myChart3.clear();
+	 myChart3.hideLoading();
+	 myChart3.setOption(option);
+
+	})
+</script>
+</body>
+</html>

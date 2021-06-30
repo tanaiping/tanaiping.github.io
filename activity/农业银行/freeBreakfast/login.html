@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	    <meta http-equiv="Cache-Control" content="no-cache" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+	    <meta name="MobileOptimized" content="240" />
+	    <meta name="apple-touch-fullscreen" content="YES" />
+	    <meta name="apple-mobile-web-app-capable" content="yes" />
+	    <meta content="telephone=no" name="format-detection" />  
+	    <meta content="email=no" name="format-detection" />
+	    <!-- uc强制竖屏 -->
+	    <meta name="screen-orientation" content="portrait">
+	    <!-- QQ强制竖屏 -->
+	    <meta name="x5-orientation" content="portrait">
+	    <!-- UC强制全屏 -->
+	    <meta name="full-screen" content="yes">
+	    <!-- QQ强制全屏 -->
+	    <meta name="x5-fullscreen" content="true">
+	    <!-- UC应用模式 -->
+	    <meta name="browsermode" content="application">
+	    <!-- QQ应用模式 -->
+	    <meta name="x5-page-mode" content="app">
+	    <!-- windows phone 点击无高光 -->
+	    <meta name="msapplication-tap-highlight" content="no">
+	    <!-- 适应移动端end -->
+	    <title>广州农行-真功夫元气早餐券</title>
+	    
+	    <link rel="stylesheet" href="css/index.css">
+	</head>
+	<body style="background: #1f2223;">
+		<div class="main-wrap">
+			<div class="loginBg">
+				<div class="loginInfoWrap">
+					<div class="loginInfo">
+						<input type="tel" class="input" id="phoneNum" placeholder="请输入手机号码" maxlength="11" pattern="[0-9]*" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" />
+						<div class="codeBox clearfix">
+							<input type="text" class="input2" id="codeNum" placeholder="请输入验证码" />
+							<div class="codeBt" id="codeBt"><span>获取短信验证码</span><em></em></div>
+						</div>
+						<input type="text" class="input3" id="invite" placeholder="邀请码（选填）" />
+						<div class="loginBt-on" id="loginBt">
+							<p class="loginPrompt"></p>
+						</div>
+						
+						<div class="hrBox"><div class="hr"><em></em></div></div>
+						<div class="loginWords" style="color: #333333;margin-top: 0;height: 1.675rem;overflow: auto;">
+							<p class="clearfix"><b>活动时间：</b><span>2018年9月26日-2019年1月31日(早餐券兑换有效期至2019年2月28日)</span></p>
+							<p class="clearfix"><b>活动内容：</b><span>中国农业银行APP 6分钱兑真功夫元气早餐</span></p>
+							<p class="clearfix"><b>活动规则：</b><span>1.广州地区参与用户在中国农业银行APP首页轮播图点击进入活动。</br>2.花生地铁APP受邀客户输入花生地铁APP登陆手机号，其他渠道受邀客户输入手机号及邀请码后，成功支付6分钱即可获得真功夫“鲜香肉酱蒸米粉+热豆浆（小）”早餐券一份。</br>3.客户凭券可到广州指定的真功夫门店兑换该产品，门店范围详见早餐券页面。</br>4.活动期间每个客户仅限参与一次活动，数量有限，先到先得。</span></p>
+							<p class="wordsTs clearfix">登录的手机号需与付款的手机号一致</p>
+							<p class="wordsTs clearfix">本活动仅限广州用户参与</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="js/jquery.min.js"></script>
+		<script>
+			$(function(){
+				var phoneNum="";
+				var ipUrl='https://cmsapi.wifi8.com';
+				var re = /^0?1[3|4|5|6|7|8|9][0-9]\d{8}$/;
+				var success = 1;
+				var index = 0;
+				function focus(){
+					if($(".input").val() != "" && $(".input2").val() != ""){
+					    $(".loginBt-on").addClass('loginBt');
+					}else{
+					    $(".loginBt-on").removeClass('loginBt');
+					}
+				}
+				function yz(){
+					phoneNum = $('#phoneNum').val();
+					if(phoneNum == '' || !re.test(phoneNum)){
+						$('.loginPrompt').text('您输入的手机号码有误，请重新输入！');
+						index = 1;
+						return;
+					}else{
+						$('.loginPrompt').text('');
+						index = 0;
+					}
+				}
+				$('.loginInfo').bind('input propertychange', function() {
+					yz();
+					if(index == 0){
+						focus();
+					}
+				});
+
+				//发送验证码
+				var codeNum = 120;
+				var t;
+				function djs(){
+					codeNum--;
+					if(codeNum == 0){
+						clearInterval(t);
+						$('.codeBt').css({'background':'#00c1a5','pointer-events': 'auto'});
+						$('.codeBt span').text('获取短信验证码');
+						$('.codeBt em').text('');
+						return;
+					}
+					$('.codeBt em').text('('+codeNum+'s)');
+					
+				}
+				//获取验证码
+				$('#codeBt').click(function(){
+					yz();
+					$.ajax({
+						type: 'post',
+						url:ipUrl+'/uSystem/v1/abcPay/smsCode',
+						data:phoneNum,
+						dataType:'json',
+						async: false,
+						success: function(data) {
+							var json = data;
+							if(json.resultCode == 0){
+								codeNum = 120;
+								$('.loginPrompt').text('');
+								$('.codeBt').css({'background':'#c0c0c0','pointer-events': 'none'});
+								$('.codeBt span').text('重新发送');
+								$('.codeBt em').text('('+codeNum+'s)');
+								t = setInterval(djs,1000);
+								
+							}else{
+								$('.loginPrompt').text(json.resultMsg);
+							}
+						},
+						error: function() {}
+					});
+				})
+				
+				//登录
+				var members = 1; //1白名单 0黑名单
+				$('#loginBt').click(function(){
+					if($(this).hasClass('loginBt') == false){
+						return;
+					}
+					var phoneNum = $('#phoneNum').val();
+					var codeNum = $('#codeNum').val();
+					var invite = $('#invite').val();
+					$.ajax({
+						type:"post",
+						url:ipUrl+"/uSystem/v1/abcPay/login",
+						data:JSON.stringify({"abcOrder":{"phone":phoneNum,"code":codeNum,"inviteCode":invite}}),
+						contentType: "application/x-www-form-urlencoded",
+						dataType:'json',
+						success:function(data){
+							var json = data;
+							if(json.resultCode == 3){
+								$('.loginPrompt').text('您输入的验证码有误，请重新输入！');
+							}else if(json.resultCode == 2){
+								$('.loginPrompt').text('非会员，请输入你的邀请码！');
+								members = 0;
+							}else if(json.resultCode == 0){
+								$('.loginPrompt').text('');
+								localStorage.userTel = phoneNum;
+								if(members == 0){
+									localStorage.userCode = invite;
+								}
+								window.location.href="index.html";
+							}
+						},
+						error:function(){
+							
+						}
+					});
+				})
+				
+			})
+		</script>
+	</body>
+</html>

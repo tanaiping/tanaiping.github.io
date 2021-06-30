@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="MobileOptimized" content="240" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />  
+    <meta content="email=no" name="format-detection" />
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title>今日免单</title>
+    <link rel="stylesheet" href="css/free.css">
+</head>
+<body>
+  <div class="main-wrap">
+    <div class="logo"><img src="images/logo.png" alt=""></div>
+    <div class="act-img"><img src="images/no-active.jpg" alt=""></div>
+    <div class="act-time">还有<span class="hour">21</span>小时：<span class="min">34</span>分钟：<span class="second">14</span>秒&nbsp;&nbsp;截止</div>
+    <div class="act-title">今日免单标题今日免单标题今日免单标题今日</div>
+    <div class="act-desc-wrap"><div class="act-desc-btn down">点击详情</div></div>
+    <div class="detail-wrap">
+      <div class="detail-con">
+        <div class="t1">主标题主标题主标题主标题主标题</div>
+        <div class="t2">淮海中路999号环贸iapm商场3层(近陕西南路)  电话： 021-33637999 黑松露虾饺皇   酱汁蒸凤爪   金沙</div>
+      </div>
+    </div>
+
+    <!--我要免单  花生APP首页 -->
+    <div class="index-free" style="display: none;">
+      <div class="my-free-btn">我要免单</div>
+    </div>
+    <!-- end -->
+
+    <!--登录  APP外 未登录的时候 -->
+    <div class="index-login">
+      <div class="tel-input-wrap">
+        <input type="number" maxlength="11" pattern="[0-9]*" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" placeholder="填写手机号">
+      </div>
+      <div class="yzm-input-wrap">
+        <input type="number" placeholder="填写验证码">
+        <div class="get-yzm">发送验证码</div>
+      </div>
+      <div class="submit-btn">提交</div>
+    </div>
+    <!-- end -->
+
+    <!--攒能量+转发 -->
+    <div class="index-myself"  style="display: none;">
+      <div class="share-btn">转发攒能量</div>
+      <div class="click-power-btn">点击攒能量</div>
+      <div class="person-power-info">
+        <div class="power-left">
+          <img src="images/tx.png" alt="" class="tx"><span>昵称</span>目前排在<em>15</em>位
+        </div>
+        <div class="power-right">
+          <span>114</span>
+          <div class="power-num"></div> <!--select -->
+        </div>
+        <div class="clicked-tips">
+          <div class="pr">已经点过了<em></em></div>
+        </div>
+      </div>
+      <div class="rank-wrap"><div class="rank-btn">免单排行榜</div></div>
+    </div>
+    <!-- end -->
+
+    <!--为TA攒能量 -->
+    <div class="index-him" style="display: none;">
+      <div class="power-him"></div>
+      <div class="person-power-info">
+        <div class="power-left">
+          <img src="images/tx.png" alt="" class="tx"><span>昵称</span>目前排在<em>15</em>位
+        </div>
+        <div class="power-right">
+          <span>114</span>
+          <div class="power-num"></div> <!--select -->
+        </div>
+        <div class="clicked-tips">
+          <div class="pr">已经点过了<em></em></div>
+        </div>
+      </div>
+      <div class="rank-wrap"><div class="rank-btn">免单排行榜</div></div>
+      <a href="" class="go-fee-btn">点击／我也要免单</a>
+    </div>
+    <!-- end -->
+
+
+    <div class="bottom-wrap">
+      <div class="btns-wrap">
+        <a  href="javascript:;" class="go-appbtn"></a>
+        <a  href="javascript:;" class="join-group"></a>
+      </div>
+      <div class="rules"><span>规则</span>：能量越高者将获取名额 ／ 奖品在5个工作日内发放至花生地铁APP卡包或公布获奖名单于有料频道</div>
+      <div class="copyright">本次活动最终解释权归花生所有</div>
+      <a href="" class="history-btn"></a>
+    </div>
+  </div>
+<!-- 提示 -->
+<div id="prompt" class="prompt"><em></em></div>
+
+<div class="black-bg"></div><!--  遮罩层 -->
+<!-- 参与成功 -->
+<div class="pop-wrap-success pop-wrap">
+  <div class="pop-logo"><img src="images/free_pop_logo.png" alt=""></div>
+  <div class="success-title">参与成功</div>
+  <div class="success-desc">参与成功！ 把握免单机会  还不赶紧积攒能量</div>
+  <div class="power-icon"><img src="images/power_icon.png" alt=""></div>
+  <div class="go-power-btn"><img src="images/power_go_btn.png" alt=""></div>
+</div>
+
+<!-- 加入微信群 -->
+<div class="join-group-wrap pop-wrap">
+  <div class="t1">想把握最新的免单机会吗？</div>
+  <div class="t2"><em>截图此屏</em>微信识别扫码进群<br/>给你想要的吃喝玩乐</div>
+  <div class="join-code"><img src="images/code_img.jpg" alt=""></div>
+  <div class="join-logo"><img src="images/pop_logo.png" alt=""></div>
+</div>
+
+<!-- 转发 -->
+<div class="share-wrap pop-wrap">
+  <div class="pop-logo"><img src="images/free_pop_logo.png" alt=""></div>
+  <div class="t1">点击右上角<img src="images/more.png" alt="">按钮</div>
+  <div class="t2">分享到朋友圈</div>
+  <div class="t3">或发送给朋友积攒能量<img src="images/power_icon.png" alt="">吧！</div>
+</div>
+
+<script src="js/zepto.min.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<!-- <script type="text/javascript" src="js/vconsole.min.js"></script>  -->
+<script src="js/public.js"></script>
+<script>
+    $(function(){
+
+      //展开  or 收缩 详情
+      $(".act-desc-btn").click(function(){
+        if(!$(this).hasClass("disabled")){
+            $(this).addClass("disabled");
+          if($(this).hasClass("down")){//展开
+            $(".detail-wrap").show();
+            $(this).removeClass("disabled down").addClass("up").text("收起详情");
+          }else{//收起
+            $(".detail-wrap").hide();
+            $(this).removeClass("disabled up").addClass("down").text("点击详情");
+          }
+        }
+
+      });
+
+      //go 攒能量 
+      $(".go-power-btn").click(function(){
+        $(".black-bg,.pop-wrap").hide();
+      });
+      //关闭弹窗
+      $(".black-bg").click(function(){
+        $(".black-bg,.pop-wrap").hide();
+      });
+
+      //显示微信群的弹窗
+      $(".join-group").click(function(){
+        $(".black-bg,.join-group-wrap").show();
+      });
+
+      //点击攒能量  参与成功弹窗
+      $(".click-power-btn").click(function(){
+        $(".black-bg,.pop-wrap-success").show();
+      });
+
+      //转发按钮
+      $(".share-btn").click(function(){
+        $(".black-bg,.share-wrap").show();
+      });
+
+      
+      //点击 攒能量icon
+      $(".power-num").click(function(){
+        if(!$(this).hasClass("disabled")){
+          if($(this).hasClass("select")){//已点
+            var obj = $(this);
+            obj.parent("div").siblings(".clicked-tips").show();
+            obj.addClass("disabled");
+            setTimeout(function(){
+              obj.parent("div").siblings(".clicked-tips").hide();
+              obj.removeClass("disabled");
+            },1500);
+          }else{
+            var num = parseInt($(this).siblings("span").text());
+            $(this).siblings("span").text(num+1);
+            $(this).addClass("select");
+          }
+          
+        }
+      });
+
+      
+
+
+      
+
+
+
+      //登录的错误提示
+      //promptShow("fsfsf");
+
+
+
+    })
+
+</script>
+</body>
+</html>

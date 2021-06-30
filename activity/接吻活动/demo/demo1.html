@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+<meta name="MobileOptimized" content="240" />
+<meta name="apple-touch-fullscreen" content="YES" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta content="telephone=no" name="format-detection" />  
+<meta content="email=no" name="format-detection" />
+<!-- uc强制竖屏 -->
+<meta name="screen-orientation" content="portrait">
+<!-- QQ强制竖屏 -->
+<meta name="x5-orientation" content="portrait">
+<!-- UC强制全屏 -->
+<meta name="full-screen" content="yes">
+<!-- QQ强制全屏 -->
+<meta name="x5-fullscreen" content="true">
+<!-- UC应用模式 -->
+<meta name="browsermode" content="application">
+<!-- QQ应用模式 -->
+<meta name="x5-page-mode" content="app">
+<!-- windows phone 点击无高光 -->
+<meta name="msapplication-tap-highlight" content="no">
+<title>demo1</title>  
+<style>
+    .c1{width: 300px; height: 300px;position: relative;}
+    .c1 #preview{position: absolute;left: 0;top: 0px;}
+    .c1 .c-img{position: absolute;right: 0px; top: 0px; width: 300px; height: 300px;}
+    #mycanvas{position: absolute;left: 0;top: 0px; z-index: 1000; display: none;}
+</style>
+</head>  
+<body>  
+<a href="javascript:;" class="btn">开始拍照</a>
+<input type="file" accept="image/*" capture="camera" id="camera_input" style="display: none;" />
+
+<div class="c1">
+    <img src="" alt="" id="preview" style="width:300px; height:300px; display: none;">
+    <img src="images/444.png" alt="" class="c-img" id="testimg">
+</div>
+
+<img src="images/222.jpg" alt="" class="c-img" id="result_img" style="width: 500px; height: 300px;margin-top: 20px;">
+<canvas id="mycanvas"></canvas>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script>
+    $(function(){
+        //点击开始拍照 调用摄像头
+        $(".btn").click(function(){
+            $("#camera_input").click();
+        });
+        var canvas = document.getElementById("mycanvas");
+        var image1 = document.getElementById("testimg");
+        var image2 = document.getElementById("preview");
+        // var image1 = document.getElementById("testimg");
+        // var image2 = document.getElementById("testimg222");
+        //判断是否选取图片
+        $("#camera_input").change(function(){
+            console.log($("#camera_input").val());
+            //$(".preview").attr("src",$("#camera_input").val()).show();
+            var $file = $(this);
+            var fileObj = $file[0];
+            var windowURL = window.URL || window.webkitURL;
+            var dataURL;
+            var $img = $("#preview");
+
+            if (fileObj && fileObj.files && fileObj.files[0]) {
+                dataURL = windowURL.createObjectURL(fileObj.files[0]);
+                $img.attr('src', dataURL);
+            } else {
+                dataURL = $file.val();
+                var imgObj = document.getElementById("preview");
+                // 两个坑:
+                // 1、在设置filter属性时，元素必须已经存在在DOM树中，动态创建的Node，也需要在设置属性前加入到DOM中，先设置属性在加入，无效；
+                // 2、src属性需要像下面的方式添加，上面的两种方式添加，无效；
+                imgObj.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
+                imgObj.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = dataURL;
+
+            }
+            $img.show();
+        
+
+            ///----------------------------------
+               setTimeout(function(){
+                    canvas = convertImageToCanvas(image1,image2);
+                console.log(convertCanvasToImage(canvas));
+                $("#result_img").attr("src",convertCanvasToImage(canvas).src);
+               },500) ;
+        });
+
+        // var imgsrc="";
+        //  $("#hc_pic").attr("src",imgsrc);
+
+        
+        // Converts image to canvas; returns new canvas element
+        function convertImageToCanvas(image1,image2) {
+           // var canvas = document.createElement("canvas");
+            // canvas.width = image1.width;
+            // canvas.height = image1.height;
+            canvas.width ="500";
+            canvas.height = "500";
+            canvas.getContext("2d").drawImage(image2, 0, 0,300,270); //preview 上传的图  width  height  伸展或缩小图像宽高
+            canvas.getContext("2d").drawImage(image1, 0, 0);
+
+            return canvas;
+        }
+
+        // Converts canvas to an image
+        function convertCanvasToImage(canvas) {
+            var image = new Image();
+            image.setAttribute('crossOrigin', 'Anonymous'); //解决跨域问题
+            image.src = canvas.toDataURL("image/jpeg",0.2);
+            return image;
+        }
+    })
+
+
+</script>
+</body>  
+</html>  

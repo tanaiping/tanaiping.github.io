@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="MobileOptimized" content="240" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />  
+    <meta content="email=no" name="format-detection" />
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title>出错啦！！！</title>
+    <style>
+        body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td {margin:0;padding:0; border:0;}
+        html{font-size: 62.5%;-webkit-text-size-adjust:none;}
+        *{outline: none;margin:0;padding:0;}
+        body{background-color: #f3f3f3; font-family: 'STHeiti',Helvetica,Arial,sans-serif;font-size:1rem }
+        table {border-collapse:collapse;border-spacing:0;}
+        fieldset,img {border:0}
+        address,caption,cite,code,dfn,strong,th,var{font-style:normal;font-weight:normal}
+        ol,ul {list-style:none}
+        caption,th {text-align:left}
+        h1,h2,h3,h4,h5,h6 {font-size:100%;font-weight:normal}
+        q:before,q:after {content:''}
+        abbr,acronym { border:0}
+        a{text-decoration:none;color:#333;outline:none;hide-focus:expression(this.hideFocus=true);}
+        em{font-style:normal;}
+        input,a,textarea{ outline:none;}
+        .fl{float:left;_display:inline} .fm{float:left;_display:inline;} .fr{float:right;_display:inline}
+        span.fl,span.fm,span.fr{display:block;_display:inline;}
+        .cb{clear:both} .cl{clear:left} .cr{clear:right}.tr{text-align: right;}
+        .clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+        .clearfix{display:inline-block}* html .clearfix{height:1%}.clearfix{display:block}
+        .clear{width:100%;height:1px;overflow:hidden;clear:both;}
+        .tc{text-align: center;}
+        a{text-decoration: none;}
+        .cl{clear: both; overflow: hidden;}
+        img{vertical-align: middle;}
+        .main-wrap{max-width: 750px; margin:0 auto; position: relative; text-align: center;}
+        .error-img{ width: 75%; margin-top: 12rem;}
+    </style>
+</head>
+<body style="background-color: #FFF;">
+    <div class="main-wrap">
+        <img src="images/error_img.jpg" alt="" class="error-img">
+    </div>
+
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/public.js"></script>
+<script type="text/javascript">
+$(function(){
+   window.addEventListener('resize', Rem, false);
+   Rem();
+   
+   $(window).resize(function() {
+       window.location.reload();
+    });
+})
+</script>
+</body>
+</html>

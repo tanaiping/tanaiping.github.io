@@ -1,0 +1,93 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+    <title></title>  
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  
+    <script type="text/javascript" src="js/jquery.js"></script>  
+    <script type="text/javascript" src="js/exif.js"></script>  
+    <script type="text/javascript" src="js/ImageOrientationFix.js"></script> 
+  
+</head>  
+<body>  
+<h2>修正图片带有exif 的orientation信息时候，在安卓上面没办法正常显示问题。</h2>  
+<h3>三张例子图片</h3>  
+<div>  
+    <div>orientation 1:</div>  
+    <img src="images/template/template-img3.png" style="max-width: 200px;" id="p_1">  
+</div>  
+  
+<div>  
+    <div>orientation 3:</div>  
+    <img src="images/template/template-img5.png" style="max-width: 200px;" id="p_3">  
+</div>  
+  
+<div>  
+    <div>orientation 6:</div>  
+    <img src="images/template/template-img6.png" style="max-width: 200px;" id="p_6">  
+</div>  
+<div>  
+    <div>orientation 8:</div>  
+    <img src="images/template/template-img8.png" style="max-width: 200px;" id="p_8">  
+</div>  
+<h3>解决结果。</h3>  
+<div>  
+    <img id="pic_1" style="max-width: 200px"/>  
+</div>  
+<div>  
+    <img id="pic_3" style="max-width: 200px"/>  
+</div>  
+<div>  
+    <img id="pic_6" style="max-width: 200px"/>  
+</div>  
+<div>  
+    <img id="pic_8" style="max-width: 200px"/>  
+</div>  
+  
+<div id="tmp_result"></div>  
+</body>  
+<script type="text/javascript">  
+    $(function(){  
+        ImageOrientationFix({  
+            image:"images/template/template-img3.png"  
+            ,onFix:function(base64_str){  
+                $("#pic_1").attr("src",base64_str);  
+            }  
+        });  
+  
+        ImageOrientationFix({  
+            image:"images/template/template-img5.png"  
+            ,onFix:function(base64_str){  
+                $("#pic_3").attr("src",base64_str);  
+            }  
+        });  
+  
+        ImageOrientationFix({  
+            image:"images/template/template-img6.png"  
+            ,onFix:function(base64_str){  
+                $("#pic_6").attr("src",base64_str);  
+            }  
+        });  
+  
+        ImageOrientationFix({  
+            image:"images/template/template-img8.png"  
+            ,onFix:function(base64_str){  
+                $("#pic_8").attr("src",base64_str);  
+            }  
+        });  
+    });  
+  
+      
+    // $("#tmp_result").html('<canvas width="2448" height="3264" id="tmp_canvas"></canvas>');  
+  
+    // var tmp_canvas=document.getElementById('tmp_canvas');  
+    // var tmp_context=tmp_canvas.getContext("2d");  
+  
+    // var _tansX=parseInt(3264/2);  
+    // var _tansY=parseInt(2448/2);  
+    // tmp_context.translate(_tansY,_tansX);  
+    // tmp_context.rotate(-0.5 * Math.PI);  
+    // var _middle_canvas=window._middle_canvas;  
+    // tmp_context.drawImage(_middle_canvas,0,0,_middle_canvas.width,_middle_canvas.height,0-_tansX,0-_tansY,_middle_canvas.width,_middle_canvas.height);  
+          
+</script>  
+</html>  
