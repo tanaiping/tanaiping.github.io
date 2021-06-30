@@ -1,17 +1,5 @@
 //JavaScript代码区域
-//李明
-// var basePath ="http://192.168.1.147:7788";
-//lhc
 var basePath ="http://192.168.1.173:7788";
-//测试
-// var basePath =" http://192.168.3.70:7788";
-//李玉芳
-// var basePath =" http://192.168.1.118:7788";
-//刘惠春
-// var basePath =" http://192.168.1.173:7788";
-
-//线上
-// var basePath = "http://vp.wifi8.com:7788";
 var userId = localStorage.getItem('userId');
 var role = localStorage.getItem('role');
 var token = localStorage.getItem('token');

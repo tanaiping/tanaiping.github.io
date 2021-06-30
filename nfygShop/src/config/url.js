@@ -1,15 +1,6 @@
-// 3.70  环境    一般使用
-// const cmsUrl2 = "http://192.168.3.70:5566"
-// 外网ip
-// const cmsUrl2 = "http://120.197.100.98:15566"
 
-//李明
-// const cmsUrl2 = "http://192.168.1.147:5566"
-
-//李惠春
-// const cmsUrl2 = "http://192.168.1.173:5566"
 //线上
-const cmsUrl2 = "https://vip.wifi8.com"
+const cmsUrl2 = "http://192.168.3.70:5566"
 
 // 商品模块接口
 export const GoodsUrl = {
