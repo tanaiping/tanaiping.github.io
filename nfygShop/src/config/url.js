@@ -1,6 +1,6 @@
 
 //线上
-const cmsUrl2 = "http://192.168.3.70:5566"
+const cmsUrl2 = "https://vip.wifi8.com"
 
 // 商品模块接口
 export const GoodsUrl = {
