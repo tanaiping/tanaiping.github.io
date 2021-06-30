@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> -->
+  <title>商城管理后台</title>
+  <script> 
+  　document.write("<link rel='stylesheet' href='../css/layui.css?v="+Math.random()+"'>");
+  　document.write("<link rel='stylesheet' href='../css/main.css?v="+Math.random()+"'>"); 
+  </script>
+</head>
+<body>
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+  <legend>订单详情</legend>
+  <form class="layui-form" action="" id="statistic_form">
+  <div class="com-pad">
+      <table class="layui-table" lay-even lay-skin="nob">
+        <thead>
+          <tr>
+            <th>类型</th>
+			<th>已付款数</th>
+            <th>累计金额（元）</th>
+          </tr> 
+        </thead>
+        <tbody id="analyseData">
+        </tbody>
+      </table>
+  </form>
+  </div>
+</fieldset>
+<script>
+    document.write("<s"+"cript type='text/javascript' src='../layui.js?"+Math.random()+"'></s" + "cript>"); 
+    document.write("<s"+"cript type='text/javascript' src='/cms/com_config.js?"+Math.random()+"'></s" + "cript>");
+    document.write("<s"+"cript type='text/javascript' src='../js/statistic/orderDetail.js?"+Math.random()+"'></s" + "cript>");
+    // document.write("<s"+"cript type='text/javascript' src='../js/statistic/echartsData.js?"+Math.random()+"'></s" + "cript>");
+</script>
+</body>
+</html>

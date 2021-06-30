@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> -->
+  <title>卡券运营管理后台</title>
+  <script> 
+  　document.write("<link rel='stylesheet' href='../css/layui.css?v="+Math.random()+"'>");
+  　document.write("<link rel='stylesheet' href='../css/main.css?v="+Math.random()+"'>"); 
+  </script>
+</head>
+<body>
+<div class="com-pad">
+<div class="layui-header-com">
+  <div class="layui-header-menu">
+      <a href="javascript:;" class="back-link coupon-detail-m">管理员卡券详情</a>
+  </div>
+</div>
+<form class="layui-form" action="" id="ticket_form" style="display: none;">
+  <div class="layui-form-item">
+    <label class="layui-form-label">卡券名称</label>
+    <div class="layui-input-inline">
+      <label class="layui-form-label" id="coupon_name" style="text-align: left;width: auto"></label>
+    </div>
+  </div>
+  <!-- <div class="layui-form-item">
+    <label class="layui-form-label">商户名称</label>
+    <div class="layui-input-inline">
+      <label class="layui-form-label" id="bus_name" style="text-align: left;width: auto"></label>
+    </div>
+  </div> -->
+  <div class="layui-form-item">
+    <label class="layui-form-label">券详情页样式</label>
+    <div class="layui-input-block" id="detail_logo">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">券列表LOGO</label>
+    <div class="layui-input-inline">
+        <img src="" alt="" class="coupon-uploadimg list_logo">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">卡券数量</label>
+    <div class="layui-input-inline">
+      <label class="layui-form-label" id="coupon_total" style="text-align: left;"><span>0</span>张</label>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">券类型</label>
+    <div class="layui-input-inline">
+      <label class="layui-form-label" id="coupon_type" style="text-align: left;"></label>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">来源</label>
+    <div class="layui-input-inline">
+      <label class="layui-form-label" id="coupon_source" style="text-align: left;"></label>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">券成本价</label>
+    <div class="layui-input-inline">
+      <label class="layui-form-label" style="text-align: left;width: auto;" id="coupon_cost"><span>0</span>元/券成本价</label>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">券市场价</label>
+    <div class="layui-input-inline">
+      <label class="layui-form-label" style="text-align: left;width: auto;" id="coupon_price"><span>0</span>元/券市场价</label>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">会员价</label>
+    <div class="layui-input-inline">
+      <label class="layui-form-label" id="disPrice" style="text-align: left;width: auto;"><span>0</span>元/会员价</label>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">非会员价</label>
+    <div class="layui-input-inline">
+      <label class="layui-form-label" id="salePrice" style="text-align: left;width: auto;"><span>0</span>元/非会员价</label>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">发放地区</label>
+    <div class="layui-input-inline" style="width: 500px;">
+      <label class="layui-form-label" style="text-align: left;width: auto;" id="cityList"></label>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">卡券分类</label>
+    <div class="layui-input-inline" style="width: 500px;">
+    <label class="layui-form-label" style="text-align: left;width: auto;" id="tagKey"></label>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">购买数量</label>
+    <div class="layui-input-inline">
+      <label class="layui-form-label" style="text-align: left;" id="coupon_max"><span>0</span>张/用户</label>
+    </div>
+  </div>
+  <div class="layui-form-item layui-form-text">
+    <label class="layui-form-label">使用说明</label>
+    <div class="layui-input-inline" style="width: 500px;">
+       <label class="layui-form-label" id="coupon_desc" style="text-align: left;width: auto; white-space:pre-line;"></label>
+    </div>
+  </div>
+ <div class="layui-form-item layui-form-text">
+    <label class="layui-form-label">适用门店</label>
+    <div class="layui-input-inline" style="width: 500px;">
+       <label class="layui-form-label" id="coupon_stores" style="text-align: left;width: auto"></label>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">使用截止日期</label>
+    <div class="layui-input-inline">
+         <label class="layui-form-label" id="stop_date" style="text-align: left;width: auto;"></label>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">发券时间</label>
+    <div class="layui-input-inline">
+      <div class="layui-date-area">
+        <label class="layui-form-label" id="start_date" style="text-align: left; width: auto;white-space: nowrap;"></label>
+        <label class="layui-form-label">至</label>
+        <label class="layui-form-label" id="end_date" style="text-align: left; width: auto;white-space: nowrap;"></label>
+      </div>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">留资</label>
+    <div class="layui-input-inline">
+         <label class="layui-form-label" id="lz" style="text-align: left;width: auto;"></label>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">商户电话</label>
+    <div class="layui-input-inline">
+         <label class="layui-form-label" id="coupon_phone" style="text-align: left;width: auto;"></label>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">外链地址</label>
+    <div class="layui-input-inline">
+         <label class="layui-form-label" id="coupon_url" style="text-align: left;width: auto;"></label>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">可否退款</label>
+    <div class="layui-input-inline">
+         <label class="layui-form-label" id="refund" style="text-align: left;width: auto;"></label>
+    </div>
+  </div>
+
+</form>
+</div>
+<script>
+    document.write("<s"+"cript type='text/javascript' src='../layui.js?"+Math.random()+"'></s" + "cript>"); 
+    document.write("<s"+"cript type='text/javascript' src='/cms/com_config.js?"+Math.random()+"'></s" + "cript>");
+    document.write("<s"+"cript type='text/javascript' src='../js/ticket/detailTicket_m.js?"+Math.random()+"'></s" + "cript>");
+</script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> -->
+  <title>商城管理后台</title>
+  <script> 
+  　document.write("<link rel='stylesheet' href='../css/layui.css?v="+Math.random()+"'>");
+  　document.write("<link rel='stylesheet' href='../css/main.css?v="+Math.random()+"'>"); 
+  </script>
+</head>
+<body>
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+  <legend>设置兑换信息</legend>
+  <div class="com-pad">
+      <form class="layui-form" action="">
+          <div class="com-form-title mt30">卡券基础信息</div>
+          <table class="layui-table" lay-even lay-skin="nob">
+            <thead>
+              <tr>
+                <th>编号</th>
+                <th>商品名称</th>
+                <th>缩略图</th>
+                <th>售价（会员价/非会员）</th>
+              </tr> 
+            </thead>
+            <tbody id="exchangeData">
+                <!-- <tr>
+                  <td>1</td>
+                  <td>255</td>
+                  <td><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576210592753&di=cadc9dd0e7e17e2ad7ba2b843d4f12eb&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%3D580%2Fsign%3Db57187fbbf3eb13544c7b7b3961fa8cb%2Fa826bd003af33a87dc2bab09c55c10385343b57a.jpg" alt="" style="height: 60px;"></td>
+                  <td>
+                    <div>黑</div>
+                    <div>红</div>
+                  </td>
+                  <td>
+                    <div>￥2558/￥5252</div>
+                    <div>￥2558/￥5252</div>
+                  </td>
+                </tr> -->
+            </tbody>
+          </table>
+          <div class="com-form-title mt30">售卖信息</div>
+          <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">可售库存:</label>
+            <div class="layui-input-inline" style="width: 80px;">
+              <label class="layui-form-label stock" style="text-align: left;"><span></span></label>
+            </div>
+            <label class="layui-form-label">成本价:</label>
+            <div class="layui-input-inline" style="width: 80px;">
+              <label class="layui-form-label costPrice" style="text-align: left;"><span></span>元</label>
+            </div>
+            <label class="layui-form-label">市场价:</label>
+            <div class="layui-input-inline" style="width: 80px;">
+              <label class="layui-form-label marketPrice" style="text-align: left;"><span></span>元</label>
+            </div>
+            <label class="layui-form-label">兑换价:</label>
+            <div class="layui-input-inline" style="width: 80px;">
+              <input type="text" class="layui-input excPrice" lay-verify="required|isTwoDecimalsFloat" placeholder="兑换价">
+            </div>
+             <div class="layui-input-inline" style="width: auto;"><div class="form-desc">元+</div></div>
+            <div class="layui-input-inline" style="width: 80px;">
+              <input type="text" class="layui-input excPoint" lay-verify="required|zhengshu" placeholder="花花币">
+            </div>
+            <div class="layui-input-inline" style="width: auto;"><div class="form-desc">个</div></div>
+          </div>
+
+          <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">活动时间</label>
+            <div class="layui-input-inline" style="width: 500px;">
+              <div class="layui-date-area">
+                <input type="text" class="layui-input layui-input-date" id="shelves_start" readonly="true" lay-verify="required" placeholder="开始时间">
+                <label class="layui-form-label" style="text-align: center;width: 40px;">至</label>
+                <input type="text" class="layui-input layui-input-date" id="shelves_end" readonly="true" lay-verify="required" placeholder="结束时间">
+              </div>
+            </div>
+          </div>
+		  <div class="layui-form-item layui-form-text">
+		    <label class="layui-form-label">活动名称</label>
+		    <div class="layui-input-inline">
+		      <input type="text" class="layui-input" lay-verify="required" placeholder="活动名称" id="activityName">
+		    </div>
+		  </div>
+		  
+		  
+          
+          <div class="layui-form-item">
+          <label class="layui-form-label">&nbsp;</label>
+          <div class="layui-input-block">
+            <button class="layui-btn layui-btn-back" >返回上一页</button>
+            <button class="layui-btn" lay-submit lay-filter="exchangeSubmit">完成</button>
+          </div>
+        </div>
+
+      </form>
+  </div>
+</fieldset>
+<script>
+    document.write("<s"+"cript type='text/javascript' src='../layui.js?"+Math.random()+"'></s" + "cript>"); 
+    document.write("<s"+"cript type='text/javascript' src='/cms/com_config.js?"+Math.random()+"'></s" + "cript>");
+    document.write("<s"+"cript type='text/javascript' src='../js/activity/exchangeEdit_coupon.js?"+Math.random()+"'></s" + "cript>");
+</script>
+</body>
+</html>

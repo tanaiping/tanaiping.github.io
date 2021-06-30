@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> -->
+  <title>商城管理后台</title>
+  <script> 
+  　document.write("<link rel='stylesheet' href='../css/layui.css?v="+Math.random()+"'>");
+  　document.write("<link rel='stylesheet' href='../css/main.css?v="+Math.random()+"'>"); 
+  </script>
+</head>
+<body>
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+  <legend>限时抢购</legend>
+  <div class="com-pad">
+      <form class="layui-form" action="">
+        <div class="layui-flex-right">
+            <div class="layui-form-item">
+              <!-- <label class="layui-form-label">商品名称</label> -->
+              <div class="layui-input-inline" style="width: 200px;">
+                <input type="text" placeholder="商品名称" autocomplete="off" class="layui-input" id="goods_name" >
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <div class="layui-form-item">
+                <label class="layui-form-label" style="width: auto">创建时间</label>
+                <div class="layui-input-inline" style="width: 500px;">
+                  <div class="layui-date-area">
+                     <input type="text" class="layui-input layui-input-date" id="create_start" readonly="true" placeholder="开始时间" >
+                    <label class="layui-form-label" style="text-align: center;width: 40px;">至</label>
+                    <input type="text" class="layui-input layui-input-date" id="create_end" readonly="true" placeholder="结束时间">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <label class="layui-form-label">状态</label>
+              <div class="layui-input-inline" style="width: 150px;">
+                <select name="card" lay-verify="required" id="goods_type" >
+                  <option value="-1" selected="">全部</option>
+                  <option value="0">待上架</option>
+                  <option value="1">上架</option>
+                  <option value="2">下架</option>
+                  <option value="3">删除</option>
+                </select>
+              </div>
+            </div>
+            <div class="layui-inline">
+              <button class="layui-btn layui-btn-normal" lay-submit lay-filter="searcheSale">搜索</button>
+            </div>
+            <div class="layui-inline">
+              <button class="layui-btn layui-btn-danger layui-ml20 selectCommodity_s">选择商品</button>
+            </div>
+            <div class="layui-inline">
+              <button class="layui-btn layui-btn layui-ml20 selectCoupon_s">选择卡券</button>
+            </div>
+            <div class="layui-inline layui-ml20">
+              <button class="layui-btn layui-btn-danger" lay-submit lay-filter="exportSale">导出</button>
+            </div>
+        </div>
+      </form>
+      <table class="layui-table" lay-even lay-skin="nob">
+        <thead>
+          <tr>
+            <th>编号</th>
+            <th>商品名称</th>
+            <th>缩略图</th>
+            <th>规格属性</th>
+            <th>抢购价</th>
+            <th>销量（销量/剩余库存）</th>
+            <th>活动时间</th>
+            <th>状态</th>
+            <th style="width: 500px;">操作</th>
+          </tr> 
+        </thead>
+        <tbody id="saleData">
+            <!-- <tr>
+              <td>1</td>
+              <td>255</td>
+              <td><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576210592753&di=cadc9dd0e7e17e2ad7ba2b843d4f12eb&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%3D580%2Fsign%3Db57187fbbf3eb13544c7b7b3961fa8cb%2Fa826bd003af33a87dc2bab09c55c10385343b57a.jpg" alt="" style="height: 60px;"></td>
+              <td>
+                <div>黑</div>
+                <div>红</div>
+              </td>
+              <td>
+                <div>￥2558/￥5252</div>
+                <div>￥2558/￥5252</div>
+              </td>
+              <td>
+                <div>565/1554</div>
+                <div>565/1554</div>
+              </td>
+              <td>
+               <div>2019-11-22</div>
+                <div>2019-11-29</div>
+              </td>
+              <td>下架</td>
+              <td>
+                <button class="layui-btn layui-btn-primary sticky-btn">置顶</button>
+                <button class="layui-btn layui-btn-danger moveUp-btn">上移</button>
+                <button class="layui-btn layui-btn-normal moveDown-btn">下移</button>
+                <button class="layui-btn layui-btn-danger takeOff-btn">下架</button>
+                <button class="layui-btn layui-btn-normal exchange-edit">修改</button>
+                <button class="layui-btn layui-btn-primary exchange-look">查看</button>
+              </td>
+            </tr> -->
+        </tbody>
+
+      </table>
+      <div id="pageList"></div>
+  </div>
+
+  <div id="select_wrap" style="padding: 20px;display: none;" >
+  <form class="layui-form" action="">
+    <div class="select-search">
+      <input type="text" name="title" placeholder="请输入名称快速搜索" autocomplete="off" class="layui-input goods-name-select">
+      <button type="button" class="layui-btn" lay-submit lay-filter="searchselect">搜索</button></div>
+  </form>
+      <div style="height:300px;overflow:auto;">
+        <table class="layui-table" lay-even lay-skin="nob">
+            <thead>
+            <tr>
+              <th>&nbsp;</th>
+              <th>编号</th>
+              <th>商品名称</th>
+              <th>缩略图</th>
+              <th class="spec-th">规格属性</th>
+              <th>售价（会员价/非会员价）</th>
+              </tr>
+            </thead>
+            <tbody id="select_box">
+            </tbody>
+        </table>
+      </div>
+  <div id="pageLists"></div>
+</div>
+</fieldset>
+<script>
+    document.write("<s"+"cript type='text/javascript' src='../layui.js?"+Math.random()+"'></s" + "cript>"); 
+	document.write("<s"+"cript type='text/javascript' src='../clipboard.min.js?"+Math.random()+"'></s" + "cript>");
+    document.write("<s"+"cript type='text/javascript' src='/cms/com_config.js?"+Math.random()+"'></s" + "cript>");
+    document.write("<s"+"cript type='text/javascript' src='../js/activity/select.js?"+Math.random()+"'></s" + "cript>");
+    document.write("<s"+"cript type='text/javascript' src='../js/activity/flashSale.js?"+Math.random()+"'></s" + "cript>");
+</script>
+</body>
+</html>

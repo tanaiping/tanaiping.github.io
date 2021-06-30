@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> -->
+  <title>卡券运营管理后台</title>
+  <script> 
+  　document.write("<link rel='stylesheet' href='../css/layui.css?v="+Math.random()+"'>");
+  　document.write("<link rel='stylesheet' href='../css/main.css?v="+Math.random()+"'>"); 
+  </script>
+</head>
+<body>
+<div class="layui-header-com">
+  <div class="layui-header-menu">
+      <h3 class="layui-header-title">卡券申请</h3>
+  </div>
+</div>
+<form class="layui-form" action="" id="ticket_form">
+  <div class="layui-form-item">
+    <label class="layui-form-label">卡券名称</label>
+    <div class="layui-input-inline">
+      <input type="text" required  lay-verify="required" placeholder="卡券名称" autocomplete="off" class="layui-input" id="coupon_name" maxlength="45">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">券详情页样式</label>
+    <div class="layui-input-inline" style="width: 114px;">
+        <button type="button" class="layui-btn" id="upload_file_detail_more">
+        <i class="layui-icon">&#xe67c;</i>多张上传
+      </button>
+    </div>
+    <div class="layui-form-mid layui-word-aux">素材尺寸（750px x 320px）</div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label"></label>
+    <div class="banner-images">
+      <div class="layui-input-inline com-uploadbox banner-uploadbox" style="width: 300px;height: 128px;">
+          <img src="../images/default.png" alt="" class="coupon-uploadimg default detail_logo">
+          <div class="shade-wrap banner-wrap">
+            <div class="pr">
+              <button type="button" class="layui-btn upload-banner" id="upload_file_banner1">
+                <i class="layui-icon">&#xe67c;</i>单张上传
+              </button>
+              <a href="javascript:;" title="重传" class="reload-img"></a>
+              <a href="javascript:;" title="删除" class="del-img"></a>
+            </div>
+          </div>
+      </div>
+      <div class="layui-input-inline com-uploadbox banner-uploadbox" style="width: 300px;height: 128px;">
+          <img src="../images/default.png" alt="" class="coupon-uploadimg default detail_logo">
+          <div class="shade-wrap banner-wrap">
+            <div class="pr">
+              <button type="button" class="layui-btn upload-banner" id="upload_file_banner2">
+                <i class="layui-icon">&#xe67c;</i>单张上传
+              </button>
+              <a href="javascript:;" title="重传" class="reload-img"></a>
+              <a href="javascript:;" title="删除" class="del-img"></a>
+            </div>
+          </div>
+      </div>
+      <div class="layui-input-inline com-uploadbox banner-uploadbox" style="width: 300px;height: 128px;">
+          <img src="../images/default.png" alt="" class="coupon-uploadimg default detail_logo">
+          <div class="shade-wrap banner-wrap">
+            <div class="pr">
+              <button type="button" class="layui-btn upload-banner" id="upload_file_banner3">
+                <i class="layui-icon">&#xe67c;</i>单张上传
+              </button>
+              <a href="javascript:;" title="重传" class="reload-img"></a>
+              <a href="javascript:;" title="删除" class="del-img"></a>
+            </div>
+          </div>
+      </div>
+      <div class="layui-input-inline com-uploadbox banner-uploadbox" style="width: 300px;height: 128px;">
+          <img src="../images/default.png" alt="" class="coupon-uploadimg default detail_logo">
+          <div class="shade-wrap banner-wrap">
+            <div class="pr">
+              <button type="button" class="layui-btn upload-banner" id="upload_file_banner4">
+                <i class="layui-icon">&#xe67c;</i>单张上传
+              </button>
+              <a href="javascript:;" title="重传" class="reload-img"></a>
+              <a href="javascript:;" title="删除" class="del-img"></a>
+            </div>
+          </div>
+      </div>
+      <div class="layui-input-inline com-uploadbox banner-uploadbox" style="width: 300px;height: 128px;">
+          <img src="../images/default.png" alt="" class="coupon-uploadimg default detail_logo">
+          <div class="shade-wrap banner-wrap">
+            <div class="pr">
+              <button type="button" class="layui-btn upload-banner" id="upload_file_banner5">
+                <i class="layui-icon">&#xe67c;</i>单张上传
+              </button>
+              <a href="javascript:;" title="重传" class="reload-img"></a>
+              <a href="javascript:;" title="删除" class="del-img"></a>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">券列表LOGO</label>
+    <div class="layui-input-inline" style="width: 114px;">
+        <button type="button" class="layui-btn" id="upload_file_list">
+        <i class="layui-icon">&#xe67c;</i>上传图片
+      </button>
+    </div>
+    <div class="layui-form-mid layui-word-aux">素材尺寸（144px x 144px）</div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label"></label>
+    <div class="layui-input-inline">
+        <img src="../images/default.png" alt="" class="coupon-uploadimg default list_logo">
+      </button>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">券来源</label>
+    <div class="layui-input-inline" id="coupon_source">
+      <select name="source" lay-verify="required" lay-filter="coupon_source">
+        <option value="0">外部券</option>
+        <option value="1">内部券</option>
+      </select>
+    </div>
+  </div>
+  <div class="layui-form-item" id="import_box">
+    <label class="layui-form-label">导入卡券</label>
+    <div class="layui-input-inline" style="width: 114px;">
+        <button type="button" class="layui-btn" id="upload_file">
+        <i class="layui-icon">&#xe67c;</i>上传文件
+      </button>
+    </div>
+    <div class="layui-form-mid layui-word-aux" id="upload_msg"></div>  <!-- 文件解析中...   解析完成  layui-color-orange  成功导入3442个 失败431个 -->
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">卡券数量</label>
+    <div class="layui-input-inline" id="coupon_acount" style="width: 114px;">
+      <label class="layui-form-label" style="text-align: left;" id="coupon_num"><span>0</span>张</label>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">券类型</label>
+    <div class="layui-input-inline" id="coupon_type">
+      <select name="card" lay-verify="required">
+        <option value="1">电子券</option>
+        <option value="2">代金券</option>
+        <option value="3">实物券</option>
+      </select>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">购买数量</label>
+    <div class="layui-input-inline" style="width: 230px;">
+      <input type="text" required  lay-verify="required|number" placeholder="购买数量" autocomplete="off" class="layui-input" id="coupon_max">
+    </div>
+    <div class="layui-form-mid layui-word-aux">张/用户</div>
+  </div>
+  <div class="layui-form-item layui-form-text">
+    <label class="layui-form-label">券成本价</label>
+    <div class="layui-input-inline" style="width: 230px;">
+      <input type="text" required  lay-verify="required|isTwoDecimalsFloat" placeholder="券成本价" autocomplete="off" class="layui-input" id="coupon_cost">
+    </div>
+    <div class="layui-form-mid layui-word-aux">元/成本价</div>
+  </div>
+  <div class="layui-form-item layui-form-text">
+    <label class="layui-form-label">券市场价</label>
+    <div class="layui-input-inline"  style="width: 230px;">
+      <input type="text" required  lay-verify="required|number|zhengshu|isTwoDecimalsFloat" placeholder="券市场价" autocomplete="off" class="layui-input" id="coupon_price">
+    </div>
+    <div class="layui-form-mid layui-word-aux">元/市场价</div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">选择发放地区</label>
+    <div class="layui-input-block city-box">
+          <input type="radio" name="city" value="0" title="全国" checked="" id="city_all">
+          <input type="radio" name="city" value="1" title="其他" id="city_other">
+    </div>
+    <div class="layui-input-block" id="cityList" style="width: 670px; margin-left: 130px; margin-top: 4px; display: none;">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">卡券分类</label>
+    <div class="layui-input-inline" id="tagKey" style="width: 670px;">
+    </div>
+  </div>
+  <div class="layui-form-item layui-form-text">
+    <label class="layui-form-label">使用说明</label>
+    <div class="layui-input-inline">
+      <div id="coupon_desc"></div>
+    </div>
+  </div>
+  <div class="layui-form-item layui-form-text">
+    <label class="layui-form-label">适用门店</label>
+    <div class="layui-input-inline">
+       <div id="coupon_stores"></div>
+    </div>
+  </div>
+  <!-- <div class="layui-form-item">
+    <label class="layui-form-label">使用店铺</label>
+    <div class="layui-input-block" id="use_shop">
+    </div>
+  </div> -->
+  <div class="layui-form-item">
+    <label class="layui-form-label">使用截止日期</label>
+    <div class="layui-input-inline">
+         <input type="text" class="layui-input layui-input-date" id="stop_date" readonly="true" lay-verify="required" placeholder="使用截止日期"  >
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">发券时间</label>
+    <div class="layui-input-inline" style="width: 500px;">
+      <div class="layui-date-area">
+        <input type="text" class="layui-input layui-input-date" id="ticket_start" readonly="true" lay-verify="required" placeholder="发券开始时间">
+        <label class="layui-form-label" style="text-align: center;width: 40px;">至</label>
+        <input type="text" class="layui-input layui-input-date" id="ticket_end" readonly="true" lay-verify="required" placeholder="发券结束时间">
+      </div>
+    </div>
+  </div>
+  <div class="layui-form-item" id="lz_radio">
+    <label class="layui-form-label">留资</label>
+    <div class="layui-input-inline lz-box">
+          <input type="radio" name="lz" value="是" title="是" checked="" id="lz_yes">
+          <input type="radio" name="lz" value="否" title="否" id="lz_no">
+    </div>
+  </div>
+  <div class="layui-form-item" id="lz_conbox">
+    <div class="layui-form-item lz-inputwrap">
+      <label class="layui-form-label">&nbsp;</label>
+      <div class="layui-input-inline">
+        <input type="text" class="layui-input"  lay-verify="required" value="姓名">
+      </div>
+      <div class="layui-icon-del"></div>
+    </div>
+    <div class="layui-form-item lz-inputwrap">
+      <label class="layui-form-label">&nbsp;</label>
+      <div class="layui-input-inline">
+        <input type="text" class="layui-input"  lay-verify="required" value="电话">
+      </div>
+      <div class="layui-icon-del"></div>
+    </div>
+    <div class="layui-form-item lz-inputwrap">
+      <label class="layui-form-label">&nbsp;</label>
+      <div class="layui-input-inline">
+        <input type="text" class="layui-input"  lay-verify="required" value="地址">
+      </div>
+      <div class="layui-icon-del"></div>
+    </div>
+    <div class="layui-form-item lz-addwrap">
+      <label class="layui-form-label">&nbsp;</label>
+      <div class="layui-input-inline">
+         <button class="layui-btn customBtn">自定义留资</button>
+      </div>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">商户电话</label>
+    <div class="layui-input-inline">
+        <input type="text" placeholder="商户电话" autocomplete="off" class="layui-input" id="coupon_phone">
+    </div>
+    <div class="layui-form-mid layui-word-aux">选填(格式：13888888888/0755-88888888)</div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">外链地址</label>
+    <div class="layui-input-inline">
+        <input type="text" placeholder="链接地址" autocomplete="off" class="layui-input" id="coupon_url">
+    </div>
+    <div class="layui-form-mid layui-word-aux">选填</div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">可否退款</label>
+    <div class="layui-input-inline refund">
+        <input type="radio" name="refund" value="是" title="是" checked="" >
+        <input type="radio" name="refund" value="否" title="否" >
+    </div>
+  </div>
+ 
+  <div class="layui-form-item">
+    <label class="layui-form-label">&nbsp;</label>
+    <div class="layui-input-block">
+      <button class="layui-btn" lay-submit lay-filter="saveBtn" id="applySave">保存</button>
+      <button class="layui-btn" lay-submit lay-filter="submitBtn" id="applySubmit">提交</button>
+    </div>
+  </div>
+</form>
+
+<script>
+    document.write("<s"+"cript type='text/javascript' src='../layui.js?"+Math.random()+"'></s" + "cript>");
+    document.write("<s"+"cript type='text/javascript' src='../js/validation.js?"+Math.random()+"'></s" + "cript>"); 
+    document.write("<s"+"cript type='text/javascript' src='/cms/com_config.js?"+Math.random()+"'></s" + "cript>");
+    document.write("<s"+"cript type='text/javascript' src='../js/uploadImg.js?"+Math.random()+"'></s" + "cript>");
+    document.write("<s"+"cript type='text/javascript' src='../js/ticket/applyTicket.js?"+Math.random()+"'></s" + "cript>");
+</script>
+</body>
+</html>

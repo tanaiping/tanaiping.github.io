@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> -->
+  <title>卡券运营管理后台</title>
+  <script> 
+  　document.write("<link rel='stylesheet' href='../../css/layui.css?v="+Math.random()+"'>");
+  　document.write("<link rel='stylesheet' href='../../css/main.css?v="+Math.random()+"'>"); 
+  </script>
+</head>
+<body>
+<div class="layui-header-com">
+  <div class="layui-header-menu">
+      <a href="javascript:;" class="back-link verifi_detail">核销数据详情</a>
+  </div>
+</div>
+<form class="layui-form" action="" id="ticket_form">
+  <div class="layui-flex-right">
+      <div class="layui-inline layui-ml20">
+          <button class="layui-btn layui-btn-danger" lay-submit lay-filter="exportVerDetail">导出</button>
+      </div>
+  </div>
+</form>
+<table class="layui-table" lay-even lay-skin="nob">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>卡券名称</th>
+      <th>商户名称</th>
+      <th>核销状态</th>
+      <th>核销时间</th>
+      <th>卡券编码</th>
+      <th>用户手机</th>
+      <th>成本（元）</th>
+      <th>折扣价（元）</th>
+      <th>成交价（元）</th>
+      <th>收入（元）</th>
+    </tr> 
+  </thead>
+  <tbody id="verifiDetailData">
+  </tbody>
+
+</table>
+<div id="pageList"></div>
+<script>
+    document.write("<s"+"cript type='text/javascript' src='../../layui.js?"+Math.random()+"'></s" + "cript>"); 
+    document.write("<s"+"cript type='text/javascript' src='/cms/com_config.js?"+Math.random()+"'></s" + "cript>");
+    document.write("<s"+"cript type='text/javascript' src='../../js/data/verifiData_m.js?"+Math.random()+"'></s" + "cript>");
+</script>
+</body>
+</html>

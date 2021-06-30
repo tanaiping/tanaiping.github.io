@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> -->
+  <title>卡券运营管理后台</title>
+  <script> 
+  　document.write("<link rel='stylesheet' href='../css/layui.css?v="+Math.random()+"'>");
+  　document.write("<link rel='stylesheet' href='../css/main.css?v="+Math.random()+"'>"); 
+  </script>
+</head>
+<body>
+<div class="com-pad">
+<form class="layui-form" action="" id="ticket_form">
+  <div class="layui-flex-right">
+      <div class="layui-form-item">
+        <label class="layui-form-label">卡券名称</label>
+        <div class="layui-input-inline" style="width: 200px;">
+          <input type="text" placeholder="卡券名称" autocomplete="off" class="layui-input" id="coupon_name" >
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label layui-form-label-auto">状态</label>
+        <div class="layui-input-inline" style="width: 160px;">
+          <select name="card"  id="status">
+              <option value="-1" selected="">全部</option>
+              <option value="0">未提交</option>
+              <option value="1">已提交</option>
+              <option value="2">已结束</option>
+              <option value="3">暂停</option>
+              <option value="4">发券中</option>
+            </select>
+        </div>
+      </div>
+      <div class="layui-inline">
+        <button class="layui-btn layui-btn-normal" lay-submit lay-filter="TicketSearch">搜索</button>
+      </div>
+  </div>
+</form>
+
+<table class="layui-table" lay-even lay-skin="nob" id="audTicket">
+  <thead>
+    <tr>
+      <th>NO</th>
+      <th>卡券名称</th>
+      <th>商户名称</th>
+      <th>类型</th>
+      <th>数量</th>
+      <th>状态</th>
+      <th style="width: 245px;">操作</th>
+    </tr> 
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<div id="pageList"></div>
+</div>
+<script>
+    document.write("<s"+"cript type='text/javascript' src='../layui.js?"+Math.random()+"'></s" + "cript>"); 
+    document.write("<s"+"cript type='text/javascript' src='/cms/com_config.js?"+Math.random()+"'></s" + "cript>");
+    document.write("<s"+"cript type='text/javascript' src='../js/ticket/ticketList_manager.js?"+Math.random()+"'></s" + "cript>");
+</script>
+</body>
+</html>

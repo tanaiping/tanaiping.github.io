@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> -->
+  <title>卡券运营管理后台</title>
+  <script> 
+  　document.write("<link rel='stylesheet' href='../css/layui.css?v="+Math.random()+"'>");
+  　document.write("<link rel='stylesheet' href='../css/main.css?v="+Math.random()+"'>"); 
+  </script>
+</head>
+<body>
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+  <legend>卡券订单</legend>
+<div class="com-pad">
+<form class="layui-form" action="" id="ticket_form">
+  <div class="layui-flex-right">
+      <!-- <div class="layui-form-item">
+        <label class="layui-form-label layui-form-label-auto">数据来源</label>
+        <div class="layui-input-inline" style="width: 160px;">
+          <select name="card"  id="source_data">
+              <option value="1" selected="">当天数据</option>
+              <option value="2">历史数据</option>
+            </select>
+        </div>
+      </div> -->
+      <div class="layui-form-item">
+        <label class="layui-form-label layui-form-label-auto">订单号</label>
+        <div class="layui-input-inline" style="width: 160px;">
+          <input type="text" lay-verify="" placeholder="订单号" autocomplete="off" class="layui-input" id="order_code">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label layui-form-label-auto">手机号</label>
+        <div class="layui-input-inline" style="width: 160px;">
+          <input type="text" lay-verify="" placeholder="手机号" autocomplete="off" class="layui-input" id="mobile">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label layui-form-label-auto">支付状态</label>
+        <div class="layui-input-inline" style="width: 160px;">
+          <select name="card"  id="pay_type">
+              <option value="-1" selected="">全部</option>
+              <option value="0">未支付</option>
+              <option value="1">支付成功</option>
+              <option value="2">支付失败</option>
+              <option value="3">支付超时</option>
+              <option value="4">支付取消</option>
+              <option value="8">删除</option>
+			  <option value="11">退款成功</option>
+			  <option value="12">已退款</option>
+            </select>
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label layui-form-label-auto">核销状态</label>
+        <div class="layui-input-inline" style="width: 160px;">
+          <select name="card"  id="order_checkstatus">
+              <option value="-1" selected="">全部</option>
+              <option value="0">未核销</option>
+              <option value="1">已核销</option>
+            </select>
+        </div>
+      </div>
+	  <div class="layui-form-item">
+	    <div class="layui-input-inline" style="width: 500px;">
+	      <div class="layui-date-area">
+	         <input type="text" class="layui-input layui-input-date" id="order_start" readonly="true" placeholder="订单开始时间">
+	        <label class="layui-form-label" style="text-align: center;width: 40px;">至</label>
+	        <input type="text" class="layui-input layui-input-date" id="order_end" readonly="true" placeholder="订单结束时间">
+	      </div>
+	    </div>
+	  </div>
+      <div class="layui-inline">
+        <button class="layui-btn layui-btn-normal" lay-submit lay-filter="searchBtn">搜索</button>
+      </div>
+	  <div class="layui-inline layui-ml20">
+	    <button class="layui-btn layui-btn-danger" lay-submit lay-filter="exportOrderList">导出</button>
+	  </div>
+  </div>
+</form>
+
+<table class="layui-table" lay-even lay-skin="nob" id="order_table">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>卡券号</th>
+      <th style="width: 100px">卡券名称</th>
+      <th>创建时间</th>
+      <th>更新时间</th>
+      <th>订单号</th>
+	  <th>成本价</th>
+      <th>实付金额(元)</th>
+      <th>订单金额(元)</th>
+      <th>支付状态</th>
+      <th>手机号</th>
+      <th>核销状态</th>
+	  <th>操作</th>
+    </tr> 
+  </thead>
+  <tbody id="order_list">
+    
+  </tbody>
+
+
+
+</table>
+<div id="pageList"></div>
+</div>
+</fieldset>
+<script>
+    document.write("<s"+"cript type='text/javascript' src='../layui.js?"+Math.random()+"'></s" + "cript>"); 
+    document.write("<s"+"cript type='text/javascript' src='/cms/com_config.js?"+Math.random()+"'></s" + "cript>");
+    document.write("<s"+"cript type='text/javascript' src='../js/order/order.js?"+Math.random()+"'></s" + "cript>");
+</script>
+</body>
+</html>

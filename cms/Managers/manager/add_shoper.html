@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> -->
+  <title>卡券运营管理后台</title>
+  <script> 
+  　document.write("<link rel='stylesheet' href='../css/layui.css?v="+Math.random()+"'>");
+  　document.write("<link rel='stylesheet' href='../css/main.css?v="+Math.random()+"'>"); 
+  </script>
+</head>
+<body>
+<div class="com-pad">
+<form class="layui-form" action="" id="ticket_form">
+  <div class="layui-form-item">
+    <label class="layui-form-label">商户名称</label>
+    <div class="layui-input-inline">
+      <input type="text" required  lay-verify="required" placeholder="商户名称" autocomplete="off" class="layui-input" id="shop_name">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">账号</label>
+    <div class="layui-input-inline">
+      <input type="text" required  lay-verify="required" placeholder="账号" autocomplete="off" class="layui-input" id="shop_Username">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">密码</label>
+    <div class="layui-input-inline">
+      <input type="password" required  lay-verify="required" placeholder="密码" autocomplete="off" class="layui-input" id="shop_pwd">
+    </div>
+  </div>
+  
+  <div class="layui-form-item">
+    <label class="layui-form-label">&nbsp;</label>
+    <div class="layui-input-block">
+      <button class="layui-btn" lay-submit lay-filter="build_shopUser">提交</button>
+    </div>
+  </div>
+</form>
+</div>
+<script>
+    document.write("<s"+"cript type='text/javascript' src='../layui.js?"+Math.random()+"'></s" + "cript>"); 
+    document.write("<s"+"cript type='text/javascript' src='/cms/com_config.js?"+Math.random()+"'></s" + "cript>");
+    document.write("<s"+"cript type='text/javascript' src='../js/md5.min.js?"+Math.random()+"'></s" + "cript>"); 
+    document.write("<s"+"cript type='text/javascript' src='../js/manager/index.js?"+Math.random()+"'></s" + "cript>");
+</script>
+<script>
+</script>
+</body>
+</html>

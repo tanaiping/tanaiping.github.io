@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> -->
+  <title>商城管理后台</title>
+  <script> 
+  　document.write("<link rel='stylesheet' href='../css/layui.css?v="+Math.random()+"'>");
+  　document.write("<link rel='stylesheet' href='../css/main.css?v="+Math.random()+"'>"); 
+  </script>
+</head>
+<body>
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+  <legend>限时抢购</legend>
+  <div class="com-pad">
+      <form class="layui-form" action="">
+        <div class="layui-flex-right">
+            
+            <div class="layui-inline">
+              <button class="layui-btn layui-btn-normal addCouponType">新增</button>
+            </div>
+        </div>
+      </form>
+      <table class="layui-table" lay-even lay-skin="nob">
+        <thead>
+          <tr>
+            <th>编号</th>
+            <th>分类</th>
+            <th>商家数量</th>
+            <th>状态</th>
+            <th style="width: 500px;">操作</th>
+          </tr> 
+        </thead>
+        <tbody id="typeData">
+            <!--<tr>
+              <td>1</td>
+              <td>255</td>
+              <td>255</td>
+              <td>下架</td>
+              <td>
+                <button class="layui-btn layui-btn-primary sticky-btn">置顶</button>
+                <button class="layui-btn layui-btn-danger moveUp-btn">上移</button>
+                <button class="layui-btn layui-btn-normal moveDown-btn">下移</button>
+                <button class="layui-btn layui-btn-danger takeOff-btn">下架</button>
+                <button class="layui-btn layui-btn-normal couponType-edit">修改</button>
+                <button class="layui-btn layui-btn-primary commodity-sort">商户排序</button>
+              </td>
+            </tr>-->
+        </tbody>
+
+      </table>
+      <div id="pageList"></div>
+  </div>
+</fieldset>
+<script>
+    document.write("<s"+"cript type='text/javascript' src='../layui.js?"+Math.random()+"'></s" + "cript>"); 
+    document.write("<s"+"cript type='text/javascript' src='/cms/com_config.js?"+Math.random()+"'></s" + "cript>");
+    document.write("<s"+"cript type='text/javascript' src='../js/configure/couponType.js?"+Math.random()+"'></s" + "cript>");
+</script>
+</body>
+</html>

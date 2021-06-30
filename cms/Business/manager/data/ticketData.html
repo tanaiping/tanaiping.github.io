@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> -->
+  <title>卡券运营管理后台</title>
+  <script> 
+  　document.write("<link rel='stylesheet' href='../../css/layui.css?v="+Math.random()+"'>");
+  　document.write("<link rel='stylesheet' href='../../css/main.css?v="+Math.random()+"'>"); 
+  </script>
+</head>
+<body>
+<div class="layui-header-pad">
+<form class="layui-form" action="" id="ticket_form">
+  <div class="layui-flex-right">
+      <div class="layui-form-item">
+        <label class="layui-form-label layui-form-label-auto">商户</label>
+        <div class="layui-input-inline" style="width: 160px;">
+          <select name="card" id="bis_Id" lay-search="">
+              <option value="-1" selected="">请选择</option>
+          </select>
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label" style="width: 60px;">发券时间</label>
+        <div class="layui-input-inline" style="width: 500px;">
+          <div class="layui-date-area">
+             <input type="text" class="layui-input layui-input-date" id="ticket_start" readonly="true" placeholder="开始时间">
+            <label class="layui-form-label" style="text-align: center;width: 40px;">至</label>
+            <input type="text" class="layui-input layui-input-date" id="ticket_end" readonly="true" placeholder="结束时间">
+          </div>
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label" style="width: 60px;">卡券名称</label>
+        <div class="layui-input-inline" style="width: 150px;">
+          <input type="text" placeholder="卡券名称" autocomplete="off" class="layui-input" id="coupon_name">
+        </div>
+      </div>
+      <div class="layui-inline">
+        <button class="layui-btn layui-btn-normal" lay-submit lay-filter="exportTicketSearch">搜索</button>
+      </div>
+      <div class="layui-inline layui-ml20">
+        <button class="layui-btn layui-btn-danger" lay-submit lay-filter="exportTicketList">导出</button>
+      </div>
+      <div class="layui-inline layui-ml20">
+        <button class="layui-btn layui-btn-warm" lay-submit lay-filter="exportShopInfo">一键导出</button>
+      </div>
+  </div>
+</form>
+</div>
+<table class="layui-table" lay-even lay-skin="nob">
+  <thead>
+    <tr>
+      <th>NO</th>
+      <th>卡券ID</th>
+      <th>卡券名称</th>
+      <th>类别</th>
+      <th>类型</th>
+      <th>总量</th>
+      <th>已发</th>
+      <th>商户名称</th>
+      <th>留资</th>
+      <th style="width: 88px;">查看</th>
+    </tr> 
+  </thead>
+  <tbody id="ticketData">
+    
+  </tbody>
+
+</table>
+<div id="pageList"></div>
+<script>
+    document.write("<s"+"cript type='text/javascript' src='../../layui.js?"+Math.random()+"'></s" + "cript>"); 
+    document.write("<s"+"cript type='text/javascript' src='/cms/com_config.js?"+Math.random()+"'></s" + "cript>");
+    document.write("<s"+"cript type='text/javascript' src='../../js/data/ticketData_m.js?"+Math.random()+"'></s" + "cript>");
+</script>
+</body>
+</html>

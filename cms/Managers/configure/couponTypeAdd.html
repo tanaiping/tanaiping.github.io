@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> -->
+  <title>商城管理后台</title>
+  <script> 
+  　document.write("<link rel='stylesheet' href='../css/layui.css?v="+Math.random()+"'>");
+  　document.write("<link rel='stylesheet' href='../css/main.css?v="+Math.random()+"'>"); 
+  </script>
+</head>
+<body>
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+  <legend>新增分类</legend>
+  <div class="com-pad">
+      <form class="layui-form" action="">
+        <div class="layui-form-item">
+          <label class="layui-form-label">分类名称</label>
+          <div class="layui-input-inline">
+            <input type="text" required  lay-verify="required" placeholder="分类名称" autocomplete="off" class="layui-input" id="type_name" >
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">选择商家</label>
+          <div class="layui-input-inline" id="commodity_list">
+            <!-- <input type="checkbox" name="commodity" value="0" title="商家1" checked="" >
+            <input type="checkbox" name="commodity" value="0" title="商家2" >
+            <input type="checkbox" name="commodity" value="0" title="商家2" >
+            <input type="checkbox" name="commodity" value="0" title="商家2" >
+            <input type="checkbox" name="commodity" value="0" title="商家2" >
+            <input type="checkbox" name="commodity" value="0" title="商家2" >
+            <input type="checkbox" name="commodity" value="0" title="商家2" >
+            <input type="checkbox" name="commodity" value="0" title="商家2" >
+            <input type="checkbox" name="commodity" value="0" title="商家2" >
+            <input type="checkbox" name="commodity" value="0" title="商家2" >
+            <input type="checkbox" name="commodity" value="0" title="商家2" >
+            <input type="checkbox" name="commodity" value="0" title="商家2" > -->
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">&nbsp;</label>
+          <div class="layui-input-inline" style="width: auto;">
+            <button class="layui-btn" lay-submit lay-filter="saveBtn" id="applySave">保存</button>
+          </div>
+          <div class="layui-input-inline">
+            <button class="layui-btn layui-btn-back" >返回上一页</button>
+          </div>
+          
+        </div>
+      </form>
+      
+  </div>
+</fieldset>
+<script>
+    document.write("<s"+"cript type='text/javascript' src='../layui.js?"+Math.random()+"'></s" + "cript>"); 
+    document.write("<s"+"cript type='text/javascript' src='/cms/com_config.js?"+Math.random()+"'></s" + "cript>");
+    document.write("<s"+"cript type='text/javascript' src='../js/configure/couponTypeAdd.js?"+Math.random()+"'></s" + "cript>");
+</script>
+</body>
+</html>

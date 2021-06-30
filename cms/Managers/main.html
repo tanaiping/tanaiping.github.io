@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> -->
+  <title>商城管理后台</title>
+  <script> 
+  　document.write("<link rel='stylesheet' href='css/layui.css?v="+Math.random()+"'>");
+  　document.write("<link rel='stylesheet' href='css/main.css?v="+Math.random()+"'>"); 
+  </script> 
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+  <div class="layui-header">
+    <div class="layui-logo"></div>
+    <div class="user-name"><i class="layui-icon layui-icon-username"></i><span></span></div>
+    <ul class="layui-nav layui-layout-right">
+      <li class="layui-nav-item"><a href="javascript:;" class="log-out">退出登录</a></li>
+    </ul>
+  </div>
+  
+  <div class="layui-side layui-bg-self">
+    <div class="layui-side-scroll">
+      <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+      <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+      </ul>
+    </div>
+  </div>
+  
+  <div class="layui-body" style="overflow: hidden;">
+    <!-- 内容主体区域 -->
+    <div>
+      <iframe id="iframe"  width="100%" frameborder="0"  scrolling="auto"  marginwidth="0" marginheight="0"></iframe>
+    </div>
+  </div>
+  
+  <!-- <div class="layui-footer">
+    © 花生地铁 - 底部固定区域
+  </div> -->
+</div>
+<script>
+    document.write("<s"+"cript type='text/javascript' src='layui.js?"+Math.random()+"'></s" + "cript>"); 
+    document.write("<s"+"cript type='text/javascript' src='/cms/com_config.js?"+Math.random()+"'></s" + "cript>"); 
+    document.write("<s"+"cript type='text/javascript' src='js/menu.js?"+Math.random()+"'></s" + "cript>"); 
+</script>
+</body>
+</html>

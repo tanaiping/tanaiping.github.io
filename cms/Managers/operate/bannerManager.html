@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> -->
+  <title>商城管理后台</title>
+  <script> 
+  　document.write("<link rel='stylesheet' href='../css/layui.css?v="+Math.random()+"'>");
+  　document.write("<link rel='stylesheet' href='../css/main.css?v="+Math.random()+"'>"); 
+  </script>
+</head>
+<body>
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+  <legend>轮播图管理</legend>
+  <div class="com-pad">
+      <form class="layui-form" action="">
+        <div class="layui-flex-right">
+            <div class="layui-form-item">
+              <!-- <label class="layui-form-label">商品名称</label> -->
+              <div class="layui-input-inline" style="width: 200px;">
+                <input type="text" placeholder="请输入标题" autocomplete="off" class="layui-input" id="title_name" >
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <label class="layui-form-label" style="width: auto;">创建时间</label>
+              <div class="layui-input-inline" style="width: 500px;">
+                <div class="layui-date-area">
+                   <input type="text" class="layui-input layui-input-date" id="create_start" readonly="true" placeholder="开始时间">
+                  <label class="layui-form-label" style="text-align: center;width: 40px;">至</label>
+                  <input type="text" class="layui-input layui-input-date" id="create_end" readonly="true" placeholder="结束时间">
+                </div>
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <label class="layui-form-label">状态</label>
+              <div class="layui-input-inline"  style="width: 150px;">
+                <select name="card" lay-verify="required" id="banner_type">
+                  <option value="-1">全部</option>
+                  <option value="1">上架</option>
+                  <option value="2">下架</option>
+                  <option value="3">待上架</option>
+                </select>
+              </div>
+            </div>
+            <div class="layui-inline">
+              <button class="layui-btn layui-btn-normal" lay-submit lay-filter="searchBannerList">搜索</button>
+            </div>
+            <div class="layui-inline layui-ml20">
+              <button class="layui-btn addBanner">新增</button>
+            </div>
+        </div>
+      </form>
+      <table class="layui-table" lay-even lay-skin="nob">
+        <thead>
+          <tr>
+            <th>编号</th>
+            <th>标题</th>
+            <th>缩略图</th>
+            <th>跳转路径</th>
+            <th>状态</th>
+            <th>上架时间</th>
+            <th style="width: 400px;">操作</th>
+          </tr> 
+        </thead>
+        <tbody id="bannerData">
+            <!-- <tr status="1" ban_id="2"><td>1</td><td>标题</td><td><img src="https://pics3.baidu.com/feed/e7cd7b899e510fb3bf43d1986b163990d1430c16.png?token=0d01497d0fcf4af2e33c1b1d54b2539b&amp;s=BC503BDBDEFA7494D4B8546B0300F052" style="height:60px;"></td><td>链接地址</td><td>上架</td><td>2019-12-24 09:28</td><td><button class="layui-btn layui-btn-primary sticky-btn">置顶</button><button class="layui-btn layui-btn-danger moveUp-btn">上移</button><button class="layui-btn layui-btn-normal moveDown-btn">下移</button><button class="layui-btn layui-btn-primary takeOff-btn">下架</button><button class="layui-btn layui-btn-normal banner-edit">修改</button></td></tr> -->
+        </tbody>
+
+      </table>
+      <div id="pageList"></div>
+  </div>
+</fieldset>
+<script>
+    document.write("<s"+"cript type='text/javascript' src='../layui.js?"+Math.random()+"'></s" + "cript>"); 
+    document.write("<s"+"cript type='text/javascript' src='/cms/com_config.js?"+Math.random()+"'></s" + "cript>");
+    document.write("<s"+"cript type='text/javascript' src='../js/operate/bannerList.js?"+Math.random()+"'></s" + "cript>");
+</script>
+</body>
+</html>

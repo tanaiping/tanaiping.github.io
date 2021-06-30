@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> -->
+  <title>商城管理后台</title>
+  <script> 
+  　document.write("<link rel='stylesheet' href='../css/layui.css?v="+Math.random()+"'>");
+  　document.write("<link rel='stylesheet' href='../css/main.css?v="+Math.random()+"'>"); 
+  </script>
+</head>
+<body>
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+  <legend>banner信息</legend>
+  <div class="com-pad">
+      <form class="layui-form" action="">
+        <div class="layui-form-item">
+          <label class="layui-form-label"><em class="red-xing">*</em>标题:</label>
+          <div class="layui-input-inline">
+            <input type="text" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input" id="title" >
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">缩略图：</label>
+          <div class="layui-input-inline" style="width: 114px;">
+              <button type="button" class="layui-btn" id="banner_thumbnail">
+              <i class="layui-icon">&#xe67c;</i>上传图片
+            </button>
+          </div>
+          <div class="layui-form-mid layui-word-aux">素材尺寸（690px x 200px）</div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label"></label>
+          <div class="layui-input-inline" >
+              <img src="../images/default.png" alt="" class="upload-source default upload-thumbnail-img">
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label"><em class="red-xing">*</em>跳转路径:</label>
+          <div class="layui-input-inline">
+            <input type="text" required  lay-verify="required" placeholder="请输入跳转路径"  autocomplete="off" class="layui-input" id="banner_path">
+          </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+          <label class="layui-form-label"><em class="red-xing">*</em>上架时间:</label>
+          <div class="layui-input-inline" style="width: 500px;">
+            <div class="layui-date-area">
+              <input type="text" class="layui-input layui-input-date" id="shelves_start" readonly="true" lay-verify="required" placeholder="上架开始时间">
+              <label class="layui-form-label" style="text-align: center;width: 40px;">至</label>
+              <input type="text" class="layui-input layui-input-date" id="shelves_end" readonly="true" lay-verify="required" placeholder="上架结束时间">
+            </div>
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">&nbsp;</label>
+          <div class="layui-input-inline" style="width: auto;">
+            <button class="layui-btn" lay-submit lay-filter="submitBtn">提交</button>
+          </div>
+          <div class="layui-input-inline" style="width: auto;">
+            <button class="layui-btn layui-btn-back" >返回上一页</button>
+          </div>
+        </div>
+
+      </form>
+  </div>
+</fieldset>
+<script>
+    document.write("<s"+"cript type='text/javascript' src='../layui.js?"+Math.random()+"'></s" + "cript>"); 
+    document.write("<s"+"cript type='text/javascript' src='/cms/com_config.js?"+Math.random()+"'></s" + "cript>");
+    document.write("<s"+"cript type='text/javascript' src='../js/uploadImg.js?"+Math.random()+"'></s" + "cript>");
+    document.write("<s"+"cript type='text/javascript' src='../js/operate/bannerAdd.js?"+Math.random()+"'></s" + "cript>");
+</script>
+</body>
+</html>

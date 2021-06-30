@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> -->
+  <title>卡券运营管理后台</title>
+  <script> 
+  　document.write("<link rel='stylesheet' href='../../css/layui.css?v="+Math.random()+"'>");
+  　document.write("<link rel='stylesheet' href='../../css/main.css?v="+Math.random()+"'>"); 
+  </script>
+</head>
+<body>
+<div class="layui-header-com">
+  <div class="layui-header-menu">
+      <a href="javascript:;" class="back-link ticket_detail">卡券数据详情</a>
+  </div>
+</div>
+<form class="layui-form" action="" id="ticket_form">
+  <div class="layui-flex-right">
+      <div class="layui-form-item">
+        <label class="layui-form-label" style="width: 60px;">购买时间</label>
+        <div class="layui-input-inline" style="width: 500px;">
+          <div class="layui-date-area">
+             <input type="text" class="layui-input layui-input-date" id="ticket_start" readonly="true" placeholder="开始时间">
+            <label class="layui-form-label" style="text-align: center;width: 40px;">至</label>
+            <input type="text" class="layui-input layui-input-date" id="ticket_end" readonly="true" placeholder="结束时间">
+          </div>
+        </div>
+      </div>
+      <div class="layui-inline">
+        <button class="layui-btn layui-btn-normal" lay-submit lay-filter="ticketSearchDetail">搜索</button>
+      </div>
+      <div class="layui-inline layui-ml20">
+        <button class="layui-btn layui-btn-danger" lay-submit lay-filter="exportTicketDetail">导出</button>
+      </div>
+      <div class="layui-inline layui-ml20">
+        <button class="layui-btn layui-btn-warm" lay-submit lay-filter="exportLastTicket">剩余券码导出</button>
+      </div>
+      
+  </div>
+</form>
+<table class="layui-table" lay-even lay-skin="nob">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>卡券名称</th>
+      <th>商户名称</th>
+      <th>购买时间</th>
+      <th>卡券编码</th>
+      <th>用户手机</th>
+      <th>留资</th>
+      <th>成本（元）</th>
+      <th>折扣价（元）</th>
+      <th>成交价（元）</th>
+      <th>收入（元）</th>
+    </tr> 
+  </thead>
+  <tbody id="ticketDetailData">
+    
+  </tbody>
+
+</table>
+<div id="pageList"></div>
+<script>
+    document.write("<s"+"cript type='text/javascript' src='../../layui.js?"+Math.random()+"'></s" + "cript>"); 
+    document.write("<s"+"cript type='text/javascript' src='/cms/com_config.js?"+Math.random()+"'></s" + "cript>");
+    document.write("<s"+"cript type='text/javascript' src='../../js/data/ticketData_m.js?"+Math.random()+"'></s" + "cript>");
+</script>
+</body>
+</html>

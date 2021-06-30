@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> -->
+  <title>商城管理后台</title>
+  <script> 
+  　document.write("<link rel='stylesheet' href='../css/layui.css?v="+Math.random()+"'>");
+  　document.write("<link rel='stylesheet' href='../css/main.css?v="+Math.random()+"'>"); 
+  </script>
+</head>
+<body>
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+  <legend>商品订单详情</legend>
+  <div class="com-pad">
+      <form class="layui-form" action="">
+          <div class="layui-form-item">
+            <label class="layui-form-label" style="width:135px;">订单状态：</label>
+            <div class="layui-input-inline">
+              <label class="layui-form-label" id="order_status" style="text-align: left;width: auto"></label>
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label" style="width:135px;">订单号：</label>
+            <div class="layui-input-inline">
+              <label class="layui-form-label" id="order_no" style="text-align: left;width: auto"></label>
+            </div>
+          </div>
+          
+          <div class="layui-form-item">
+            <label class="layui-form-label" style="width:135px;">供应商：</label>
+            <div class="layui-input-inline">
+              <label class="layui-form-label" id="goodsSupplier" style="text-align: left;width: auto"></label>
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label" style="width:135px;">收货人名称：</label>
+            <div class="layui-input-inline">
+              <label class="layui-form-label" id="rname" style="text-align: left;width: auto"></label>
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label" style="width:135px;">收货人电话：</label>
+            <div class="layui-input-inline">
+              <label class="layui-form-label" id="rmobile" style="text-align: left;width: auto"></label>
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label" style="width:135px;">收货地址：</label>
+            <div class="layui-input-inline">
+              <label class="layui-form-label" id="address" style="text-align: left;width: auto"></label>
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label" style="width:135px;">商品信息：</label>
+            <div class="layui-input-inline" style="width: auto;">
+              <label class="layui-form-label" id="goodsSkuId" style="text-align: left;width: auto"></label> <!-- 商品名称 规则  数量  拼在一起 -->
+            </div>
+          </div>
+		  <div class="layui-form-item">
+		    <label class="layui-form-label" style="width:135px;">备注：</label>
+		    <div class="layui-input-inline" style="width: auto;">
+		      <label class="layui-form-label" id="remark" style="text-align: left;width: auto"></label> <!-- 商品名称 规则  数量  拼在一起 -->
+		    </div>
+		  </div>
+		  <div class="layui-form-item">
+		    <label class="layui-form-label" style="width:135px;">市场价：</label>
+		    <div class="layui-input-inline">
+		      <label class="layui-form-label" id="marketPrice" style="text-align: left;width: auto"></label>
+		    </div>
+		  </div>
+		  <div class="layui-form-item">
+		    <label class="layui-form-label" style="width:135px;">成本价：</label>
+		    <div class="layui-input-inline">
+		      <label class="layui-form-label" id="costPrice" style="text-align: left;width: auto"></label>
+		    </div>
+		  </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label" style="width:135px;">实际付款金额：</label>
+            <div class="layui-input-inline">
+              <label class="layui-form-label" id="amount" style="text-align: left;width: auto"></label>
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label" style="width:135px;">花花币支付金额：</label>
+            <div class="layui-input-inline">
+              <label class="layui-form-label" id="usePoint" style="text-align: left;width: auto"></label>
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label" style="width:135px;">支付方式：</label>
+            <div class="layui-input-inline">
+              <label class="layui-form-label" id="pay_type" style="text-align: left;width: auto">微信支付</label>
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label" style="width:135px;">购买人电话：</label>
+            <div class="layui-input-inline">
+              <label class="layui-form-label" id="buy_mobile" style="text-align: left;width: auto"></label>
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label" style="width:135px;">购买时间：</label>
+            <div class="layui-input-inline">
+              <label class="layui-form-label" id="createTime" style="text-align: left;width: auto"></label>
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label" style="width:135px;">支付时间：</label>
+            <div class="layui-input-inline">
+              <label class="layui-form-label" id="payTime" style="text-align: left;width: auto"></label>
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label" style="width:135px;">支付信息：</label>
+            <div class="layui-input-inline">
+              <label class="layui-form-label" id="pay_Info" style="text-align: left;width: auto"></label>
+            </div>
+          </div>
+
+          <button class="layui-btn layui-btn-back" >返回上一页</button>
+
+
+
+
+
+
+
+
+      </form>
+  </div>
+</fieldset>
+<script>
+    document.write("<s"+"cript type='text/javascript' src='../layui.js?"+Math.random()+"'></s" + "cript>"); 
+    document.write("<s"+"cript type='text/javascript' src='/cms/com_config.js?"+Math.random()+"'></s" + "cript>");
+    document.write("<s"+"cript type='text/javascript' src='../js/order/orderDetail.js?"+Math.random()+"'></s" + "cript>");
+</script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> -->
+  <title>商城管理后台</title>
+  <script> 
+  　document.write("<link rel='stylesheet' href='../css/layui.css?v="+Math.random()+"'>");
+  　document.write("<link rel='stylesheet' href='../css/main.css?v="+Math.random()+"'>"); 
+  </script>
+</head>
+<body>
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+  <legend>直充列表</legend>
+  <div class="com-pad">
+      <form class="layui-form" action="">
+        <div class="layui-flex-right">
+            <div class="layui-form-item">
+              <div class="layui-input-inline" style="width: 200px;">
+                <input type="text" placeholder="请输入直充名称" autocomplete="off" class="layui-input" id="chargeName" >
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <div class="layui-input-inline" style="width: 500px;">
+                <div class="layui-date-area">
+                   <input type="text" class="layui-input layui-input-date" id="startTime" readonly="true" placeholder="创建开始时间">
+                  <label class="layui-form-label" style="text-align: center;width: 40px;">至</label>
+                  <input type="text" class="layui-input layui-input-date" id="endTime" readonly="true" placeholder="创建结束时间">
+                </div>
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <label class="layui-form-label" style="width: auto;">状态</label>
+              <div class="layui-input-inline"  style="width: 150px;">
+                <select name="card" lay-verify="required" id="statue">
+                  <option value="-1">全部</option>
+                  <option value="0">待完善</option>
+                  <option value="1">上架</option>
+                  <option value="2">下架</option>
+                </select>
+              </div>
+            </div>
+            <div class="layui-inline">
+              <button class="layui-btn layui-btn-normal" lay-submit lay-filter="searchRechargeList">搜索</button>
+            </div>
+            <div class="layui-inline ml15">
+              <button class="layui-btn layui-btn-danger" lay-submit lay-filter="exportRechargeList">导出表格</button>
+            </div>
+        </div>
+      </form>
+      <table class="layui-table" lay-even lay-skin="nob">
+        <thead> 
+          <tr>
+            <th>编号</th>
+			<th>直充ID</th>
+            <th>直充名称</th>
+			<th>Icon图</th>
+            <th>缩略图</th>
+            <th>创建时间</th>
+            <th>类型</th>
+            <th>规格</th>
+            <th>售价</th>
+            <th>状态</th>
+            <th style="width: 260px;">操作</th>
+          </tr> 
+        </thead>
+        <tbody id="chargeListData">
+          <!-- <tr>
+            <td>fsdfsdf</td>
+            <td>fsdfsdf</td>
+            <td>fsdfsdf</td>
+            <td>fsdfsdf</td>
+            <td>fsdfsdf</td>
+            <td>fsdfsdf</td>
+            <td>fsdfsdf</td>
+            <td>fsdfsdf</td>
+            <td>
+              <button class="layui-btn layui-btn-primary takeoff-btn">下架</button>
+              <button class="layui-btn layui-btn-normal legal-edit">修改</button>
+              <button class="layui-btn legal-del">删除</button>
+            </td>
+          </tr> -->
+        </tbody>
+
+      </table>
+      <div id="pageList"></div>
+  </div>
+  
+</fieldset>
+<script>
+    document.write("<s"+"cript type='text/javascript' src='../layui.js?"+Math.random()+"'></s" + "cript>"); 
+    document.write("<s"+"cript type='text/javascript' src='/cms/com_config.js?"+Math.random()+"'></s" + "cript>");
+    document.write("<s"+"cript type='text/javascript' src='../js/recharge/rechargeList.js?"+Math.random()+"'></s" + "cript>");
+</script>
+</body>
+</html>

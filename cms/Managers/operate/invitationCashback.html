@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> -->
+  <title>商城管理后台</title>
+  <script> 
+  　document.write("<link rel='stylesheet' href='../css/layui.css?v="+Math.random()+"'>");
+  　document.write("<link rel='stylesheet' href='../css/main.css?v="+Math.random()+"'>"); 
+  </script>
+</head>
+<body>
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+  <legend>邀请返现</legend>
+  <div class="com-pad">
+      <form class="layui-form" action="">
+        <div class="layui-flex-right">
+            <div class="layui-form-item">
+              <!-- <label class="layui-form-label">商品名称</label> -->
+              <div class="layui-input-inline" style="width: 200px;">
+                <input type="text" placeholder="请输入手机号码" autocomplete="off" class="layui-input" id="user_tel" >
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <label class="layui-form-label">用户身份</label>
+              <div class="layui-input-inline"  style="width: 150px;" id="invition">
+                <select name="invition" lay-verify="required"  lay-filter = "invition">
+                  <option value="1">邀请人</option>
+                  <option value="2">被邀请人</option>
+                </select>
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <label class="layui-form-label">选择媒体</label>
+              <div class="layui-input-inline"  style="width: 150px;">
+                <select name="card" lay-verify="required" id="media" lay-filter = "media">
+                </select>
+              </div>
+            </div>
+            <div class="layui-inline">
+              <button class="layui-btn layui-btn-normal" lay-submit lay-filter="searchCashback">搜索</button>
+            </div>
+        </div>
+      </form>
+      <!-- 邀请人-->
+      <div id="invite">
+        <table class="layui-table" lay-even lay-skin="nob">
+          <thead>
+            <tr>
+              <th>No.</th>
+              <th>手机号</th>
+              <th>分享总人数</th>
+              <th>奖励总金额</th>
+              <th>媒体</th>
+              <th>分享明细</th>
+            </tr> 
+          </thead>
+          <tbody id="cashbackData1">
+              <!-- <tr>
+                <td>手机号</td>
+                <td>分享总人数</td>
+                <td>奖励总金额</td>
+                <td>媒体</td>
+                <td>
+                  <button class="layui-btn layui-btn-normal cashback-look">查看</button>
+                </td>
+              </tr> -->
+          </tbody>
+
+        </table>
+        <div id="pageList"></div>
+      </div>
+      <!-- 被邀请人-->
+      <div id="invitees" style="display: none;">
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width:135px;">用户手机号：</label>
+            <div class="layui-input-inline">
+              <label class="layui-form-label" id="mobile" style="text-align: left;width: auto"></label>
+            </div>
+          </div>
+      </form>
+      <table class="layui-table" lay-even lay-skin="nob">
+        <thead>
+          <tr>
+            <th>NO.</th>
+            <th>订单号</th>
+            <th>交易时间</th>
+            <th>媒体</th>
+            <th>邀请手机号</th>
+            <th>是否 生效</th>
+          </tr> 
+        </thead>
+        <tbody id="cashbackDetailData2">
+            <!-- <tr>
+            <td>NO.</td>
+            <td>订单号</td>
+            <td>交易时间</td>
+            <td>媒体</td>
+            <td>邀请手机号</td>
+            <td>是否 生效</td>
+          </tr>  -->
+        </tbody>
+
+      </table>
+      <div id="pageList"></div>
+      </div>
+  </div>
+</fieldset>
+<script>
+    document.write("<s"+"cript type='text/javascript' src='../layui.js?"+Math.random()+"'></s" + "cript>"); 
+    document.write("<s"+"cript type='text/javascript' src='/cms/com_config.js?"+Math.random()+"'></s" + "cript>");
+    document.write("<s"+"cript type='text/javascript' src='../js/operate/cashbackList.js?"+Math.random()+"'></s" + "cript>");
+</script>
+</body>
+</html>

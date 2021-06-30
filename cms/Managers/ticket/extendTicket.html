@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> -->
+  <title>卡券运营管理后台</title>
+  <script> 
+  　document.write("<link rel='stylesheet' href='../css/layui.css?v="+Math.random()+"'>");
+  　document.write("<link rel='stylesheet' href='../css/main.css?v="+Math.random()+"'>"); 
+  </script>
+</head>
+<body>
+<div class="layui-header-com">
+  <div class="layui-header-menu">
+      <a href="javascript:history.go(-1)" class="back-link">卡券发起</a>
+  </div>
+</div>
+<form class="layui-form" action="">
+
+  <div class="layui-form-item">
+    <label class="layui-form-label">卡券名称</label>
+    <div class="layui-input-inline">
+      <label class="layui-form-label" style="text-align: left;width: auto;" id="coupon_name">花子咖啡券</label>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">券类型</label>
+    <div class="layui-input-inline">
+      <label class="layui-form-label" style="text-align: left;" id="coupon_type">电子券</label>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">券码数量</label>
+    <div class="layui-input-inline">
+      <label class="layui-form-label" style="text-align: left;" id="coupon_total"><span>0</span>张</label>
+    </div>
+  </div>
+  <div class="layui-form-item layui-form-text">
+    <label class="layui-form-label">券成本价</label>
+    <div class="layui-input-inline" style="width: 230px;">
+      <input type="text" required  lay-verify="required|isTwoDecimalsFloat" placeholder="券成本价" autocomplete="off" class="layui-input" id="coupon_cost">
+    </div>
+    <div class="layui-form-mid layui-word-aux">元/成本价</div>
+  </div>
+  <div class="layui-form-item layui-form-text">
+    <label class="layui-form-label">券市场价</label>
+    <div class="layui-input-inline"  style="width: 230px;">
+      <input type="text" required  lay-verify="required|number|zhengshu|isTwoDecimalsFloat" placeholder="券市场价" autocomplete="off" class="layui-input" id="coupon_price">
+    </div>
+    <div class="layui-form-mid layui-word-aux">元/原价</div>
+  </div>
+  <div class="layui-form-item layui-form-text">
+    <label class="layui-form-label">非会员价</label>
+    <div class="layui-input-inline"  style="width: 230px;">
+      <input type="text" required  lay-verify="required|number|zhengshu|isTwoDecimalsFloat" placeholder="非会员价" autocomplete="off" class="layui-input" id="coupon_salePrice">
+    </div>
+    <div class="layui-form-mid layui-word-aux">元/非会员价</div>
+  </div>
+  <div class="layui-form-item layui-form-text">
+    <label class="layui-form-label">会员价</label>
+    <div class="layui-input-inline"  style="width: 230px;">
+      <input type="text" required  lay-verify="required|number|zhengshu|isTwoDecimalsFloat" placeholder="会员价" autocomplete="off" class="layui-input" id="coupon_disPrice">
+    </div>
+    <div class="layui-form-mid layui-word-aux">元/会员价</div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">选择发放地区</label>
+    <div class="layui-input-block city-box">
+          <input type="radio" name="city" value="0" title="全国" checked="" id="city_all">
+          <input type="radio" name="city" value="1" title="其他" id="city_other">
+    </div>
+    <div class="layui-input-block" id="cityList" style="width: 670px; margin-left: 130px; margin-top: 4px; display: none;">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">卡券分类</label>
+    <div class="layui-input-inline" id="tagKey" style="width: 670px;">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">使用截止日期</label>
+    <div class="layui-input-inline">
+         <label class="layui-form-label" id="stop_date" style="text-align: left;width: auto;"></label>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">购买数量</label>
+    <div class="layui-input-inline" style="width: 230px;">
+      <input type="text" required  lay-verify="required|number" placeholder="购买数量" autocomplete="off" class="layui-input" id="coupon_max">
+    </div>
+    <div class="layui-form-mid layui-word-aux">张/用户</div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">发券时间</label>
+    <div class="layui-input-inline" style="width: 500px;">
+      <div class="layui-date-area">
+         <input type="text" class="layui-input layui-input-date" id="ticket_start" readonly="true" lay-verify="required" placeholder="发券开始时间">
+        <label class="layui-form-label" style="text-align: center;width: 40px;">至</label>
+        <input type="text" class="layui-input layui-input-date" id="ticket_end" readonly="true" lay-verify="required" placeholder="发券结束时间">
+      </div>
+    </div>
+  </div>
+  
+  
+ 
+  <div class="layui-form-item">
+    <label class="layui-form-label">&nbsp;</label>
+    <div class="layui-input-block">
+      <button class="layui-btn" lay-submit lay-filter="extend-btn">确认发放</button>
+    </div>
+  </div>
+</form>
+
+<script>
+    document.write("<s"+"cript type='text/javascript' src='../layui.js?"+Math.random()+"'></s" + "cript>"); 
+    document.write("<s"+"cript type='text/javascript' src='/cms/com_config.js?"+Math.random()+"'></s" + "cript>");
+    document.write("<s"+"cript type='text/javascript' src='../js/ticket/extendTicket.js?"+Math.random()+"'></s" + "cript>");
+</script>
+</body>
+</html>

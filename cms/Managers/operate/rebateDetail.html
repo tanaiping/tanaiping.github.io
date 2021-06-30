@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> -->
+  <title>商城管理后台</title>
+  <script> 
+  　document.write("<link rel='stylesheet' href='../css/layui.css?v="+Math.random()+"'>");
+  　document.write("<link rel='stylesheet' href='../css/main.css?v="+Math.random()+"'>"); 
+  </script>
+</head>
+<body>
+
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+  <legend>消费返利明细</legend>
+  <div class="com-pad">
+      <form class="layui-form" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width:auto;">用户手机号：</label>
+            <div class="layui-input-inline">
+              <label class="layui-form-label" id="mobile" style="text-align: left;width: auto">1501352252</label>
+            </div>
+          </div>
+      </form>
+      <table class="layui-table" lay-even lay-skin="nob">
+        <thead>
+          <tr>
+            <th>NO.</th>
+            <th>订单号</th>
+            <th>类别</th>
+            <th>消费金额</th>
+            <th>获取/消耗花币数</th>
+            <th>生效时间</th>
+          </tr> 
+        </thead>
+        <tbody id="rebateDetailData">
+            <!-- <tr>
+              <td>1</td>
+              <td>255</td>
+              <td>无可奈何花落去</td>
+              <td>无可奈何花落去</td>
+              <td>2019-11-15</td>
+              <td>20191125</td>
+            </tr> -->
+        </tbody>
+
+      </table>
+      <div id="pageList"></div>
+
+
+      <button class="layui-btn layui-btn-back" >返回上一页</button>
+  </div>
+</fieldset>
+<script>
+    document.write("<s"+"cript type='text/javascript' src='../layui.js?"+Math.random()+"'></s" + "cript>"); 
+    document.write("<s"+"cript type='text/javascript' src='/cms/com_config.js?"+Math.random()+"'></s" + "cript>");
+    document.write("<s"+"cript type='text/javascript' src='../js/operate/rebateDetail.js?"+Math.random()+"'></s" + "cript>");
+</script>
+</body>
+</html>

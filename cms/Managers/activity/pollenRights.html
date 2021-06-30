@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> -->
+  <title>商城管理后台</title>
+  <script> 
+  　document.write("<link rel='stylesheet' href='../css/layui.css?v="+Math.random()+"'>");
+  　document.write("<link rel='stylesheet' href='../css/main.css?v="+Math.random()+"'>"); 
+  </script>
+</head>
+<body>
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+  <legend>花粉权益</legend>
+  <div class="com-pad">
+      <form class="layui-form" action="">
+        <div class="layui-flex-right">
+            <div class="layui-form-item">
+              <!-- <label class="layui-form-label">商品名称</label> -->
+              <div class="layui-input-inline" style="width: 200px;">
+                <input type="text" placeholder="请输入商品名称" autocomplete="off" class="layui-input" id="goods_name" >
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <div class="layui-form-item">
+                <label class="layui-form-label" style="width: auto">创建时间</label>
+                <div class="layui-input-inline" style="width: 500px;">
+                  <div class="layui-date-area">
+                     <input type="text" class="layui-input layui-input-date" id="create_start" readonly="true" placeholder="开始时间" >
+                    <label class="layui-form-label" style="text-align: center;width: 40px;">至</label>
+                    <input type="text" class="layui-input layui-input-date" id="create_end" readonly="true" placeholder="结束时间">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <label class="layui-form-label">状态</label>
+              <div class="layui-input-inline" style="width: 150px;">
+                <select name="card" lay-verify="required"  id="goods_type">
+                  <option value="-1" selected="">全部</option>
+                  <option value="0">待上架</option>
+                  <option value="1">上架</option>
+                  <option value="2">下架</option>
+                </select>
+              </div>
+            </div>
+            <div class="layui-inline">
+              <button class="layui-btn layui-btn-normal" lay-submit lay-filter="searchRightList">搜索</button>
+            </div>
+            <div class="layui-inline">
+              <button class="layui-btn layui-btn-danger layui-ml20 importActivityGoods">导入活动商品</button>
+            </div>
+            <div class="layui-inline layui-ml20">
+              <button class="layui-btn layui-btn-danger" lay-submit lay-filter="exportRightList">导出</button>
+            </div>
+        </div>
+      </form>
+      <table class="layui-table" lay-even lay-skin="nob">
+        <thead>
+          <tr>
+            <th>编号</th>
+            <th>活动类型</th>
+            <th>商品名称</th>
+            <th>缩略图</th>
+            <th>规格属性</th>
+            <th>售价(会员价/非会员价-兑换价-抢购价)</th>
+            <!-- <th>销量（销量/剩余库存）</th> -->
+            <th>活动时间</th>
+            <th>状态</th>
+            <th style="width: 180px;">操作</th>
+          </tr> 
+        </thead>
+        <tbody id="rightData">
+        </tbody>
+
+      </table>
+      <div id="pageList"></div>
+  </div>
+
+<div id="select_wrap" style="padding: 20px;display: none;" >
+  <form class="layui-form" action="">
+    <div class="layui-form-item">
+      <label class="layui-form-label">活动类型</label>
+      <div class="layui-input-inline" id="actType" style="width: 400px;">
+        <input type="radio" name="actType" value="1" title="热门推荐" checked lay-filter="act_type">
+        <input type="radio" name="actType" value="2" title="兑换专区" lay-filter="act_type">
+        <input type="radio" name="actType" value="3" title="限时抢购" lay-filter="act_type">
+      </div>
+    </div>
+    <div class="select-search">
+      <input type="text" name="title" placeholder="请输入名称快速搜索" autocomplete="off" class="layui-input goods-name-select">
+      <button type="button" class="layui-btn" lay-submit lay-filter="searchselect">搜索</button></div>
+  </form>
+      <div style="height:300px;overflow:auto;">
+        <table class="layui-table" lay-even lay-skin="nob">
+            <thead>
+            <tr>
+              <th><input type="checkbox" name="checkall" id="checkedAll"><label for="全选">全选</label></th>
+              <th>编号</th>
+              <th>商品名称</th>
+              <th>缩略图</th>
+              <th class="spec-th">规格属性</th>
+              <th>售价（会员价/非会员价）</th>
+              </tr>
+            </thead>
+            <tbody id="select_box">
+            </tbody>
+        </table>
+      </div>
+  <div id="pageLists"></div>
+</div>
+
+<div id="uploadImg" style="padding: 20px;display: none;" >
+	<div style="padding-bottom: 20px;text-align: center; font-size: 16px; color: red;">置顶商品没有上传置顶图，请先上传！</div>
+	<form class="layui-form" action="">
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width: auto">置顶图</label>
+			<div class="banner-images">
+			  <div class="layui-input-inline com-uploadbox banner-uploadbox" style="width: 300px;height: 128px;">
+			      <img src="../images/default.png" alt="" class="upload-source default upload-banner-img">
+			      <div class="shade-wrap banner-wrap">
+			        <div class="pr">
+			          <button type="button" class="layui-btn upload-banner" id="rightsImg">
+			            <i class="layui-icon">&#xe67c;</i>单张上传
+			          </button>
+			          <a href="javascript:;" title="重传" class="reload-img"></a>
+			          <a href="javascript:;" title="删除" class="del-img"></a>
+			        </div>
+			      </div>
+			  </div>
+			</div>
+		</div>
+	</form>
+</div>
+</fieldset>
+<script>
+    document.write("<s"+"cript type='text/javascript' src='../layui.js?"+Math.random()+"'></s" + "cript>"); 
+    document.write("<s"+"cript type='text/javascript' src='/cms/com_config.js?"+Math.random()+"'></s" + "cript>");
+	document.write("<s"+"cript type='text/javascript' src='../js/uploadImg.js?"+Math.random()+"'></s" + "cript>");
+    document.write("<s"+"cript type='text/javascript' src='../js/activity/rightsList.js?"+Math.random()+"'></s" + "cript>");
+</script>
+</body>
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> -->
+  <title>商城管理后台</title>
+  <script> 
+  　document.write("<link rel='stylesheet' href='../css/layui.css?v="+Math.random()+"'>");
+  　document.write("<link rel='stylesheet' href='../css/main.css?v="+Math.random()+"'>"); 
+  </script>
+</head>
+<body>
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+  <legend>编辑权益</legend>
+  <div class="com-pad">
+      <form class="layui-form" action="">
+        <div class="com-form-title">商品信息</div>
+        <div class="layui-form-item">
+          <label class="layui-form-label"><em class="red-xing">*</em>权益名称:</label>
+          <div class="layui-input-inline">
+            <input type="text" required  lay-verify="required" placeholder="请输入商品名称，超过35字不可显示" autocomplete="off" class="layui-input" id="goods_name" maxlength="35">
+          </div>
+        </div>
+        <!-- <div class="layui-form-item">
+          <label class="layui-form-label"><em class="red-xing">*</em>有效期:</label>
+          <div class="layui-input-inline" style="width: auto" id="nolimited">
+          </div>
+          <div class="layui-input-inline" style="width: 210px;">
+            <input type="text" class="layui-input layui-input-date" id="legal_endTime" readonly="true" lay-verify="required" placeholder="截止日期">
+          </div>
+        </div> -->
+        <div class="layui-form-item">
+          <label class="layui-form-label"><em class="red-xing">*</em>权益渠道:</label>
+          <div class="layui-input-inline">
+            <label class="layui-form-label" id="rightApiChannel" style="text-align: left;width: auto"></label>
+          </div>
+          <!-- <div class="layui-input-inline">
+            <select name="card" lay-verify="required">
+              <option value="1">电子券</option>
+              <option value="2">代金券</option>
+              <option value="3">实物券</option>
+            </select>
+          </div> -->
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label"><em class="red-xing">*</em>权益商家:</label>
+          <div class="layui-input-inline">
+            <label class="layui-form-label" id="legal_bis" style="text-align: left;width: auto"></label>
+          </div>
+          <!-- <div class="layui-input-inline">
+            <select name="card" lay-verify="required">
+              <option value="1">电子券</option>
+              <option value="2">代金券</option>
+              <option value="3">实物券</option>
+            </select>
+          </div> -->
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">缩略图：</label>
+          <div class="layui-input-inline" style="width: 114px;">
+              <button type="button" class="layui-btn" id="goods_thumbnail">
+              <i class="layui-icon">&#xe67c;</i>上传图片
+            </button>
+          </div>
+          <div class="layui-form-mid layui-word-aux">素材尺寸（200px x 200px）</div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label"></label>
+          <div class="layui-input-inline">
+              <img src="../images/default.png" alt="" class="upload-source default upload-thumbnail-img">
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">轮播顶图</label>
+          <div class="layui-input-inline" style="width: 114px;">
+              <button type="button" class="layui-btn" id="upload_legal_banners">
+              <i class="layui-icon">&#xe67c;</i>多张上传
+            </button>
+          </div>
+          <div class="layui-form-mid layui-word-aux">最佳尺寸（750px x 312px）</div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label"></label>
+          <div class="banner-images">
+            <div class="layui-input-inline com-uploadbox banner-uploadbox" style="width: 300px;height: 128px;">
+                <img src="../images/default.png" alt="" class="upload-source default upload-banner-img">
+                <div class="shade-wrap banner-wrap">
+                  <div class="pr">
+                    <button type="button" class="layui-btn upload-banner" id="upload_legal_banner1">
+                      <i class="layui-icon">&#xe67c;</i>单张上传
+                    </button>
+                    <a href="javascript:;" title="重传" class="reload-img"></a>
+                    <a href="javascript:;" title="删除" class="del-img"></a>
+                  </div>
+                </div>
+            </div>
+            <div class="layui-input-inline com-uploadbox banner-uploadbox" style="width: 300px;height: 128px;">
+                <img src="../images/default.png" alt="" class="upload-source default upload-banner-img">
+                <div class="shade-wrap banner-wrap">
+                  <div class="pr">
+                    <button type="button" class="layui-btn upload-banner" id="upload_legal_banner2">
+                      <i class="layui-icon">&#xe67c;</i>单张上传
+                    </button>
+                    <a href="javascript:;" title="重传" class="reload-img"></a>
+                    <a href="javascript:;" title="删除" class="del-img"></a>
+                  </div>
+                </div>
+            </div>
+            <div class="layui-input-inline com-uploadbox banner-uploadbox" style="width: 300px;height: 128px;">
+                <img src="../images/default.png" alt="" class="upload-source default upload-banner-img">
+                <div class="shade-wrap banner-wrap">
+                  <div class="pr">
+                    <button type="button" class="layui-btn upload-banner" id="upload_legal_banner3">
+                      <i class="layui-icon">&#xe67c;</i>单张上传
+                    </button>
+                    <a href="javascript:;" title="重传" class="reload-img"></a>
+                    <a href="javascript:;" title="删除" class="del-img"></a>
+                  </div>
+                </div>
+            </div>
+            <div class="layui-input-inline com-uploadbox banner-uploadbox" style="width: 300px;height: 128px;">
+                <img src="../images/default.png" alt="" class="upload-source default upload-banner-img">
+                <div class="shade-wrap banner-wrap">
+                  <div class="pr">
+                    <button type="button" class="layui-btn upload-banner" id="upload_legal_banner4">
+                      <i class="layui-icon">&#xe67c;</i>单张上传
+                    </button>
+                    <a href="javascript:;" title="重传" class="reload-img"></a>
+                    <a href="javascript:;" title="删除" class="del-img"></a>
+                  </div>
+                </div>
+            </div>
+            <div class="layui-input-inline com-uploadbox banner-uploadbox" style="width: 300px;height: 128px;">
+                <img src="../images/default.png" alt="" class="upload-source default upload-banner-img">
+                <div class="shade-wrap banner-wrap">
+                  <div class="pr">
+                    <button type="button" class="layui-btn upload-banner" id="upload_legal_banner5">
+                      <i class="layui-icon">&#xe67c;</i>单张上传
+                    </button>
+                    <a href="javascript:;" title="重传" class="reload-img"></a>
+                    <a href="javascript:;" title="删除" class="del-img"></a>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+        <!-- 商品信息 end -->
+        <div class="com-form-title">销售信息</div>
+        <div class="layui-form-item" >
+          <label class="layui-form-label">可售库存:</label>
+          <div class="layui-input-inline" style="width: auto" id="nolimited_stock">
+              <!-- <input type="checkbox" name="date" value="0" title="不限" checked="" lay-filter="limited_stock"> -->
+          </div>
+          <div class="layui-input-inline">
+              <input type="text" class="layui-input"  lay-verify="required|zhengshu" placeholder="可售库存" id="stock">
+            </div>
+            <div class="layui-input-inline">
+              <div class="form-desc">输入库存数量，当字段为0时，即为空</div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">售卖信息:</label>
+          <div class="layui-input-inline" id="sele_info" style="width: 1200px;">
+            <table class="layui-table" lay-skin="row" id="sell_table">
+              <tr>
+                <th>成本价（元）</th>
+                <th>市场价（元）</th>
+                <th>非会员价（元）</th>
+                <th>会员价（元）</th>
+              </tr>
+              <tr>
+                <td id="cost"></td>
+                <td id="price"></td>
+                <td><input type="text" class="layui-input"  lay-verify="required|isTwoDecimalsFloat" placeholder="非会员价（元）" id="salePrice"></td>
+                <td><input type="text" class="layui-input"  lay-verify="required|isTwoDecimalsFloat" placeholder="会员价（元）" id="disPrice"></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <!-- 销售信息 end -->
+        <div class="com-form-title">购买限制</div>
+        <div class="layui-form-item">
+          <label class="layui-form-label"><em class="red-xing">*</em>限购数量:</label>
+          <div class="layui-input-inline" style="width: 150px;" id="limitCntType">
+            <!-- <input type="checkbox" name="limitCnt" title='是否限购'> -->
+          </div>
+          <div class="layui-input-inline">
+            <input type="text"  placeholder="请输入每人购买商品上限" value="100" autocomplete="off" class="layui-input" id="limitCnt">
+          </div>
+          <div class="layui-input-inline">
+            <div class="form-desc">件/用户</div>
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label"><em class="red-xing">*</em>限购当次订单购买量:</label>
+          <div class="layui-input-inline" style="width: 150px;" id="limitSingleType">
+            <!-- <input type="checkbox" name="limitSingle" title='是否限制上限'> -->
+          </div>
+          <div class="layui-input-inline">
+            <input type="text"  placeholder="请输入每单购买商品上限" value="1000" autocomplete="off" class="layui-input" id="limitSingle">
+          </div>
+          <div class="layui-input-inline">
+            <div class="form-desc">件/单</div>
+          </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+          <label class="layui-form-label">权益说明：</label>
+          <div class="layui-input-inline">
+             <div id="goods_detail"></div>
+          </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+          <label class="layui-form-label">温馨提示：</label>
+          <div class="layui-input-inline">
+             <div id="buy_notice"></div>
+          </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+          <label class="layui-form-label">上架状态</label>
+          <div class="layui-input-inline" style="width: auto;" id="shelves_status" >
+             <input type="radio" name="legalType" value="2" title="否" id="legalType1">
+             <input type="radio" name="legalType" value="1" title="是"  id="legalType2">
+             <input type="radio" name="legalType" value="0" title="待完善" checked="" id="legalType3">
+          </div>
+        </div>
+        
+        <div class="layui-form-item">
+          <label class="layui-form-label">&nbsp;</label>
+          <div class="layui-input-inline" style="width: auto;">
+            <button class="layui-btn" lay-submit lay-filter="legalSubmit">提交</button>
+          </div>
+          <div class="layui-input-inline">
+            <button class="layui-btn layui-btn-back" >返回上一页</button>
+          </div>
+        </div>
+
+      </form>
+  </div>
+</fieldset>
+<script>
+    document.write("<s"+"cript type='text/javascript' src='../layui.js?"+Math.random()+"'></s" + "cript>"); 
+    document.write("<s"+"cript type='text/javascript' src='/cms/com_config.js?"+Math.random()+"'></s" + "cript>");
+    document.write("<s"+"cript type='text/javascript' src='../js/uploadImg.js?"+Math.random()+"'></s" + "cript>");
+    document.write("<s"+"cript type='text/javascript' src='../js/legal/legalEdit.js?"+Math.random()+"'></s" + "cript>");
+</script>
+</body>
+</html>
