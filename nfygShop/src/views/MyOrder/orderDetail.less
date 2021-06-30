@@ -1,0 +1,235 @@
+.detail-right,
+.detail-goods {
+  // 订单状态
+  .state {
+    display: flex;
+    min-height: 1.68rem;
+    padding: 0.3rem;
+    color: #fff;
+    background: url(../../assets/state_bg.png) no-repeat center top / 100%;
+    .name {
+      font-size: 0.36rem;
+    }
+    .desc {
+      font-size: 0.28rem;
+      margin-top: 0.12rem;
+    }
+    button {
+      margin: auto;
+      margin-right: 0;
+      padding: 0.05rem 0.2rem;
+      color: #fff;
+      background: none;
+      border-color: #fff;
+    }
+  }
+  // 商品信息
+  .goods {
+    .img {
+      width: 1.6rem;
+      height: 1.6rem;
+    }
+
+    .desc {
+      color: #ff5b5b;
+    }
+  }
+  // 标题
+  .remark-title {
+    font-size: 0.32rem;
+    text-align: center;
+    background: url(../../assets/remark_title_bg.png) no-repeat center / 2.3rem;
+  }
+  // 券码部分
+  .code {
+    padding: 0.3rem;
+
+    .code-bg {
+      width: 6.3rem;
+      // height: 2.2rem;
+      margin: auto;
+      margin-top: 0.2rem;
+      padding: 0.3rem 0.15rem;
+      font-size: 0.24rem;
+      line-height: 2;
+      background: #f8f8f8;
+      border-radius: 0.1rem;
+
+      .code-col {
+        display: flex;
+
+        .type-code {
+          flex: 1;
+          display: flex;
+        }
+        .limit {
+          width: 3rem;
+          overflow: hidden;
+          display: -webkit-box;
+          text-overflow: ellipsis;
+          -webkit-line-clamp: 1;
+          -webkit-box-orient: vertical;
+          white-space: normal;
+        }
+
+        .type-copy {
+          height: 0.4rem;
+          margin: auto;
+          margin-top: 0;
+          margin-right: 0;
+          margin-left: 0.25rem;
+          padding: 0 0.15rem;
+          font-size: 0.18rem;
+          line-height: 0.4rem;
+          text-align: center;
+          color: #fff;
+          border: none;
+          border-radius: 0.2rem;
+          background: linear-gradient(
+            270deg,
+            rgba(255, 86, 86, 1) 0%,
+            rgba(249, 46, 46, 1) 100%
+          );
+        }
+      }
+
+      .qrcode {
+        width: 130px;
+        height: 130px;
+        margin: 0.1rem auto;
+        border: solid 5px #fff;
+      }
+
+      .is-use {
+        color: #999;
+        text-decoration: line-through;
+      }
+
+      .type-state {
+        margin-left: 0.1rem;
+        font-size: 0.18rem;
+        color: #999;
+      }
+    }
+    .type-2 {
+      background: none;
+
+      .type-2-img {
+        width: 2.2rem;
+        display: block;
+        margin: auto;
+      }
+
+      .type-state {
+        margin: auto;
+        margin-top: 0.1rem;
+        text-align: center;
+      }
+    }
+
+    .code-tips {
+      margin-top: 0.1rem;
+      color: #999;
+      font-size: 0.24rem;
+      text-align: center;
+
+      .refresh {
+        width: 0.35rem;
+        margin-left: 0.1rem;
+        margin-top: -0.05rem;
+      }
+    }
+  }
+  // 提示部分
+  .remark {
+    padding: 0.3rem;
+
+    .row {
+      margin-top: 0.4rem;
+
+      .title {
+        font-size: 0.28rem;
+        padding-left: 0.1rem;
+        color: #333;
+        border-left: solid 0.06rem #ff5656;
+        line-height: 1.2;
+      }
+
+      .desc {
+        font-size: 0.28rem;
+        color: #666;
+        margin-top: 0.1rem;
+      }
+    }
+  }
+  // 订单信息和付款信息
+  .order.last {
+    margin-bottom: 1.45rem;
+  }
+  .order-info {
+    .van-cell__value {
+      display: flex;
+      font-size: 0.28rem;
+      .value {
+        color: #666;
+        .copy {
+          width: 0.8rem;
+          height: 0.4rem;
+          padding: 0;
+          margin-left: 0.15rem;
+          font-size: 0.18rem;
+          line-height: 0.4rem;
+          text-align: center;
+          color: #4a90e2;
+          border: solid 1px #4a90e2;
+          border-radius: 0.3rem;
+        }
+      }
+    }
+  }
+  .order-value {
+    font-size: 0.28rem;
+    .van-cell__title {
+      color: #666;
+    }
+    .van-cell__value {
+      color: #333;
+    }
+  }
+  .order-value.price {
+    .van-cell__value {
+      font-weight: bold;
+      color: #ff3b30;
+    }
+  }
+  // 底部操作按钮
+  .foot {
+    position: fixed;
+    bottom: 0;
+    padding: 0.22rem 0.3rem;
+    display: flex;
+    margin: auto;
+    margin-top: 0.2rem;
+    width: 100%;
+    background: #fff;
+    button {
+      margin: auto;
+      width: 2.4rem;
+      height: 0.8rem;
+      border-radius: 0.4rem;
+    }
+    .call {
+      font-size: 0.24rem;
+      text-align: center;
+      margin: auto;
+      margin-right: 0.58rem;
+      span {
+        font-size: 0.45rem;
+      }
+    }
+    .del {
+      color: #666;
+      border-color: #bbb;
+    }
+  }
+}
