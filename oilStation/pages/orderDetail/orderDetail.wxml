@@ -1,0 +1,64 @@
+<!--pages/orderDetail/orderDetail.wxml-->
+<view class="container">
+  <view class="order-type">
+    <image src="{{status[orderData.status].typeIcon}}" mode="aspectFill" class="type-icon"></image>
+    <text class="type-t">{{status[orderData.status].name}}</text>
+  </view>
+  <view class="order-list-detail">
+    <view class="order-detail-elem mb20">
+      <text>油号</text>
+      <text class="order-val">{{orderData.oil_name}}</text>
+    </view>
+    <view class="order-detail-elem mb20">
+      <text>枪号</text>
+      <text class="order-val">{{orderData.gun_name}}</text>
+    </view>
+    <view class="order-detail-elem mb20">
+      <text>加油站名称</text>
+      <text class="order-val">{{orderData.station_name}}</text>
+    </view>
+    <view class="line"></view>
+    <view class="order-detail-elem">
+      <text>机显金额</text>
+      <text class="order-val">￥{{orderData.total_amount}}</text>
+    </view>
+    <view class="order-detail-elem mb20 f24">
+      <text>商品单价</text>
+      <text class="order-val" style="color:#999">￥{{orderData.sale_price}}</text>
+    </view>
+    <view class="order-detail-elem ">
+      <text>优惠金额</text>
+      <text class="order-val" style="color:#136FD1">-{{orderData.discount_amount}}</text>
+    </view>
+    <view class="order-detail-elem mb20 f24">
+      <text>单价金额</text>
+      <text class="order-val" style="color:#9B9B9B; font-size:24rpx">-{{orderData.discount_price}}</text>
+    </view>
+    <view class="order-detail-elem ">
+      <text>实付金额</text>
+      <text class="order-val" style="color:#136FD1">￥{{orderData.pay_amount}}</text>
+    </view>
+    <view class="line"></view>
+    <view class="order-detail-elem mb20">
+      <text>支付方式</text>
+      <text class="order-val">{{orderData.prize}}</text>
+    </view>
+    <view class="order-detail-elem mb20">
+      <text>订单编号</text>
+      <text class="order-val">{{orderData.orderNo}}</text>
+    </view>
+    <view class="order-detail-elem ">
+      <text>下单时间</text>
+      <text class="order-val">{{orderData.payTime}}</text>
+    </view>
+    <view class="line"></view>
+    <view class="order-detail-elem ">
+      <text>开票方式</text>
+      <text class="order-val">如需发票请您前往收银台索取</text>
+    </view>
+  </view>
+  <view class="contact-kf">
+    <image src="../images/kf_icon.png" mode="aspectFill" class="kf-icon"></image>
+    <text bindtap="phoneCall" data-phone="150">联系客服</text>
+  </view>
+</view>

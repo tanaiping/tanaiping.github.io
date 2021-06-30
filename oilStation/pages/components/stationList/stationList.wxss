@@ -1,0 +1,108 @@
+/* pages/components/stationList.wxss */
+
+
+.station-list{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40rpx;
+}
+.station-img{
+  width: 60rpx;
+  height: 60rpx;
+}
+.station-info{
+  display: flex;
+  flex-direction: column;  
+  width: 420rpx;
+  padding:0 20rpx;
+}
+.station-info .name{
+  font-size: 28rpx;
+  color: #000;
+  line-height: 30rpx;
+  height: 30rpx;
+  padding-bottom: 16rpx;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.station-info .price{
+  line-height: 56rpx;
+  height: 56rpx;
+  font-size: 28rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.station-info .price .t1{
+ color: #136FD1;
+ font-size: 24rpx;
+}
+.station-info .price .t1 .pri1{
+  color: #FF742C;
+  font-size: 28rpx;
+ }
+.station-info .price .t1 .pri2{
+  color: #999;
+  font-size: 24rpx;
+  padding:0 8rpx;
+  text-decoration: line-through;
+ }
+.station-info .address{
+  color: #999;
+  font-size: 24rpx;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 34rpx;
+}
+.navigate-box{
+  display: flex;
+  flex-direction: column;
+  width: 160rpx;
+  justify-content:space-between;
+  align-items: flex-end;
+}
+.look-btn{
+  width: 140rpx;
+  height: 50rpx;
+  background: #136FD1;
+  border-radius: 24rpx;
+  font-size: 24rpx;
+  color: #FDFEFF;
+  line-height: 50rpx;
+  text-align: center;
+}
+.distance-box{
+  display: flex;
+  justify-content: flex-end;
+  white-space: nowrap;
+}
+.distance-box .line{
+  width: 2rpx;
+  height: 12rpx;
+  margin: 8rpx 4rpx 8rpx 8rpx;
+  background-color: #A7A7A7;
+}
+.navigate-ico{
+  width: 20rpx;
+  height: 20rpx;
+  margin:4rpx 0;
+  line-height: 20rpx;
+}
+.nav-btn{
+  height: 28rpx;
+  font-size: 24rpx;
+  line-height: 28rpx;
+  color: #006ED8;
+}
+.distance{
+  color: #000;
+  font-size: 24rpx;
+  line-height: 28rpx;
+}
+.distance text{
+  color: #A7A7A7;
+  padding: 0 6rpx;
+}

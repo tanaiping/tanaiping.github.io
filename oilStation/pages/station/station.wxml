@@ -1,0 +1,92 @@
+<!--pages/station/station.wxml-->
+<view class="container">
+  <view class="ope-box">
+    <view class="ope-pad">
+      <view class="search-wrap">
+        <view class="search-input">
+          <image src="../images/search.png" mode="aspectFill" class="search-icon"></image>
+          <text class="search-keys" bindtap="toSearch">输入目的地，查找附近油站</text>
+        </view>
+        <image src="../images/person.png" mode="aspectFill" bindtap="goUserOrder" class="person-icon"></image>
+      </view>
+      <!-- search-wrap -->
+      <view class="filter-box">
+        <!-- <picker bindchange="bindPickerChangeOil" value="{{index_oil}}" range="{{selectOilData}}"> -->
+          <view class="picker-com" catchtap="showFilterBox" data-type ='1'>
+            <text class="pick-txt">{{selectOilData[index_oil]}}#</text>
+            <image  src="{{showCheck==1?'../images/down.png':'../images/up.png'}}"  mode="aspectFill" class="pick-icon"></image> 
+          </view>
+        <!-- </picker> -->
+          <!-- <picker bindchange="bindPickerChangeType" value="{{index_type}}" range="{{selectTypeData}}"> -->
+          <view class="picker-com" catchtap="showFilterBox" data-type = '2'>
+            <text class="pick-txt">{{selectTypeData[index_type]}}</text>
+            <image  src="{{showCheck==2?'../images/down.png':'../images/up.png'}}"  mode="aspectFill" class="pick-icon"></image> 
+          </view>
+        <!-- </picker> -->
+        <text bindtap="switchModel"  class="type-btn">{{isMapmodel == false?'地图模式':'返回列表'}}</text>
+      </view>
+      <!-- filter-box -->
+    </view>
+    <block wx:if="{{showCheck!=0}}">
+      <view class="filter-select-box">
+        <block wx:if="{{showCheck==1}}">
+          <block wx:for="{{selectOilData}}" wx:for-index="idx" wx:key="{{item.id}}" >
+              <text class="oil-elem {{index_oil == idx?'act':''}}" catchtap="bindChangeOil" data-index ="{{idx}}">{{item}}#</text>
+          </block>
+        </block>
+        <block wx:else>
+          <block wx:for="{{selectTypeData}}" wx:for-index="idx" wx:key="{{item.id}}" >
+              <text class="oil-elem {{index_type == idx?'act':''}}" catchtap="bindChangeType" data-index ="{{idx}}" >{{item}}</text>
+          </block>
+        </block>
+      </view>
+    </block>
+  </view>
+  <view class="station-box" wx:if="{{!isMapmodel}}">
+      <block wx:if="{{!ishidden}}">
+        <block wx:if="{{stationData.length>0}}">
+          <station-list stationData="{{stationData}}" latitude="{{latitude}}" longitude="{{longitude}}" oil_no="{{selectOilData[index_oil]}}" len="10000000"></station-list> 
+        </block>
+        <block wx:else>
+          <view class="null-txt">
+            <image src="../images/nodata.png"></image>
+            <text>糟糕，数据暂时获取不到</text>
+          </view>
+        </block>
+    </block>
+  </view>
+   <view class="map-box" wx:else >
+    <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" circles="{{circles}}" bindmarkertap="markertap" bindlabeltap = "markertap"   scale="14" markers="{{markers}}" style="width:100%;height:{{screenH}}px"></map>
+    <view class="tips">共{{stationData.length}}家油站（4km内）</view>
+    <block wx:for="{{stationData}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
+      <view class="cur-station" wx:if="{{selectMarketId == idx}} ">
+        <image src="../images/bgbox.png" class="cur-station-bg"></image>
+          <view class="station-map-con">
+            <view class="flex-row">
+              <image src="{{stationData[selectMarketId].logo}}" mode="aspectFill" class="station-img"></image>
+              <view class="flex-column station-info">
+                <view class="flex-between">
+                  <text class="station-title">{{stationData[selectMarketId].station_name}}</text>
+                  <view class="distance-box">
+                    <image src="../images/navigate.png" mode="aspectFill" class="navigate-img"></image>
+                    <text class="distance">{{stationData[selectMarketId].distance}}km</text>
+                  </view>
+                </view>
+                <view class="price">
+                  <view class="t1"><text class="pri1">￥{{stationData[selectMarketId].sale_price}}</text><text class="pri2">￥{{stationData[selectMarketId].contract_price}}</text> 已降{{stationData[selectMarketId].discount_price}}元</view> 
+                  <view class="desc">加￥200约省21.18</view>
+                </view>
+                <text class="address">{{stationData[selectMarketId].address}}</text>
+                <view class="map-btn-box">
+                  <view class="btn1" bindtap="addOil" data-id="{{stationData[selectMarketId].id}}">加油</view>
+                  <view class="btn2" bindtap="openMap"  data-latitude="{{stationData[selectMarketId].latitude}}"  data-longitude="{{stationData[selectMarketId].longitude}}" data-stationName="{{stationData[selectMarketId].station_name}}" data-address="{{stationData[selectMarketId].address}}">导航</view>
+                </view>
+              </view>
+          </view>
+
+          </view>
+      </view>
+    </block>
+   
+  </view>
+</view>

@@ -1,0 +1,37 @@
+<!--pages/search/search.wxml-->
+<view class="container">
+  <view class="search-wrap">
+    <view class="flex-between">
+      <picker bindchange="bindPickerChangeCity" value="{{cityIndex}}}" range="{{cityList}}" >
+        <view class="picker-com" style="padding:10rpx 0;">
+              <text class="pick-txt">{{cityList[cityIndex]}}</text>
+              <image  src='../images/up.png'  mode="aspectFill" class="pick-icon"></image> 
+            </view>
+      </picker>
+      <view class="search-box">
+        <image src="../images/search.png" mode="aspectFill" class="search-icon"></image>
+        <input  placeholder="输入目的地，查找附近油站"  placeholder-style="color:#999" focus="true" model:value="{{keywords}}" class="search-keys" adjust-position="{{false}}" bindinput="bindInput"></input>
+        <image src="../images/close.png" mode="aspectFill" class="clear-icon" catchtap="clearKeys" wx:if="{{keywords!=''}}"></image>
+      </view>
+       <text catchtap="goBack" class="goback-btn">取消</text>
+    </view>
+   
+  </view>
+  <view class="result-box">
+    <view bindtap="bindSearch" data-keywords="{{item.name}}" wx:for="{{tips}}" wx:for-item="item" wx:key="{{item.id}}" class="result-elem" data-lat="{{item.lat}}" data-lng="{{item.lng}}">
+      <view class="flex-row">
+        <image src="../images/location_i.png" class="location-icon"></image>
+        <view class="address">
+          <text class="t1">{{item.name}}</text>
+          <text class="t2">{{item.district}}{{item.address}}</text>
+        </view>
+      </view>
+      <view class="distance" wx:if="{{item.distance}}">
+        <image src="../images/navigate.png" mode="aspectFill" class="navigate-ico"></image>
+        <text class="t2">{{item.distance}}</text>
+      </view>
+    </view>
+  </view>
+  
+</view>
+

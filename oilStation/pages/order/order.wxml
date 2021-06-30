@@ -1,0 +1,35 @@
+<!--pages/order/order.wxml-->
+<view class="container">
+  <view class="nav-menu">
+    <block wx:for="{{menuList}}" wx:for-item="item" wx:for-index="idx" wx:key="idx">
+      <view class="{{selectIndex == idx?'act':''}}" bindtap="changeMenu" data-index = "{{idx}}"><text>{{item}}</text></view>
+    </block>
+  </view>
+  <view class="order-list" wx-if="{{!ishidden}}">
+    <block wx:if="{{orderList.length>0}}">
+      <block wx:for="{{orderList}}" wx:for-item="item" wx:for-index="idx" wx:key="idx">
+        <view class="order-elem" bindtap="goOrderDetail" data-orderno="{{item.orderNo}}">
+          <view class="flex-row">
+            <image src="{{item.logo}}" mode="aspectFill" class="station-img"></image>
+            <view class="station-info">
+              <text class="name">{{item.station_name}}</text>
+              <view class="flex-row"><text class="price">￥{{item.pay_amount}}</text><text class="oil-no">{{item.oil_no}}#</text></view>
+              <text class="payTime">{{item.payTime}}</text>
+            </view>
+          </view>
+        <view class="order-type">{{status[item.status-1]}}</view>
+        </view>
+      </block>
+    </block>
+    <block wx:else>
+     <view class="null-txt">
+        <image src="../images/nodata.png"></image>
+        <text>糟糕，数据暂时获取不到</text>
+      </view>
+    </block>
+    
+  </view>
+
+
+
+</view>

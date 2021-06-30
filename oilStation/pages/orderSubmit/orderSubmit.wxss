@@ -1,0 +1,412 @@
+/* pages/orderSubmit/orderSubmit.wxss */
+.station-box{
+  padding: 40rpx 26rpx 12rpx 26rpx;
+}
+.station-list{
+  display: flex;
+  justify-content: space-between;
+}
+.station-img{
+  width: 60rpx;
+  height: 60rpx;
+}
+.station-info{
+  display: flex;
+  flex-direction: column;  
+  width: 420rpx;
+  padding:0 26rpx;
+}
+.station-info .name{
+  font-size: 28rpx;
+  color: #000;
+  line-height: 34rpx;
+  height: 34rpx;
+  padding-bottom: 16rpx;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.station-info .address{
+  color: #999;
+  font-size: 24rpx;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 34rpx;
+}
+.distance-box{
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  margin-bottom: 6rpx;
+  white-space: nowrap;
+}
+.distance-box .line{
+  width: 2rpx;
+  height: 12rpx;
+  margin: 8rpx 4rpx 8rpx 0;
+  background-color: #A7A7A7;
+}
+.navigate-ico{
+  width: 20rpx;
+  height: 20rpx;
+  margin:4rpx 0;
+  line-height: 20rpx;
+}
+.nav-btn{
+  height: 28rpx;
+  font-size: 24rpx;
+  line-height: 28rpx;
+  color: #006ED8;
+}
+.distance{
+  color: #000;
+  font-size: 24rpx;
+  line-height: 28rpx;
+}
+.distance text{
+  color: #A7A7A7;
+  padding: 0 6rpx;
+}
+.compare-price{
+  width: 750rpx;
+  height:200rpx;
+  position: relative;
+}
+.compare-img{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 750rpx;
+  height: 200rpx;
+}
+.conpare-con{
+  padding: 50rpx 70rpx;
+  z-index: 2;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 90rpx;
+}
+.price-list{
+  display: flex;
+  justify-content: end;
+}
+.price-list .price-elem{
+  width: 152rpx;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+.price-list .price-elem .t1{
+  font-size: 24rpx;
+  color: #999;
+  line-height: 50rpx;
+}
+.price-list .price-elem .t2{
+  font-size: 30rpx;
+  color: #333;
+  line-height: 40rpx;
+  font-weight: bold;
+}
+.column-line{
+  background: #8C8C8C;
+  width: 2rpx;
+  height: 50rpx;
+  margin: 20rpx 0;
+}
+.discount-box{
+  padding: 32rpx 26rpx;
+  border-top:2rpx solid #E9E9E9;
+  /* border-width: 12rpx 0; */
+}
+.discount-header{
+  display: flex;
+  justify-content: space-between;
+}
+.discount-header .title{
+  line-height: 40rpx;
+  color: #333;
+  font-size: 28rpx;
+}
+.discount-header .contact-service{
+  font-size: 24rpx;
+  color: #136FD1;
+  line-height: 40rpx;
+}
+.border-box{
+  border:2rpx solid #136FD1;
+  border-radius: 8rpx;
+  padding: 20rpx 52rpx;
+  margin:28rpx 0 40rpx 0;
+  display: flex;
+  justify-content: space-between;
+}
+.gun-img{
+  width: 60rpx;
+  height: 60rpx;
+}
+.select-price{
+  box-sizing: border-box;
+  border:2rpx solid rgba(19, 111, 209, 0.1);
+  background-color:rgba(19, 111, 209, 0.04);
+  border-radius: 8rpx;
+  height: 200rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.input-box{
+  line-height: 200px;
+  box-sizing: border-box;
+  border-right:2rpx solid rgba(19, 111, 209, 0.1);
+   width: 498rpx;
+}
+.input-box input{
+  width: 100%;
+  height: 100%;
+  line-height: 200rpx;
+  text-align: center;
+  color: rgba(19, 111, 209, 1);
+}
+.price-con{
+  display: flex;
+  flex-direction: column;
+}
+.price-con text{
+  width: 200rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  box-sizing: border-box;
+  font-size: 28rpx;
+  color: rgba(19, 111, 209, 0.5);
+}
+.price-con text.act{
+  color: rgba(19, 111, 209, 1);
+}
+.price-con text:nth-child(1){
+  border-bottom:2rpx solid rgba(19, 111, 209, 0.1);
+}
+.pay-fixed-bottom{
+  background: #FFF;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  box-shadow: 0 -10rpx 5rpx #E9E9E9;
+  width: 100%;
+}
+.pay-fixed-bottom .pad-box{
+  padding:40rpx 26rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.pay-fixed-bottom .pad-box .t1{
+  font-size: 28rpx;
+  color: #136FD1;
+  line-height: 80rpx;
+  max-width: 36%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.pay-fixed-bottom .pad-box .t1 text{
+  font-size: 30rpx;
+}
+.pay-fixed-bottom .pad-box .t2{
+  font-size: 28rpx;
+  color: #000;
+  line-height: 80rpx;
+  max-width: 36%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.pay-fixed-bottom .pad-box .t2 text{
+  font-size: 44rpx;
+}
+.pay-btn{
+  width: 200rpx;
+  line-height: 80rpx;
+  height: 80rpx;
+  font-size: 30rpx;
+  background: #12BFC7;
+  color: #FFF;
+  text-align: center;
+  border-radius: 56rpx;
+}
+.pay-btn.disabled{
+  background: #A3A3A3;
+  color: #FFF;
+}
+.picker-multiSelector{
+  width: 100%;
+}
+.pop-box{
+  width: 540rpx;
+  height: 400rpx;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  margin:-200rpx 0 0 -270rpx;
+  z-index: 101;
+  border-radius: 24rpx;
+  background: #FFF;
+  overflow: hidden;
+}
+.pop-pad{
+  padding: 40rpx 26rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  border-bottom: 2rpx solid #e9e9e9;
+}
+.pop-pad .pop-icon01{
+  width: 100rpx;
+  height: 100rpx;
+}
+.pop-pad .t1{
+  color: #000;
+  font-size: 30rpx;
+  margin-top: 48rpx;
+  text-align: center;
+  line-height: 44rpx;
+}
+.pop-pad .t2{
+  font-size: 28rpx;
+  color: #136FD1;
+  line-height:32rpx;
+  margin-top: 8rpx;
+}
+.btn-box{
+  display: flex;
+  width: 100%;
+}
+.btn-box .t1{
+  box-sizing: border-box;
+   width: 50%;
+   height: 88rpx;
+   border-right: 2rpx solid #e9e9e9;
+   text-align: center;
+   line-height: 88rpx;
+   color: #333;
+   font-size: 30rpx;
+}
+.btn-box .t2{
+  box-sizing: border-box;
+   width: 50%;
+   height: 88rpx;
+   text-align: center;
+   line-height: 88rpx;
+   color: #136FD1;
+   font-size: 30rpx;
+}
+.seleckOilPop{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  border-radius: 64rpx 64rpx 0 0;
+  overflow: hidden;
+  background: #FFF;
+  z-index: 102;
+}
+.seleckOilPop .header{
+  display: flex;
+  justify-content: space-between;
+  line-height: 60rpx;
+  height: 60rpx;
+  margin: 40rpx 60rpx 50rpx 60rpx ;
+  line-height: 40rpx;
+  height: 40rpx;
+}
+.seleckOilPop .header .t1{
+  color: #000;
+  font-size: 28rpx;
+}
+.seleckOilPop .header .btn-submit{
+  color: #136FD1;
+  font-size: 28rpx;
+}
+.oil-box{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0 40rpx;
+}
+.oil-box text{
+  width: 140rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  color: #000;
+  font-size: 24rpx;
+  text-align: center;
+  background: #ddd;
+  border-radius: 30rpx;
+  margin: 0 36rpx 40rpx 0;
+  box-sizing: content-box;
+}
+.oil-box text:nth-child(4n){
+  margin-right: 0;
+}
+.oil-box text.act{
+  background: #136FD1;
+  color: #FFF;
+}
+.gun-box{
+  display: flex;
+  flex-wrap: wrap;
+  max-height: 384rpx;
+  overflow: auto;
+}
+.gun-box text{
+  width: 33.33%;
+  background: rgba(19, 111, 209, 0.04);
+  line-height: 128rpx;
+  height: 128rpx;
+  box-sizing: border-box;
+  text-align: center;
+  color: #136FD1;
+  border-bottom: 2rpx solid #FFF;
+
+}
+.gun-box text:nth-child(3n+2){
+  border-right: 2rpx solid #FFF;
+  border-left: 2rpx solid #FFF;
+}
+.gun-box text.act{
+  background: #136FD1;
+  color: #FFF;
+}
+.login-box{
+  margin: 80rpx auto 0 auto;
+  display: flex;
+  width: 480rpx;
+  position: relative;
+}
+.login-box .login-t{
+  color: #000;
+  font-size: 28rpx;
+  margin-right: 34rpx;
+  line-height: 60rpx;
+  height: 60rpx;
+
+}
+button.login-btn{
+  background: #136FD1;
+  padding: 0 35rpx;
+  line-height: 60rpx;
+  width: auto !important;
+  color: #FFF;
+  font-size: 28rpx;
+  border-radius: 47rpx;
+  display: inline;
+  margin: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}

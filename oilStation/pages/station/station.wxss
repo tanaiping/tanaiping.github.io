@@ -1,0 +1,223 @@
+/* pages/station/station.wxss */
+.ope-box{
+  width: 100%;
+  border-radius: 0 0 40rpx 40rpx;
+  box-shadow: 0 4rpx 12rpx rgba(164, 164, 164, 0.5);
+  background: #FFF;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 2;
+}
+.ope-pad{
+  padding:30rpx 40rpx;
+}
+.search-wrap{
+  display: flex;
+  justify-content: space-between;
+}
+.search-input{
+  display: flex;
+  background-color: #F6F6F6;
+  border-radius: 37rpx;
+  width: 560rpx;
+  height: 60rpx;
+}
+.search-icon{
+  width: 28rpx;
+  height: 28rpx;
+  margin:16rpx 20rpx;
+}
+.search-input .search-keys{
+  width: 472rpx;
+  line-height: 28rpx;
+  height: 28rpx;
+  min-height: 28rpx;
+  font-size: 24rpx;
+  margin: 16rpx 0;
+  color: #999;
+  background: transparent;
+  border: none;
+}
+.person-icon{
+  width: 60rpx;
+  height: 52rpx;
+}
+.filter-box{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40rpx;
+}
+
+
+/* select */
+.oil-select,.type-select{
+  width: 180rpx;
+}
+.type-btn{
+  color: #111111;
+  font-size: 28rpx;
+}
+.station-box{
+  padding: 200rpx 26rpx 40rpx 26rpx;
+}
+.map-box{
+  width: 100%;
+}
+.cur-station{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 298rpx;
+}
+.station-map-con{
+  padding: 40rpx 60rpx;
+  margin: 0 5rpx;
+  position: relative;
+  z-index: 2;
+}
+.cur-station-bg{
+  width: 740rpx;
+  height: 100%;
+  position: absolute;
+  left: 5rpx;
+}
+.station-img{
+  width:60rpx;
+  height: 60rpx;
+}
+.navigate-img{
+  width: 20rpx;
+  height: 20rpx;
+  padding: 7.5rpx 4rpx;
+}
+.station-info{
+  margin-left: 20rpx;
+  width: 542rpx;
+}
+.station-title{
+  font-size: 28rpx;
+  color: #000;
+  line-height: 30rpx;
+  width: 390rpx;
+  height: 30rpx;
+  padding-bottom: 8rpx;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.station-info .price{
+  line-height: 56rpx;
+  height: 56rpx;
+  font-size: 28rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.station-info .price .t1{
+ color: #136FD1;
+ font-size: 24rpx;
+}
+.station-info .price .t1 .pri1{
+  color: #FF742C;
+  font-size: 28rpx;
+ }
+.station-info .price .t1 .pri2{
+  color: #999;
+  font-size: 24rpx;
+  padding:0 8rpx;
+  text-decoration: line-through;
+ }
+ .price .desc{
+  font-size: 20rpx;
+  color: #fff;
+  line-height: 34rpx;
+  height: 34rpx;
+  padding: 0 16rpx;
+  background: #136FD1;
+  margin: 7rpx 0;
+  border-radius: 0 6px;
+} 
+.station-info .address{
+  color: #999;
+  font-size: 24rpx;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 34rpx;
+}
+.distance-box{
+  display: flex;
+  line-height: 34rpx;
+  color: #006ED8;
+  font-size: 24rpx;
+}
+.map-btn-box{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10rpx;
+}
+
+.btn1{
+  border: 1rpx solid #136FD1;
+  font-size: 24rpx;
+  color: #136FD1;
+  width: 240rpx;
+  height: 48rpx;
+  text-align: center;
+  line-height: 46rpx;
+  border-radius: 24rpx;
+  box-sizing: border-box;
+}
+.btn2{
+  background: #136FD1;
+  font-size: 24rpx;
+  color: #FFF;
+  width: 240rpx;
+  height: 48rpx;
+  text-align: center;
+  line-height: 48rpx;
+  border-radius: 24rpx;
+}
+.filter-select-box{
+  border-top: 2rpx solid #e9e9e9;
+  padding: 40rpx 40rpx 0 40rpx;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.filter-select-box .oil-elem{
+  width: 140rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  color: #000;
+  font-size: 24rpx;
+  text-align: center;
+  background: #ddd;
+  border-radius: 30rpx;
+  margin: 0 36rpx 40rpx 0;
+  box-sizing: content-box;
+}
+.filter-select-box .oil-elem:nth-child(4n){
+  margin-right: 0;
+}
+.filter-select-box .oil-elem.act{
+  background: #136FD1;
+  color: #FFF;
+}
+.tips{
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  left: 50%;
+  margin-left: -180rpx;
+  top: 220rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  color: #FFF;
+  padding: 0 52rpx;
+  border-radius: 30rpx;
+  font-size: 24rpx;
+}

@@ -1,0 +1,74 @@
+/**app.wxss**/
+.container {
+} 
+.null-txt{
+  text-align: center;
+  color: #B9B9B9;
+  margin: 140rpx 0;
+  font-size: 24rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.null-txt image{
+  margin-bottom: 52rpx;
+  width: 344rpx;
+  height: 304rpx;
+}
+.null-txt text{
+  line-height: 34rpx;
+}
+.flex-row{
+  display: flex;
+  flex-direction: row;
+}
+.flex-column{
+  display: flex;
+  flex-direction: column;
+}
+.flex-between{
+  display: flex;
+  justify-content: space-between;
+}
+.ml20{
+  margin-left: 20rpx;
+}
+.flex-end{
+  display: flex;
+  justify-content: end;
+}
+.mb40{
+  margin-bottom: 40rpx;
+}
+.mb20{
+  margin-bottom: 20rpx;
+}
+.picker-com{
+  display: flex;
+  justify-content: space-between;
+  line-height: 40rpx;
+  height: 40rpx;
+  align-items: center;
+}
+.picker-com .pick-icon{
+  width: 20rpx;
+  height: 20rpx;
+}
+.picker-com .pick-txt{
+  padding: 0 28rpx;
+  font-size: 28rpx;
+  color: #111111;
+}
+
+.blackbg{
+  background: #646464;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  opacity: .7;
+}
+

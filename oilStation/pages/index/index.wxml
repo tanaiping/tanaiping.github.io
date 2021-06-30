@@ -1,0 +1,64 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="header-box">
+    <view  class="headerbg"></view>
+    <image src="../images/logo.png" class="header-logo" mode="widthFix"> </image>
+    <view class="order-title">
+      <view class="next-icon">
+        <button  wx:if="{{!isLogin}}" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" class="login-btn">登录</button>
+        <text wx:if="{{!isLogin}}" class="line-space"></text>
+        <text catchtap="toOrderList">全部订单</text>
+        <image src="../images/next_white.png"></image>
+      </view>
+    </view>
+    <view class="payinfo">
+      <view class="elem">
+        <text class="t1">{{rechargeCnt==null?0:rechargeCnt}}</text>
+        <text class="t2">累计消费(次)</text>
+      </view>
+      <view class="elem">
+        <text class="t1">{{amount_price==null?0:amount_price}}</text>
+        <text class="t2">消费金额 (万)</text>
+      </view>
+      <view class="elem">
+        <text class="t1">{{discount_price==null?0:discount_price}}</text>
+        <text class="t2">累计节省 (元)</text>
+      </view>
+    </view>
+  </view>
+   <!--  end header-box -->
+  <view class="station-conbox b-bom">
+      <view class="staion-header">
+        <view class="station-title">
+          <text>优惠加油</text>
+          <text class="t2">加的多 省的多</text>
+        </view>
+        <view class="next-icon" bindtap="toAllStionList">
+          <text>查看全部</text>
+          <image src="../images/next.png"></image>
+        </view>
+      </view>
+        <block wx:if="{{!ishidden}}">
+          <block wx:if="{{stationData.length>0}}">
+              <station-list stationData="{{stationData}}" latitude="{{latitude}}" longitude="{{longitude}}"  oil_no="92" len="5"></station-list> 
+            </block>
+            <block wx:else>
+              <view class="null-txt">
+                <image src="../images/nodata.png"></image>
+                <text>糟糕，数据暂时获取不到</text>
+              </view>
+            </block>
+        </block>
+  </view>
+
+  <view class="station-conbox">
+      <view class="staion-header">
+        <view class="station-title">
+          <text>油卡充值</text>
+          <text class="t2">加的多 省的多</text>
+        </view>
+      </view>
+      <image src="../images/img01.png" mode="aspectFill" class="oil-card"></image>
+  </view>
+
+</view>

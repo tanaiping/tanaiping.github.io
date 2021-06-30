@@ -1,0 +1,4 @@
+<!--pages/map/map.wxml  此页面暂时 没用到  -->
+<view class="container">
+  <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="14" markers="{{markers}}"></map>
+</view>
