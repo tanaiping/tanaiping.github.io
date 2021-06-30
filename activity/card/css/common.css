@@ -1,0 +1,69 @@
+body{background-color: #FFF;}
+.prompt{text-align: center;	width: 90%;	position: fixed;margin: auto;left: 0;right: 0;top: 40%;z-index: 10001;display: none;}
+.prompt em{display: inline-block;background: rgba(0,0,0,0.75);padding: 0.1rem .15rem;border-radius: .2rem;color: #FFF;font-size: 0.16rem;line-height: 0.2rem;}
+.blackbg{width: 100%;height: 100%;position: fixed;left: 0;top: 0; background: url(../images/black_bg.png) repeat; z-index: 10; display: none;}
+.wx_share{position: fixed; right: .3rem;top: .1rem;width: 2.8rem;height: auto;z-index: 11; display: none;}
+.code-box{display: flex;justify-content: center;}
+.wrap{width: 100%; max-width: 750px;margin: auto;}
+.bg{background:#FFF url(../images/bg.jpg) center top no-repeat;background-size: contain;}
+.flex-center{display: flex;justify-content: center;}
+.flex-between{display: flex;justify-content: space-between;}
+.index-tips{padding-top: 2.6rem;display: flex;justify-content: center; margin-bottom: .06rem; height: 2.8rem;}
+.index-tips span{color: #FFF; font-size: .1rem; background:url(../images/black_bg.png) repeat; display: none; height: .2rem;line-height: .2rem; padding: 0 .2rem; border-radius: .3rem;}
+.get-card-btn{width: 3.45rem; height: .68rem;background: url(../images/get_all_btn.png) no-repeat;background-size: contain;}
+/* .get-card-btn.disabled{background: url(../images/get_btn.png) no-repeat;background-size: contain;} */
+.sqf{font-size: .08rem; color: #000; text-align: center;}
+.text-tips{font-size: .1rem; color: #595757;text-align: center;margin-top: .03rem;}
+.card-com{position:relative;width: 3.435rem;}
+.card1{background: url(../images/card01.png) left top no-repeat; height: 2.07rem;background-size: contain;}
+.card2{background: url(../images/card02.png) left top no-repeat; height: 1.785rem;background-size: contain;}
+.card3{background: url(../images/card03.png) left top no-repeat; height: 1.8rem;background-size: contain;}
+.card4{background: url(../images/card04.png) left top no-repeat; height: 1.81rem;background-size: contain;}
+.card-com .btn{ width: 1.95rem;height: .39rem; position: absolute;background: url(../images/get_no_btn.png) left top no-repeat;background-size: contain; }
+.card1 .btn{left: .48rem;top: 1.23rem;}
+.card2 .btn{left: 1.2rem;top: .92rem;}
+.card3 .btn{left: .45rem;top: .92rem;}
+.card4 .btn{left: 1.2rem;top: .92rem;}
+.card1 .btn.has{background: url(../images/to_user_btn01.png) left top no-repeat;background-size: contain;}
+.card2 .btn.has{background: url(../images/to_user_btn01.png) left top no-repeat;background-size: contain;}
+.card3 .btn.has{background: url(../images/to_user_btn03.png) left top no-repeat;background-size: contain;}
+.card4 .btn.has{background: url(../images/to_user_btn04.png) left top no-repeat;background-size: contain;}
+
+.pop-com{position: fixed; left: 50%; top: 50%;z-index: 1000; display: none;}
+.pop-com{width: 3.25rem;margin-left: -1.625rem; margin-top: -2.5rem;}
+.login-bg{background: url(../images/reg_bg.png) left top no-repeat;background-size: contain; width: 3.25rem;height: 4.24rem;}
+.close-pop{width: .29rem;height: .29rem;margin-top: .2rem;background: url(../images/close_pop.png) left top no-repeat;background-size: contain;}
+.login-box{padding-top: 1.99rem; width: 2.75rem;margin: auto;}
+.login-submit-btn{width: 2.9rem;height: .67rem;background: url(../images/submit_btn.png) center top no-repeat;background-size: contain;margin-top: .1rem; }
+.inputbox{border:1px solid #9fa0a0; height: .4rem; padding: .1rem 0; border-radius: .5rem;overflow: hidden;text-align: center; display: flex;}
+.inputbox input{width: 100%;background: transparent; border: none; color: #333;height: .2rem;line-height: .2rem;text-align: center; font-size: .15rem;}
+.mb18{margin-bottom: .18rem;}
+.get-code{background-color: #0b2a4a; color: #9fa0a0; font-size: .11rem; text-align: center;width: 1.15rem; border-radius: .5rem; height:.4rem ; line-height: .4rem;}
+.get-code.disabled{background: #9a9c98; color: #fff;}
+
+.detail-box{width: 3.45rem;margin:auto;padding-top: 2.8rem;}
+.detailbg{width: 100%;height: 7.9rem;}
+.detailbg1{background:url(../images/detail_bg01.png) center top no-repeat; background-size: contain;}
+.detailbg2{background:url(../images/detail_bg02.png) center top no-repeat; background-size: contain;}
+.detailbg3{background:url(../images/detail_bg03.png) center top no-repeat; background-size: contain;}
+.detailbg4{background:url(../images/detail_bg04.png) center top no-repeat; background-size: contain;}
+.detail-con{padding-top: 2rem;width: 1.74rem;margin: auto;}
+.code-txt{line-height: .2rem; color: #000000;font-size: .12rem;}
+.code-num{border:1px solid #ababab; border-radius: .2rem; text-align: center; letter-spacing: 3px;color: #000; font-size: .12rem; line-height: .22rem;margin: .05rem 0 .15rem 0;}
+.detail-t{text-align: center; font-size: .14rem; color: #000;margin:.1rem 0 .05rem 0;}
+.detial-desc{width: 100%;}
+.card-list{margin:.15rem;}
+.card-list li{background-color: #FFF; display: flex; flex-direction: row; justify-content: space-between; border-radius: .03rem; height: 1rem;margin-bottom: .15rem;}
+.card-img{width: .58rem;height: .58rem; border-radius: .29rem;  margin:.21rem .05rem .21rem .1rem}
+.card-list li .card-list-txt{padding:.21rem 0;width:1.6rem;}
+.card-list li .card-list-txt .t1{color: #333;font-size: .16rem; line-height: .225rem; width:1.6rem; white-space: nowrap; text-overflow: ellipsis;overflow: hidden;}
+.card-list li .card-list-txt .t2{color: #666;font-size: .12rem;line-height: .16rem;}
+.card-list li .card-list-txt .t3{color: #999;font-size: .12rem;line-height: .16rem;}
+.load-more{font-size: .16rem; line-height: .3rem; color: #666;text-align: center;}
+.card-list li .card-status{width: .96rem;height: 1rem;background: url(../images/bg_red.png) left top no-repeat; background-size: contain;}
+.card-list li .card-price{font-size: .25rem; color: #FFF;text-align: center; line-height: .35rem; padding: .2rem 0 .1rem 0;}
+.card-list li .card-price span{font-size: .3rem;}
+.card-list li .to-used{background-color: #FFF;color: #FF5656;margin:auto; font-size: .12rem; width: .68rem; height: .23rem; line-height: .23rem;text-align: center;border-radius: .115rem;}
+.card-list li .to-used.disabled{color: #929292;background-color: #ececec;}
+.card-list li.used card-list-txt .t1{color: #4F5052;}
+.card-list li.used .card-status{background-image: url(../images/bg_gray.png);}

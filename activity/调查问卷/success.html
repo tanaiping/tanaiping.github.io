@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+    <meta charset=UTF-8>
+    <meta name=viewport content="width=device-width, initial-scale=1.0, maximum-scale=1.0 user-scalable=no">
+    <meta name=apple-mobile-web-app-capable content=yes>
+    <meta name=apple-mobile-web-app-status-bar-style content=black>
+    <meta name=format-detection content="telephone=no, email=no">
+    <meta name=full-screen content=true>
+    <meta name=screen-orientation content=portrait>
+    <meta name=x5-fullscreen content=true>
+    <meta name=360-fullscreen content=true>
+    <title>城市人口调查室</title>
+    <link rel=stylesheet href=css/animate.min.css>
+    <link rel=stylesheet href=css/main-c6e6202a0e.css>
+    
+    <script>var _hmt = _hmt || [];</script>
+  </head>
+  
+  <body>
+    <script>setBody();
+     function setBody() {
+        var WB = document.documentElement.clientWidth,
+        HB = document.documentElement.clientHeight,
+        dbody = document.getElementsByTagName('body')[0];
+
+        dbody.style.width = (HB < WB ? WB: HB) + 'px';
+        dbody.style.height = (HB < WB ? HB: WB) + 'px';
+      }
+      window.addEventListener('resize',
+      function() {
+        setBody();
+      })</script>
+      <img src=img/wxshareimg.jpg class="hide-wxshare dp-n">
+      <div class=container>
+        <img class="bg-music rotate dp-b" src=img/musicOn.png>
+        <div class="wrap-box" style="display: block;">
+          <div class="scene-bg p11-bg" style="transform: translate(0px, 0%);"></div>
+          <div class="scene-cont scene-cont2" style="transform: translate(0%, 0px);">
+             <img src=img/whiteboard2.png class=p11-whiteboard>
+              <!-- <div class=p11-loading>
+                <img src=img/p11resultloading.jpg class=p11-loading-img>
+                <div class=p11-loading-cover></div>
+              </div> -->
+            <div class=p11-result style="opacity: 1">
+              <img src="img/p11resulttitle.png" class=p11-result-title>
+              <span class="hs_text">花生发现，有45121222人跟你适合住同一个城市</span>
+              <div class="result-con">
+                <div class="box-l">
+                  <div class="city-name">成都</div>
+                  <div class="city-img"><img src="img/cd.jpg" alt=""></div>
+                  <div class="com-btn btn-again-btn"><img src="img/btnagain.png" alt=""></div>
+                </div>
+                <div class="box-r">
+                  <div class="active-desc">吃货、颜值高、热爱生活</div>
+                  <div class="active-img"><img src="img/quan01.png" alt=""></div>
+                  <div class="com-btn active-btn"><img src="img/movie_btn.png" alt=""></div>
+                </div>
+              </div>
+              <!-- <img src=img/btnagain.jpg class="tag-btn btn-again">
+              <img src=img/btnshare.png class=btn-share-others> -->
+          </div>
+          <div class="tel-form-box">
+              <div class="code-bg">
+                <div class="t1">花生抽奖券</div>
+                <div class="t2">75485</div>
+                <div class="t3">抽奖结活动将在2018年6月15日开奖</div>
+              </div>
+              <p>抽奖结果我们将以短信的方式发送到您的手机！</p>
+              <div class="input-box">
+                <input type="text" class="tel-input">
+                <img src="img/submit_btn.png" alt="" class="sub-btn">
+              </div>
+              <div class="tel-val dp-n">
+                手机号码:<span>1523252548</span>
+              </div>
+              <div class="msg"></div>
+              <img src="img/btnshare.png" alt="" class="btn-share-btn">
+          </div>
+          
+          <img src=img/sharehint2.png class="sharehint tag-sharehint-right dp-n">
+          <img src=img/sharehintleft2.png class="sharehint tag-sharehint-left dp-n"></div>
+      </div>
+    </div>
+    <script>var WB = document.documentElement.clientWidth,
+      HB = document.documentElement.clientHeight;
+      coverLoad();
+      function coverLoad() {
+
+        var img = new Image();
+        img.src = 'img/loadingcover.png';
+
+        if (img.complete) {
+          // console.log('coverLoad complete')
+          setImg();
+        } else {
+          img.onload = function() {
+            // console.log('coverLoad onload')
+            setImg();
+            img.onload = null;
+          };
+        };
+      };
+      function setImg() {
+        WB = document.documentElement.clientWidth,
+        HB = document.documentElement.clientHeight;
+
+        var dloadwave = document.getElementById('loadwave');
+        var dloadcover = document.getElementById('loadcover');
+        var dbody = document.getElementsByTagName('body')[0];
+
+        // dbody.style.width = (HB < WB ? WB : HB )+'px';
+        // dbody.style.height = (HB < WB ? HB : WB) +'px';
+        dloadwave.style.opacity = 1;
+
+        if (HB / WB > 1336 / 649 || WB / HB > 1336 / 649) {
+          dloadcover.style.width = '100%';
+        } else {
+          dloadcover.style.width = 'auto';
+        }
+        // var t = new Date().getTime()
+        // console.log(t+': dbody.style.height'+dbody.style.height);
+      }
+      // function setlog(text) {
+      //   var log = document.getElementById('log');
+      //   var log1 = document.getElementById('log1');
+      //   var newp = document.createElement("p");
+      //   var t = new Date().getTime() newp.innerHTML = t + '..: ' + text;
+      //   log.appendChild(newp);
+      //   log.scrollTop = log.scrollHeight;
+      // }
+      window.addEventListener('resize',
+      function() {
+        // setlog('inner alert');
+        setImg();
+      })</script>
+    <script src=http://cdn.bootcss.com/jquery/2.1.4/jquery.js></script>
+    <script src=http://cdn.bootcss.com/jquery.transit/0.9.12/jquery.transit.min.js></script>
+    <script src="js/nfygInlay.js"></script>
+    <script src=js/main-6ed37dbef3.js></script>
+  </body>
+
+</html>

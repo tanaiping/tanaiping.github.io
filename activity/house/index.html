@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="MobileOptimized" content="240" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />  
+    <meta content="email=no" name="format-detection" />
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title>步行400米真地铁房美兰城收官在即，全城竞藏</title>
+    <link rel="stylesheet" href="css/base.css">
+    <style>
+        body{background-color: #FFF;}
+        .main-wrap{width: 100%; max-width: 750px; margin:0 auto;}
+        .bg01{background:#FFF url(images/bg01.jpg) center top no-repeat; background-size: contain; width: 37.5rem; height: 132.534rem; position: relative;}
+		.bg02{background:#FFF url(images/bg02.jpg) center top no-repeat; background-size: contain; width: 37.5rem; height: 116.944rem; position: relative;}
+		.bg03{background:#FFF url(images/bg03.jpg) center top no-repeat; background-size: contain; width: 37.5rem; height: 170.555rem; position: relative;}
+		.bg04{background:#FFF url(images/bg04.jpg) center top no-repeat; background-size: contain; width: 37.5rem; height: 140rem; position: relative;}
+		.prompt{text-align: center;	width: 90%;	position: fixed;margin: auto;left: 0;right: 0;top: 40%;z-index: 10001;display: none;}
+		.prompt em{display: inline-block;background: rgba(0,0,0,0.75);padding: 1rem 1.5rem;border-radius: 2rem;color: #FFF;font-size: 1.6rem;line-height: 2rem;}
+		.blackbg{width: 100%;height: 100%;position: fixed;left: 0;top: 0; background: url(images/black_bg.png) repeat; z-index: 10; display: none;}
+		.popbox{position: fixed; width: 25.65rem;height: 22.6rem;left:50%; top: 50%; margin:-11.3rem 0 0 -12.825rem;z-index: 100;display: none;}
+		.popbg{background:url(images/popbg.png) center top no-repeat; background-size: contain;width: 25.65rem;height: 22.6rem;}
+		.p-t1{font-size: 1.2rem;text-align: center;padding-top: 6.6rem;color: #000;}
+		.p-t2{font-size: 1.2rem;text-align: center;padding-top: 1.6rem;color: #999;}
+		.submit-pop{background-color: #db5c1e; font-size: 1.2rem; color: #FFF; letter-spacing: .8rem;text-align: center;border-radius: .8rem; width: 19.5rem;height: 3.3rem;line-height: 3.3rem;margin:3rem auto 0 auto;}
+		.flex-center{display: flex;justify-content: center;}
+		.form-box{padding-top: 108.64rem;width: 30rem;}
+		.t11{color:#db5c1e; font-size: 1rem;text-align: center; line-height: 2rem;height: 2rem;margin-bottom: 1rem;}
+		.input-box{border:2px solid #ffe038;padding: .6rem 1rem;margin-bottom: 1.2rem; background-color: #cd0000;}
+		.input-box input{line-height: 2rem;height: 2rem;border: none;width: 100%;text-align: center;background-color: #cd0000; color: #FFF;font-size: 1.6rem;}
+		.submit-btn{background-color: #db5c1e; font-size: 1.2rem; color: #FFF; text-align: center;border-radius: .8rem; width: 100%;height: 3.3rem;line-height: 3.3rem;margin-top: 2.5rem;}
+		.tel-btn{position: absolute;left: 50%; top: 57.9rem; width: 30rem; height: 3.3rem; line-height: 3.3rem; display: block; margin-left: -15rem;}
+	  </style>
+</head>
+<body>
+    <div class="main-wrap">
+       <div class="bg01">
+		   <div class="flex-center">
+			   <div class="form-box">
+				    <div class="t11">留下您的信息，花生用户邀约到访<strong>有好礼</strong>！</div>
+			   		<div class="input-box"><input type="text" id="userName" placeholder="请填写名字"></div>	
+					<div class="input-box"><input type="tel"  maxlength="11" pattern="[0-9]*" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" id="tel" placeholder="请填写手机号码"></div>
+					<div class="submit-btn">确定</div>
+			   </div>
+		   </div>
+		   <a href="tel:021-55667777" class="tel-btn"></a>
+       </div>
+	   <div class="bg02">
+	   </div>
+	   <div class="bg03">
+	   </div>
+	   <div class="bg04">
+	   </div>
+    </div>
+<div class="prompt" id="prompt"><em>提示信息</em></div>	
+<div class="blackbg"></div>
+<div class="popbox">
+	<div class="popbg">
+		<div class="p-t1">感谢您的参与，<br /> 客服会在5个工作日内联系您，<br /> 惊喜也将伴随而来... </div>
+		<div class="p-t2">下拉页面更多资讯...</div>
+		<div class="submit-pop">点击确定</div>
+	</div>
+</div>
+<script src="js/zepto.min.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script src="js/public.js"></script>
+<script>
+    $(function(){
+        var url = 'http://activity.peanut8.com/act/2020/meilan/index.html';
+        var imgUrl = 'http://activity.peanut8.com/act/2020/meilan/images/share.jpg';
+        var title = '步行400米真地铁房美兰城收官在即，全城竞藏';
+        var desc = '400米步行的距离举步即达的美好真地铁房何处再有？美兰城收官在即，全城竞藏';
+        var wx_url = window.location.href;
+        $.ajax({
+          type: "get",
+          url: 'http://activity.peanut8.com/WxShare/anxious',
+          data: {
+            url: wx_url
+          },
+          dataType: 'json',
+          success: function(data) {
+            if(data.code == 1) {
+              wx.config({
+                debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                appId: data.data.sharePackage.appId, // 必填，公众号的唯一标识
+                timestamp: data.data.sharePackage.timestamp, // 必填，生成签名的时间戳
+                nonceStr: data.data.sharePackage.nonceStr, // 必填，生成签名的随机串
+                signature: data.data.sharePackage.signature, // 必填，签名，见附录1
+                jsApiList: [
+                  'checkJsApi',
+                  'onMenuShareTimeline',
+                  'onMenuShareAppMessage'
+                ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+              });
+              var shareInfo = data.data.shareInfo;
+              wx.ready(function() {
+                //分享到朋友圈
+                wx.onMenuShareTimeline({
+                  title: title, // 分享标题
+                  desc: desc,
+                  link: url, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                  imgUrl: imgUrl, // 分享图标
+                  success: function() {
+
+                  },
+                  cancel: function(res) {
+
+                  }
+                });
+
+                //分享给朋友
+                wx.onMenuShareAppMessage({
+                  title: title, // 分享标题
+                  desc: desc, // 分享描述
+                  link: url, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                  imgUrl: imgUrl, // 分享图标
+                  success: function() {
+
+                  },
+                  cancel: function() {
+
+                  }
+                });
+              });
+            }
+          },
+          error: function() {}
+        })
+		
+		$(".submit-pop").click(function(){
+			$(".blackbg,.popbox").hide();
+			$("#userName,#tel").val("");
+		})
+		
+		$(".submit-btn").click(function(){
+			var name = $("#userName").val();
+			var tel = $("#tel").val();
+			if(name===""){
+				$("#prompt em").text("名字不能为空");
+				$("#prompt").show();
+				setTimeout(function () {
+				  $("#prompt").hide()
+				}, 2000)
+				return false;
+			}
+			if(!phoneFun(tel)){
+				$("#prompt em").text("请输入正确的手机号码");
+				$("#prompt").show();
+				setTimeout(function () {
+				  $("#prompt").hide()
+				}, 2000)
+				return false;
+			}
+			$.ajax({
+			    type: "post",
+			    url: "http://activity.peanut8.com/index.php/act/save",
+			    data:{"name":name,"tel":tel},
+			    contentType: "application/x-www-form-urlencoded",
+			    dataType: 'json',
+			    success: function(data) {
+					if(data.code==1){
+						$(".blackbg,.popbox").show();
+					}else{
+						$("#prompt em").text(data.msg);
+						$("#prompt").show();
+						setTimeout(function () {
+						  $("#prompt").hide()
+						}, 2000)
+					}
+			    },
+			    fail: function() {
+					
+			    }
+			});
+			
+			
+		})
+		
+		//判断是否为手机号的正则表达式
+		function phoneFun(phones){
+		    var myreg = /\d{11}$/;
+		    if (!myreg.test(phones)) {
+		      return false;
+		    } else {
+		      return true;
+		    }
+		}
+
+
+    })
+
+</script>
+<script>
+    
+</script>
+</body>
+</html>

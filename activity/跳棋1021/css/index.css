@@ -1,0 +1,256 @@
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td {margin:0;padding:0; border:0;}
+html{font-size: 62.5%;-webkit-text-size-adjust:none;}
+*{outline: none;margin:0;padding:0;-webkit-tap-highlight-color: rgba(0, 0, 0, 0);}
+body{color: #FFFFFF; font-family: 'STHeiti',Helvetica,Arial,sans-serif;font-size:1rem }
+table {border-collapse:collapse;border-spacing:0;}
+fieldset,img {border:0}
+address,caption,cite,code,dfn,strong,th,var{font-style:normal;font-weight:normal}
+ol,ul {list-style:none}
+caption,th {text-align:left}
+h1,h2,h3,h4,h5,h6 {font-size:100%;font-weight:normal}
+q:before,q:after {content:''}
+abbr,acronym { border:0}
+a{text-decoration:none;color:#333;outline:none;hide-focus:expression(this.hideFocus=true);-webkit-tap-highlight-color: rgba(0, 0, 0, 0);}
+em{font-style:normal;}
+input,a,textarea{ outline:none;}
+.fl{float:left;_display:inline} .fm{float:left;_display:inline;} .fr{float:right;_display:inline}
+span.fl,span.fm,span.fr{display:block;_display:inline;}
+.cb{clear:both} .cl{clear:left} .cr{clear:right}.tr{text-align: right;}
+.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+.clearfix{display:inline-block}* html .clearfix{height:1%}.clearfix{display:block}
+.clear{width:100%;height:1px;overflow:hidden;clear:both;}
+.tc{text-align: center;}.pr{position: relative;}
+a{text-decoration: none;}
+.cl{clear: both; overflow: hidden;}
+img{vertical-align: middle;}
+
+.main-wrap{max-width: 750px; margin:0 auto; position: relative;}
+.main-bg{width: 100%; background:#6a0303 url(../images/index_bg.png) center top no-repeat; background-size:100% auto;}
+.title-img{width: 25.25rem; margin:0 auto;padding-top: 2rem; display: block;margin-bottom: 1.3rem;}
+.rules{width: 4rem; position: absolute; left: 1.5rem;top: 1.5rem; display: block; white-space: nowrap;}
+.rules-ico{background:url(../images/rule.png) center center no-repeat; background-size: contain;  width: 3.2rem; height:3.2rem; border-radius: 1.5rem; margin: 0 auto;}
+.rules-text{font-size: 1rem; color: #FFF; line-height: 1.4rem;height: 1.4rem; padding-top: .6rem;}
+.awards{width: 4rem; position: absolute; right: 1.5rem;top: 1.5rem; display: block;  white-space: nowrap;}
+.awards-ico{background:url(../images/awards.png) center center no-repeat;background-size: contain;  width: 3.2rem; height:3.2rem; border-radius: 1.5rem; margin: 0 auto;}
+.awards-text{font-size: 1rem; color: #FFF; line-height: 1.4rem;height: 1.4rem; padding-top: .6rem;}
+
+#demo{overflow:hidden;width:20rem;height: 1.6rem;margin:0 auto;position:relative; font-size: 1.2rem; color: #FFF;}
+#demo1{height:auto;text-align:center;}
+#demo2{height:auto;text-align:center;}
+#demo1 li{line-height: 1.6rem; white-space: nowrap; text-overflow: ellipsis; overflow: hidden;}
+#demo2 li{line-height: 1.6rem; white-space: nowrap; text-overflow: ellipsis; overflow: hidden;list-style: none;}
+
+.packet-box{width: 35rem; height: 4.4rem; margin:0 auto;}
+.my-redpacket{display: flex; flex-direction:row;}
+.my-redpacket .d1{margin-top: .5rem; width: 4.8rem; height: 1.8rem; font-size: 1.2rem; color: #FFF;margin-right: 1.2rem; white-space: nowrap;}
+.progress{position: relative; width: 22.2rem;height: 1.8rem;margin-top: .5rem; background: url(../images/progress.png) left top no-repeat; background-size: cover;}
+.progress em{position:absolute; left: .2rem;top: .2rem; height: 1.4rem; background: url(../images/progress_h.png) left top ; max-width: 21.8rem; background-size: cover; overflow: hidden;border-radius: .9rem;}
+.cash-box{width: 4.8rem; margin-left: 2rem;}
+.cash-btn{background: url(../images/cash_btn.png) left top no-repeat; background-size: contain;width: 4.8rem;height: 2.75rem;}
+.cash-btn.act{background: url(../images/cash_btn_h.png) left top no-repeat;background-size: contain;}
+.cash-t{line-height: 1.25rem; width: 4.8rem; font-size: .9rem; color: #FFF; text-align: center;}
+.map{position: relative; width: 33.1rem; height: 43.15rem;background: url(../images/map.png) left top no-repeat; background-size: contain; margin:7rem auto 4.4rem auto;}
+.step-1{width: 7.2rem; height: 7.4rem; position: absolute; left:0;bottom:-2.7rem;}
+.step-2{width: 5.85rem; height: 6.4rem; position: absolute; left:8.8rem;bottom:-2.7rem;}
+.step-3{width: 5.5rem; height: 5.55rem; position: absolute; left:17rem;bottom:-2.4rem;}
+.step-4{width: 5.15rem; height: 5.25rem; position: absolute; left:24.4rem;bottom:-1.7rem;}
+.step-5{width: 5.15rem; height: 5.25rem; position: absolute; left:29.5rem;bottom:3.7rem;}
+.step-6{width: 5.85rem; height: 6.25rem; position: absolute; left:22.4rem;bottom:7.5rem;}
+.step-7{width: 5.5rem; height: 5.4rem; position: absolute; left:15rem;bottom:8rem;}
+.step-8{width: 5.15rem; height: 5.25rem; position: absolute; left:7.3rem;bottom:8rem;}
+.step-9{width: 5.5rem; height: 5.5rem; position: absolute; left:-.3rem;bottom:8rem;}
+.step-10{width: 5.85rem; height: 6.4rem; position: absolute; left:0rem;bottom:14.2rem;}
+.step-11{width: 5.15rem; height: 5.25rem; position: absolute; left:10.2rem;bottom:14.2rem;}
+.step-12{width: 5.5rem; height: 5.4rem; position: absolute; left:10rem;bottom:22.6rem;}
+.step-13{width: 5.85rem; height: 6.3rem; position: absolute; left:-.7rem;bottom:22.6rem;}
+.step-14{width: 5.5rem; height: 5.6rem; position: absolute; left:-.7rem;bottom:31.6rem;}
+.step-15{width: 5.85rem; height: 6.4rem; position: absolute; left:9.75rem;bottom:31.6rem;}
+.step-16{width: 5.85rem; height: 6.45rem; position: absolute; left:19.8rem;bottom:31.6rem;}
+.step-17{width: 5.15rem; height: 5.1rem;  position: absolute; left:26.55rem;bottom:39.6rem;}
+.step-18{width: 5.5rem; height: 5.5rem;  position: absolute; left:18.75rem;bottom:39.6rem;}
+.step-19{width: 5.85rem; height: 6.3rem; position: absolute; left:10.8rem;bottom:39.4rem;}
+.step-20{width: 8.9rem; height: 9.15rem; position: absolute; left:-.7rem;bottom:38rem;}
+
+.elem-img{width: 5.65rem; height: 3.7rem; display: none; position: absolute; background: url(../images/elem.png)center center no-repeat;background-size: contain;}
+.elem-img.elem-1.db{ left:0.8rem; bottom: 3.5rem; width: 5.65rem; height: 3.7rem; display: block; position: absolute; background: url(../images/elem.png)center center no-repeat;background-size: contain;}
+.elem-2{left: 8.7rem; bottom: 3.2rem;}
+.elem-3{left: 16.8rem; bottom: 2.7rem;}
+.elem-4{left: 24.1rem; bottom: 3rem;}
+.elem-5{left: 29.2rem; bottom: 8.3rem;}
+.elem-6{left: 22.4rem; bottom: 13.4rem;}
+.elem-7{left: 14.8rem; bottom: 13rem;}
+.elem-8{left: 7rem; bottom: 12.8rem;}
+.elem-9{left: -.5rem; bottom: 12.8rem;}
+.elem-10{left: 0rem; bottom: 20rem;}
+.elem-11{left: 10rem; bottom: 18.8rem;}
+.elem-12{left: 9.8rem; bottom: 27.6rem;}
+.elem-13{left:-.7rem; bottom: 28.2rem;}
+.elem-14{left:-.9rem; bottom: 36.7rem;}
+.elem-15{left: 9.8rem; bottom: 37.5rem;}
+.elem-16{left: 19.8rem; bottom: 37.5rem;}
+.elem-17{ left:26.35rem;bottom:44.1rem;}
+.elem-18{left: 18.75rem; bottom: 44.5rem;}
+.elem-19{left: 10.8rem; bottom: 45.2rem;}
+.elem-20{left: .75rem; bottom: 46.5rem;}
+.elem-img.db{display: block;}
+
+.elem-img.elem-1.anim-opacity2{left:1.5rem; bottom: 4.5rem; background: url(../images/start.png) center center no-repeat; background-size: contain; width: 4.25rem; height: 2rem;
+    animation: 2s opacity2 0s infinite; -webkit-animation: 2s opacity2 0s infinite;-moz-animation: 2s opacity2 0s infinite;}
+        @keyframes opacity2{
+            0%{opacity:0}
+            50%{opacity:.8;}
+            100%{opacity:0;}
+        }
+        @-webkit-keyframes opacity2{
+            0%{opacity:0}
+            50%{opacity:.8;}
+            100%{opacity:0;}
+        }
+        @-moz-keyframes opacity2{
+            0%{opacity:0}
+            50%{opacity:.8;}
+            100%{opacity:0;}
+        }
+
+.lottery-box{position: absolute; left: 21.2rem; top: 14.05rem; background: url(../images/lottery-box.png) left top no-repeat; background-size: contain;width: 11.34rem;height: 10.14rem;}
+.lottery-pr{width: 11.34rem;height: 10.14rem;}  /*&{width: 9.45rem;height: 8.45rem;}*/
+.lottery-btn{position: absolute; left:0rem; bottom:0rem;width: 11.34rem;height: 4.8rem;}
+/*最外层设置为每一帧需要显示的骰子的宽高*/
+.dice-wrap{position: absolute; left: 24.2rem;top: 12.2rem;z-index: 3;width: 5.8rem;height: 6.1rem;}	    
+/*设定骰子的宽高*/
+.dice {
+    width: 5.8rem;height: 6.1rem; cursor: pointer;background: url("../images/dice_sprite.png") no-repeat;
+    -webkit-background-size: 5.8rem auto;background-size: 5.8rem auto;	}
+/*对每一帧最外层的背景图进行位移，位移的数据可以从生成雪碧图的网站中的css文件中得出。由于此处生成的雪碧图是垂直方向的，因此只需要改变背景图y轴的位移，即可以改变下一帧的显示内容。后三帧为骰子转动过程中的作了模糊处理的图片。*/
+.dice_1 {background-position: 0 0;}
+.dice_2 {background-position: 0 -6.1rem;}
+.dice_3 {background-position: 0 -12.2rem;}
+.dice_4 {background-position: 0 -18.3rem;}
+.dice_5 {background-position: 0 -24.4rem;}
+.dice_6 {background-position: 0 -30.5rem;}
+.dice_t {background-position: 0 -36.6rem;}
+.dice_s {background-position: 0 -42.7rem;}
+.dice_e {background-position: 0 -48.8rem;}
+
+
+.ivita-num{text-align: center; font-size: 1rem; color: #FFF;}
+.invitations-btn{display: block; background: url(../images/invitations_btn.png) left top no-repeat; background-size: contain;width: 31.45rem;height: 3.9rem;margin:.7rem auto 1.1rem;}
+.ranks{width: 31.45rem;height: 3.9rem;margin:0 auto; display: flex; flex-direction: row; justify-content: space-between; padding-bottom: 3.2rem;}
+.real-rank{display: block; background: url(../images/real_rank.png) left top no-repeat; background-size: contain;width: 15.2rem;height: 3.6rem;}
+.invit-rank{display: block; background: url(../images/invit_rank.png) left top no-repeat; background-size: contain;width: 15.2rem;height: 3.6rem;}
+.big-awards-title{font-size: 1.8rem; color: #FFF;text-align: center; line-height: 2.5rem; height: 2.5rem;margin-bottom: 1rem;}
+.big-awards-img{width: 34rem;height: 19.15rem; border-radius: .8rem;overflow: hidden;margin:0 auto;}
+.big-awards-img img{width: 100%;}
+
+/*pop*/
+.height-zindex{position: relative;z-index: 2;}
+.black-formsbg {position: fixed;left: 0px;top: 0px;width: 100%;height: 100%;z-index: 101;background-color: #000;opacity: .7; display: none;}
+.wx-guide{width: 7.45rem; height: 7.3rem;z-index: 999; position: fixed; right: 2rem; top: 2rem; display: none}
+.forms-wrap{position: fixed; z-index: 999;  animation: showModal .5s ease-in-out; display: none;}
+.forms-wrap .close-btn{width: 4.65rem; height: 4.65rem; margin:0 auto;background: url(../images/close_pop.png) left top no-repeat; background-size: contain;}
+.get-awards{left:50%; top: 50%; width: 27rem; height: 41.53rem; margin:-20.765rem 0 0 -13.5rem; }
+.get-awards .pop-wrap{position: relative;width: 27rem; height: 41.53rem;}
+.get-awards .light{position: absolute; left: 0px; top: 0;width: 27rem; height: 27rem;background: url(../images/light.png) left top no-repeat; background-size: contain;}
+.get-awards .t1{line-height:2.5rem; height:2.5rem; font-size: 1.8rem;text-align: center; color: #333; margin-bottom: .75rem;}
+.get-awards .get-img{width: 100%;height: 4.55rem;text-align: center; margin-bottom: 1.6rem;}
+.get-awards .get-img img{height: 100%; }
+.get-awards .awards-img{width: 24.5rem; height: 13.78rem; border-radius: .8rem; overflow: hidden; margin:0 auto;}
+.get-awards .awards-img img{ width: 100%; height: 100%; }
+.get-awards .continue-btn{background: url(../images/continue_btn.png) left top no-repeat; background-size: contain; width: 18.5rem; height: 4.9rem; margin:4rem auto 4.8rem auto;}
+
+.day-useup{margin:-17.975rem 0 0 -16.325rem;  left:50%; top: 50%;}
+.change-bg{background: url(../images/pop_bg.png) left top no-repeat; background-size: contain; width: 32.65rem; height: 28.25rem; margin-bottom: 7.7rem;}
+.change-bg .title{width: 100%; line-height: 5.4rem; height: 5.4rem; text-align: center; color: #333; font-size: 1.7rem; margin-bottom: 5rem;}
+.change-bg .content{text-align: center; width: 19.65rem; line-height: 3.5rem; margin:0 auto; font-size: 1.9rem; color: #333;}
+.change-bg .invate-btn{width: 21.6rem; height: 4.85rem; margin:3rem auto 0 auto;background: url(../images/invate_btn.png) left top no-repeat; background-size: contain;}
+.change-bg .share-btn{width: 18.5rem; height: 4.9rem; margin:3rem auto 0 auto;background: url(../images/share_btn.png) left top no-repeat; background-size: contain;}
+.change-bg .know-btn{width: 18.5rem; height: 4.9rem; margin:3rem auto 0 auto;background: url(../images/know_btn.png) left top no-repeat; background-size: contain;}
+
+.task{left:50%; top: 50%; width: 27rem; height:43.15rem; margin:-21.575rem 0 0 -13.5rem;}
+.task .pop-wrap{position: relative;width: 27rem; height:43.15rem;}
+.task .light{position: absolute; left: 0px; top: 0;width: 27rem; height: 27rem;background: url(../images/light.png) left top no-repeat; background-size: contain;}
+.task .task_t{width: 27rem; height: 4.5rem;text-align: center; margin-bottom: 3.3rem;}
+.task .task_t img{height: 100%;}
+.task .sign-img{width: 26.55rem; position: relative;z-index: 2; height: 15.8rem;background: url(../images/sign_img.png) left top no-repeat; background-size: contain; margin:0 auto;}
+.task .sign-btn{display: block; width: 18.5rem; height: 4.9rem; margin:5rem auto;background: url(../images/sign_btn.png) left top no-repeat; background-size: contain;}
+.task .task1-img{width: 26.55rem; position: relative;z-index: 2; height: 15.8rem;background: url(../images/task1_img.png) left top no-repeat; background-size: contain; margin:0 auto;}
+.task .share-img{width: 26.55rem; position: relative;z-index: 2; height: 15.8rem;background: url(../images/share_img.png) left top no-repeat; background-size: contain; margin:0 auto;}
+.task .share-btn{ display: block; width: 18.5rem; height: 4.9rem; margin:5rem auto;background: url(../images/share_btn.png) left top no-repeat; background-size: contain;}
+
+
+.redpacket{left:50%; top: 50%; width: 27rem; height:43.15rem; margin:-21.575rem 0 0 -13.5rem;}
+.redpacket .pop-wrap{position: relative;width: 27rem; height:43.15rem;}
+.redpacket .light{position: absolute; left: 0px; top: 0;width: 27rem; height: 27rem;background: url(../images/light.png) left top no-repeat; background-size: contain;}
+.redpacket .red-t{width: 27rem; height: 4.55rem;text-align: center; margin-bottom: 1.6rem;}
+.redpacket .red-t img{height: 100%;}
+.redpacket .redpacket-box{width: 100%;text-align: center; height: 15.3rem;}
+.redpacket .redpacket-box img{height: 100%;}
+/*.redpacket .redpacket-box{width: 21rem; height: 15.3rem; margin:0 auto;background: url(../images/red_packet.png) left top no-repeat; background-size: contain;}
+.redpacket .redpacket-box .red-num{padding-top: 3.4rem;color: #FF8836; font-size: 3.1rem; line-height: 4.35rem; height: 4.35rem;text-align: center; font-family: arial;}*/
+.redpacket .red-desc{text-align: center;line-height: 1.7rem; height: 1.7rem; font-size: 1.3rem; margin:1.5rem 0 3rem 0;}
+.redpacket .get-btn{width: 18.5rem; height: 4.9rem; margin:0 auto 5rem auto;background: url(../images/get_btn.png) left top no-repeat; background-size: contain;}
+
+.login{margin:-20.255rem 0 0 -16.325rem;  left:50%; top: 50%;}
+.login-box{background: url(../images/login_bg.png) left top no-repeat; background-size: contain; width: 32.65rem; height: 32.75rem; margin-bottom: 7.7rem;}
+.login-box .title{width: 100%; line-height: 5.4rem; height: 5.4rem; text-align: center; color: #333; font-size: 1.7rem; margin-bottom:2rem;}
+.login-formbox{width: 24rem; margin:0 auto; padding-bottom: 1rem; position: relative;}
+.login-formbox .greeting{width: 100%; line-height: 2.63rem;font-size: 1.9rem; color: #333;text-align: center; margin-bottom: 1.75rem;}
+.login-formbox .input-box{border: 1px solid #666; margin-bottom: 2rem; display: flex;flex-direction: row; justify-content: space-between; width: 100%; line-height: 4.4rem; height: 4.4rem;border-radius: .55rem; background-color: #FFF; overflow: hidden;}
+.login-formbox .input-box input{text-indent: 1.5rem;color: #333; font-size: 1.4rem;width: 16rem; height: 2rem; line-height: 2rem; padding: 1.1rem 0;}
+.login-formbox .input-box input::-webkit-input-placeholder { /* WebKit browsers */
+    color: #999;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #999;
+}
+.login-formbox .input-box input::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #999;
+}
+.login-formbox .input-box input:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: #999;
+}
+.login-box .submit-btn{background: url(../images/submit_btn.png) left top no-repeat; background-size: contain;width: 18.5rem; height: 4.9rem; margin:0 auto;}
+.login-formbox .input-box .yzm-btn{ color:#F84535; font-size: 1.2rem;height: 4.4rem; line-height: 4.4rem; width: 8rem; text-align: center;}
+.login-formbox .input-box .yzm-btn.disabled{}
+.login-formbox .error-text{color: #f84535; font-size: 1.2rem; line-height: 3rem; height: 3rem; text-align: center; position: absolute; left: 0; bottom: 0px; width: 24rem;}
+
+.failbox{margin:-21.2195rem 0 0 -13.5rem;  left:50%; top: 50%;}
+.fail-bg{background: url(../images/pop_bg3.png) left top no-repeat; background-size: contain; width: 27rem; height: 30.9rem; margin-bottom: 7.7rem;}
+.fail-bg .content{text-align: center; width: 23.15rem; line-height: 2.1rem; margin:0 auto; font-size: 1.7rem; color: #333; padding-top: 14.65rem;}
+.fail-bg .invate-btn{width: 21.6rem; height: 4.85rem; margin:3rem auto 0 auto;background: url(../images/invate_btn.png) left top no-repeat; background-size: contain;}
+.fail-bg .share-btn{ display: block; width: 18.5rem; height: 4.9rem; margin:2rem auto;background: url(../images/share_btn.png) left top no-repeat; background-size: contain;}
+
+.no-get{margin:-17.975rem 0 0 -14.75rem;  left:50%; top: 50%;}
+.noget-box{background: url(../images/pop_bg2.png) left top no-repeat; background-size: contain; width: 29.5rem; height: 27.55rem; margin-bottom: 7.7rem;}
+.noget-box .t1{width: 100%;text-align: center; line-height: 2.65rem; font-size: 1.9rem; color: #333;padding-top: 10.6rem;}
+.noget-box .t2{width: 100%;text-align: center; line-height: 2.1rem; font-size: 1.5rem; color: #333; padding-top: 1rem;}
+.noget-box .goapp-btn{width: 18.5rem; height: 4.9rem; margin:3rem auto;background: url(../images/goapp_btn.png) left top no-repeat; background-size: contain;}
+@keyframes showModal{
+	0% {
+		-webkit-transform: scale(.05);
+		transform: scale(.05);
+	}
+	100% {
+		-webkit-transform: scale(1);
+		transform: scale(1);
+	}
+}
+
+.rule-content{width: 100%;}
+.rule-content img{width: 100%;}
+.change-num{font-size: 1rem; color: #fff;position: absolute;left: 21.2rem;top: 24.55rem; width: 11.34rem; text-align: center;}
+.copyright{text-align: center; color: #FFF; font-size: 1.2rem; line-height: 2rem; padding-top: 1rem;}
+.prompt{text-align: center;width: 90%;position: fixed;margin: auto;left: 0;right: 0;top: 40%;z-index: 1001;display: none;}
+.prompt em{display: inline-block;background: rgba(0,0,0,0.75);padding: .75rem 1.25rem;border-radius: 2.5rem;color: #FFF;font-size: 1.6rem;line-height: 2.4rem;}
+
+.page-loading{position:fixed;z-index:9999;left:0;right:0;top:0;bottom:0;margin:auto;background-color:#c5463f}
+.page-loading .loader{position:absolute;top:calc(50% - 1.25em);left:calc(50% - 1.25em);width:2.5em;height:2.5em;transform:rotate(165deg)}
+.page-loading .loader:before,.page-loading .loader:after{content:'';position:absolute;top:50%;left:50%;display:block;width:.5em;height:.5em;border-radius:.25em;transform:translate(-50%,-50%)}.page-loading .loader:before{animation:before 2s infinite}
+.page-loading .loader:after{animation:after 2s infinite}
+@keyframes before{0%{width:.5em;box-shadow:1em -0.5em rgba(225,20,98,0.75),-1em .5em rgba(111,202,220,0.75)}35%{width:2.5em;box-shadow:0 -0.5em rgba(225,20,98,0.75),0 .5em rgba(111,202,220,0.75)}70%{width:.5em;box-shadow:-1em -0.5em rgba(225,20,98,0.75),1em .5em rgba(111,202,220,0.75)}100%{box-shadow:1em -0.5em rgba(225,20,98,0.75),-1em .5em rgba(111,202,220,0.75)}}
+@keyframes after{0%{height:.5em;box-shadow:.5em 1em rgba(61,184,143,0.75),-0.5em -1em rgba(233,169,32,0.75)}35%{height:2.5em;box-shadow:.5em 0 rgba(61,184,143,0.75),-0.5em 0 rgba(233,169,32,0.75)}70%{height:.5em;box-shadow:.5em -1em rgba(61,184,143,0.75),-0.5em 1em rgba(233,169,32,0.75)}100%{box-shadow:.5em 1em rgba(61,184,143,0.75),-0.5em -1em rgba(233,169,32,0.75)}}
+
+
+
+
+

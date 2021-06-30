@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge" />
+	<title>花生欢乐挤地铁</title>
+	<style>
+		html {
+			height:100%;
+		}
+		body {
+			background-color:#EEEEEF;
+			margin:0;
+			height:100%;
+		}
+		.prompt{
+			text-align: center;
+			width: 90%;
+			position: fixed;
+			margin: auto;
+			left: 0;
+			right: 0;
+			top: 40%;
+			z-index: 10001;
+			display: none;
+			}
+		.prompt em{
+			display: inline-block;
+			background: rgba(0,0,0,0.75);
+			padding: 0.1rem .15rem;
+			border-radius: .2rem;
+			color: #FFF;
+			font-size: 0.16rem;
+			line-height: 0.2rem;
+		}
+	</style>
+	<!-- copy these lines to your document head: -->
+
+	<meta name="viewport" content="user-scalable=no, width=375" />
+
+	<!-- end copy -->
+  </head>
+  <body>
+	<!-- copy these lines to your document: -->
+	<div id="home0_hype_container" class="HYPE_document" style="margin:auto;position:relative;width:100%;height:100%;overflow:hidden;">
+		<script type="text/javascript" charset="utf-8" src="Home_0.hyperesources/home0_hype_generated_script.js?42391"></script>
+	</div>
+	<!-- end copy -->
+	<!-- text content for search engines: -->
+	<div style="display:none" aria-hidden=true>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div>获取验证码</div>
+	</div>
+	<!-- end text content: -->
+<div class="prompt" id="prompt"><em>提示信息</em></div>	
+<script src="../js/jquery-1.8.3.min.js"></script>
+<script src="../js/jquery.cookie.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script src="../js/nfygCommonPack.js?it=222"></script>
+<script src="../js/public.js"></script>
+<script>
+	$(function(){
+		if (isApp) {
+			if(!userInfo){//没登录跳到登录页面
+				pushToLoginView();
+			}else{
+				window.location.href='../page/index.html?mobile='+mobile +"&nickName="+nickName;
+			}
+		}else{
+			var  tel = $.cookie('tel');
+			var nickName = $.cookie('nickName');
+			if(tel&&nickName){
+				window.location.href='../page/index.html?mobile='+tel +"&nickName="+nickName;
+			}
+		}
+		
+		$(document).on("click","#home_Starth",function(){
+			login();
+		})
+	})
+</script>
+</body>
+</html>

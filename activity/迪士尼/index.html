@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="MobileOptimized" content="240" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />  
+    <meta content="email=no" name="format-detection" />
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title>香港迪士尼乐园，让新春更快乐</title>
+    <link rel="stylesheet" href="css/base.css">
+    <style>
+        body{background-color: #f9f3e3;}
+        .main-wrap{width: 100%; max-width: 750px; margin:0 auto;}
+        .header{width:37.5rem;height:26.2rem; background: url(images/headerbg.jpg) center top  no-repeat; position: relative; background-size: cover;}
+        .logo{width: 9.5rem;height: 3.3rem; position: absolute; left: 1.2rem; top: .9rem; background: url(images/logo.png) no-repeat;background-size: cover;}
+        .content{position: relative; margin-top: -4rem;}
+        .text01{width: 100%;}
+        .flow{ position: absolute; left: 0px; width: 100%; top: 26.5rem; }
+        .content .t1{font-size: 1.3rem; color: #000; line-height: 1.8rem;text-align: center;}
+        .content .video-box{width: 23.1rem; height: 14.4rem; margin:1rem auto 0 auto; background: url(images/videobox.png) no-repeat;background-size: contain;position: relative;}
+        .content .video-box video{width: 21.05rem; height: 11.95rem; position: relative; left: 1.1rem; top: 1.3rem;}
+         video::-webkit-media-controls{
+            display:none !important;
+        }
+        .play{ background: url(images/play.png) no-repeat;background-size: cover; width: 8rem; height: 8rem; position: absolute; left: 50%; top: 50%; margin-left: -4rem; margin-top: -4rem; display: none;}
+        .parse{ background: url(images/parse.png) no-repeat;background-size: cover; width: 8rem; height: 8rem; position: absolute; left: 50%; top: 50%; margin-left: -4rem; margin-top: -4rem; display: none;}
+        .content .title{background: url(images/title.png) no-repeat; position: relative; background-size: contain; width: 20rem; margin:0 auto; text-align: center; color: #b57724; font-size: 2rem; padding-top: 5rem;}
+        .btn-buy{width: 12.75rem; height: 2.95rem; margin:1.2rem auto 0 auto; background: url(images/btn_buy.png) no-repeat; background-size: contain; display: block;}
+        .complain{padding:2.5rem 0; text-align: center; font-size: 1rem; color: #000; text-align: center;}
+        .complain .t{line-height: 2.2rem;}
+    </style>
+</head>
+<body>
+    <div class="main-wrap">
+       <div class="header">
+           <div class="logo"></div>
+       </div>
+       <div class="content">
+             <img src="images/flow.png" alt="" class="flow">
+           <img src="images/con1.png" alt="" class="text01">
+           <div class="video-box">
+              <video src="http://cmsfile.wifi8.com/uploads/activity/vide/other.mp4" width="100%" height="100%" controls=controls autoplay="true" id="sp"></video>
+              <div class="play"></div>   
+              <div class="parse"></div>
+           </div>
+           <div class="title">两天一晚 吃住玩买<br/>酒店低至85折</div>
+           <a href="https://h5.m.taobao.com/awp/core/detail.htm?id=565105664743&mm_gxbid=1_2668434_d7065a478caeea7f283f7747b534fde6" class="btn-buy"></a>
+           <div class="complain">
+            <div class="t">须持指定有效证件。礼券需于指定商户使用，价格单位为港币。</div>
+            <div class="t">价格视乎酒店入住日子、客房类型、入住人数及房间之现行定价(于预订时计算)而定。</div>
+           </div>
+           
+       </div>
+    </div>
+<script src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/public.js"></script>
+<script>
+    $(function(){
+       
+        if ((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) {
+               return false;
+            }else{
+               var video = document.getElementById("sp"); 
+                function playVid()
+                { 
+                  video.play(); 
+                  $(".play").hide();
+                } 
+                function pauseVid()
+                { 
+                  video.pause(); 
+                  $(".play").show();
+                }
+
+                $("#sp").click(function(){
+                   if(video.paused){
+                        playVid()
+                    }else{
+                        pauseVid()
+                    }
+                });
+
+                $(".play").click(function(event) {
+                    playVid();
+                });
+                video.addEventListener("ended",function(){
+                     $(".play").show();
+                })
+            }
+    })
+</script>
+</body>
+</html>

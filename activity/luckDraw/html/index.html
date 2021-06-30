@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="x-rim-auto-match" content="none" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="copyright" content="Copyright (c)花生地铁wifi" />
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="keywords" content="花生,地铁,wifi,WIFI,花生地铁,花生地铁wifi,地铁wifi,花生wifi" />
+    <meta name="author" content="yerongtao" />
+    <title>转春天</title>
+    <link rel="icon" href="http://www.wifi8.com/images/logo_icon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+</head>
+
+<body>
+    <div class="page-loading">
+        <div class="loader"></div>
+    </div>
+    <div class="container">
+        <div class="head">
+            <!-- <p class="tips">活动时间：2021年4月8日</p> -->
+            <a href="./rules.html" class="btn_rules">活动玩法</a>
+            <a href="./prize.html" class="btn_prize">我的奖品</a>
+            <!-- <div class="scroll" id="win-scroll">
+                <ul class="line-1"></ul>
+                <ul class="line-2"></ul>
+            </div> -->
+        </div>
+        <div class="main">
+            <div id="box" class="box">
+                <div class="outer KinerLottery KinerLotteryContent">
+                    <img src="../images/box_prize.png" class="box-prize">
+                </div>
+                <div class="btn-start inner KinerLotteryBtn start scale"></div>
+            </div>
+            <p style="display: none;" class="num luck-number">今日抽奖次数还剩：<span id="luck-number">0</span> 次</p>
+            <!-- <div class="grass"></div> -->
+        </div>
+        <div class="foot">
+            <!-- <img src="../images/foot_title.png" alt="得金币，大奖拿不停" class="title"> -->
+            <ul>
+                <li>
+                    <img src="../images/icon_signin.png" alt="去签到" class="icon">
+                    <p class="tips">每人每天一次抽奖机会</p>
+                    <!-- <div class="btn-to btn-to-signin">去签到</div> -->
+                </li>
+                <li>
+                    <img src="../images/icon_share.png" alt="去分享" class="icon">
+                    <p class="tips">分享后额外获得一次抽奖机会</p>
+                    <div class="btn-to btn-to-share">去分享</div>
+                </li>
+            </ul>
+            <!-- <div class="apple-tips">* 本活动奖励由花生地铁提供，与苹果公司无关</div> -->
+        </div>
+    </div>
+    <div class="popup">
+        <div class="popup-bg"></div>
+        <div class="win win-in">
+            <div class="rotate"></div>
+            <img src="../images/win_title.png" alt="哇，恭喜获得" class="title">
+            <img src="../images/win_prize_red.png" alt="获得奖品" class="win-prize" id="win-prize">
+            <p class="tips">请于“我的奖品”中查看领取</p>
+        </div>
+        <div class="win win-out">
+            <div class="rotate"></div>
+            <img src="../images/win_title.png" alt="哇，恭喜获得" class="title">
+            <img src="../images/win_prize_red.png" alt="获得奖品" class="win-prize" id="win-prize">
+            <p class="tips">请于“花生地铁APP”活动页面中查看领取</p>
+            <div class="btn btn-open-app">立即领取</div>
+        </div>
+        <div class="win win-out-have">
+            <div class="rotate"></div>
+            <img src="../images/win_out_title.png" alt="你还有以下奖品待领取" class="title">
+            <img src="../images/win_prize_red.png" alt="获得奖品" class="win-prize" id="win-prize">
+            <p class="tips">请于“花生地铁APP”活动页面中查看领取</p>
+            <div class="btn btn-open-app">前往领取</div>
+        </div>
+        <div class="fail fail-out">
+            <p class="tips-normal normal-4">哎呀，免费机会已用完啦</p>
+            <p class="tips-bold bold-2">5金币/次</p>
+            <p class="tips-normal normal-5">前往花生地铁APP用金币继续玩</p>
+            <div class="btn btn-open-app btn-4">前往花生地铁APP抽大奖</div>
+        </div>
+        <div class="fail fail-heart">
+            <p class="tips-bold"><img src="../images/fail_heart.png" alt="心碎">&nbsp;心碎</br>与奖品擦肩而过</p>
+            <p class="tips-normal">换个姿势试试</p>
+        </div>
+        <div class="fail fail-to-share">
+            <p class="tips-normal normal-2">今日免费机会已用完啦~</p>
+            <p class="tips-bold bold-2">分享好友</p>
+            <p class="tips-small">每日首次分享后额外获得一次抽奖机会</p>
+            <div class="btn btn-share-add">分享好友</div>
+        </div>
+        <div class="fail fail-to-read">
+            <p class="tips-normal normal-2">今日机会已用完啦~</p>
+            <p class="tips-bold bold-2">浏览花生资讯，明天再来</p>
+            <div class="btn btn-read-add">看资讯，赚金币</div>
+        </div>
+        <div class="fail fail-lack-gold">
+            <p class="tips-bold bold-3">啊哦，金币不足啦~</p>
+            <div class="btn btn-gold-add">去领金币抽大奖</div>
+        </div>
+        <div class="login">
+            <p class="tips">请先登录后抽奖哦~</p>
+            <input class="mobile" id="mobile" type="number" value="" placeholder="请输入手机号">
+            <div class="code-team">
+                <input class="code" id="code" type="text" value="" placeholder="请输入验证码">
+                <div class="get-code" id="get-code">获取验证码</div>
+            </div>
+            <div class="btn btn-submit">确定</div>
+        </div>
+        <div class="wechat-share">
+            <img src="../images/wechat_share.png" alt="">
+        </div>
+        <div class="wechat-open open-1">
+            <img src="../images/wechat_open_1.png" alt="">
+        </div>
+        <div class="wechat-open open-2">
+            <img src="../images/wechat_open_2.png" alt="">
+        </div>
+        <div class="btn-close"></div>
+    </div>
+    <div class="page-share">
+        <div class="page-share-bg"></div>
+        <div class="page-share-ul">
+            <ul>
+                <li data-type="0">
+                    <div class="share-icon icon-wechat-friends"></div>
+                    <p>朋友圈</p>
+                </li>
+                <li data-type="1">
+                    <div class="share-icon icon-wechat"></div>
+                    <p>微信好友</p>
+                </li>
+                <li data-type="2">
+                    <div class="share-icon icon-qq" data-type="2"></div>
+                    <p>QQ好友</p>
+                </li>
+                <!-- <li data-type="3">
+                    <div class="share-icon icon-qqZone" data-type="3"></div>
+                    <p>QQ空间</p>
+                </li> -->
+                <li data-type="4">
+                    <div class="share-icon icon-weibo" data-type="4"></div>
+                    <p>微博</p>
+                </li>
+                <!-- <p class="btn-cancel-share">取消</p> -->
+            </ul>
+            <p class="btn-cancel-share">取消</p>
+        </div>
+
+    </div>
+    <div class="prompt" id="prompt"><em>提示信息</em></div>
+    <script src="http://cmsfile.wifi8.com/uploads/wifi/AppH5/api/zepto.min.js?v=1.0.1"></script>
+    <script src="http://cmsfile.wifi8.com/uploads/wifi/AppH5/api/zepto.cookie.min.js"></script>
+    <script src="http://cmsfile.wifi8.com/uploads/wifi/AppH5/api/nfygCommonPack.min.js"></script>
+    <!-- <script src="http://cmsfile.wifi8.com/uploads/wifi/AppH5/api/vconsole.min.js"></script> -->
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="../js/public.js?v=2.0.3"></script>
+    <script src="../js/kinerLottery.js"></script>
+    <script src="../js/index.js?v=2.0.3"></script>
+    <div style="display:none;">
+        <script type="text/javascript" src="https://s5.cnzz.com/z_stat.php?id=1276884101&web_id=1276884101"></script>
+    </div>
+</body>
+
+</html>

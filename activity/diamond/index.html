@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="MobileOptimized" content="240" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />  
+    <meta content="email=no" name="format-detection" />
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title>公众号</title>
+    <link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="js/swiper.min.css">
+	<link rel="stylesheet" href="css/common.css">
+</head>
+<body>
+<div class="wrap">
+	<ul class="predict-list">
+		<li>
+			<div class="predict-txt">证书编号</div>
+			<div class="flex-nowrap">
+				<div class="input-box"><input type="text" placeholder="请输入证书编号" id="certSerialize"></div>
+			</div>
+		</li>
+		<li>
+			<div class="predict-txt">颗数</div>
+			<div class="flex-nowrap">
+				<div class="input-box" style="width: .8rem;"><input type="number" placeholder="颗数" id="number" value="1"></div>
+			</div>
+		</li>
+		<li>
+			<div class="predict-txt">证书</div>
+			<div class="flex-nowrap certificate" id="cert">
+				<div class="tag-elem tag-max act">GIA</div>
+				<div class="tag-elem tag-max">HRD</div>
+				<div class="tag-elem tag-max">NGTC</div>
+			</div>
+		</li>
+		<!-- <li style="width: 50%;">
+			<div class="predict-txt">首饰总重</div>
+			<div class="flex-nowrap">
+				<div class="input-box2" style="width: .8rem;">
+					<input type="number" placeholder="首饰总重" id="totalWeight">
+					<label class="lab-t">g</label>
+				</div>
+			</div>
+		</li> -->
+		<li style="width: 50%;">
+			<div class="predict-txt">克拉数</div>
+			<div class="flex-nowrap">
+				<div class="input-box2" style="width: .8rem;">
+					<input type="number" placeholder="克拉数" id="totalCt">
+					<label class="lab-t">ct</label>
+				</div>
+			</div>
+		</li>
+		<li>
+			<div class="predict-txt">形状</div>
+			<div class="flex-nowrap">
+				<div class="swiper-container swiper-shape" id="shape">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">
+							<div class="shape-box act">
+								<div class="shape-img"><img src="images/shape01_act.png" alt=""></div>
+								<div class="shape-name">圆形</div>
+							</div>
+						</div>
+						<div class="swiper-slide">
+							<div class="shape-box ">
+								<div class="shape-img"><img src="images/shape02.png" alt=""></div>
+								<div class="shape-name">梨形</div>
+							</div>
+						</div>
+						<div class="swiper-slide">
+							<div class="shape-box ">
+								<div class="shape-img"><img src="images/shape03.png" alt=""></div>
+								<div class="shape-name">公主方</div>
+							</div>
+						</div>
+						<div class="swiper-slide">
+							<div class="shape-box ">
+								<div class="shape-img"><img src="images/shape04.png" alt=""></div>
+								<div class="shape-name">心形</div>
+							</div>
+						</div>
+						<div class="swiper-slide">
+							<div class="shape-box ">
+								<div class="shape-img"><img src="images/shape05.png" alt=""></div>
+								<div class="shape-name">阿斯切</div>
+							</div>
+						</div>
+						<div class="swiper-slide">
+							<div class="shape-box ">
+								<div class="shape-img"><img src="images/shape06.png" alt=""></div>
+								<div class="shape-name">椭圆形</div>
+							</div>
+						</div>
+						<div class="swiper-slide">
+							<div class="shape-box ">
+								<div class="shape-img"><img src="images/shape07.png" alt=""></div>
+								<div class="shape-name">雷蒂恩</div>
+							</div>
+						</div>
+						<div class="swiper-slide">
+							<div class="shape-box ">
+								<div class="shape-img"><img src="images/shape08.png" alt=""></div>
+								<div class="shape-name">祖母绿</div>
+							</div>
+						</div>
+						<div class="swiper-slide">
+							<div class="shape-box ">
+								<div class="shape-img"><img src="images/shape09.png" alt=""></div>
+								<div class="shape-name">垫形</div>
+							</div>
+						</div>
+						<div class="swiper-slide">
+							<div class="shape-box ">
+								<div class="shape-img"><img src="images/shape10.png" alt=""></div>
+								<div class="shape-name">其他</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</li>
+		<li>
+			<div class="predict-txt">颜色</div>
+			<div class="flex-nowrap">
+				<div class="swiper-container swiper-color" id="color">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide"><div class="tag-elem tag-min">D</div></div>
+						<div class="swiper-slide"><div class="tag-elem tag-min">E</div></div>
+						<div class="swiper-slide"><div class="tag-elem tag-min">F</div></div>
+						<div class="swiper-slide"><div class="tag-elem tag-min">G</div></div>
+						<div class="swiper-slide"><div class="tag-elem tag-min act">H</div></div>
+						<div class="swiper-slide"><div class="tag-elem tag-min">I</div></div>
+						<div class="swiper-slide"><div class="tag-elem tag-min">J</div></div>
+						<div class="swiper-slide"><div class="tag-elem tag-min">K</div></div>
+						<div class="swiper-slide"><div class="tag-elem tag-min">L</div></div>
+						<div class="swiper-slide"><div class="tag-elem tag-min">M</div></div>
+						<div class="swiper-slide"><div class="tag-elem tag-min">N</div></div>
+						<div class="swiper-slide"><div class="tag-elem tag-min">&lt;N</div></div>
+						<div class="swiper-slide"><div class="tag-elem tag-min">彩钻</div></div>
+					</div>
+				</div>
+			</div>
+		</li>
+		<li>
+			<div class="predict-txt">净度</div>
+			<div class="flex-nowrap">
+				<div class="swiper-container swiper-clean" id="clarity">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide"><div class="tag-elem tag-min">IF</div></div>
+						<div class="swiper-slide"><div class="tag-elem tag-min">VVS1</div></div>
+						<div class="swiper-slide"><div class="tag-elem tag-min">VVS2</div></div>
+						<div class="swiper-slide"><div class="tag-elem tag-min">VS1</div></div>
+						<div class="swiper-slide"><div class="tag-elem tag-min act">VS2</div></div>
+						<div class="swiper-slide"><div class="tag-elem tag-min">SI1</div></div>
+						<div class="swiper-slide"><div class="tag-elem tag-min">SI2</div></div>
+						<div class="swiper-slide"><div class="tag-elem tag-min">SI3</div></div>
+						<div class="swiper-slide"><div class="tag-elem tag-min">P1</div></div>
+						<div class="swiper-slide"><div class="tag-elem tag-min">P2</div></div>
+					</div>
+				</div>
+			</div>
+		</li>
+		<li>
+			<div class="predict-txt">切工</div>
+			<div class="flex-nowrap cut-box" id="cut">
+				<div class="tag-elem tag-min act">EX</div>
+				<div class="tag-elem tag-min">VG</div>
+				<div class="tag-elem tag-min">GD</div>
+				<div class="tag-elem tag-min">FR</div>
+			</div>
+		</li>
+		<li>
+			<div class="predict-txt">抛光</div>
+			<div class="flex-nowrap buffing-box" id="polish">
+				<div class="tag-elem tag-min act">EX</div>
+				<div class="tag-elem tag-min">VG</div>
+				<div class="tag-elem tag-min">GD</div>
+				<div class="tag-elem tag-min">FR</div>
+			</div>
+		</li>
+		<li>
+			<div class="predict-txt">对称</div>
+			<div class="flex-nowrap symmetry-box" id="sym">
+				<div class="tag-elem tag-min act">EX</div>
+				<div class="tag-elem tag-min">VG</div>
+				<div class="tag-elem tag-min">GD</div>
+				<div class="tag-elem tag-min">FR</div>
+			</div>
+		</li>
+		<li>
+			<div class="predict-txt">荧光</div>
+			<div class="flex-nowrap fluorescence-box" id="flour">
+				<div class="tag-elem tag-min act">N</div>
+				<div class="tag-elem tag-min">F</div>
+				<div class="tag-elem tag-min">M</div>
+				<div class="tag-elem tag-min">S</div>
+				<div class="tag-elem tag-min">VS</div>
+			</div>
+		</li>
+	</ul>
+	<div class="bottom-btnbox">
+		<div class="flex-btn-between">
+			<a href="javascript:;" class="reset-btn">重置</a>
+			<a href="javascript:;" class="submit-btn">估价</a>
+		</div>
+	</div>
+</div>
+<div id="prompt"><em>提示信息</em></div>
+<div class="bg"></div>
+<div class="loading-box">
+	<div id="loading3">
+	    <div class="demo3"></div>
+	    <div class="demo3"></div>
+	    <div class="demo3"></div>
+	    <div class="demo3"></div>
+	    <div class="demo3"></div>
+	    <div class="demo3"></div>
+	    <div class="demo3"></div>
+	    <div class="demo3"></div>
+	</div>
+</div>
+
+
+<script src="js/zepto.min.js"></script>
+<script src="js/public.js"></script>
+<script src="js/swiper.min.js"></script>
+<script>
+$(function(){
+	var swiper = new Swiper('.swiper-color', {
+		pagination: '.swiper-pagination',
+		slidesPerView: 5.8,
+		paginationClickable: true,
+		spaceBetween: 10,
+	});
+	var swiper = new Swiper('.swiper-shape', {
+		pagination: '.swiper-pagination',
+		slidesPerView: 4.2,
+		paginationClickable: true,
+		spaceBetween: 10,
+	});
+	var swiper = new Swiper('.swiper-clean', {
+		pagination: '.swiper-pagination',
+		slidesPerView: 5.8,
+		paginationClickable: true,
+		spaceBetween: 10,
+	});
+	//证书切换
+	$(".certificate .tag-elem").click(function(){
+		var index = $(".certificate .tag-elem").index(this);
+		if(!$(this).hasClass("act")){
+			$(".certificate .tag-elem").removeClass("act").eq(index).addClass("act");
+		}else{
+			$(this).removeClass("act")
+		}
+		
+	})
+	//形状
+	$(".swiper-shape .shape-box").click(function(){
+		var index = $(".swiper-shape .shape-box").index(this);
+			$(".swiper-shape .shape-box").removeClass("act").eq(index).addClass("act");
+			$(".shape-img img").each(function(i){
+				if(i == index ){
+					$(this).attr("src","images/shape0"+(i+1)+"_act.png");
+				}else{
+					$(this).attr("src","images/shape0"+(i+1)+".png");
+				}
+				
+			})
+			if(index ==0){
+				$("#cut").parents("li").show();
+			}else{
+				$("#cut").parents("li").hide();
+			}
+		
+	})
+	//颜色
+	$(".swiper-color .tag-elem").click(function(){
+		var index = $(".swiper-color .tag-elem").index(this);
+			$(".swiper-color .tag-elem").removeClass("act").eq(index).addClass("act");
+		
+	})
+	//净度
+	$(".swiper-clean .tag-elem").click(function(){
+		var index = $(".swiper-clean .tag-elem").index(this);
+			$(".swiper-clean .tag-elem").removeClass("act").eq(index).addClass("act");
+		
+	})
+	
+	//切工
+	$(".cut-box .tag-elem").click(function(){
+		var index = $(".cut-box .tag-elem").index(this);
+			$(".cut-box .tag-elem").removeClass("act").eq(index).addClass("act");
+		
+	})
+	
+	//抛光
+	$(".buffing-box .tag-elem").click(function(){
+		var index = $(".buffing-box .tag-elem").index(this);
+			$(".buffing-box .tag-elem").removeClass("act").eq(index).addClass("act");
+		
+	})
+	
+	//对称
+	$(".symmetry-box .tag-elem").click(function(){
+		var index = $(".symmetry-box .tag-elem").index(this);
+			$(".symmetry-box .tag-elem").removeClass("act").eq(index).addClass("act");
+		
+	})
+	
+	//荧光
+	$(".fluorescence-box .tag-elem").click(function(){
+		var index = $(".fluorescence-box .tag-elem").index(this);
+			$(".fluorescence-box .tag-elem").removeClass("act").eq(index).addClass("act");
+		
+	})
+	
+	//重置
+	$(".reset-btn").click(function(){
+		$(".tag-elem,.shape-box").removeClass("act");
+		$("input").val("");
+	})
+	
+	$(".submit-btn").click(function(){
+		if(!$(this).hasClass("disabled")){
+			$(this).addClass("disabled")
+			var certSerialize = $("#certSerialize").val();
+			var number = $("#number").val();
+			var cert = $("#cert").find(".tag-elem.act").text()||"";
+			// var totalWeight = $("#totalWeight").val();
+			var totalCt = $("#totalCt").val()
+			var shape = $("#shape").find(".shape-box.act .shape-name").text()||""
+			
+			var color = $("#color").find(".tag-elem.act").text()||"";
+			var clarity = $("#clarity").find(".tag-elem.act").text()||"";
+			var cut = $("#cut").find(".tag-elem.act").text()||"";
+			var polish = $("#polish").find(".tag-elem.act").text()||"";
+			var sym = $("#sym").find(".tag-elem.act").text()||"";
+			var flour = $("#flour").find(".tag-elem.act").text()||"";
+			if(shape != '圆形'){
+				cut = '';
+			}
+			if(totalCt ==""){
+				$(this).removeClass("disabled");
+				showMsg("请填写克拉数")
+				return false;
+			}
+			switch(flour){
+				case 'N':
+					flour = 'NON';
+					break;
+				case 'F':
+					flour = 'FNT';
+					break;
+				case 'M':
+					flour = 'MED';
+					break;
+				case 'S':
+					flour = 'STG';
+					break;
+				case 'VS':
+					flour = 'VST';
+					break;
+			}
+			var params = {
+				"certSerialize":certSerialize,
+				"number": number,
+				"cert":cert,
+				"totalCt": totalCt,
+				"shape": shape,
+				"color":color,
+				"clarity":clarity,
+				"cut": cut,
+				"polish": polish,
+				"sym": sym,
+				"flour": flour,
+				"days":3 //默认查3天的
+			}
+			console.log(params)
+			// showMsg('谢谢')
+			$(".bg,.loading-box").show();
+			$.ajax({
+				type: "post",
+				url: "http://106.75.36.221:8823/api",//'http://106.75.36.221:8080/api',//
+				data:JSON.stringify(params),
+				contentType: "application/json",
+				dataType: 'json',
+				beforeSend: function (xhr) {
+					 //xhr.setRequestHeader('token', token);
+				},
+				success: function(data) {
+					$(".submit-btn").removeClass("disabled");
+					$(".bg,.loading-box").hide();
+					//console.log(data);
+					if(data.code == 0){
+						if(data.data.price==0){//价格为0
+							showMsg("暂无估值");
+						}else{
+							window.location.href = "trend.html?prize="+data.data.price+"&certSerialize="+certSerialize+"&number="+number+"&cert="+cert+"&totalCt="+totalCt+"&shape="+encodeURI(encodeURI(shape))+"&color="+color+"&clarity="+clarity+"&cut="+cut+"&polish="+polish+"&sym="+sym+"&flour="+flour+"&days=3";
+						}
+					}else{
+						showMsg(data.msg);
+					}
+				},
+				fail: function() {
+					$(".submit-btn").removeClass("disabled");
+					$(".bg,.loading-box").hide();
+				}
+			});
+		}
+		
+	});
+	
+	var interval = '';
+	function showMsg(msg){
+		$("#prompt em").text(msg);
+		$("#prompt").show();
+		interval = setTimeout(function(){
+			$("#prompt").hide();
+		},1500)
+		
+	}
+	
+
+})
+</script>
+</body>
+</html>

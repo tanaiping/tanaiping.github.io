@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="MobileOptimized" content="240" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />  
+    <meta content="email=no" name="format-detection" />
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title>花生地铁五周年庆</title>
+    <link rel="stylesheet" href="css/base.css">
+    <style>
+		*{padding: 0;margin: 0;}
+        body{background-color: #FFF;}
+        .main-wrap{width: 100%; max-width: 750px; margin:0 auto;overflow: hidden;}
+        .video-box{width: 100%; height: 100%; position: absolute;top: 0; left: 0; }
+		#myVideo{object-fit: fill;}
+      </style>
+</head>
+<body>
+    <div class="main-wrap">
+         <div class="video-box">
+           <!-- <video  controls  src="images/5th.mp4" width="100%" height="100%"  preload="auto" x5-playsinline playsinline  webkit-playsinline  autoplay    id="myVideo"></video> -->
+			<video src="images/5th.mp4" id="myVideo" width="100%" height="100%" preload="true" x-webkit-airplay="true" controls="controls" webkit-playsinline="true" playsinline="true" x5-video-player-type="h5" x5-video-player-type="h5" x5-video-player-fullscreen="true"></video>
+		 </div>
+    </div>
+<script src="js/zepto.min.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script src="js/public.js"></script>
+<script>
+    $(function(){
+		function loadVideo(){
+			var win_w = document.documentElement.clientWidth;
+			var win_h = document.documentElement.clientHeight;
+			var dp = window.devicePixelRatio;
+			// console.log(win_w + "==="+dp);
+			if(win_w<win_h){
+			    var tanslate_value =parseInt((win_h-win_w)/2);
+			    var value = 'rotate(90deg) translateX('+tanslate_value+'px) translateY('+tanslate_value+'px)';
+			    $(".main-wrap").css({"width":win_h,"height":win_w}).css('transform',value);
+			}else{
+			    $(".main-wrap").css({"width":win_w,"height":win_h,"transform":"none"});
+			}
+			
+		}
+		loadVideo();
+		window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", function() {
+		  if (window.orientation === 180 || window.orientation === 0) { 
+		   loadVideo();
+		  } 
+		  if (window.orientation === 90 || window.orientation === -90 ){ 
+		   loadVideo();
+		  } 
+		 }, false);
+
+        //解决苹果不能自动播放   模拟点击
+        var video = document.getElementById("myVideo");
+        video.play();
+        document.addEventListener('WeixinJSBridgeReady',function(){
+            video.play();
+        },false);
+		
+		video.addEventListener('ended', function () { //结束
+			console.log("播放结束");
+			window.location.href="http://web.peanut8.com/happybirthday"
+		}, false);
+    })
+
+</script>
+<script>
+    
+</script>
+</body>
+</html>

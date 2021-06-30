@@ -1,0 +1,42 @@
+body{background-color: #37414a; font-size: .14rem;}
+.ope-tc{cursor: pointer;text-align: left;margin:.1rem 0 0 0 ;}
+.prompt{text-align: center;	width: 90%;	position: fixed;margin: auto;left: 0;right: 0;top: 40%;z-index: 10001;display: none;}
+.prompt em{display: inline-block;background: rgba(0,0,0,0.75);padding: 0.1rem .15rem;border-radius: .2rem;color: #FFF;font-size: 0.16rem;line-height: 0.2rem;}
+.blackbg{width: 100%;height: 100%;position: fixed;left: 0;top: 0; background: url(../images/black_bg.png) repeat; z-index: 10; display: none;}
+.wrap{width: 100%; max-width: 750px;margin: auto;}
+.main-box{padding: .5rem .2rem .44rem .2rem; position: relative;}
+.coupon-box{background: #FFF;padding: 0 .2rem; border-radius: .1rem;}
+.coupon-used{background-color: #646b71;}
+.coupon-box .desc{border-bottom: 1px dashed #00a19c;padding: .275rem 0;}
+.coupon-box.coupon-used .desc{border-bottom-color: #fff;}
+.coupon-box .desc img{width: 100%;}
+.coupon-box .code{height: 1.79rem; position: relative;}
+.coupon-box .code img{margin-bottom: .2rem;}
+.com-btn{width: 1rem;line-height: .22rem; font-size: .12rem; border:2px solid #707070; margin: 0 auto; color: #707070;text-align: center;border-radius: .2rem;}
+.coupon-used-btn{border-color: #8f9499;color: #8f9499;margin-top: .45rem;}
+.coupon-box .code .code-msg{text-align: center;color: #707070;padding: .1rem 0; font-size: .1rem;}
+.circle{width: .275rem;height: .275rem;border-radius: .1375rem;background-color: #37414a;}
+.c-left{position: absolute;left: .075rem;top:1.375rem}
+.c-right{position: absolute;right: .075rem;top:1.375rem}
+.ad-img{width: 100%;margin: .24rem 0 .26rem 0; background: url(../images/ad_img.png) no-repeat; background-size: contain; height: 1.49rem; position: relative; display: block;}
+.ad-bom {position: absolute;bottom: 0; left: 0; width: 100%;}
+.ad-bom .more-detail{line-height: .36rem;font-size: .13rem;color: #FFF; display: flex; justify-content: center; text-decoration: underline;}
+.detail-con{color: #FFF; line-height: .21rem;}
+.f14{font-size: .14rem; line-height: .24rem;}
+.f11{font-size: .105rem;}
+.mb20{margin-bottom: .2rem;}
+.line-div{background: url(../images/cir.png) left .05rem no-repeat;background-size: .12rem .12rem; padding-left: .18rem;}
+
+.wx-share{display: none; position: absolute; right: .2rem; top:.2rem; z-index: 12; width: 2.6rem;}
+.pop{position: absolute;top: 1.55rem; left: 50%; margin-left:-1.2rem; width: 2.4rem;height: 2.15rem; background-color: #FFF; border-radius: .1rem; z-index: 12; display: none;}
+
+.pop-close{background: url(../images/pop_close.png) no-repeat; background-size: contain; width: .19rem; height: .19rem; position: absolute; right: .14rem; top:.14rem;}
+.pop-btn,.used-btn{position: absolute; left: 50%;bottom:-.22rem; margin-left: -1rem; border-radius: .3rem;color: #FFF; background-color: #00a19c;font-size: .18rem;width: 2rem;height: .44rem; text-align: center; line-height: .44rem;}
+.once-open,.business-ope{padding-top: .52rem;display: none;}
+.once-open .t1{text-align: center;color: #000; font-size: .13rem;line-height: .25rem;}
+.once-open .t2{text-align: center;}
+.once-open .t2 img{width: 1.3rem;}
+.business-ope .t1{text-align: center;color: #000; font-size: .13rem;line-height: .25rem;}
+.business-ope .t1 span{color: #00a19c;}
+.business-ope .t2{text-align: center; color: #333;margin: .19rem 0 .1rem 0;}
+.user-desc{color: #00a19b; font-size: .09rem; text-align: center; display: block; letter-spacing: .3rem; padding:.03rem 0 .12rem .3rem;}

@@ -1,0 +1,55 @@
+body{background-color: #352775;}
+.prompt{text-align: center;	width: 90%;	position: fixed;margin: auto;left: 0;right: 0;top: 40%;z-index: 10001;display: none;}
+.prompt em{display: inline-block;background: rgba(0,0,0,0.75);padding: 0.1rem .15rem;border-radius: .2rem;color: #FFF;font-size: 0.16rem;line-height: 0.2rem;}
+.blackbg{width: 100%;height: 100%;position: fixed;left: 0;top: 0; background: url(../images/black_bg.png) repeat; z-index: 10; display: none;}
+.wx_share{position: fixed; right: .3rem;top: .1rem;width: 2.8rem;height: auto;z-index: 11; display: none;}
+.wrap{width: 100%; max-width: 750px;margin: auto;}
+.bg{background:#352775;}
+.flex-center{display: flex;justify-content: center;}
+.flex-between{display: flex;justify-content: space-between;}
+.head-img{width: 3.75rem;height: 3.24rem;}
+.meeting-map{margin-top: -0.155rem;position: relative; z-index: 2; display: flex; flex-direction: row; height: 3.4rem;}
+.m-start{background: url(../images/start.png) left top no-repeat; background-size: contain; width: 1.13rem; height: .525rem; position: absolute;left: 0; top: 0;}
+.m01{background: url(../images/sign1.png) left top no-repeat; background-size: contain; width: 1.365rem; height: .525rem; position: absolute;left: 1.0335rem; top: 0;}
+.m01.act{background-image: url(../images/sign1_act.png);}
+.m02{background: url(../images/sign2.png) left top no-repeat; background-size: contain; width: 1.02rem; height:1.07rem;position: absolute;left: 2.3045rem; top: 0;}
+.m02.act{background-image: url(../images/sign2_act.png);}
+.m03{background: url(../images/sign3.png) left top no-repeat; background-size: contain; width: 1.64rem; height:.92rem;position: absolute;left: 1.68rem; top: 0.97rem;}
+.m03.act{background-image: url(../images/sign3_act.png);}
+.m04{background: url(../images/sign4.png) left top no-repeat; background-size: contain; width: 1.48rem; height:.64rem;position: absolute;left: .295rem; top: 1.365rem;}
+.m04.act{background-image: url(../images/sign4_act.png);}
+.m05{background: url(../images/sign5.png) left top no-repeat; background-size: contain; width: .503rem; height:1.3815rem;position: absolute;left: .295rem; top: 1.9091rem;}
+.m05.act{background-image: url(../images/sign5_act.png);}
+.m06{background: url(../images/sign6.png) left top no-repeat; background-size: contain; width: 1.621rem; height:.5rem;position: absolute;left: .401rem; top: 2.93rem;}
+.m06.act{background-image: url(../images/sign6_act.png);}
+.m07{background: url(../images/sign7.png) left top no-repeat; background-size: contain; width: 2.1rem; height:.5rem;position: absolute;left: 1.88rem; top: 2.93rem;}
+.m07.act{background-image: url(../images/sign7_act.png);}
+.rule-box{margin-top: .465rem;padding: .2rem .26rem;  position: relative; border-radius: .05rem; border: 1px solid #835BF6; width: 3.5rem;margin:.465rem auto .245rem auto; line-height: .22rem; font-size: .13rem; color: #F2E6FF;} 
+.rule-img{width: .96rem;height: .26rem; position: absolute;left: 50%; margin-left: -.48rem;margin-top: -.33rem;}
+.gift01{position: absolute; left: 1.83rem; top: .66rem;}
+.gift02{position: absolute; left: 2.18rem; top: 2rem;}
+.gift-box{
+    position: relative;
+}
+.gift01 .gift-box img{width: .7rem; height: .7rem;border-radius: .35rem; vertical-align: top; border: .03rem solid #FFF;background-color: #FFF;border-radius: .35rem;}
+.gift01 .gift-box .icon-d{display: block; position: absolute; left: .28rem; top: .68rem; background: url(../images/icon_d.png) center top no-repeat; background-size: contain; width: .15rem; height: .07rem;}
+
+.gift02 .gift-box img{width: .9rem; height: .9rem;border-radius: .45rem; vertical-align: top; border: .03rem solid #FFF; background-color: #FFF;border-radius: .45rem;}
+.gift02 .gift-box .icon-d{display: block; position: absolute; left: .38rem; top: .89rem; background: url(../images/icon_d.png) center top no-repeat; background-size: contain; width: .15rem; height: .07rem;}
+.popbox{background-color: #FFF; display: none; position: fixed; left: 50%; top: 50%; width: 2.7rem;height: 1.65rem; margin: -.825rem 0 0 -1.35rem;border-radius: .05rem; z-index: 1001; }
+.action-end .t1{font-size: .23rem;text-align: center;padding: .4rem 0 .35rem 0;}
+.action-end .look-prize{width: 1.8rem; height: .4rem; margin: 0 auto; background-color: #FFA10C; text-align: center; line-height: .4rem; font-size: .18rem; color: #FFF; border-radius: .195rem; display: block;}
+.address-btn{width: 1.8rem; height: .4rem; margin: .25rem auto ; background-color: #FFA10C; text-align: center; line-height: .4rem; font-size: .18rem; color: #FFF; border-radius: .195rem; display: block;}
+.main-box{display: none;}
+.prize-t1{font-size: .18rem;text-align: center;padding-top: .85rem; color: #FFF; font-weight: bold;}
+.prize-t3{font-size: .18rem;text-align: center;padding-top: .35rem; color: #FFF; font-weight: bold;}
+.prize-t2{font-size: .15rem;text-align: center;color: #FFF; line-height: .26rem; padding: .1rem 0;}
+.tc{text-align: center;}
+.lose-img,.success-img{width: .8rem;height: auto; padding: .3rem 0;}
+.prize-img{width: 2.9rem;  border-radius:.05rem ; margin:.3rem auto; display: block;}
+.title-t1{font-size: .15rem; color: #FFF;padding-top: .4rem; width: 2.9rem;margin:0 auto}
+.address-box{ width: 2.9rem;margin:0 auto; display: flex;justify-content: space-between;}
+.address-box .input-box{border:1px solid #5B41B4; color: #352775; width: 100%; border-radius: .05rem;display: flex; margin-top: .14rem;padding:.08rem 0; height: .36rem; }
+.address-box .input-box.input-name{width: 1.15rem;}
+.address-box .input-box.input-tel{width: 1.65rem;}
+.address-box .input-box input{border:none;text-indent: .2rem;color: #a193e2; background: transparent; width: 100%; height: .2rem;line-height: .2rem; font-size: .14rem;}

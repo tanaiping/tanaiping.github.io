@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="MobileOptimized" content="240" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />  
+    <meta content="email=no" name="format-detection" />
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title>公众号</title>
+    <link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="js/swiper.min.css">
+	<link rel="stylesheet" href="css/common.css">
+</head>
+<body>
+<div class="wrap">
+	<div class="trend-header">
+		<div class="t1">当前预估成交价格为</div>
+		<div class="t2"><span>88888</span><em>(元)</em></div>
+	</div>
+	<h3 class="h-title">历史价格趋势</h3>
+	<ul class="day-list">
+		<li class="act">3天</li>
+		<li>7天</li>
+		<li>15天</li>
+		<li>30天</li>
+	</ul>
+	<div id="trendEchairs">
+		
+	</div>
+	<div class="bottom-btnbox">
+		<div class="flex-btn-between">
+			<a href="javascript:history.go(-1);" class="reset-btn">返回</a>
+			<a href="index.html" class="submit-btn">再次估价</a>
+		</div>
+	</div>
+</div>
+<div id="prompt"><em>提示信息</em></div>
+<div class="bg"></div>
+<div class="loading-box">
+	<div id="loading3">
+	    <div class="demo3"></div>
+	    <div class="demo3"></div>
+	    <div class="demo3"></div>
+	    <div class="demo3"></div>
+	    <div class="demo3"></div>
+	    <div class="demo3"></div>
+	    <div class="demo3"></div>
+	    <div class="demo3"></div>
+	</div>
+</div>
+<script src="js/zepto.min.js"></script>
+<script src="js/public.js"></script>
+<script src="js/echarts.min.js"></script>
+<script>
+$(function(){
+	
+	var certSerialize = getQueryString("certSerialize");
+	var number = getQueryString("number");
+	var cert = getQueryString("cert");
+	// var totalWeight = getQueryString("totalWeight");
+	var totalCt = getQueryString("totalCt");
+	var shape = getQueryString("shape");
+	shape = decodeURI(shape);
+	var color = getQueryString("color");
+	var clarity = getQueryString("clarity");
+	var cut = getQueryString("cut");
+	var polish = getQueryString("polish");
+	var sym = getQueryString("sym");
+	var flour = getQueryString("flour");
+	var prize = getQueryString("prize");
+	prize = numberFormat(prize, 2, '.', ',')
+	var days = parseInt(getQueryString("days"));
+	$(".trend-header .t2 span").text(prize);
+	$(".bg,.loading-box").show();
+	initTrend(days)
+	
+	$(".day-list li").click(function(){
+		var index = $(".day-list li").index(this);
+		$(".day-list li").removeClass("act").eq(index).addClass("act");
+		days = parseInt($(this).text());
+		$(".bg,.loading-box").show();
+		initTrend()
+	})
+	
+	function numberFormat (number, decimals, decPoint, thousandsSep, roundtag) {
+	  /*
+	      * 参数说明：
+	      * number：要格式化的数字
+	      * decimals：保留几位小数
+	      * dec_point：小数点符号
+	      * thousands_sep：千分位符号
+	      * roundtag:舍入参数，默认 'ceil' 向上取,'floor'向下取,'round' 四舍五入
+	      * */
+	  number = (number + '').replace(/[^0-9+-Ee.]/g, '')
+	  roundtag = roundtag || 'ceil' // 'ceil','floor','round'
+	  var n = !isFinite(+number) ? 0 : +number
+	  var prec = !isFinite(+decimals) ? 0 : Math.abs(decimals)
+	  var sep = (typeof thousandsSep === 'undefined') ? ',' : thousandsSep
+	  var dec = (typeof decPoint === 'undefined') ? '.' : decPoint
+	  var s = ''
+	  var toFixedFix = function (n, prec) {
+	    var k = Math.pow(10, prec)
+	    console.log()
+	
+	    return '' + parseFloat(Math[roundtag](parseFloat((n * k).toFixed(prec * 2))).toFixed(prec * 2)) / k
+	  }
+	  s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.')
+	  var re = /(-?\d+)(\d{3})/
+	  while (re.test(s[0])) {
+	    s[0] = s[0].replace(re, '$1' + sep + '$2')
+	  }
+	
+	  if ((s[1] || '').length < prec) {
+	    s[1] = s[1] || ''
+	    s[1] += new Array(prec - s[1].length + 1).join('0')
+	  }
+	  return s.join(dec)
+	}
+	// console.log(numberFormat(100000.00, 2, '.', ',')) // '100,000.00'
+	
+	function initTrend(){
+		var params = {
+				"certSerialize":certSerialize,
+				"number": number,
+				"cert":cert,
+				"totalCt": totalCt,
+				"shape": shape,
+				"color":color,
+				"clarity":clarity,
+				"cut": cut,
+				"polish": polish,
+				"sym": sym,
+				"flour": flour,
+				"days":days //默认查3天的
+			}
+			console.log(params)
+			$.ajax({
+				type: "post",
+				url: "http://106.75.36.221:8823/api",//'http://106.75.36.221:8080/api',//
+				data:JSON.stringify(params),
+				contentType: "application/json",
+				dataType: 'json',
+				beforeSend: function (xhr) {
+					 //xhr.setRequestHeader('token', token);
+				},
+				success: function(data) {
+					//console.log(data);
+					if(data.code == 0){
+						var echartsArr = [];
+						switch(days){
+							case 3:
+								echartsArr = data.data.trend3;
+								break;
+							case 7:
+								echartsArr = data.data.trend7;
+								break;
+							case 15:
+								echartsArr = data.data.trend15;
+								break;
+							case 30:
+								echartsArr = data.data.trend30;
+								break;
+						}
+						var series = [];
+						var xAxis = [];
+						echartsArr.forEach(function(item,arr,index){
+							if(item==null||item==null){
+								showMsg("返回数据不能为null");
+								return false;
+							}
+								series.push(item.rate)
+								xAxis.push(item.thisDays)//item.thisDays
+						})
+						console.log(series)
+						console.log(xAxis)
+						option.series[0].data = series; //每天的价格
+						option.xAxis.data = xAxis; //日期集X坐标
+						myChart.setOption(option);
+					}else{
+						showMsg(data.msg);
+					}
+				},
+				fail: function() {
+				}
+			});
+	}
+	
+	function getQueryString(name){
+	     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+	     var r = window.location.search.substr(1).match(reg);
+	     if(r!=null)return  unescape(r[2]); return null;
+	}
+	
+	
+	
+	 // 基于准备好的dom，初始化echarts实例
+	var myChart = echarts.init(document.getElementById('trendEchairs'));
+	
+	myChart.on('finished',() => {
+		$(".bg,.loading-box").hide();
+		console.log("finished")
+	})
+	// 指定图表的配置项和数据
+	var option = {
+		xAxis: {
+			type: 'category',
+			boundaryGap: false,
+			data: [],
+			 axisLabel: {
+			  interval:0,
+			  rotate:90//角度顺时针计算的
+			}
+		},
+		yAxis: {
+			type: 'value',
+			name: '价格(RMB)',
+			axisTick: {
+				inside: true
+			},
+			scale: true,
+		},
+		grid: {
+			left: 50,
+			bottom:80,
+		},
+		series: [{
+			data: [],
+			type: 'line',
+			areaStyle: {}
+		}],
+	};
+
+	// 使用刚指定的配置项和数据显示图表。
+	
+	var interval = '';
+	function showMsg(msg){
+		$("#prompt em").text(msg);
+		$("#prompt").show();
+		interval = setTimeout(function(){
+			$("#prompt").hide();
+		},1500)
+		
+	}
+
+})
+</script>
+</body>
+</html>

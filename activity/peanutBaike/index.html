@@ -1,0 +1,500 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="MobileOptimized" content="240" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />  
+    <meta content="email=no" name="format-detection" />
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title>冷知识</title>
+    <link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="css/common.css">
+</head>
+<body>
+<div class="wrap">
+	<ul class="baike-list">
+	</ul>
+</div>
+<div class="preview-conbox" id="preview_box">
+	<div class="bk-title2">大便吃起来是什么味道？</div>
+	<div class="bk-con2" style="margin-bottom: 0;"><p style="text-align: justify; margin-top: 20px; margin-bottom: 20px; line-height: 1.75em;">大便吃起来不臭也不苦，而是根本尝不出味道，口感和烤红薯差不多。</p><p style="text-align: justify; margin-top: 20px; margin-bottom: 20px; line-height: 1.75em;">之所以闻着臭吃着无味，是因为人整个消化系统都存在一种β—抑止酶。食物进入消化系统被分解后会产生难闻的气味，这种β—抑止酶会降低味觉系统对这种食物残渣/大便的灵敏度，这也就是为什么我们感觉不到身体里大便的臭味的原因。</p><p style="text-align: justify; margin-top: 20px; margin-bottom: 20px; line-height: 1.75em;">当消化系统出现问题的时候，这种β—抑止酶会失去作用，所以我们会感觉到口臭。所以，人在身体正常的条件下，吃大便是感觉不到臭味的。</p><p style="text-align: justify; margin-top: 20px; margin-bottom: 20px; line-height: 1.75em;">尝到臭味，说明你消化系统出现了问题。</p><p style="text-align: justify; margin-top: 20px; margin-bottom: 20px; line-height: 1.75em;">真的去尝，说明你脑子出现了问题。</p></div>
+	<div class="con-down" style="display: block;">
+		<div class="bottom-box">
+			<div class="b-left">
+				<img src="images/download.png" alt="" class="b-download">
+				<div class="b-txt">长按识别<br />二维码</div>
+			</div>
+			<img src="images/logo.png" alt="" class="b-logo">
+		</div>
+	</div>
+</div>
+<div class="share-iconbox">
+	<ul class="iconlist">
+		<li><img src="images/pyq.png" alt=""><span>朋友圈</span></li>
+		<li><img src="images/wx.png" alt=""><span>微信好友</span></li>
+		<li><img src="images/qq.png" alt=""><span>QQ</span></li>
+		<li><img src="images/zone.png" alt=""><span>QQ空间</span></li>
+		<li><img src="images/wb.png" alt=""><span>微博</span></li>
+	</ul>
+	<div class="cancel-btn">取消</div>
+</div>
+<a href="write.html" class="write-btn" ></a>
+<div class="prompt" id="prompt"><em>提示信息</em></div>
+<script src="js/jquery-1.8.3.min.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script src="js/nfygCommonPack.js"></script>
+<script src="js/public.js"></script>
+<script src="js/html2canvas.min.js"></script>
+<!-- <script src="js/vconsole.min.js"></script> -->
+<div style="display: none;"><script type="text/javascript" src="https://v1.cnzz.com/z_stat.php?id=1279530514&web_id=1279530514"></script></div>
+<script>
+	$(function(){
+		
+		
+		shareData.url = "http://activity.peanut8.com/act/2020/peanutBaike/index.html?versionCode="+baseInfo.versionCode+"&sign="+baseInfo.sign+"&deviceCode="+baseInfo.deviceCode+"&userId="+baseInfo.userId+"&platform="+baseInfo.platform
+		
+		initList();
+		
+		$(document).on("click",".ope-text",function(){
+			var index = $(".baike-list li").index($(this).parents("li"))
+			var conList = JSON.parse(localStorage.getItem("conList"));
+			if($(this).hasClass("spread-btn")){
+				$(this).parents("li").find(".bk-con").css({"max-height":"inherit","overflow":"inherit"});
+				$(this).parents("li").find(".bk-con").html(conList[index]);
+				$(this).removeClass("spread-btn").addClass("shrink-btn").text("收起")
+				
+			}else{
+				$(this).parents("li").find(".bk-con").css({"max-height":"11.8rem","overflow":"hidden"});
+				// var con = cut_str(conList[index],165);
+				var con = subHtml(conList[index],240,true)
+				$(this).parents("li").find(".bk-con").html(con+"...");
+				$(this).removeClass("shrink-btn").addClass("spread-btn").text("展开全文")
+			}
+			
+		})
+		//点分享
+		$(document).on("click",".bk-share",function(){
+			//微信分享
+			// var sigleShareUrl = "http://activity.peanut8.com/act/2020/peanutBaike/share.html?versionCode="+baseInfo.versionCode+"&sign="+baseInfo.sign+"&deviceCode="+baseInfo.deviceCode+"&userId="+baseInfo.userId+"&platform="+baseInfo.platform+"&baikeId="+$(this).parents("li").attr("baikeId");
+			// var title = $(this).parents("li").find(".bk-title").text();
+			// var txt =  $(this).parents("li").find(".bk-con").text();
+			// nfyg.openSharePanel(sigleShareUrl,shareData.imgUrl, title, txt)
+			var _this = $(this);
+			var list_i = $(".baike-list li").index($(this).parents("li"))
+			var conList = JSON.parse(localStorage.getItem("conList"));
+			$(".bk-title2").html(_this.parents("li").find(".bk-title").text());
+			$(".bk-con2").html(conList[list_i]);
+			
+			//图片预览
+			$(".wrap").hide();
+			$("body").css("background","#FFF");
+			$(".preview-conbox,.share-iconbox").show();
+			
+		})
+		//取消分享
+		$(".cancel-btn").click(function(){
+			$(".wrap").show();
+			$("body").css("background","#f8f8f8");
+			$(".preview-conbox,.share-iconbox").hide();
+		})
+		
+		$(".iconlist li").click(function(){
+			var i = $(".iconlist li").index(this);
+			takePhoto(i)
+		})
+		
+		/** sharePlatform  0：微信朋友圈 、 1：微信好友、2：QQ、3：QQ空间、4：微博 *  shareType      0：以表情的形式分享（限微信） 1：下载，2：以图片的形式分享 */
+		function takePhoto(sharePlatform) {
+			//解决图片截图不全的问题
+				window.pageYoffset = 0;
+				document.documentElement.scrollTop = 0;
+				document.body.scrollTop = 0;
+				
+				 //创建一个新的canvas
+				var canvas2 = document.createElement("canvas");
+				//获取宽高
+				var w = $('#preview_box').width();
+				var h = $('#preview_box').height();
+				var scale_v = 4;
+				// // 将canvas画布放大若干倍，然后盛放在较小的容器内，就显得不模糊了
+				canvas2.width = w * scale_v;
+				canvas2.height = h * scale_v;
+				canvas2.style.width = w + "px";
+				canvas2.style.height = h + "px";
+		
+				// //可以按照自己的需求，对context的参数修改,translate指的是偏移量
+				var context = canvas2.getContext("2d");
+				context.scale(scale_v, scale_v);
+				
+				html2canvas(document.querySelector('#preview_box'), {
+					useCORS: true,
+					scale: scale_v,
+					width: w,
+					height: h,
+					background:'#FFFFFF',
+					canvas: canvas2,
+					dpi: window.devicePixelRatio * scale_v, // window.devicePixelRatio是设备像素比
+				}).then(function(canvas) {
+					var imgBase64 = canvas.toDataURL('image/jpeg', 1.0);
+					getImgUrl(imgBase64,sharePlatform)
+					//nfyg.scriptShareImg(sharePlatform,imgBase64,2);
+				});
+
+				
+				
+				
+		}
+		
+		//base64 返回http url地址
+		function getImgUrl(base64Img,sharePlatform){
+			nfyg.otherCommon.getDatanormal("post", baseUrl + '/uSystem/base64fileUpload', "json", JSON.stringify({"img":base64Img}), true, function(res) {
+				console.log(res);
+				if (res.resultCode == 0) {
+					nfyg.scriptShareImg(sharePlatform,res.data,2);
+				} else {
+					nfyg.otherCommon.promptShow(res.resultMsg);
+				}
+			})
+		}
+		//点赞
+		$(document).on("click",".bk-zan",function(){
+			if(!$(this).hasClass("act")){//点赞
+				like(1,this)
+			}else{//取消点赞
+				like(2,this)
+			}
+		})
+
+		function initList(){
+			var params ='';
+			if(isApp){
+				params = {"baseInfo":baseInfo};
+				console.log(params)
+			}else{
+				var baikeId = getQueryString("baikeId")
+				var versionCode = getQueryString("versionCode")
+				var sign = getQueryString("sign")
+				var deviceCode = getQueryString("deviceCode")
+				var userId = getQueryString("userId")
+				var platform = getQueryString("platform")
+				
+				params = {"baseInfo":{
+						"versionCode":versionCode,
+						"sign":sign,
+						"deviceCode":deviceCode,
+						"userId":userId,
+						"platform":platform
+					}}
+					
+			}
+			
+			nfyg.otherCommon.getDatanormal("post", baseUrl + '/v1/baike/list', "json", JSON.stringify(params), true, function(res) {
+				console.log(res);
+				if (res.resultCode == 0) {
+					if(res.data){
+						var html = '';
+						var conList = []
+						res.data.forEach(function(item,index,arr){
+							
+							//点击的公式  Y = X*常量+N+Q
+							var days = getDaysBetween(item.publishTime);
+							var len = res.data.length-index;
+							var N = 0;
+							var Q = 0;
+							var count_N = 0;
+							var zan_num = 0;
+							if(days == 0){
+								N = 90;
+							}else if(1<days<=1){
+								N = 100*days;
+							}else if(2<=days<=3){
+								N = 120*days;
+							}else if(4<=days<=5){
+								N = 121*days;
+							}else if(6<=days<=7){
+								N = 122*days;
+							}else if(8<=days<=9){
+								N = 123*days;
+							}else if(10<=days){
+								N = 124*days;
+							}
+							
+							if(len<=61){
+								Q = 1*len;
+							}else if(62<=len<=181){
+								var m =parseInt((len-62)/6)+1;
+								Q = m*12*len;
+							}else{
+								var ram = Math.random()*20000
+								Q =parseInt(ram+30000);
+							}
+							
+							if(0<=item.zanNum<=1){
+								count_N = 3;
+							}else if(2<=item.zanNum<=3){
+								count_N = 5;
+							}else if(4<=item.zanNum<=5){
+								count_N = 7;
+							}else if(6<=item.zanNum<=7){
+								count_N = 9;
+							}else if(8<=item.zanNum<=9){
+								count_N = 11;
+							}else if(10<=item.zanNum<=15){
+								count_N = 13;
+							}else if(16<=item.zanNum<=20){
+								count_N = 15;
+							}else if(21<=item.zanNum<=40){
+								count_N = 17;
+							}else if(41<=item.zanNum<=60){
+								count_N = 19;
+							}else if(61<=item.zanNum<=100){
+								count_N = 21;
+							}else if(101<=item.zanNum){
+								count_N = 300;
+							}
+							
+							zan_num = item.zanNum*count_N+N+Q;
+							
+							conList.push(item.content);
+							
+							html +='<li baikeId = "'+item.baikeId+'"><div class="bk-title">'+item.title+'</div>'
+							var strLen = get_length(toText(item.content))
+							// console.log(strLen)
+							if(strLen<=240){
+								html +='<div class="bk-con">'+item.content+'</div>'
+							}else{
+								// var con = cut_str(item.content,165);
+								var con = subHtml(item.content,240,true)
+								html +='<div class="bk-con">'+con+'...</div>'
+								html +='<div class="ope-tc"><a class="ope-text spread-btn">展开全文</a></div>'
+								
+							}
+								   html +='<div class="bk-iconbox">'+
+								   '<div class="flex-between">'+
+									'<div class="bk-time">'+item.createTime+'</div>'+
+									'<div class="bk-flex-right">'+
+									'<div class="bk-share">分享</div>'
+								if(item.isZan == 1){
+									html +='<div class="bk-zan act">'+zan_num+'</div></div></div></div></li>'
+								}else{
+									html +='<div class="bk-zan">'+zan_num+'</div></div></div></div></li>'
+								}
+									
+							localStorage.setItem('conList',JSON.stringify(conList))		
+						})
+						$(".baike-list").append(html);
+					}
+					
+				} else {
+					nfyg.otherCommon.promptShow(res.resultMsg);
+				}
+			})
+		}
+		
+		//获取当前日期
+		function getNowFormatDate() {
+			var date = new Date();
+			var seperator1 = "-";
+			var year = date.getFullYear();
+			var month = date.getMonth() + 1;
+			var strDate = date.getDate();
+			if (month >= 1 && month <= 9) {
+				month = "0" + month;
+			}
+			if (strDate >= 0 && strDate <= 9) {
+				strDate = "0" + strDate;
+			}
+			var currentdate = year + seperator1 + month + seperator1 + strDate;
+			return currentdate;
+		}
+		/**
+		 * 计算两个日期之间的天数
+		 * @param dateString1  开始日期 yyyy-MM-dd
+		 * @param dateString2  结束日期 yyyy-MM-dd
+		 * @returns {number} 如果日期相同 返回一天 开始日期大于结束日期，返回0
+		 */
+		function  getDaysBetween(dateString1){
+			var dateString2 = getNowFormatDate();
+		    var  startDate = Date.parse(dateString1);
+		    var  endDate = Date.parse(dateString2);
+		    if (startDate>endDate){
+		        return 0;
+		    }
+		    if (startDate==endDate){
+		        return 0;
+		    }
+		    var days=(endDate - startDate)/(1*24*60*60*1000);
+		    return  days;
+		}
+		
+		//点赞1/取消点赞2
+		function like(type,obj){
+			var baikeId = $(obj).parents("li").attr("baikeId");
+			var userId = baseInfo.userId;
+			var params = {
+				"baikeId":baikeId,
+				"userId":userId,
+				"type":type,
+			}
+			nfyg.otherCommon.getDatanormal("post", baseUrl + '/v1/baike/like', "json", JSON.stringify(params), true, function(res) {
+				console.log(res);
+				if (res.resultCode == 0) {
+					if(type==1){
+						$(obj).addClass("act").text(+$(obj).text()+1)
+					}else{
+						$(obj).removeClass("act").text(+$(obj).text()-1)
+					}
+				} else {
+					nfyg.otherCommon.promptShow(res.resultMsg);
+				}
+			})
+		}
+		
+		
+		
+		function getQueryString(name){
+		     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+		     var r = window.location.search.substr(1).match(reg);
+		     if(r!=null)return  unescape(r[2]); return null;
+		}
+	
+	 function get_length(s){
+	        var char_length = 0;
+	        for (var i = 0; i < s.length; i++){
+	            var son_char = s.charAt(i);
+	            encodeURI(son_char).length > 2 ? char_length += 2 : char_length += 1;
+	        }
+	        return char_length;
+	    }
+	    function cut_str(str, len){
+	        var char_length = 0;
+	        for (var i = 0; i < str.length; i++){
+	            var son_str = str.charAt(i);
+	            encodeURI(son_str).length > 2 ? char_length += 2 : char_length += 1;
+	            if (char_length >= len){
+	                var sub_len = char_length == len ? i+1 : i;
+	                return str.substr(0, sub_len);
+	                break;
+	            }
+	        }
+	    }
+		/**
+		 * 截取带HTML样式的字符串，并保留并自动补齐HTML标签
+		 * oHtml  将要截取的HTML字符串
+		 * nlen   截取后的长度，包含标签之间的空格
+		 * isByte 是否按照字节长度截取
+		 */
+		var subHtml = function(oHtml, nlen, isByte){
+		    var rgx1 = /<[^<^>^\/]+>/;      //前标签(<a>的href属性中可能会有“//”符号，先移除再判断)
+		    var rgx2 = /<\/[^<^>^\/]+>/;    //后标签
+		    var rgx3 = /<[^<^>^\/]+\/>/;    //自标签
+		    var rgx4 = /<[^<^>]+>/;         //所有标签
+		    var selfTags = "hr,br,img,input,meta".split(",");
+		    if(typeof oHtml !== "string"){
+		        return "";
+		    }
+		    oHtml = oHtml.replace(/(^\s*)|(\s*$)/g, "").replace(/[\r\n]/g, "");
+		    var oStr = oHtml.replace(/<[^<^>]*>/g, "");
+		    var olen = isByte ? oStr.replace(/[^\x00-\xff]/g,"**").length : oStr.length;
+		    if(!/^\d+$/.test(nlen) || olen <= nlen){
+		        return oHtml;
+		    }
+		    var tStr = oHtml;
+		    var index = 0;
+		    var matchs = new Array();
+		    while(rgx4.test(tStr)){
+		        var m = new Object();
+		        m.index = index + tStr.search(rgx4);
+		        m.string = tStr.match(rgx4).toString();
+		        var len = tStr.search(/<[^<^>]+>/)+tStr.match(/<[^<^>]+>/)[0].length;
+		        tStr = tStr.substr(len);
+		        index += len;
+		        matchs.push(m);
+		    }
+		    if(isByte){
+		        var i=0;
+		        for(var z = 0; z < oStr.length; z++){
+		            i += (oStr.charCodeAt(z) > 255) ? 2 : 1;
+		            if(i >= nlen){
+		                tStr=oStr.slice(0,(z + 1));
+		                break;
+		            }
+		        }
+		    } else {
+		        tStr = oStr.substr(0, nlen);
+		    }
+		    var startTags = new Array();
+		    for(var i = 0; i < matchs.length; i++){
+		        if(tStr.length <= matchs[i].index){
+		            //tStr += matchs[i].string;
+		            matchs = matchs.slice(0, i);
+		            break;
+		        } else {
+		            tStr = tStr.substring(0, matchs[i].index) + matchs[i].string + tStr.substr(matchs[i].index);
+		            if(rgx1.test(matchs[i].string.replace(/(\/\/)/g, ""))){
+		                var name = matchs[i].string.replace(/[<>]/g, "").split(" ");
+		                if(name.length > 0){
+		                    name = name[0];
+		                    if(!selfTags.inArray(name)){
+		                        startTags.push(name);
+		                    }
+		                }
+		            } else if(rgx2.test(matchs[i].string)){
+		                var name = matchs[i].string.replace(/[<\/>]/g, "");
+		                if(startTags.length > 0 && startTags[startTags.length - 1] === name){
+		                    startTags.pop();
+		                }
+		            }
+		        }
+		    }
+		    if(startTags.length > 0){
+		        for(var i = startTags.length - 1; i >=0; i--){
+		            tStr += '</' + startTags[i] + '>';
+		        }
+		    }
+		    return tStr;
+		}
+		/**
+		 * 判断数组中是否包含某个元素
+		 */
+		Array.prototype.inArray = function(v){
+		    for(i=0; i < this.length; i++) {
+		        if(this[i] == v){
+		            return true;
+		        }
+		    }
+		    return false;
+		}
+		/**
+		 * 将HTML字符串里面的文本字符检出
+		 */
+		var toText = function(oHtml){
+		    if(typeof oHtml === "string"){
+		        return oHtml.replace(/(^\s*)|(\s*$)/g, "").replace(/<[^<^>]*>/g, "").replace(/[\r\n]/g, "");
+		    } else {
+		        return "";
+		    }
+		};
+})
+</script>
+</body>
+</html>

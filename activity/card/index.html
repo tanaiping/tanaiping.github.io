@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="MobileOptimized" content="240" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />  
+    <meta content="email=no" name="format-detection" />
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title>味全严选牧场，牧场好，奶才好</title>
+    <link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="css/common.css">
+</head>
+<body>
+<div class="wrap bg">
+	<div class="index-tips"><span></span></div> <!-- 你又领了隐藏券 不能领了，明天再来吧 -->
+	<div class="flex-center"><div class="get-card-btn"></div></div>
+	<div class="sqf">*奶源、生产皆获国际SQF认证的高品质牛奶，每一滴都是对质量的坚持</div>
+	<div class="flex-center text-tips">活动时间： 2020年8月24日至9月12日<br />｜花生地铁APP｜卡包内查询</div>
+	<div class="flex-center">
+		<div class="card-com card1">
+			<div class="btn"></div>
+		</div>
+	</div>
+	<div class="flex-center">
+		<div class="card-com card2">
+			<div class="btn"></div>
+		</div>
+	</div>
+	<div class="flex-center">
+		<div class="card-com card3">
+			<div class="btn"></div>
+		</div>
+	</div>
+	<div class="flex-center">
+		<div class="card-com card4">
+			<div class="btn"></div>
+		</div>
+	</div>
+</div>
+<div class="prompt" id="prompt"><em>提示信息</em></div>	
+<div class="blackbg"></div>
+<img src="images/icon_open.png" alt="" class="wx_share">
+<div class="pop-login pop-com">
+	<div class="login-bg">
+		<div class="login-box">
+			<div class="inputbox mb18"><input type="text" placeholder="请输入手机号" id="mobile"></div>
+			<div class="flex-between mb18"><div class="inputbox" style="width: 1.5rem;"><input type="text" placeholder="验证码" id="code"></div><div class="get-code">获取验证码</div></div>
+		</div>
+		<div class="flex-center"><div class="login-submit-btn"></div></div>
+	</div>
+	<div class="flex-center"><div class="close-pop"></div></div>
+</div>
+<script src="js/jquery-1.8.3.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script src="js/nfygCommonPack.js"></script>
+<script src="js/jquery.qrcode.min.js"></script>
+<script src="js/public.js"></script>
+<!-- <script src="js/vconsole.min.js"></script> -->
+
+<script>
+	$(function(){
+		var  isReceive = 0;// 今天未领  1 今天已领
+		
+		if(isApp){
+			if(!userInfo){//没登录跳到登录页面
+				pushToLoginView();
+			}else{
+				nfyg.encrypt(mobile, function(data) {
+					Init(data);
+				})
+			}
+		}else{
+			if (nfyg.browser.weixin || nfyg.browser.qq || nfyg.browser.ding || nfyg.browser.alipay || nfyg.browser.weibo) {
+				var tel = $.cookie('mobiles');
+				if(tel){
+					Init(tel);
+				}
+			}else{
+				if(nfyg.browser.ios){
+					window.location.href="nfyg://detail?url=http://activity.peanut8.com/act/2020/card/index.html"
+				}else{
+					window.location.href="nfyg://launcher?url=http://activity.peanut8.com/act/2020/card/index.html" 
+				}
+				setTimeout(() => {
+				  // 下载落地页
+				  window.location.href = "http://web.peanut8.com/download"
+				}, 4000);
+			}
+			
+		}
+		
+		//关闭遮罩
+		$(".close-pop,.blackbg").click(function(){
+			$(".pop-com,.blackbg,.wx_share").hide();
+		})
+		//处理 fixed 调出虚拟键盘input错位的问题
+		// $('input').bind("focus",function(){
+		//    $(".pop-login").css("position","absolute");
+		// }).bind("blur",function(){
+		//   $(".pop-login").css("position","fixed");
+		// });
+		
+		//一键领取
+		$(".get-card-btn").click(function(){
+			if(!$(this).hasClass("disabled")){
+				if(isApp){
+					if(!userInfo){//没登录跳到登录页面
+						pushToLoginView();
+					}else{
+						nfyg.encrypt(mobile, function(data) {
+							getCard(data);
+						})
+					}
+				}else{
+					var  tel = $.cookie('mobiles');
+					console.log(tel)
+					if(!tel){
+						$(".pop-com,.blackbg").show();
+					}else{
+						getCard(tel);
+					}
+				}
+			}else{
+				$(".index-tips span").text("不能领了，明天再来吧").css("display","block");
+				setTimeout(function(){$(".index-tips span").text("").css("display","none");},3000)
+			}
+		})
+		
+		//去卡包
+		$(".btn").click(function(){
+			if($(this).hasClass("has")){
+				if(isApp){
+					window.location.href = "http://activity.peanut8.com/act/2020/card/list.html"
+				}else{
+					if (nfyg.browser.weixin || nfyg.browser.qq || nfyg.browser.ding || nfyg.browser.alipay || nfyg.browser.weibo) {
+					  $(".blackbg,.wx_share").show();
+					} else {
+					  if(nfyg.browser.ios){
+					  	window.location.href="nfyg://detail?url=http://activity.peanut8.com/act/2020/card/index.html"
+					  }else{
+					  	window.location.href="nfyg://launcher?url=http://activity.peanut8.com/act/2020/card/index.html" 
+					  }
+					  setTimeout(() => {
+					    // 下载落地页
+					    window.location.href = "http://web.peanut8.com/download"
+					  }, 4000);
+					}
+				}
+			}
+			
+		})
+		
+		$(".login-submit-btn").click(function(){
+			login()
+		})
+	})
+	
+	//页面加载初始化数据
+	var Init = function (m){
+		nfyg.otherCommon.getDatanormal("post", baseUrl+'/20/weichuan/index', "json", {
+		  tel: m,
+		}, true, function (res) {
+			  console.log(res);
+		  if (res.code == 1) {
+			  isReceive = res.data.isReceive;
+			  if(res.data.isReceive==1){//今天已领
+				$(".btn").addClass("has");  
+			  }
+			  if(res.data.number==0){
+				 $(".get-card-btn").addClass("disabled"); 
+			  }
+		  } else {
+		    // nfyg.otherCommon.promptShow(res.msg);
+			$(".index-tips span").text(res.msg).css("display","block");
+			setTimeout(function(){$(".index-tips span").text("").css("display","none");},3000);
+		  }
+		})
+	}
+	
+	//一键领取
+	var getCard = function (m){
+		nfyg.otherCommon.getDatanormal("post", baseUrl+"/20/weichuan/receive", "json", {
+		  tel: m,
+		}, true, function (res) {
+			  console.log(res);
+		  if (res.code == 1) {
+			  if(isReceive==1){
+				$(".index-tips span").text("你又领了隐藏券").css("display","block");
+			  }else{
+				 $(".index-tips span").text("你领了隐藏券").css("display","block"); 
+				 isReceive = 1
+			  }
+			  setTimeout(function(){$(".index-tips span").text("").css("display","none");},3000);
+			  $(".btn").each(function(){
+				  if(!$(this).hasClass("has")){
+					$(this).addClass("has");  
+				  }
+			  })
+		  } else {
+		    // nfyg.otherCommon.promptShow(res.msg);
+			$(".index-tips span").text(res.msg).css("display","block"); 
+			setTimeout(function(){$(".index-tips span").text("").css("display","none");},3000);
+		  }
+		})
+	}
+</script>
+</body>
+</html>

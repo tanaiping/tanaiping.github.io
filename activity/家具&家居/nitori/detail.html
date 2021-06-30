@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta http-equiv="Cache-Control" content="no-cache" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="MobileOptimized" content="240" />
+		<meta name="apple-touch-fullscreen" content="YES" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="email=no" name="format-detection" />
+		<!-- uc强制竖屏 -->
+		<meta name="screen-orientation" content="portrait">
+		<!-- QQ强制竖屏 -->
+		<meta name="x5-orientation" content="portrait">
+		<!-- UC强制全屏 -->
+		<meta name="full-screen" content="yes">
+		<!-- QQ强制全屏 -->
+		<meta name="x5-fullscreen" content="true">
+		<!-- UC应用模式 -->
+		<meta name="browsermode" content="application">
+		<!-- QQ应用模式 -->
+		<meta name="x5-page-mode" content="app">
+		<!-- windows phone 点击无高光 -->
+		<meta name="msapplication-tap-highlight" content="no">
+		<!-- 适应移动端end -->
+		<title>NITORI 家具&家居 五一居家享好礼</title>
+		<link rel="stylesheet" href="css/base.css">
+		<link rel="stylesheet" href="css/common.css">
+	</head>
+	<body style="display: none;">
+		<div class="wrap">
+			<div class="main-box">
+				<div class="coupon-box">
+					<div class="desc">
+						<img src="images/desc.jpg" alt="">
+					</div>
+					<div class="code">
+						<div class="type1">
+							<span class="user-desc">会员限定</span>
+							<img src="images/code.jpg" id="imgcode">
+							<div class="com-btn business-btn">仅限商户操作</div>
+							<div class="code-msg">首页点击头像→进入我的页面→我的卡包</div>
+						</div>
+						<div class="type2" style="display: none;">
+							<div class="com-btn coupon-used-btn">此券已使用</div>
+						</div>
+					</div>
+					<div class="circle c-left"></div>
+					<div class="circle c-right"></div>
+				</div>
+				<a class="ad-img"  href="http://m.nitori-net.cn/index2.html#Activity/ArticlePage/300">
+					<div class="ad-bom"><div class="more-detail">点击查看更多详情哦</div></div>
+				</a>
+				<div class="detail-con">
+					<div class="f14" style="font-weight: bold;">新店开业一览：</div>
+					<div class="f11">上海百联南桥购物中心店</div>
+					<div class="f11">上海金桥啦啦宝都店</div>
+					<div class="f11">上海康桥新田360广场店</div>
+					<div class="f14" style="padding-top: .18rem;">使用说明：</div>
+					<div class="f11 mb20 line-div">使用期限：请于2021.4.23~2021.5.10日期间使用，逾期作废；</div>
+					<div class="f11 mb20 line-div">此券上海地区多家NITORI门店均可使用；</div>
+					<div class="f11 mb20 line-div">一个ID 只限领取一张优惠券；</div>
+					<div class="f11 line-div mb20">所有服务费(家具配送费,组装费,窗帘测量费,安装费等) 不在此券使用范围内，敬请谅解；</div>
+					<div class="f11 line-div mb20">样品及出清商品不在此券使用范围内； </div>
+					<div class="f11 line-div mb20">此券为会员专享，需加入会员后核销使用，一次支付仅可使用一张优惠券，且不可与其他优惠券共享。使用时恕不找零，敬请谅解； </div>
+					<div class="f11 mb20 line-div">非质量问题，使用此券购买的商品不可退换；</div>
+					<div class="f11 mb20 line-div">如因商品质量问题发生退货，只退还购买时实际支付金额；</div>
+					<div class="f11 mb20 line-div">如因用户操作不当导致此券失效，店铺不再进行补发，请谨慎操作；</div>
+					<div class="f11 mb20 line-div">不可用此券截图进行扫码核销；</div>
+					<div class="f11 line-div">此券最终解释权归店铺所有。</div>
+
+				</div>
+			</div>
+		</div>
+		<div class="prompt" id="prompt"><em>提示信息</em></div>
+		<div class="blackbg"></div>
+		<div class="pop">
+			<div class="pop-close"></div>
+			<div class="once-open">
+				<div class="t1">你已经成功领取</div>
+				<div class="t2"><img src="images/coupon.png" alt=""></div>
+			</div>
+			<div class="business-ope">
+				<div class="t1">此为<span>商户操作</span></div>
+				<div class="t2">如您点击 已使用<br/>将认定此券已使用，无法再使用</div>
+				<div class="com-btn cancle-btn">取消操作</div>
+			</div>
+			<div class="pop-btn">确定</div> <!-- 已使用 -->
+			<div class="used-btn" style="display: none;">已使用</div>
+		</div>
+		<img class="wx-share" src="images/icon_open.png" alt="">
+		<script src="js/jquery-1.8.3.min.js"></script>
+		<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+		<script src="js/nfygCommonPack.js"></script>
+		<script src="js/public.js"></script>
+		<!-- <script src="js/vconsole.min.js"></script> -->
+		<script>
+			$(function() {
+			// 	// console.log(window.hsad)
+			// 	// console.log(window.webkit.messageHandlers.hssdkOpenUrl)
+			
+				init();	
+				function init() {
+					if(isApp){
+						nfyg.encrypt(mobile, function (data) {
+						    nfyg.otherCommon.getDatanormal("Post", baseUrl+'21/weichuan/index', "json", {
+						    	tel: data,
+						    }, true, function (res) {
+								console.log(res)
+						    	if(res.code == 1){
+									if(res.data.isReceive != 1){
+										//页面第一次打开
+										$(".blackbg,.pop,.once-open").show();
+										receive(data)
+									}else{
+										if(res.data.isUse == 1){
+											//已经使用
+											$(".coupon-box").addClass("coupon-used");
+											$(".code .type1").hide()
+											$(".code .type2").show()
+											$(".desc img").attr("src","images/desc_disabed.jpg")
+										}
+									}
+								}else{
+									nfyg.otherCommon.promptShow(res.msg);
+								}
+								$("body").show();
+						    })
+						})
+						
+					}else{
+						//外部 浏览器
+						$("body").show();
+						openNfygApp();
+						
+					}
+					
+				};
+				//领取
+				function receive(m){
+					if(isApp){
+						nfyg.otherCommon.getDatanormal("Post", baseUrl+'21/weichuan/receive', "json", {
+							tel: m,
+						}, true, function (res) {
+							console.log(res)
+							if(res.code == 1){
+								console.log('领取成功！')
+							}else{
+								//nfyg.otherCommon.promptShow(res.msg);
+							}
+						})
+						
+					}
+				}
+				
+				//关闭弹窗
+				$(".pop-btn,.pop-close,.cancle-btn,.blackbg").click(function(){
+					$(".blackbg,.pop,.once-open,.business-ope,.wx-share").hide();
+				});
+				//商户操作
+				$(".business-btn").click(function(){
+					if(isApp){
+						$(".pop-btn").hide();
+						$(".used-btn").show();
+						$(".blackbg,.pop,.business-ope").show();
+					}else{
+						openNfygApp();
+					}
+					
+				})
+			// 	//已使用 核销
+				$(".used-btn").click(function(){
+					if(isApp){
+						nfyg.encrypt(mobile, function (data) {
+						    nfyg.otherCommon.getDatanormal("Post", baseUrl+'21/weichuan/useCoupons', "json", {
+						    	tel: data,
+						    }, true, function (res) {
+						    	if(res.code == 1){
+									//隐藏弹窗
+						    		$(".pop-btn").show();
+						    		$(".used-btn").hide();
+						    		$(".blackbg,.pop,.once-open,.business-ope").hide();
+									//切换已使用的状态
+									$(".coupon-box").addClass("coupon-used");
+									$(".code .type1").hide()
+									$(".code .type2").show()
+									$(".desc img").attr("src","images/desc_disabed.jpg")
+						    	}else{
+						    		nfyg.otherCommon.promptShow(res.msg);
+						    	}
+						    })
+						})
+						
+					}
+					
+				})
+			})
+		</script>
+	</body>
+</html>

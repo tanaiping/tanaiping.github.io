@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta http-equiv="Cache-Control" content="no-cache" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="MobileOptimized" content="240" />
+		<meta name="apple-touch-fullscreen" content="YES" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="email=no" name="format-detection" />
+		<!-- uc强制竖屏 -->
+		<meta name="screen-orientation" content="portrait">
+		<!-- QQ强制竖屏 -->
+		<meta name="x5-orientation" content="portrait">
+		<!-- UC强制全屏 -->
+		<meta name="full-screen" content="yes">
+		<!-- QQ强制全屏 -->
+		<meta name="x5-fullscreen" content="true">
+		<!-- UC应用模式 -->
+		<meta name="browsermode" content="application">
+		<!-- QQ应用模式 -->
+		<meta name="x5-page-mode" content="app">
+		<!-- windows phone 点击无高光 -->
+		<meta name="msapplication-tap-highlight" content="no">
+		<!-- 适应移动端end -->
+		<title>味全严选牧场，牧场好，奶才好</title>
+		<link rel="stylesheet" href="css/base.css">
+		<link rel="stylesheet" href="css/common.css">
+	</head>
+	<body>
+		<div class="wrap bg">
+			<div class="detail-box">
+				<div class="sqf">*奶源、生产皆获国际SQF认证的高品质牛奶，每一滴都是对质量的坚持</div>
+				<div class="detailbg">
+					<div class="detail-con">
+						<div class="code-txt">券码</div>
+						<div class="code-num"></div>
+						<div class="code-box">
+							<div id="qrcode">
+								<div>
+								</div>
+							</div>
+						</div>
+						<div class="detail-t">／截屏／使用更方便</div>
+						<img src="images/detail_text01.png" alt="" class="detial-desc">
+					</div>
+
+				</div>
+			</div>
+		</div>
+<div class="prompt" id="prompt"><em>提示信息</em></div>
+<div class="blackbg"></div>
+<img src="images/icon_open.png" alt="" class="wx_share">
+<script src="js/jquery-1.8.3.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script src="js/nfygCommonPack.js"></script>
+<script src="js/jquery.qrcode.min.js"></script>
+<script src="js/public.js"></script>
+<!-- <script src="js/vconsole.min.js"></script> -->
+
+<script>
+	$(function() {
+		var typeId = nfyg.otherCommon.GetQueryString("id");
+		var prizeId = nfyg.otherCommon.GetQueryString("prizeId");
+		prizeId == null ? prizeId = 1 : prizeId;
+		
+		
+		$(".detailbg").addClass("detailbg"+prizeId)
+		$(".detial-desc").attr("src","images/detail_text0"+prizeId+".png")
+		
+		var t = 0;
+		var docEle = document.documentElement; //获取html元素
+		var win_w = docEle.clientWidth;
+		if (win_w > 750) {
+			t = 344;
+		} else {
+			t = 1.72*200 * (win_w / 750);
+		}
+		// if(isApp){
+			nfyg.encrypt(mobile, function(data) {
+				getCode(data);
+			})
+		// }else{
+		// 	var  tel = $.cookie('mobiles');
+		// 	getCode(tel);
+		// }
+		
+		
+		function getCode(m){
+			nfyg.otherCommon.getDatanormal("post", baseUrl+'/20/weichuan/getUserPrizeCoupon', "json", {
+			  tel: m,
+			  prizeId:prizeId,
+			  id:typeId
+			}, true, function (res) {
+				  console.log(res);
+			  if (res.code == 1) {
+				  // 实现
+				  if(res.coupon!=""){
+					  $(".code-num").text(res.coupon)
+					  $("#qrcode").qrcode({
+						render: "table", //table方式
+						width: t, //宽度
+						height: t, //高度
+						text: res.coupon // 字符串
+					  });
+				  }
+			  } else {
+				nfyg.otherCommon.promptShow(res.msg);
+			  }
+			})
+		}
+		
+		  
+	})
+</script>
+	</body>
+</html>

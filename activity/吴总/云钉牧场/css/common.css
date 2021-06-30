@@ -1,0 +1,48 @@
+body{background-color: #04041d;}
+img{vertical-align: top;}
+.main-bg{background:#020317 url(../images/index_bg.png) center top no-repeat; background-size:cover; width:100%; height: 1080px;}
+.logo-index{width: 140px; height: auto; position: absolute;left: 40px;top:25px}
+.part1{width: 1200px; margin: auto; height: 1080px; max-width: 100%;}
+.w1344{width: 1200px; margin: auto; max-width: 100%;}
+.w1308{width: 1200px; margin: auto; max-width: 100%;}
+.w1720{width: 1200px; margin: auto; max-width: 100%;}
+.trade-box{width: 1200px;max-width: 100%; margin: 102px auto 0 auto;display: flex;flex-wrap: nowrap; justify-content:space-between;}
+.nav-menu{display: flex;justify-content: flex-end;margin-right:13px; padding-top: 40px;}
+.nav-menu li{margin-left: 60px;display: flex;}
+.nav-menu li a{color: #fff; font-size: 20px;}
+.nav-menu li a:hover{color:#7378d8}
+
+.com-title{margin: 70px auto 0 auto; width: 534px; height: 140px;text-align: center;}
+.com-title .t2{font-size: 30px;color: #FFF; line-height: 40px;}
+.com-title .t3{font-size: 20px;color: #FFF;line-height: 30px;}
+.com-title .t4{font-size: 14px;color: #999999;line-height: 20px;height: 20px;position: relative;text-align: center;}
+.com-title .t4 em{width: 534px;height: 2px;background: #999999; position: absolute;left: 0; top: 9px;}
+.com-title .t4 span{background: #04041d; padding: 0 15px;position: relative;z-index: 2;}
+
+.goal-contxt{margin-top: 80px; display: flex;flex-direction: row;justify-content: space-between;height: 404px;}
+.g-l{width: 530px;}
+.g-r{width: 557px;}
+.g-l .g-con-title{text-align: right;line-height: 50px;height: 50px;font-size: 24px; color: #FFF;}
+.g-r .g-con-title{text-align: left;line-height: 50px;height: 50px;font-size: 24px; color: #FFF;}
+.g-con-txt{color: #999;font-size: 16px; line-height: 20px;}
+.g-m{width: 500px;height: 404px; display: flex;align-items: center;margin:0 20px;}
+.trade-elem{width: 432px;max-width: 32%;}
+.trade-elem img{width: 100%;}
+.trade-elem .trade-t{font-size: 24px;color: #FFF; text-align: center; line-height: 80px;height: 80px;}
+.map-img{height: auto; margin: 84px 0 0 0;max-width: 100%;}
+.contact-list {display: flex;margin: 50px 0;}
+.contact-list li{text-align: center;width: 33.3%;}
+.contact-list li a{color: #FFF;font-size: 16px; display: block;}
+
+.worth-list{display: flex;justify-content: space-between;margin: 100px 15px;}
+.worth-list li{width: 344px;margin:0 15px;}
+.worth-list li .tc{text-align: center;height: 203px;}
+.worth-list li .pro-img1 img{width: 122px;height: 131px;}
+.worth-list li .pro-img2 img{width: 133px;height: 132px;}
+.worth-list li .pro-img3 img{width: 131px;height: 148px;}
+.worth-list li .pro-img4 img{width: 122px;height: 122px;}
+.worth-list li .t1{font-size: 24px;text-align: center; color: #FFF;}
+.worth-list li .t2{font-size: 16px;text-align: center; color: #999; margin-top: 30px; line-height: 26px;}
+
+.mb110{margin-bottom: 50px;}
+.ranch-img{padding: 40px 0 100px 0; }

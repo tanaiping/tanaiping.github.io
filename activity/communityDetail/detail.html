@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="MobileOptimized" content="240" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />  
+    <meta content="email=no" name="format-detection" />
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title>社区详情</title>
+    <link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css" >
+	<link rel="stylesheet" href="css/common.css">
+</head>
+<body>
+<div class="wrap">
+	<div id="carousel1" class="carousel slide" data-ride="carousel">
+	  <div class="carousel-inner">
+	    <!-- <div class="carousel-item active">
+	        <img src="images/1.jpg" class="d-block w-100" alt="...">
+	    </div>-->
+		<div class="carousel-bottom"></div>
+	  </div>
+	</div>
+	<div class="community-conbox">
+		<div class="community-head-pic flex-between">
+			<div class="person-info flex-row">
+				<img src="" alt="" id="headUrl">
+				<div class="c-info flex-col">
+					<div class="c-nickname" id="nickName"></div>
+					<div class="c-date" id="createTime"></div>
+				</div>
+			</div>
+			<div class="store"></div> <!-- act 已收藏 -->
+		</div>
+		<h2 class="community-title" id="title"></h2>
+		<div class="community-tags" id="tagList">
+			<!-- <span>此处是标签</span>
+			<span>标签有长有短</span> -->
+		</div>
+		<div class="community-content" id="content"></div>
+		<div class="sitebox">
+			<div class="site-left">
+				<img src="" alt="" id="locationUrl">
+				<div class="address">
+					<div class="t1" id="cityName"></div>
+					<div class="t2" id="locationName"></div>
+				</div>
+			</div>
+			<div class="site-ico" id="adress"></div>
+		</div>
+		<div class="community-type">用户评论<span></span></div>
+		<div class="comment-input">
+			<img src="images/default_tx.png" alt="">
+			<input type="text" placeholder="你的评论可以助Ta升级">
+		</div>
+		<div id="commentList" num='0'>
+			<!-- <div class="comment-box comment-elem">
+				<div class="comment-head flex-between">
+					<div class="comment-left flex-row">
+						<img src="" alt="" >
+						<div class="comment-info flex-col">
+							<div class="comment-nickname" ></div>
+							<div class="comment-date"></div>
+						</div>
+					</div>
+					<div class="comment-zan"></div>
+				</div>
+				<div class="comment-con"></div>
+				
+				<div class="comment-box">
+					<div class="comment-head flex-between">
+						<div class="comment-left flex-row">
+							<img src="images/1.jpg" alt="">
+							<div class="comment-info flex-col">
+								<div class="comment-nickname">纠结绿茶</div>
+								<div class="comment-date">2015-02-23</div>
+							</div>
+						</div>
+						<div class="comment-zan flex-row"><em class="ico"></em><span>0</span></div>
+					</div>
+					<div class="comment-con">这家电影院的的爆米花份量真足，就是可乐太冰了，</div>
+				</div>
+				<span class="spread-icon">展开更多</span>
+				<div class="line-box"></div>
+			</div> -->
+		</div>
+		<div class="flex-center">
+			<div class="load-more">查看更多评论</div> <!-- no-more 没有更多评论了~ -->
+		</div>
+		
+	</div>
+	
+	<div class="community-bottom">
+		<input type="text" class="conmunity-input" placeholder="说些什么吧...">
+		<div class="zan-icon" id="zanCnt"></div>
+		<div class="community-icon" id="commentCnt"></div>
+		<div class="share-icon" id="shareCnt"></div>
+	</div>
+	
+</div>
+<div class="prompt" id="prompt"><em>提示信息</em></div>	
+<div class="blackbg"></div>
+<img src="images/icon_open.png" alt="" class="wx_share">
+<!--  图片集预览  -->
+<div id="carousel2" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+	 <div class="carousel-top"></div>
+	<!-- <div class="carousel-item active">
+		<div class="item-box">
+			<img src="images/1.jpg" class="d-block w-100" alt="...">
+		</div>
+	</div>
+	</div> -->
+  </div>
+</div>
+<!--  end   -->
+<script src="js/jQuery v2.1.4.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script src="js/public.js?time=998"></script>
+<script src="js/detail.js?time=119"></script>
+</body>
+</html>

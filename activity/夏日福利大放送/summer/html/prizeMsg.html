@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="x-rim-auto-match" content="none" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="copyright" content="Copyright (c)花生地铁wifi" />
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="keywords" content="花生,地铁,wifi,WIFI,花生地铁,花生地铁wifi,地铁wifi,花生wifi" />
+    <meta name="author" content="yerongtao" />
+    <title>奖品详情</title>
+    <link rel="icon" href="http://www.wifi8.com/images/logo_icon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/style.css?v=1.0.1" />
+</head>
+
+<body>
+    <div class="my-prize my-prize-msg">
+        <!-- <img src="../images/bg_detail.png" alt="奖品详情">
+        <div class="btn-copy" id="copy-num" data-clipboard-text="HSweifi"></div> -->
+        <p class="no-prize">你还没有获得奖品哦!<br />快去参加活动兑换奖品吧!</p>
+        <div class="prize-msg">
+            <div class="prize-img">
+                <img src="../images/detail_img.png" alt="奖品图">
+            </div>
+            <div class="prize-code"></div>
+			<a href="javascript:;" class="btn-getit" id="copyBtn">复制兑换</a>
+            <div class="prize-note">
+                <!-- <h5 class="title">奖品使用说明：</h5> -->
+                <p class="note" id="prize-note"></p>
+                
+            </div>
+        </div>
+    </div>
+    <div class="prompt" id="prompt"><em>提示信息</em></div>
+    <script src="http://cmsfile.wifi8.com/uploads/wifi/AppH5/api/zepto.min.js?v=1.0.1"></script>
+    <script src="http://cmsfile.wifi8.com/uploads/wifi/AppH5/api/zepto.cookie.min.js"></script>
+    <script src="http://cmsfile.wifi8.com/uploads/wifi/AppH5/api/nfygCommonPack.min.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="../js/public.js"></script>
+	<!-- <script src="http://cmsfile.wifi8.com/uploads/wifi/AppH5/api/vconsole.min.js"></script> -->
+    <script src="../js/clipboard.min.js"></script>
+    <!-- <script>
+        var btn = document.getElementById('copy-num');
+        var clipboard = new ClipboardJS(btn);
+        clipboard.on('success', function (e) {
+            nfyg.otherCommon.promptShow('复制成功');
+            if (!nfyg.browser.weixin) {
+                window.location.href = "weixin://"
+            }
+        });
+        clipboard.on('error', function (e) {});
+    </script> -->
+    <script>
+        $(function () {
+		
+            var id = nfyg.otherCommon.GetQueryString("id");
+            var prizeId = nfyg.otherCommon.GetQueryString("prizeId");
+            // isApp = true
+            if (isApp) {
+                getUserDetail();
+            } else {
+                $(".no-prize").show().html("请前往 花生地铁 APP查看并兑换奖品~");
+                $(".prize-msg").hide()
+            }
+			
+			var clipboard = new ClipboardJS('#copyBtn');
+			
+			clipboard.on('success', function(e) {
+			    console.info('Action:', e.action);
+			    console.info('Text:', e.text);
+			    console.info('Trigger:', e.trigger);
+				nfyg.otherCommon.promptShow('复制成功');
+				setTimeout(function(){
+					switch(prizeId){
+						case '1':
+							window.location.href = 'https://wx.elegantbyte.com/ticket/?ac=otW5OrO3pGefxD1r';
+							break;
+						case '2':
+							window.location.href = 'https://wx.elegantbyte.com/ticket/?ac=cWzuwWtE8C5XWjGi';
+							break;
+						case '3':
+							window.location.href = 'https://wx.elegantbyte.com/ticket/?ac=qQKMZSpePNkMPDkG';
+							break;
+						case '4':
+							window.location.href = 'https://wx.elegantbyte.com/ticket/?ac=q0EajphDe7gSnZmV';
+							break;
+						default:
+							break;
+					}
+				},1000)
+			    e.clearSelection();
+			});
+			
+			clipboard.on('error', function(e) {
+			    console.error('Action:', e.action);
+			    console.error('Trigger:', e.trigger);
+			});
+
+            function getUserDetail() {
+                nfyg.otherCommon.getDatanormal("post", apiurl.detail, "json", {
+                    'userId': mobile,
+                    'tel': "",
+                    'id': id,
+                    'prizeId': prizeId
+                }, true, function (res) {
+                    console.log(res);
+                    if (res.code == 1) {
+                        var type = res.info.type
+                        if (type == 2) {
+                            $(".prize-img img").attr("src", res.info.img1);
+                            $("#prize-note").html(res.info.note);
+                            $(".prize-code").hide()
+                            $('.btn-getit').hide()
+                        } else if (type == 3) {
+                            $(".prize-img img").attr("src", res.info.img1);
+                            $("#prize-note").html(res.info.note);
+                            $(".prize-code").html("券码：" + res.coupon).show()
+                            $('.btn-getit').show().attr("data-clipboard-text",res.coupon);
+                        } else if (type == 5) {
+                            $(".prize-img img").attr("src", res.info.img1);
+                            $("#prize-note").html(res.info.note);
+                            $(".prize-code").hide()
+                            $('.btn-getit').attr('href', res.info.url).css("display", "block")
+                        }
+                    } else {
+                        $(".no-prize").show().html(res.msg);
+                    }
+                })
+            }
+			
+			// $("#copyBtn").click(function(){
+			// 	var copyText = $(this).attr("code");
+			// 	 // 判断是否为ie浏览器，此方法只对IE浏览器有用
+			// 	 if (window.clipboardData) {
+			// 	    // 清除原有剪切板的数据
+			// 	    window.clipboardData.clearData();
+			// 	    // 将内容复制到剪切板
+			// 	    window.clipboardData.setData("Text", copyText);
+			// 	    nfyg.otherCommon.promptShow('复制成功1');
+			// 	 // 其它浏览器,用别的方法
+			// 	 } else {
+			// 	    // 创建一个input对象
+			// 	    var oInput = document.createElement('input');
+			// 	    // 赋值
+			// 	    oInput.value = copyText;
+			// 	    // 添加到页面的body下
+			// 	    document.body.appendChild(oInput);
+			// 	    // 选择对象
+			// 	    oInput.select();
+			// 	    // 执行浏览器复制命令  
+			// 	    document.execCommand("Copy");
+			// 	    // 隐藏内容 
+			// 	    oInput.className = 'oInput';
+			// 	    oInput.style.display = 'none'; 
+			// 		nfyg.otherCommon.promptShow('复制成功2');
+			// 	}
+			// 	setTimeout(function(){
+			// 		switch(prizeId){
+			// 			case '1':
+			// 				window.location.href = 'https://wx.elegantbyte.com/ticket/?ac=otW5OrO3pGefxD1r';
+			// 				break;
+			// 			case '2':
+			// 				window.location.href = 'https://wx.elegantbyte.com/ticket/?ac=cWzuwWtE8C5XWjGi';
+			// 				break;
+			// 			case '3':
+			// 				window.location.href = 'https://wx.elegantbyte.com/ticket/?ac=qQKMZSpePNkMPDkG';
+			// 				break;
+			// 			case '4':
+			// 				window.location.href = 'https://wx.elegantbyte.com/ticket/?ac=q0EajphDe7gSnZmV';
+			// 				break;
+			// 			default:
+			// 				break;
+			// 		}
+			// 	},1000)
+			// 	
+			// 	
+			// })
+        })
+    </script>
+    <div style="display:none;">
+        <script type="text/javascript" src="https://s5.cnzz.com/z_stat.php?id=1276884101&web_id=1276884101"></script>
+    </div>
+</body>
+
+</html>

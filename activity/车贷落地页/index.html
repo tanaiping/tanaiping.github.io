@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="MobileOptimized" content="240" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />  
+    <meta content="email=no" name="format-detection" />
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title>即时审核，当天放款</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/swiper.min.css">
+    
+    <style>
+        .prompt{text-align: center;width: 90%;position: fixed;margin: auto;left: 0;right: 0;top: 40%;z-index: 1001;display: none;}
+        .prompt em{display: inline-block;background: rgba(0,0,0,0.75);padding: .75rem 1.25rem;border-radius: 2.5rem;color: #FFF;font-size: 1.6rem;line-height: 2.4rem;}
+
+        .header{width: 100%; height: 25rem;background-color: #000;}
+        .header-text{width: 100%; height: 4rem; text-align: center; padding: 1.5rem; margin-bottom: 1.5rem;}
+        .header-text .t1{line-height: 1rem; height: 1rem; text-align: center; font-size: .9rem; color: #FFF;}
+        .header-text .t2{line-height: 3rem; height: 3rem; text-align: center; font-size: 2.6rem; color: #FFF;}
+        
+        .swiper-container {padding: 2rem 0 4rem;width: 100%; height: 18.3rem;}
+        .swiper-container .swiper-wrapper .swiper-slide{ width: 55%;}
+        .swiper-container .swiper-wrapper .swiper-slide .icon{width: 100%; height: 4rem; text-align: center; margin-bottom: .5rem;}
+        .swiper-container .swiper-wrapper .swiper-slide .icon img{height: 4rem; width: auto;}
+        .swiper-container .swiper-wrapper .swiper-slide-prev .icon img,.swiper-container .swiper-wrapper .swiper-slide-next .icon img{display:none;}
+        .swiper-container .swiper-wrapper .swiper-slide .bus img{width: 100%; height: 7.8rem;}
+        .swiper-container .swiper-wrapper .swiper-slide-prev .bus { margin-top: 2.0648rem; height: 5.7352rem!important;}
+        .swiper-container .swiper-wrapper .swiper-slide-prev .bus img{ height: 5.7352rem!important;}
+        .swiper-container .swiper-wrapper .swiper-slide-next .bus { margin-top: 2.0648rem; height: 5.7352rem!important;}
+        .swiper-container .swiper-wrapper .swiper-slide-next .bus img{ height: 5.7352rem!important;}
+        .swiper-container .swiper-wrapper .swiper-slide-active{ width: 55%;}
+        .mid{width: 100%; height: 5rem;}
+        .mid-title{display: flex; justify-content: center;}
+        .box{width: 20rem; height: 3rem;line-height: 3rem; border-radius: 2rem; background-color:#5A74AD; text-align: center; font-size: 1.6rem;color: #FFF; position: relative; top: -1.5rem;}
+        .title-bg{background: url(images/title_bg.png) no-repeat; background-size: cover; width: 13.5rem; height: 2.8rem; line-height: 2.8rem; text-align: center;color: #FFF; font-size: 1.6rem;}
+        .m320{width: 32rem; margin:2rem auto 0 auto;}
+        .form-list li{margin-bottom: 2rem;}
+        .lab-t{color: #5A74AD;font-size: 1rem; line-height: 1rem; height: 1rem; margin-bottom: .5rem;}
+        .lab-t span{color: #FF7575;}
+        select{ width: 32rem; height: 3rem; line-height: 3rem; border:1px solid #5A74AD;border-radius: .3rem; font-size: 1rem; text-indent: .5rem; color:#38538E;}
+        input{width: 32rem; height: 3rem; line-height: 3rem; border:1px solid #5A74AD;border-radius: .3rem;  font-size: 1rem; text-indent: .5rem; color:#38538E;}
+        input::-webkit-input-placeholder {color: #38538E; }
+         .address{display: flex; flex-direction: row; justify-content: space-between;}
+        .submit-btn{display: flex; justify-content: center; margin-bottom: 4rem;}
+        .submit-btn button{width: 14rem; height: 3rem; border: none; line-height: 3rem; text-align: center; font-size: 1.6rem; color: #FFF;background-color:#5A74AD;border-radius: 2rem;}
+        .blackbg{background-color: #000; opacity: .7; width: 100%; height: 100%; position: fixed; left: 0px; top: 0px; z-index: 1000; display: none;}
+        .dialog-box{background-color: #FFF; color: #000; font-size: 1.4rem; line-height: 2.3rem; padding: 2rem; width: 80%;  position: fixed; left: 10%; top: 50%;  margin-top: -12.7rem; z-index: 1001; border-radius: .3rem; border:1px solid #e3e3e3; display: none;}
+        .close{position: absolute; right:-2rem; top: -2rem; width: 4rem; height: 4rem; background: url(images/close.png) no-repeat; background-size: cover;}
+          .code{ width: 12rem; height: 12rem;}
+          .tc{text-align: center;}
+         #picker{ width: 32rem; height: 3rem; line-height: 3rem; border:1px solid #5A74AD;border-radius: .3rem;  font-size: 1rem; text-indent: .5rem; color:#38538E;}
+    </style>
+</head>
+<body>
+  <div class="header">
+    <div class="header-text">
+      <div class="t1">车身价100%可分期</div>
+      <div class="t2">一成首付4S店买新车</div>
+    </div>
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+          <div class="swiper-slide">
+              <div class="icon"><img src="images/i_baoma.png" /></div>
+              <div class="bus"><img src="images/baoma.png" /></div>
+          </div>
+          <div class="swiper-slide">
+              <div class="icon"><img src="images/i_aodi.png" /></div>
+              <div class="bus"><img src="images/aodi.png" /></div>
+          </div>
+          <div class="swiper-slide">
+              <div class="icon"><img src="images/i_baoma.png" /></div>
+              <div class="bus"><img src="images/baoma.png" /></div>
+          </div>
+          <div class="swiper-slide">
+              <div class="icon"><img src="images/i_benchi.png" /></div>
+              <div class="bus"><img src="images/benchi.png" /></div>
+          </div>
+          <div class="swiper-slide">
+              <div class="icon"><img src="images/i_luhu.png" /></div>
+              <div class="bus"><img src="images/luhu.png" /></div>
+          </div>
+          <div class="swiper-slide">
+              <div class="icon"><img src="images/i_kdlk.png" /></div>
+              <div class="bus"><img src="images/kdlk.png" /></div>
+          </div>
+          <div class="swiper-slide">
+              <div class="icon"><img src="images/i_woerwo.png" /></div>
+              <div class="bus"><img src="images/woerwo.png" /></div>
+          </div>
+          <div class="swiper-slide">
+              <div class="icon"><img src="images/i_jiebao.png" /></div>
+              <div class="bus"><img src="images/jiebao.png" /></div>
+          </div>
+          <div class="swiper-slide">
+              <div class="icon"><img src="images/i_baoshijie.png" /></div>
+              <div class="bus"><img src="images/baoshijie.png" /></div>
+          </div>
+      </div>
+      <!-- 如果需要分页器 -->
+      <div class="swiper-pagination"></div>
+   </div>
+
+  </div>
+  <div class="mid">
+    <div class="mid-title">
+      <div class="box">首付1.8万起提豪车</div>
+    </div>
+  </div>
+  <div class="form-box">
+    <div class="select-bus">
+        <div class="title-bus title-bg">车型信息选择</div>
+        <div class="m320">
+         <ul class="form-list">
+          <li>
+            <div class="lab-t">车型信息<span>(必填)</span></div>
+            <select name="" id="bus_info">
+              <option value="0">118i 时尚型</option>
+              <option value="1">A3 Sportback</option>
+              <option value="2">A 180</option>
+              <option value="3">发现神行 200PS PURE版</option>
+              <option value="4">ATS-L 28T 技术型</option>
+              <option value="5">S60L T3 智进版</option>
+              <option value="6">捷豹E-PACE P200</option>
+              <option value="7">保时捷718 Cayman 2.0T</option>
+              <option value="8">更多车型</option>
+            </select>
+          </li>
+           <li id="more" style="display: none;">
+              <div class="lab-t">更多车型<span>(选填)</span></div>
+              <input type="text" placeholder="请填写您喜欢的车型" id="type_bus">
+            </li>
+          </ul>
+        </div>
+    </div>
+    <div class="info">
+        <div class="title-info title-bg">个人信息填写</div>
+        <div class="m320">
+          <ul class="form-list">
+            <li>
+              <div class="lab-t">您的名字<span>(必填)</span></div>
+              <input type="text" placeholder="请输入您的真实姓名" id="name">
+            </li>
+            <li>
+              <div class="lab-t">手机号码<span>(必填)</span></div>
+              <input type="text" placeholder="请输入您的手机号码" id="tel">
+            </li>
+            <li>
+              <div class="lab-t">您的地址<span>(选填)</span></div>
+              <div class="address">
+                <div id="picker" style="width: 12rem;" >省市(区)</div>
+                <!-- <input type="text" id="picker" style="width: 12rem;" placeholder="省市(区)" readonly="true"> -->
+                <input type="text" placeholder="详细地址" style="width: 19rem;" id="d_address">
+              </div>
+            </li>
+            <li>
+              <div class="lab-t">购车时间<span>(选填)</span></div>
+              <select name="" id="buy_date">
+                <option value="1">一个月内</option>
+                <option value="2">三个月内</option>
+                <option value="3">半年内</option>
+                <option value="4">不确定</option>
+              </select>
+            </li>
+            </ul>
+        </div>
+        <div class="submit-btn"><button id="submit_btn">提交信息</button></div>
+    </div>
+  </div>
+<div class="prompt" id="prompt"><em>提示信息</em></div>
+<div class="blackbg"></div>
+<div class="dialog-box">
+  汽车消费金融服务平台《点个车》为车主提供优质、低利率车贷产品。48小时内专属客服将会联系您。
+<div class="tc"><img src="images/code.png" alt="" class="code"></div>
+<div class="tc">扫码关注公众号，获取更多服务。</div>
+<div class="close"></div>
+
+</div>
+
+<script src="js/zepto.min.js"></script>
+<script src="js/public.js"></script>
+<script src="js/swiper.min.js"></script>
+<script src="js/picker.min.js"></script>
+<script src="js/validation.js"></script>
+<script type="text/javascript" src="js/city.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script>
+    $(function(){
+      var mySwiper = new Swiper ('.swiper-container', {
+        loop: true,
+        autoplay: true,
+        delay:4000,
+        slidesPerView: "auto",
+        centeredSlides:true,
+        spaceBetween: 20,
+      })
+
+      $('#bus_info').on('change',function(){
+        if($(this).val()==8){
+          $("#more").show();
+        }else{
+          $("#more").hide().val("");
+        }
+
+      });
+
+      $('.close').on('click',function(){
+        $(".blackbg,.dialog-box").hide();
+        window.location.reload();
+      });
+
+      $("#submit_btn").click(function(){
+        var models= $("#bus_info option:checked").text();
+        var name= $("#name").val();
+        var tel= $("#tel").val();
+        var distributor= $("#picker").text()+ $("#d_address").val();
+        var sex= $("#type_bus").val();
+        var carBuyingTime= $("#buy_date option:checked").text();
+        if(isEmpty(name)){
+          promptShow("您的名字不能为空");
+          return false;
+        }
+        if(isEmpty(tel)){
+          promptShow("手机号码不能为空");
+          return false;
+        }
+        if(!isMobile(tel)){
+          promptShow("手机号码填写不正确");
+          return false;
+        }
+        $.ajax({
+          type: "post",
+          url: 'http://activity.peanut8.com/act/save',
+          data:{"name":name,"tel":tel,"models":models,"distributor":distributor,"carBuyingTime":carBuyingTime,"sex":sex,},  //15814777383
+          dataType: 'json',
+          success: function(data) {
+            $(".blackbg,.dialog-box").show();
+          }
+        });
+
+
+      })
+      
+    })
+
+</script>
+</body>
+</html>

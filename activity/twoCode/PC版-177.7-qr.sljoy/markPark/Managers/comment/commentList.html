@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> -->
+		<title>管理后台</title>
+		<script>
+			　document.write("<link rel='stylesheet' href='../css/layui.css?v="+Math.random()+"'>");
+  　document.write("<link rel='stylesheet' href='../css/main.css?v="+Math.random()+"'>"); 
+  </script>
+	</head>
+	<body>
+		<div class="page-box">
+			<div class="filter-box">
+				<form class="layui-form" action="" style="width: 100%;">
+					<div class="layui-flex">
+						<div class="layui-form-item">
+							<label class="layui-form-label layui-form-label-auto">客户电话</label>
+							<div class="layui-input-inline" style="width: 150px;">
+								<input type="text" placeholder="请输入客户电话" autocomplete="off" class="layui-input" id="customertel">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<div class="layui-input-inline" style="width: 550px;">
+								<label class="layui-form-label layui-form-label-auto">评论时间</label>
+								<div class="layui-date-area">
+									<input type="text" class="layui-input layui-input-date" id="startTime" readonly="true" placeholder="开始时间">
+									<label class="layui-form-label" style="text-align: center;width: 40px;">至</label>
+									<input type="text" class="layui-input layui-input-date" id="endTime" readonly="true" placeholder="结束时间">
+								</div>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label layui-form-label-auto" style="width: auto">状态</label>
+							<div class="layui-input-inline" style="width: 150px;">
+								<select name="card" lay-verify="required" id="status">
+									<option value="0">全部</option>
+									<option value="1">正常</option>
+									<option value="2">下架</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label layui-form-label-auto">人物名称</label>
+							<div class="layui-input-inline" style="width: 150px;">
+								<input type="text" placeholder="请输入人物名称" autocomplete="off" class="layui-input" id="tombname">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label layui-form-label-auto">评论关键词</label>
+							<div class="layui-input-inline" style="width: 150px;">
+								<input type="text" placeholder="请输入关键词" autocomplete="off" class="layui-input" id="msgtext">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label layui-form-label-auto">家族名称</label>
+							<div class="layui-input-inline" style="width: 150px;">
+								<input type="text" placeholder="请输入家族名称" autocomplete="off" class="layui-input" id="familyname">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<div class="layui-inline">
+								<button class="layui-btn layui-btn-normal" lay-submit lay-filter="search-btn">搜索</button>
+							</div>
+						</div>
+					</div>
+					
+				</form>
+			</div>
+			<div class="content-box mt30">
+				<div class="page-title">
+					<div class="com-title">评论列表</div>
+				</div>
+				<form class="layui-form" action=""  style="width: 100%;">
+					<table class="layui-table mt20" lay-even lay-skin="nob">
+						<thead>
+							<tr>
+								<!-- <th>&nbsp;</th> -->
+								<th>编号</th>
+								<th>客户电话</th>
+								<th>人物名称</th>
+								<th>家族名称</th>
+								<th>评论时间</th>
+								<th>留言人</th>
+								<th>评论内容</th>
+								<th>状态</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody id="commentData">
+							<!-- <tr>
+								<td><input type="checkbox" name="" title="发呆" lay-skin="primary"></td>
+								<td>1</td>
+								<td>刘家俊</td>
+								<td>刘家俊</td>
+								<td>刘家俊</td>
+								<td>2020-11-25 12:22</td>
+								<td>刘孙豪</td>
+								<td>一切安好！</td>
+								<td>已上线</td>
+								<td>
+									<div class="tab-btnlist">
+										<label>隐藏</label>
+										<label>查看</label>
+										<label>删除</label>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="" title="发呆" lay-skin="primary"></td>
+								<td>1</td>
+								<td>刘家俊</td>
+								<td>刘家俊</td>
+								<td>刘家俊</td>
+								<td>2020-11-25 12:22</td>
+								<td>刘孙豪</td>
+								<td>一切安好！</td>
+								<td>已上线</td>
+								<td>
+									<div class="tab-btnlist">
+										<label>隐藏</label>
+										<label>查看</label>
+										<label>删除</label>
+									</div>
+								</td>
+							</tr> -->
+						</tbody>
+					</table>
+					<!-- <div class="table-bottom">
+						<div class="checkall-export">
+							<input type="checkbox" name="" title="全选" lay-skin="primary">
+							<label class="blue-btn">批量导出</label>
+						</div>
+						<div id="pageList"></div>
+					</div> -->
+					<div id="pageList"></div>
+				</form>
+			</div>
+		</div>
+		<script>
+			document.write("<s" + "cript type='text/javascript' src='../layui.js?" + Math.random() + "'></s" + "cript>");
+			document.write("<s" + "cript type='text/javascript' src='../../com_config.js?" + Math.random() + "'></s" + "cript>");
+			document.write("<s" + "cript type='text/javascript' src='../js/comment/commentList.js?" + Math.random() + "'></s" + "cript>");
+		</script>
+	</body>
+</html>

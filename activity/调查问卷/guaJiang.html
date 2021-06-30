@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="MobileOptimized" content="240" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />  
+    <meta content="email=no" name="format-detection" />
+	<title>刮刮奖</title>
+	<style>
+		#guaJiang .bjc {  
+            color: black;  
+            height: 70px;  
+            width: 240px;  
+            text-align: center;  
+            line-height: 70px;  
+            font-size: 20px;  
+            position: absolute;  
+            top: 300px;  
+            left: 60px;  
+            background-image: url(img/darkbg.png);  
+            background-repeat: no-repeat;  
+            background-size: 18px 18px;  
+            background-position: 80% 53%  
+        }  
+        #guaJiang .guaCanvas {  
+            z-index: 3;  
+            position: absolute;  
+            top: 300px;  
+            left: 60px  
+        }  
+	</style>
+</head>
+<body>
+	<body >  
+        <div id='guaJiang'>  
+            <div class='bjc'>萌赚送你1.5</div>  
+            <canvas id="myCanvas" class='guaCanvas' width="240" height="70"></canvas>  
+        </div>  
+    </body> 
+    <script>
+    	
+    	var clientWidth = document.documentElement.clientWidth;  
+                if(clientWidth *1 >0){  
+                    document.querySelector("#guaJiang .bjc").style.left = (clientWidth - 240)/2 + "px";  
+                    document.querySelector("#guaJiang .guaCanvas").style.left = (clientWidth - 240)/2 + "px";  
+                }  
+                  
+                  
+                 // 得到画笔  
+                var cvs = document.getElementById("myCanvas"),  
+                    ctx = cvs.getContext("2d"),  
+                    touchRadius = 10;    // 默认手指触摸半径，可以自定义设置  
+                  
+                // 默认填充灰色来遮住文字  
+                ctx.fillStyle = "#ccc";  
+                ctx.fillRect(0, 0, 240, 70);    // fillRect，用矩形填充  
+                ctx.font = '15px arial';  
+                ctx.fillStyle = 'white';  
+                ctx.fillText('您获得一次刮奖机会', 56,40);  
+                  
+                // 画园的方法  
+                // @param { integer } 圆心的x坐标  
+                // @param { integer } 圆心的y坐标  
+                // @param { integer } 圆心半径  
+                // @param { string } 填充的颜色（本例中会通过其余代码设置为‘透明’，所以这个设置可以忽略）  
+                var fillCircle = function (x, y, radius, fillColor) {  
+                    this.fillStyle = fillColor || "#eee";  
+                    this.beginPath();  
+                    this.moveTo(x-90, y-300);  
+                    this.arc(x-90, y-300, radius, 0, Math.PI * 2, false);    // 标准画圆  
+                    this.fill();  
+                };  
+                  
+                // 得到涂抹的百分比  
+                var getTransparentPercent = function (ctx, width, height) {  
+                    var imgData = ctx.getImageData(0, 0, width, height),    // 得到canvas的像素信息  
+                        pixles = imgData.data,  
+                        transPixs = [];  
+                    for (var i = 0, j = pixles.length; i < j; i += 4) {    // 因为存储的结构为[R, G, B, A]，所以要每次跳4个长度  
+                        var a = pixles[i + 3];    // 拿到存储alpha通道的值  
+                        if (a === 0) {    // alpha通道为0，就代表透明  
+                            transPixs.push(i);  
+                        }  
+                    }  
+                    return (transPixs.length / (pixles.length / 4) * 100).toFixed(2);  
+                }  
+                  
+                // 需要判断是PC还是手机  
+                var device = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase()),  
+                    clickEvtName = device ? 'touchstart' : 'mousedown',  
+                    moveEvtName = device ? 'touchmove' : 'mousemove';  
+                  
+                // 判断是不是开始触摸等  
+                if (!device) {  
+                    var isMouseDown = false;  
+                    document.addEventListener('mouseup', function (e) {  
+                        isMouseDown = false;  
+                    }, false);  
+                } else {  
+                    document.addEventListener("touchmove", function (e) {  
+                        if (isMouseDown) {  
+                            e.preventDefault();  
+                        }  
+                    }, false);  
+                    document.addEventListener('touchend', function (e) {  
+                        isMouseDown = false;  
+                    }, false);  
+                }  
+                  
+                // 开始移动  
+                cvs.addEventListener(clickEvtName, function (e) {  
+                    isMouseDown = true;  
+                    var x = (device ? e.touches[0].clientX : e.clientX);  
+                    var y = (device ? e.touches[0].clientY : e.clientY);  
+                    ctx.globalCompositeOperation = 'destination-out';    // 关键部分，描述当在canvas上再次绘画时候的情况，这个设置便是之前所说的透明  
+                    fillCircle.call(ctx, x, y, touchRadius);  
+                    console.log("当前涂抹比例为：" + getTransparentPercent(ctx, 240, 70));  
+                }, false);  
+                  
+                // 移动中  
+                cvs.addEventListener(moveEvtName, function (e) {  
+                    if (!device && !isMouseDown) {  
+                        return false;  
+                    }  
+                    var x = (device ? e.touches[0].clientX : e.clientX);  
+                    var y = (device ? e.touches[0].clientY : e.clientY);  
+                    ctx.globalCompositeOperation = 'destination-out';  
+                    fillCircle.call(ctx, x, y, touchRadius);  
+                    console.log("当前涂抹比例为：" + getTransparentPercent(ctx, 240, 70));  
+                }, false);
+    </script> 
+</body>
+</html>

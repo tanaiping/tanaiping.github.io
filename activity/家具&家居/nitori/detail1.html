@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title></title>
+</head>
+<body>
+	<div id="test"  onclick="redirectUrl()">按钮</div>
+	
+<script>
+	function untitledFunction(p1,p2,p3){
+		
+	}
+	function redirectUrl (){
+	  var userAgent = navigator.userAgent;
+	  var isAndroid = userAgent.indexOf('Android') > -1 || userAgent.indexOf('Adr') > -1; //android终端
+	  var isiOS = !!userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+	  if(isiOS){
+		  console.log("isiOS")
+	      // 是安卓手机的微信浏览器
+	    window.webkit.messageHandlers.hssdkOpenUrl.postMessage('http://activity.peanut8.com/act/2020/nitori/detail.html');
+	  }else if(isAndroid){
+	      // 是ios手机的微信浏览器
+		  console.log("isAndroid")
+	    window.hsad.hssdkOpenUrl('http://activity.peanut8.com/act/2020/nitori/detail.html')
+	  }
+	}
+	
+	function test(){
+		alert("测试")
+	}
+	</script>
+</body>
+</html>

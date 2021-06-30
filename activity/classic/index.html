@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="MobileOptimized" content="240" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />  
+    <meta content="email=no" name="format-detection" />
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title>花样经</title>
+    <link rel="stylesheet" href="css/base.css">
+	<style>
+		body{background-color: #F8F8F8;}
+		.prompt{text-align: center;	width: 90%;	position: fixed;margin: auto;left: 0;right: 0;top: 40%;z-index: 10001;display: none;}
+		.prompt em{display: inline-block;background: rgba(0,0,0,0.75);padding: 0.1rem .15rem;border-radius: .2rem;color: #FFF;font-size: 0.16rem;line-height: 0.2rem;}
+		.wrap{}
+		.list li{padding: .15rem;margin-bottom: .1rem; background-color: #FFF;}
+		.list-title{line-height: .25rem;color: #333;font-size: .16rem; position: relative;}
+		.list .go-detail-link{display: block; cursor: pointer;}
+		.first{padding-left: .27rem;}
+		.first .new{width: .24rem;height: .13rem; display: block; background: url(images/news_icon.png) center center no-repeat; background-size: contain; position: absolute; left: 0; top: .06rem;}
+		.list-time{height: .185rem; color: #999; font-size: .13rem;margin:.04rem 0;}
+		.video-img img{width: 100%;}
+		.load-more{font-size: .13rem; color: #999; text-align: center;line-height: .3rem;}
+		.blackbg{width: 100%;height: 100%;position: fixed;left: 0;top: 0; background: url(images/black_bg.png) repeat; z-index: 10; display: none;}
+		.wx_share{position: fixed; right: .3rem;top: .1rem;width: 2.8rem;height: auto;z-index: 11; display: none;}
+	</style>
+
+</head>
+<body>
+<div class="wrap">
+	<ul class="list">
+	</ul>
+	<div class="load-more">加载更多...</div>
+</div>
+<div class="prompt" id="prompt"><em>提示信息</em></div>	
+<div class="blackbg"></div>
+<img src="images/icon_open.png" alt="" class="wx_share">
+<script src="js/jquery-1.8.3.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script src="js/nfygCommonPack.js?it=222"></script>
+<script src="js/public.js"></script>
+<!-- <script src="js/vconsole.min.js"></script> -->
+<script>
+	$(function(){
+		var page = 0;
+		var totalPage = 1;
+		if(nfyg.browser.ios){
+			loadData(1,page);
+		}else{
+			loadData(2,page);
+		}
+		 
+		 $(document).on("click",".blackbg,.wx_share",function(){
+		 	$(".blackbg,.wx_share").hide()
+		 })
+		 
+		 $(document).on("click",".go-detail-link",function(){
+			 if (nfyg.browser.weixin || nfyg.browser.qq || nfyg.browser.ding || nfyg.browser.alipay || nfyg.browser.weibo) {
+			   $(".blackbg,.wx_share").show()
+			 }else{
+				 var links = $(this).attr("links")
+				 window.location.href= links;
+			 }
+		 })
+		 
+		 
+		$(window).scroll(function () {
+		     //已经滚动到上面的页面高度
+		    var scrollTop = $(this).scrollTop();
+		     //页面高度
+		    var scrollHeight = $(document).height();
+		      //浏览器窗口高度
+		    var windowHeight = $(this).height();
+		     //此处是滚动条到底部时候触发的事件，在这里写要加载的数据，或者是拉动滚动条的操作
+		     if (scrollTop + windowHeight == scrollHeight) {
+				 //loadmore();
+				 
+				 if(nfyg.browser.ios){
+				 	loadData(1,page);
+				 }else{
+				 	loadData(2,page);
+				 }
+		      }
+		}); 
+		function loadData(type,p){
+			if(p<totalPage){
+				nfyg.otherCommon.getDatanormal("post", "http://activity.peanut8.com/index.php/20/Pattern", "json", {
+				  page: p,
+				  type:type
+				}, true, function (res) {
+					console.log(res);
+				  if (res.code == 1) {
+					  var html = '';
+					  res.data.list.forEach(function(item,index,arr){
+					  		  if(p==0&index==0){
+					  			 html += '<li>'+
+					  					'<a links="'+item.link+'" class="go-detail-link">'+
+					  					'<div class="list-title first"><em class="new"></em>'+item.title+'</div>'+
+					  					'<div class="list-time">'+item.date+'</div>'+
+					  					'<div class="video-img"><img src="'+item.imgUrl+'" alt=""></div>'+
+					  				'</a></li>' 
+									totalPage = res.data.total;
+					  		  }else{
+					  		  html += '<li>'+
+					  					'<a links="'+item.link+'" class="go-detail-link">'+
+					  					'<div class="list-title">'+item.title+'</div>'+
+					  					'<div class="list-time">'+item.date+'</div>'+
+					  					'<div class="video-img"><img src="'+item.imgUrl+'" alt=""></div>'+
+					  				'</a></li>'
+					  		  }
+					  })
+					  page++;
+					  $(".list").append(html);
+					  if(totalPage==1){
+						  $(".load-more").text("");
+					  }
+				  } else {
+				    nfyg.otherCommon.promptShow(res.msg);
+				  }
+				});
+			}else{
+				$(".load-more").text("");
+			}
+			
+		};
+	})
+</script>
+</body>
+</html>

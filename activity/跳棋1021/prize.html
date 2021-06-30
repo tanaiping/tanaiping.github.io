@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="x-rim-auto-match" content="none" />
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+  <meta name="copyright" content="Copyright (c)花生地铁wifi" />
+  <meta name="HandheldFriendly" content="true" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="keywords" content="花生,地铁,wifi,WIFI,花生地铁,花生地铁wifi,地铁wifi,花生wifi" />
+  <meta name="author" content="yerongtao" />
+  <title>我的奖品</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="http://www.wifi8.com/images/logo_icon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/style.css?v=1.0.0">
+</head>
+
+<body class="prize-bg">
+  <div class="my-prize">
+    <div class="prize-title"></div>
+    <p class="no-prize">
+      你还没有获得奖品哦!<br />快去参加活动兑换奖品吧!
+    </p>
+    <ul id="my-prize-list">
+      <!-- <li>
+        <img src="./images/prize_0.png" alt="奖品" class="prize-img">
+        <div class="prize-info">
+          <p class="title">入场券</p>
+          <p class="time">中奖时间：<span>2018-12-17</span></p>
+        </div>
+        <a href="./couponCode.html" class="prize-btn"></a>
+      </li>
+      <li>
+        <img src="./images/prize_0.png" alt="奖品" class="prize-img">
+        <div class="prize-info">
+          <p class="title">入场券</p>
+          <p class="time">中奖时间：<span>2018-12-17</span></p>
+        </div>
+        <a href="./couponCode.html" class="prize-btn"></a>
+      </li>
+      <li>
+        <img src="./images/prize_0.png" alt="奖品" class="prize-img">
+        <div class="prize-info">
+          <p class="title">入场券</p>
+          <p class="time">中奖时间：<span>2018-12-17</span></p>
+        </div>
+        <a href="./couponCode.html" class="prize-btn"></a>
+      </li> -->
+    </ul>
+    <div class="prompt" id="prompt"><em>提示信息</em></div>
+  </div>
+  <script src="./js/zepto.min.js"></script>
+  <script src="./js/resize.js"></script>
+  <script src="http://cmsfile.wifi8.com/uploads/wifi/AppH5/api/nfygCommonPack.min.js"></script>
+  <!-- <script src="./js/vconsole.min.js"></script> -->
+  <script type="text/javascript">
+    $(function () {
+      var nfyg = new NFYG();
+      var isApp = nfyg.browser.isNfyg;
+      var tel, nickName, headUrl, point, userId;
+      if (isApp) {
+        var userInfo = nfyg.getUserInfo();
+          userInfo = JSON.parse(userInfo);
+          // console.log(userInfo);
+          tel = userInfo.mobile;
+          nickName = userInfo.nickName;
+          headUrl = userInfo.headUrl;
+          point = userInfo.point;
+          userId = userInfo.userId;
+          if (userId == '' || userId == undefined || userId == null) {
+            nfyg.pushToLoginView()
+          }
+          getUserPirze(tel);
+      } else {
+        $(".no-prize").show().html("请到花生地铁APP查看并兑换奖品~");
+      }
+      function getUserPirze(tel) {
+        $.ajax({
+          type: "post",
+          url: "http://activity.peanut8.com/activity/lists",
+          data: {
+            userId: tel
+          },
+          dataType: "json",
+          success: function (data) {
+            console.log(data);
+            if (data.code == 1) {
+              var html = "";
+              $.each(data.myPrizeList, function (i, item) {
+                var isReceive = item.isReceive;
+                var className = '';
+                if (isReceive == 1) {
+                  className = 'prize-success';
+                }
+                html += '<li>';
+                html += '<img src="' + item.img + '" alt="奖品" class="prize-img">';
+
+                html += '<div class="prize-info">';
+                html += '<p class="title">' + item.prizeName + '</p>';
+                html += '<p class="time">中奖时间：<br/><span>' + item.addTime + '</span></p>';
+                html += '</div>';
+
+                html += '<a href="JavaScript:;" class="prize-btn type-' + item.type + ' ' + className +
+                  '" data-type="' +
+                  item.type + '" data-id="' + item.id + '" data-isReceive="' + isReceive + '"></a>';
+                html += '</li>';
+              });
+              $("#my-prize-list").append(html);
+            } else {
+              $(".no-prize").show();
+            }
+          }
+        });
+      }
+      $("#my-prize-list").on("click", '.prize-btn', function () {
+        var obj = $(this);
+        var type = parseInt(obj.attr('data-type'));
+        var id = obj.attr('data-id');
+        var isReceive = parseInt(obj.attr('data-isReceive'));
+        if (obj.hasClass('prize-success')) {
+          return
+        }
+        switch (type) {
+          case 2:
+          case 3:
+          case 5:
+            window.location.href = './couponCode.html?prizeId=' + id + '&type=' + type;
+            break;
+          case 1:
+            receiveRedPacket(id, obj);
+            break;
+          case 4:
+            receivePoint(id, obj)
+            break;
+          default:
+            break;
+        }
+      });
+
+      function receiveRedPacket(id, obj) {
+        $.ajax({
+          type: "post",
+          url: "http://activity.peanut8.com/activity/receivePrize",
+          data: {
+            userId: userId,
+            id: id,
+            tel: tel
+          },
+          dataType: "json",
+          success: function (data) {
+            console.log(data);
+            if (data.code == 1) {
+              nfyg.otherCommon.promptShow('领取成功，可前往钱包查看')
+              obj.attr('data-isReceive', '1');
+              obj.addClass('prize-success');
+            } else {
+              nfyg.otherCommon.promptShow(data.msg)
+            }
+          }
+        });
+      }
+
+      function receivePoint(id, obj) {
+      }
+    });
+  </script>
+</body>
+
+</html>

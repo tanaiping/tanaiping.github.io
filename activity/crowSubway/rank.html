@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="MobileOptimized" content="240" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />  
+    <meta content="email=no" name="format-detection" />
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title>花生欢乐挤地铁</title>
+    <link rel="stylesheet" href="css/base.css">
+	<style>
+		.prompt{
+			text-align: center;
+			width: 90%;
+			position: fixed;
+			margin: auto;
+			left: 0;
+			right: 0;
+			top: 40%;
+			z-index: 10001;
+			display: none;
+			}
+		.prompt em{
+			display: inline-block;
+			background: rgba(0,0,0,0.75);
+			padding: 0.1rem .15rem;
+			border-radius: .2rem;
+			color: #FFF;
+			font-size: 0.16rem;
+			line-height: 0.2rem;
+		}
+		.rank-top{
+			background: url(images/rank_top.png);
+			background-size: contain;
+			width: 3.75rem;
+			height: 2.72rem;
+			position: relative;
+		}
+		.nav-back{
+			background: url(images/back.png);
+			background-size: contain;
+			width: .55rem;
+			height: .25rem;
+			position: absolute;
+			left: .12rem;
+			top: .13rem;
+		}
+		.wrap{
+			width: 3.26rem;
+			margin: 0 auto;
+		}
+		.flex-left{display: flex;flex-direction: row;}
+		.my-info{position: absolute;top: 1.31rem;left:.245rem;height: 1.1rem;width: 3.26rem; margin-left: .125rem; }
+		.box1{height: .25rem;}
+		.my-info .tx{width: .225rem;height: .225rem;vertical-align: top;border-radius: .1125rem;}
+		.my-info .user-name{padding-left:.102rem; font-size: .15rem; color: #FFF; line-height: .25rem; height: .25rem; }
+		.my-info .user-name span{padding-left:.035rem; font-weight: bold;}
+		.my-info .num{ margin:.1rem 0 0 .55rem;font-size: .12rem; color: #FFF; height: .3rem; line-height: .3rem;}
+		.my-info .num span{font-size: .22rem; padding: 0 .04rem;}
+		.my-info .rank-num{padding-left:.55rem; font-size: .1rem; color: #FFF;line-height: .2rem; height: .2rem;margin-top: -.03rem;}
+		.my-info .rank-num span{font-size: .16rem;padding: 0 .04rem;}
+		.my-info .rank-gift{padding-left:.55rem; font-size: .1rem; color: #FFF;margin-top: .06rem; }
+		.my-info .rank-gift span{font-weight: bold; font-size: .11rem; padding: 0 .04rem;}
+		.rank-list li{border:1px solid #707070;color: #666464; font-size: .12rem; margin-top: .1rem; line-height: .225rem;; border-radius: .5rem; display: flex;justify-content: space-between; padding: .08rem .15rem;}
+		.list-left{flex:1; overflow: hidden; white-space: nowrap;text-overflow: ellipsis; position: relative; padding-left: .265rem;}
+		.list-right{flex:1.3; overflow: hidden; white-space: nowrap;text-overflow: ellipsis;}
+		.list-mid{flex:1; overflow: hidden; white-space: nowrap;text-overflow: ellipsis;}
+		.list-left{ height: .225rem; align-items: center;}
+		.list-left img{ height: .225rem; width: .225rem;margin-right: .04rem;border-radius: .1125rem; position: absolute;left: 0;top:0;}
+		.u-name{overflow: hidden; white-space: nowrap;text-overflow: ellipsis;}
+		.u-name span{font-weight: bold;padding-left: .03rem;}
+		.list-mid{ height: .225rem; align-items: center;padding: 0 .03rem;}
+		.list-mid img{ height: .13rem; width: .13rem;}
+		.score span{font-weight: bold; color: #c82b35; padding-left: .03rem;}
+		.list-right span{color: #000000; font-weight: bold;}
+		.rank-list{margin-bottom: .2rem;}
+		.load-more{font-size: .13rem; color: #999; text-align: center;line-height: .3rem;}
+	</style>
+</head>
+<body>
+<div class="rank-top">
+	<div class="nav-back"></div>
+	<div class="my-info">
+		<div class="flex-left box1">
+			<img src="images/default.png" alt="" class="tx">
+			<div class="user-name">乘客<span></span></div>
+		</div>
+		<div class="num">最好成绩<span></span>次/点击次数/</div>
+		<div class="rank-num">目前排在第<span></span>位</div>
+		<div class="rank-gift"></div>
+	</div>
+</div>
+<div class="wrap">
+	<ul class="rank-list">
+		
+	</ul>
+	<div class="load-more">加载更多...</div>
+</div>
+<div class="prompt" id="prompt"><em>提示信息</em></div>	
+<script src="js/jquery-1.8.3.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script src="js/nfygCommonPack.js?it=222"></script>
+<script src="js/public.js"></script>
+<!-- <script src="js/vconsole.min.js"></script> -->
+<script>
+	$(function(){
+		var page = 0;
+		$(".nav-back").click(function(){
+			window.location.href = "javascript:history.go(-1)";
+		})
+		
+		if(isApp){
+			nfyg.encrypt(mobile, function(data) {
+				ranking(data,userInfo.nickName,userInfo.headUrl);
+			})
+		}else{
+			var tel = nfyg.otherCommon.GetQueryString('mobile');
+			var nickName = nfyg.otherCommon.GetQueryString('nickName');
+			// console.log(tel+"=="+nickName)
+			ranking(tel,nickName,'images/default.png');
+		}
+		
+		$(window).scroll(function () {
+		     //已经滚动到上面的页面高度
+		    var scrollTop = $(this).scrollTop();
+		     //页面高度
+		    var scrollHeight = $(document).height();
+		      //浏览器窗口高度
+		    var windowHeight = $(this).height();
+		     //此处是滚动条到底部时候触发的事件，在这里写要加载的数据，或者是拉动滚动条的操作
+		     if (scrollTop + windowHeight == scrollHeight) {
+				 //loadmore();
+				 ranking(tel,nickName,'images/default.png');
+		      }
+		}); 
+		
+		
+		function ranking(m,nick_name,head_url){
+			if(page<0) return;
+			nfyg.otherCommon.getDatanormal("post", baseUrl + '/20/metro/ranking', "json", {
+				tel: m,
+				page:page
+			}, true, function(res) {
+				console.log(res);
+				if (res.code == 1) {
+					page++;
+					if(res.data.myRanking.nickName){
+						var imgurl = '';
+						if(res.data.myRanking.headUrl == ''){
+							imgurl = 'images/default.png'
+						}else{
+							imgurl = res.data.myRanking.headUrl
+						}
+						$(".box1 .tx").attr("src",imgurl);
+						$(".user-name span").text(res.data.myRanking.nickName);
+						$(".num span").text(res.data.myRanking.number);
+						$(".rank-num span").text(res.data.myRanking.ranking);
+						if(res.data.myRanking.prizeName == '未获得'){
+							$(".rank-gift").html('<span>'+res.data.myRanking.prizeName+'</span>');
+						}else{
+							$(".rank-gift").html('将获得<span>'+res.data.myRanking.prizeName+'</span>');
+						}
+					}else{
+						$(".box1 .tx").attr("src",head_url);
+						$(".user-name span").text(nick_name);
+						$(".num span").text(0);
+						$(".rank-num span").text('--');
+						$(".rank-gift").html('--');
+					}
+					if(res.data.list){
+						if(res.data.list.length==0){
+							$(".load-more").text("已经是最底部了~");
+							page = -1;
+						}else{
+							var html = '';
+							res.data.list.forEach(function(item,index,arr){
+								var imgurl = '';
+								if(item.headUrl == ''){
+									imgurl = 'images/default.png'
+								}else{
+									imgurl = item.headUrl
+								}
+								html +='<li><div class="list-left flex-left">'+
+										'<img src="'+imgurl+'" alt="">'+
+										'<div class="u-name">乘客<span>'+item.nickName+'</span></div></div>'+
+										'<div class="list-mid flex-left">'+
+										'<img src="images/xin.png" alt="" class="xin">'+
+										'<div class="score">成绩<span>'+item.number+'次</span></div></div>'
+								if(item.prizeName =='未获得'){
+									html +='<div class="list-right"><span>'+item.prizeName+'</span></div></li>'
+								}else{
+									html +='<div class="list-right">将获得<span>'+item.prizeName+'</span></div></li>'
+								}
+										
+							})
+							$(".rank-list").append(html);
+						}
+					}
+					
+				} else {
+					nfyg.otherCommon.promptShow(res.msg);
+				}
+			})
+		}
+	})
+</script>
+</body>
+</html>

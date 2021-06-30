@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge" />
+	<title>花生欢乐挤地铁</title>
+	<style>
+		html {
+			height:100%;
+		}
+		body {
+			background-color:#EEEEEF;
+			margin:0;
+			height:100%;
+		}
+		#blackBg{
+			width: 100%;
+			height: 100%;
+			position: fixed;
+			left: 0;
+			top: 0;
+			background: url(../images/black_bg.png) repeat;
+			z-index: 100;
+		}
+		.share-pop-img{
+			position: fixed;
+			right:.3rem;
+			top:.2rem;
+			z-index: 1001;
+			width: 3rem;
+		}
+		.share-pop-img2{
+			position: fixed;
+			right:.3rem;
+			top:.2rem;
+			z-index: 1001;
+			width: 2rem;
+		}
+		img{
+			width: 100%;
+		}
+	</style>
+	<!-- copy these lines to your document head: -->
+
+	<meta name="viewport" content="user-scalable=no, width=375" />
+
+	<!-- end copy -->
+  </head>
+  <body>
+	<!-- copy these lines to your document: -->
+
+	<div id="page_hype_container" class="HYPE_document" style="margin:auto;position:relative;width:100%;height:100%;overflow:hidden;">
+		<script type="text/javascript" charset="utf-8" src="page.hyperesources/page_hype_generated_script.js?57172"></script>
+	</div>
+
+	<!-- end copy -->
+	
+
+
+	<!-- text content for search engines: -->
+
+	<div style="display:none" aria-hidden=true>
+
+		<div>+0</div>
+		<div>8</div>
+		<div>手速达: 0次／8秒
+</div>
+		<div>7</div>
+		<div>6</div>
+		<div>5</div>
+		<div>4</div>
+		<div>3</div>
+		<div>2</div>
+		<div>1</div>
+		<div>0</div>
+
+	</div>
+
+	<!-- end text content: -->
+	<script src="../js/jquery-1.8.3.min.js"></script>
+	<script src="../js/jquery.cookie.js"></script>
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+	<script src="../js/nfygCommonPack.js?it=222"></script>
+	<script src="../js/public.js"></script>
+	<!-- <script src="../js/vconsole.min.js"></script> -->
+	<script>
+		$(function(){
+			var times = 0;
+			var allTimes = 0;
+			var timeOut = '';
+			var startTime = '';
+			$("#ccd,#ccdB,#ccdC").html('+0');
+			$(document).on("click","#clickcount,#clickcountB,#clickcountC",function(){
+				// console.log(times);
+				if(times==0){
+					if(isApp){
+						nfyg.encrypt(mobile, function(data) {
+							start(data);
+						})
+					}else{
+						var tel = nfyg.otherCommon.GetQueryString('mobile');
+						start(tel);
+					}
+				}
+				times++;
+				if(!timeOut){
+					timeOut = setTimeout(function(){
+						if(isApp){
+							// console.log(userInfo)
+							nfyg.encrypt(mobile, function(data) {
+								end(data,userInfo.nickName,headUrl,times);
+								
+								clearTimeout(timeOut);
+								$("#ccd,#ccdB,#ccdC").text('+0');
+								
+							})
+						}else{
+							var tel = nfyg.otherCommon.GetQueryString('mobile');
+							var nickName = nfyg.otherCommon.GetQueryString('nickName');
+							end(tel,nickName,'',times);
+							
+							clearTimeout(timeOut);
+							$("#ccd,#ccdB,#ccdC").text('+0');
+							
+						}
+						setTimeout(function(){
+							times = 0;
+							timeOut = '';
+						},1000)
+						
+					},8500)
+				}
+				$("#ccd,#ccdB,#ccdC").text('+'+times);
+				allTimes = times;
+				$("#per999 font").eq(1).find("b").text(times);
+				$("#perB font").eq(1).find("b").text(times);
+				$("#perC font").eq(1).find("b").text(times);
+				
+				
+			})
+			
+			
+			$(document).on("click","#refer_0_1,#refer_02B,#refer_0C,#phbbutton,#phbbuttonC,#phbbuttonB,#huodongXZE,#huodongXZEC,#huodongXZEB",function(){ //点击查看排行榜
+				var tel = nfyg.otherCommon.GetQueryString('mobile');
+				var nickName = nfyg.otherCommon.GetQueryString('nickName');
+				window.location.href="../rank.html?mobile="+tel+"&nickName="+nickName;
+			})
+			//转发微信好友、朋友圈
+			$(document).on("click", "#Sharesh,#ShareshC,#ShareshB", function() {
+				if(allTimes!=0){
+					var x = allTimes/8;
+					shareData.title = "手速"+x.toFixed(2)+"次/秒！哥们，敢不敢PK下？"
+				}
+				if (isApp) {
+					nfyg.openSharePanel(shareData.url, shareData.imgUrl, shareData.title, shareData.text); //
+				} else {
+					var html = '<div id="blackBg"></div>' +
+						'<div class="popup popup__wechat"><img src="../images/wechat_share.png" alt="" class="share-pop-img2"></div>'
+					$("body").append(html);
+				}
+			})
+			//点击分享弹窗
+			$(document).on("click", "#blackBg,.popup", function() {
+				$("#blackBg,.popup").remove();
+			})
+			
+			
+			
+			function start(m){
+				nfyg.otherCommon.getDatanormal("post", baseUrl + '/20/metro/start', "json", {
+					tel: m,
+				}, true, function(res) {
+					console.log(res);
+					if (res.code == 1) {
+						startTime = res.startTime;
+					} else {
+						nfyg.otherCommon.promptShow(res.msg);
+					}
+				})
+			}
+			
+			function end(m,n,img,num){
+				var params = {
+					tel: m,
+					nickName: n,
+					startTime: startTime,
+					headUrl: img,
+					number:num
+				}
+				console.log(params);
+				nfyg.otherCommon.getDatanormal("post", baseUrl + '/20/metro/end', "json", {
+					tel: m,
+					nickName: n,
+					startTime: startTime,
+					headUrl: img,
+					number:num
+				}, true, function(res) {
+					console.log(res);
+					if (res.code == 1) {
+						//startTime = res.startTime;
+					} else {
+						nfyg.otherCommon.promptShow(res.msg);
+					}
+				})
+			}
+			
+			
+		})
+	</script>
+  </body>
+</html>

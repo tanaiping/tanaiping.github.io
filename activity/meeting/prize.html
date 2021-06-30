@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="MobileOptimized" content="240" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />  
+    <meta content="email=no" name="format-detection" />
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title>打卡~领绝版周边！</title>
+    <link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="css/common.css">
+</head>
+<body>
+<div class="wrap">
+	<div class="lose-box main-box">
+		<div class="prize-t1">您在本次活动中，连续打卡<span class="day"></span>天</div>
+		<div class="tc"><img src="images/lose-img.png" alt="" class="lose-img"></div>
+		<div class="prize-t2">好可惜～没有获奖呢<br/>可能是你的才华高于你的运气<br/>请多多关注花生地铁的活动<br/>好事一定会花生哦</div>
+	</div>
+	<div class="success-box main-box">
+		<div class="prize-t3">您在本次活动中，连续打卡<span class="day"></span>天～</div>
+		<div class="prize-t2"></div>
+		<img src="images/bg.png" alt="" class="prize-img">
+		<div class="title-t1">收货地址</div>
+		<div class="address-box">
+			<div class="input-box input-name"><input type="text" placeholder="姓名" id="name"></div>
+			<div class="input-box input-tel"><input type="text" placeholder="手机" id="mobile"></div>
+		</div>
+		<div class="address-box">
+			<div class="input-box"><input type="text" placeholder="详细地址" id="address"></div>
+		</div>
+		<div  class="address-btn">保存地址</div>
+		
+	</div>
+</div>
+<div class="prompt" id="prompt"><em>提示信息</em></div>	
+<div class="blackbg"></div>
+<img src="images/icon_open.png" alt="" class="wx_share">
+<script src="js/jquery-1.8.3.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script src="js/nfygCommonPack.js"></script>
+<script src="js/public.js"></script>
+<!-- <script src="js/vconsole.min.js"></script> -->
+
+<script>
+	$(function(){
+		//页面加载初始化数据
+		var getDetail = function (m){
+			nfyg.otherCommon.getDatanormal("post", baseUrl+'/20/clock/detail', "json", {
+			  userId: m,
+			}, true, function (res) {
+				  console.log(res);
+			  if (res.code == 1) {
+				  if(res.data){
+					 $(".success-box .day").text(res.data.signNum)
+					$(".success-box .prize-t2").html('人品爆发<br/>～恭喜你，从2W花生用户中脱颖而出<br/>奖品为【好事会花生】'+res.data.info.name+'1个') 
+					 $(".prize-img").attr("src",res.data.info.img)
+					if(res.data.myAddress){
+						$("#name").val(res.data.myAddress.name)
+						$("#mobile").val(res.data.myAddress.mobile)
+						$("#address").val(res.data.myAddress.address)
+					}
+					$(".success-box").show()
+				  }
+			  }  else if(res.code == 2) {
+				  $(".lose-box .day").text(res.data.signNum)
+					$(".lose-box").show()
+			  }else {
+			    nfyg.otherCommon.promptShow(res.msg);
+				// $(".index-tips span").text(res.msg).css("display","block");
+				// setTimeout(function(){$(".index-tips span").text("").css("display","none");},3000);
+			  }
+			})
+		}
+		
+		//保存地址
+		$(".address-btn").click(function(){
+			var name = $("#name").val();
+			var mobile = $("#mobile").val();
+			var address = $("#address").val();
+			if(name == ''||mobile == ''||address == ''){
+				nfyg.otherCommon.promptShow('姓名、手机号、地址不能为空');  
+				return false;
+			}else{
+				if(!phoneFun(mobile)){
+					nfyg.otherCommon.promptShow('请输入正确的11位数的手机号码');  
+					return false;
+				}
+			}
+			nfyg.encrypt(mobile, function(data) {
+				nfyg.otherCommon.getDatanormal("post", baseUrl+'/20/clock/saveAddress', "json", {
+				  userId: data,//'KFPUrGhl4u2J/mG4LwoHpQ=='
+				  name: name,
+				  mobile: mobile,
+				  address: address,
+				}, true, function (res) {
+				  if (res.code == 1) {
+					nfyg.otherCommon.promptShow('保存成功');  
+				  }else {
+				    nfyg.otherCommon.promptShow(res.msg);
+					// $(".index-tips span").text(res.msg).css("display","block");
+					// setTimeout(function(){$(".index-tips span").text("").css("display","none");},3000);
+				  }
+				})
+			})
+			
+			
+		})
+		
+		if(isApp){
+			if(!userInfo){//没登录跳到登录页面
+				pushToLoginView();
+			}else{
+				nfyg.encrypt(mobile, function(data) {
+					getDetail(data);
+				})
+			}
+		}else{
+			// getDetail('KFPUrGhl4u2J/mG4LwoHpQ==');
+			if (nfyg.browser.weixin || nfyg.browser.qq || nfyg.browser.ding || nfyg.browser.alipay || nfyg.browser.weibo) {
+				$(".blackbg,.wx_share").show();
+			}else{
+				if(nfyg.browser.ios){
+					window.location.href="nfyg://detail?url=http://activity.peanut8.com/act/2020/meeting/index.html"
+				}else{
+					window.location.href="nfyg://launcher?url=http://activity.peanut8.com/act/2020/meeting/index.html" 
+				}
+				setTimeout(() => {
+				  // 下载落地页
+				  window.location.href = "http://web.peanut8.com/download"
+				}, 4000);
+			}
+			
+		}
+		
+		
+		//判断是否为手机号的正则表达式
+		function phoneFun(phones){
+		    var myreg = /\d{11}$/;
+		    if (!myreg.test(phones)) {
+		        console.log('手机号格式不正确')
+		      return false;
+		    } else {
+		        console.log('手机号格式正确')
+		      return true;
+		    }
+		}
+})
+</script>
+</body>
+</html>

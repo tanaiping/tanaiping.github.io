@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="MobileOptimized" content="240" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />  
+    <meta content="email=no" name="format-detection" />
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title>花样经</title>
+    <link rel="stylesheet" href="css/base.css">
+	<style>
+		.prompt{text-align: center;	width: 90%;	position: fixed;margin: auto;left: 0;right: 0;top: 40%;z-index: 10001;display: none;}
+		.prompt em{display: inline-block;background: rgba(0,0,0,0.75);padding: 0.1rem .15rem;border-radius: .2rem;color: #FFF;font-size: 0.16rem;line-height: 0.2rem;}
+		.wrap{margin: .15rem .1rem; }
+		.list-title{line-height: .25rem;color: #333; font-size: .18rem; position: relative;}
+		.list .go-detail-link{display: block;}
+		.first{padding-left: .27rem;}
+		.first .new{width: .24rem;height: .13rem; display: block; background: url(images/news_icon.png) center center no-repeat; background-size: contain; position: absolute; left: 0; top: .06rem;}
+		.list-time{height: .185rem; color: #999; font-size: .13rem;margin:.04rem 0;}
+		.video-img img{width: 100%; margin-bottom: .2rem;}
+		.load-more{font-size: .13rem; color: #999; text-align: center;line-height: .3rem;}
+		.blackbg{width: 100%;height: 100%;position: fixed;left: 0;top: 0; background: url(images/black_bg.png) repeat; z-index: 10; display: none;}
+		.wx_share{position: fixed; right: .3rem;top: .1rem;width: 2.8rem;height: auto;z-index: 11; display: none;}
+	</style>
+
+</head>
+<body>
+<div class="wrap">
+	<ul class="list">
+	</ul>
+	<div class="load-more">加载更多...</div>
+</div>
+<div class="prompt" id="prompt"><em>提示信息</em></div>	
+<div class="blackbg"></div>
+<img src="images/icon_open.png" alt="" class="wx_share">
+<script src="js/jquery-1.8.3.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script src="js/nfygCommonPack.js?it=222"></script>
+<script src="js/public.js"></script>
+<!-- <script src="js/vconsole.min.js"></script> -->
+<script>
+	$(function(){
+		var ids = 0;
+		var list =[
+			{
+				"link":'nfyg://1/PNChatTopicDetailVC?newsId=9933882972207398218',
+				"title":'哲学命题：我们一周几次？在哪？',
+				'imgUrl':'images/0811.jpg',
+				'date':'2020-08-11'
+			},
+			{
+				"link":'nfyg://1/PNChatTopicDetailVC?newsId=5551327469762377830',
+				"title":'年薪百万又如何？在这一点上，还不是和我一样！',
+				'imgUrl':'images/0804.jpg',
+				'date':'2020-08-04'
+			},
+			{
+				"link":'nfyg://1/PNChatTopicDetailVC?newsId=7003730349166682880',
+				"title":'爷 青 回！！忍不住留下了时代的眼泪，我又年轻了~~',
+				'imgUrl':'images/0731.jpg',
+				'date':'2020-07-31'
+			},
+			{
+				"link":'nfyg://1/PNChatTopicDetailVC?newsId=7195084369561747878',
+				"title":'身家过亿的白富美体验生活，求职面试她竟然这样说！',
+				'imgUrl':'images/0728.jpg',
+				'date':'2020-07-28'
+			},
+			{
+				"link":'nfyg://1/PNChatTopicDetailVC?newsId=0672131468973939511',
+				"title":'是什么让本不富裕的公司雪上加霜？',
+				'imgUrl':'images/0724.jpg',
+				'date':'2020-07-24'
+			},
+			{
+				"link":'nfyg://1/PNChatTopicDetailVC?newsId=7224521287919733524',
+				"title":'那些电影院里不得不说的事儿… ...',
+				'imgUrl':'images/0721.jpg',
+				'date':'2020-07-21'
+			},
+			{
+				"link":'nfyg://1/PNChatTopicDetailVC?newsId=0869079860105978679',
+				"title":'别问，问就是好用！问就是fu**nny！',
+				'imgUrl':'images/0717.jpg',
+				'date':'2020-07-17'
+			},
+			{
+				"link":'nfyg://1/PNChatTopicDetailVC?newsId=9820996446602282374',
+				"title":'你是什么身份，就想吃这个冰激凌？',
+				'imgUrl':'images/0714.jpg',
+				'date':'2020-07-14'
+			},
+			{
+				"link":'nfyg://1/PNChatTopicDetailVC?newsId=9874230149185655444',
+				"title":'看到了吗？不好好读书，连牛肉都吃不明白',
+				'imgUrl':'images/0710.jpg',
+				'date':'2020-07-10'
+			},
+			{
+				"link":'nfyg://1/PNChatTopicDetailVC?newsId=1365610943677470015',
+				"title":'顶风作案！但他们得到了快乐，不是吗',
+				'imgUrl':'images/0707.jpg',
+				'date':'2020-07-07'
+			},
+			{
+				"link":'nfyg://1/PNChatTopicDetailVC?newsId=0283296722452236733',
+				"title":'周末团建，一起去爬山吗？',
+				'imgUrl':'images/0703.jpg',
+				'date':'2020-07-03'
+			},
+			{
+				"link":'nfyg://1/PNChatTopicDetailVC?newsId=8325219574024833978',
+				"title":' 花样经台娱乐频道倾情巨献——花生本色',
+				'imgUrl':'images/0701.jpg',
+				'date':'2020-07-01'
+			},
+			{
+				"link":'nfyg://1/PNChatTopicDetailVC?newsId=2510226199446668548',
+				"title":'花生员工的假期花式出游分享会，一定要看到结尾！！！',
+				'imgUrl':'images/0629.jpg',
+				'date':'2020-06-29'
+			},
+			{
+				"link":'nfyg://1/PNChatTopicDetailVC?newsId=7003730349166682880',
+				"title":'花生er：没有人比我们更懂卖粽子！',
+				'imgUrl':'images/0624.jpg',
+				'date':'2020-06-24'
+			},
+			{
+				"link":'nfyg://1/PNChatTopicDetailVC?newsId=2715058325807971100',
+				"title":' 端午节反面教材：一个粽子引发的决裂惨案！',
+				'imgUrl':'images/0622.jpg',
+				'date':'2020-06-22'
+			},
+			{
+				"link":'nfyg://1/PNChatTopicDetailVC?newsId=6520359697055665224',
+				"title":'这什么神仙公司，父亲节竟发两万红包？',
+				'imgUrl':'images/0619.jpg',
+				'date':'2020-06-19'
+			},
+			{
+				"link":'nfyg://1/PNChatTopicDetailVC?newsId=0819061966276071682',
+				"title":'独家揭秘——office女郎悬疑案',
+				'imgUrl':'images/0617.jpg',
+				'date':'2020-06-17'
+			},
+			{
+				"link":'nfyg://1/PNChatTopicDetailVC?newsId=8571484837246515051',
+				"title":'办公室地摊经济还能这么搞？',
+				'imgUrl':'images/0614.jpg',
+				'date':'2020-06-14'
+			},
+			
+			
+		]
+		
+		 loadData(ids);
+		 
+		 $(document).on("click",".blackbg,.wx_share",function(){
+		 	$(".blackbg,.wx_share").hide()
+		 })
+		 
+		 $(document).on("click",".go-detail-link",function(){
+			 if (nfyg.browser.weixin || nfyg.browser.qq || nfyg.browser.ding || nfyg.browser.alipay || nfyg.browser.weibo) {
+			   $(".blackbg,.wx_share").show()
+			 }else{
+				 var links = $(this).attr("links")
+				 window.location.href= links;
+			 }
+		 })
+		 
+		 
+		$(window).scroll(function () {
+		     //已经滚动到上面的页面高度
+		    var scrollTop = $(this).scrollTop();
+		     //页面高度
+		    var scrollHeight = $(document).height();
+		      //浏览器窗口高度
+		    var windowHeight = $(this).height();
+		     //此处是滚动条到底部时候触发的事件，在这里写要加载的数据，或者是拉动滚动条的操作
+		     if (scrollTop + windowHeight == scrollHeight) {
+				 //loadmore();
+				 loadData(ids);
+		      }
+		}); 
+		function loadData(i){
+			if(i<list.length){
+				var html = '';
+				list.forEach(function(item,index,arr){
+					
+					  if(index<i+4&&index>=i){
+						  if(index==0){
+							 html += '<li>'+
+									'<a links="'+item.link+'" class="go-detail-link">'+
+									'<div class="list-title first"><em class="new"></em>'+item.title+'</div>'+
+									'<div class="list-time">'+item.date+'</div>'+
+									'<div class="video-img"><img src="'+item.imgUrl+'" alt=""></div>'+
+								'</a></li>' 
+						  }else{
+						  html += '<li>'+
+									'<a links="'+item.link+'" class="go-detail-link">'+
+									'<div class="list-title">'+item.title+'</div>'+
+									'<div class="list-time">'+item.date+'</div>'+
+									'<div class="video-img"><img src="'+item.imgUrl+'" alt=""></div>'+
+								'</a></li>'
+						  }
+						ids++;
+					  }
+				})
+				$(".list").append(html);
+				
+			  }else{
+			  		$(".load-more").text("");
+			  }
+		};
+	})
+</script>
+</body>
+</html>

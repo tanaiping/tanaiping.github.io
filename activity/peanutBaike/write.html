@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="MobileOptimized" content="240" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />  
+    <meta content="email=no" name="format-detection" />
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title>我要投稿</title>
+    <link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="css/common.css">
+</head>
+<body>
+<div class="wrap">
+	<div class="write-wrap">
+		<div class="w-title"><input type="text" placeholder="请输入标题" maxlength="50" id="w_title"></div>
+		<div class="w-con">
+			<textarea placeholder="请输入内容" maxlength="500" id="w_con"></textarea>
+		</div>
+	</div>
+	<div class="w-desc">
+		<div class="t1">温馨提示：</div>
+		<div class="t2">
+			1、感谢大家对花生冷知识的喜爱，也欢迎大家分享自己觉得有趣的冷知识，知识可以来自各个领域，对范围不做任何限制，请踊跃投稿~ 
+			<br/>
+			2、投稿量大，为给大家带来更好的内容体验，小编会对投稿做严格筛选。若发现自己的投稿没有被采用，还请多多见谅，比心。</div>
+	</div>
+	<div class="btn-center"><div class="send-btn">发布</div></div>
+</div>
+<div class="prompt" id="prompt"><em>提示信息</em></div>
+<script src="js/jquery-1.8.3.min.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script src="js/nfygCommonPack.js"></script>
+<script src="js/public.js"></script>
+<!-- <script src="js/vconsole.min.js"></script> -->
+<div style="display: none;"><script type="text/javascript" src="https://v1.cnzz.com/z_stat.php?id=1279530514&web_id=1279530514"></script></div>
+<script>
+$(function(){
+	$(".send-btn").click(function(){
+		var w_title = $("#w_title").val();
+		var w_con = $("#w_con").val();
+		var _this = $(this);
+		if(w_title.trim()==""){
+			nfyg.otherCommon.promptShow("请输入标题~");
+			return false;
+		}
+		if(w_con.trim()==""){
+			nfyg.otherCommon.promptShow("请输入答案~");
+			return false;
+		}
+		var params ='';
+		if(isApp){
+			params = {"baseInfo":baseInfo,"title":w_title,"content":w_con};
+			console.log(params)
+		}else{
+			var versionCode = getQueryString("versionCode")
+			var sign = getQueryString("sign")
+			var deviceCode = getQueryString("deviceCode")
+			var userId = getQueryString("userId")
+			var platform = getQueryString("platform")
+			
+			params = {"baseInfo":{
+					"versionCode":versionCode,
+					"sign":sign,
+					"deviceCode":deviceCode,
+					"userId":userId,
+					"platform":platform
+				},"title":w_title,"content":w_con}
+				
+		}
+		if(!_this.hasClass("disabled")){
+			_this.addClass("disabled");
+			nfyg.otherCommon.getDatanormal("post", baseUrl + '/uSystem/v1/addBaikeTouGao', "json", JSON.stringify(params), true, function(res) {
+				console.log(res);
+				if (res.resultCode == 0) {
+					nfyg.otherCommon.promptShow("提交成功，感谢您的投稿~");
+					setTimeout(function(){
+						window.location.href="index.html"
+					},2000);
+					
+				} else {
+					nfyg.otherCommon.promptShow(res.resultMsg);
+					_this.removeClass("disabled");
+				}
+			})
+			
+		}
+		
+		
+	})
+	
+	function getQueryString(name){
+	     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+	     var r = window.location.search.substr(1).match(reg);
+	     if(r!=null)return  unescape(r[2]); return null;
+	}
+})
+</script>
+</body>
+</html>

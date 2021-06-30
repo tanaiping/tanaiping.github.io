@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> -->
+  <title>商城管理后台</title>
+  <script> 
+  　document.write("<link rel='stylesheet' href='../css/layui.css?v="+Math.random()+"'>");
+  　document.write("<link rel='stylesheet' href='../css/main.css?v="+Math.random()+"'>"); 
+  </script>
+</head>
+<body>
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+  <legend>新增Icon</legend>
+  <div class="com-pad">
+      <form class="layui-form" action="">
+        <div class="layui-form-item">
+          <label class="layui-form-label">icon名称(标题)</label>
+          <div class="layui-input-inline">
+            <input type="text" required  lay-verify="required" placeholder="请输入商家标题(卖点)" autocomplete="off" class="layui-input" id="title" >
+          </div>
+        </div>
+		<div class="layui-form-item">
+		  <label class="layui-form-label">副标题</label>
+		  <div class="layui-input-inline">
+		    <input type="text" required  lay-verify="required" placeholder="请输入商家副标题(卖点)" autocomplete="off" class="layui-input" id="subTitle" >
+		  </div>
+		</div>
+		<div class="layui-form-item">
+		  <label class="layui-form-label">产品链接</label>
+		  <div class="layui-input-inline">
+		    <input type="text" required  lay-verify="required" placeholder="请输入跳转链接" autocomplete="off" class="layui-input" id="linkUrl" >
+		  </div>
+		  <div class="layui-form-mid layui-word-aux">链接格式：以(http://或https://)开头</div>
+		</div>
+		<div class="layui-form-item">
+		  <label class="layui-form-label">缩略图：</label>
+		  <div class="layui-input-inline" style="width: 114px;">
+		      <button type="button" class="layui-btn" id="goods_thumbnail">
+		      <i class="layui-icon">&#xe67c;</i>上传图片
+		    </button>
+		  </div>
+		  <div class="layui-form-mid layui-word-aux">素材尺寸（180px x 180px）</div>
+		</div>
+		<div class="layui-form-item">
+		  <label class="layui-form-label"></label>
+		  <div class="layui-input-inline">
+		      <img src="../images/default.png" alt="" class="upload-source default upload-thumbnail-img">
+		  </div>
+		</div>
+		
+		
+        <div class="layui-form-item">
+          <label class="layui-form-label">&nbsp;</label>
+          <div class="layui-input-inline" style="width: auto;">
+            <button class="layui-btn layui-btn-back" >返回上一页</button>
+          </div>
+          <div class="layui-input-inline" style="width: auto;">
+            <button class="layui-btn" lay-submit lay-filter="saveBtn">保存</button>
+          </div>
+          
+        </div>
+      </form>
+      
+  </div>
+</fieldset>
+<script>
+    document.write("<s"+"cript type='text/javascript' src='../layui.js?"+Math.random()+"'></s" + "cript>"); 
+    document.write("<s"+"cript type='text/javascript' src='/cms/com_config.js?"+Math.random()+"'></s" + "cript>");
+	 document.write("<s"+"cript type='text/javascript' src='../js/validation.js?"+Math.random()+"'></s" + "cript>");
+	document.write("<s"+"cript type='text/javascript' src='../js/uploadImg.js?"+Math.random()+"'></s" + "cript>");
+    document.write("<s"+"cript type='text/javascript' src='../js/icon/iconAdd.js?"+Math.random()+"'></s" + "cript>");
+</script>
+</body>
+</html>

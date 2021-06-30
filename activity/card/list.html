@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="MobileOptimized" content="240" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />  
+    <meta content="email=no" name="format-detection" />
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title>味全严选牧场，牧场好，奶才好</title>
+    <link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="css/common.css">
+</head>
+<body style="background: #F8F8F8;">
+<div class="wrap">
+	<ul class="card-list">
+		<!-- <li class="used">
+			<img src="images/share.jpg" alt="" class="card-img">
+			<div class="card-list-txt">
+				<div class="t1">探鱼(西丽店）</div>
+				<div class="t2">券码：2345 3495 38483</div>
+				<div class="t3">有效期至：2018.08.18</div>
+			</div>
+			<div class="card-status">
+				<div class="card-price">￥<span>5</span></div>
+				<div class="to-used disabled">已使用</div>
+			</div>
+		</li> -->
+	</ul>
+	<div class="load-more"></div>
+</div>
+<div class="blackbg"></div>
+<img src="images/icon_open.png" alt="" class="wx_share">
+<div class="prompt" id="prompt"><em>提示信息</em></div>	
+<script src="js/jquery-1.8.3.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script src="js/nfygCommonPack.js?it=222"></script>
+<script src="js/public.js"></script>
+<!-- <script src="js/vconsole.min.js"></script> -->
+<script>
+	$(function(){
+		var page = 0;
+		
+		// if(isApp){
+			nfyg.encrypt(mobile, function(data) {
+				initList(data);
+			})
+		// }else{
+		// 	var  tel = $.cookie('mobiles');
+		// 	initList(tel);
+		// }
+		
+		//关闭遮罩
+		$(".close-pop,.blackbg").click(function(){
+			$(".pop-com,.blackbg,.wx_share").hide();
+		})
+		
+		$(document).on("click",".card-list li",function(){
+			var typeId = $(this).attr("typeId")
+			var prizeId = $(this).attr("prizeId")
+			window.location.href="http://activity.peanut8.com/act/2020/card/detail.html?id="+typeId+"&prizeId="+prizeId;
+		})
+		
+		$(window).scroll(function () {
+		     //已经滚动到上面的页面高度
+		    var scrollTop = $(this).scrollTop();
+		     //页面高度
+		    var scrollHeight = $(document).height();
+		      //浏览器窗口高度
+		    var windowHeight = $(this).height();
+		     //此处是滚动条到底部时候触发的事件，在这里写要加载的数据，或者是拉动滚动条的操作
+		     if (scrollTop + windowHeight == scrollHeight) {
+				 //loadmore();
+				 if(isApp){
+				 	nfyg.encrypt(mobile, function(data) {
+				 		initList(data);
+				 	})
+				 }else{
+				 	var  tel = $.cookie('mobiles');
+				 	initList(tel);
+				 }
+		      }
+		}); 
+		
+		
+		function initList(m){
+			if(page<0) return;
+			nfyg.otherCommon.getDatanormal("post", baseUrl + '/20/Weichuan/lists', "json", {
+				tel: m,
+				page:page
+			}, true, function(res) {
+				console.log(res);
+				if (res.code == 1) {
+					page++;
+					if(res.data){
+						if(res.data.length==0){
+							// $(".load-more").text("已经是最底部了~");
+							page = -1;
+						}else{
+							var html = '';
+							res.data.forEach(function(item,index,arr){
+								html +='<li typeId = "'+item.id+'" prizeId="'+item.prizeId+'">'+
+											'<img src="'+item.iconUrl+'" alt="" class="card-img">'+
+											'<div class="card-list-txt">'+
+												'<div class="t1">'+item.prizeName+'</div>'+
+												'<div class="t2">券码：'+item.coupon+'</div>'+
+												'<div class="t3">有效期至：'+item.date+'</div>'+
+											'</div>'+
+											'<div class="card-status">'+
+												'<div class="card-price">￥<span>'+item.money+'</span></div>'+
+												'<div class="to-used">立即使用</div>'+
+											'</div></li>'
+										
+							})
+							$(".card-list").append(html);
+						}
+					}
+					
+				} else {
+					nfyg.otherCommon.promptShow(res.msg);
+				}
+			})
+		}
+	})
+</script>
+</body>
+</html>

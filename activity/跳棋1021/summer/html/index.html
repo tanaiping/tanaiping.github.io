@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<!-- saved from url=(0068)http://www.17sucai.com/preview/1076685/2018-02-27/gameWkw/index.html -->
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="x-rim-auto-match" content="none" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="copyright" content="Copyright (c)花生地铁wifi" />
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="keywords" content="花生,地铁,wifi,WIFI,花生地铁,花生地铁wifi,地铁wifi,花生wifi" />
+    <meta name="author" content="yerongtao" />
+    <link rel="icon" href="http://www.wifi8.com/images/logo_icon.ico" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="../css/base.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css?v=1.0.3" />
+    <script type="text/javascript" src="../js/HGame.js"></script>
+    <script type="text/javascript" src="../js/methodSay.js"></script>
+    <script type="text/javascript" src="../js/objProto.js"></script>
+    <script type="text/javascript" src="../js/data.js"></script>
+    <title>夏日大作战</title>
+</head>
+
+<body>
+    <!-- <div class="page-loading active">
+        <div class="loader"></div>
+    </div> -->
+    <div class="page home active" id="home">
+        <div class="head">
+            <div class="btn btn-rules"></div>
+            <div class="btn btn-ranking"></div>
+        </div>
+        <img src="../images/home_theme.png" alt="" class="theme">
+        <div class="btn-start home-start" id="btn-start"></div>
+        <div class="foot">
+            <img src="../images/home_foot.gif" alt="">
+        </div>
+    </div>
+    <div class="page game">
+        <div class="canvas" id="canvas"></div>
+        <div class="icon-score">
+            <h5 id="icon-score">0</h5>
+        </div>
+        <div class="icon-time">
+            <h5 id="icon-time"></h5>
+        </div>
+        <div class="foot" id="foot">
+            <div class="foot-leaf">
+                <div class="icon-1"></div>
+                <div class="icon-2"></div>
+                <div class="icon-3"></div>
+                <div class="icon-4"></div>
+                <div class="icon-5"></div>
+                <div class="icon-6"></div>
+                <div class="icon-7"></div>
+            </div>
+            <div class="foot-bubble">
+            </div>
+            <img src="../images/bg_game_1.png" alt="" class="foot-img">
+        </div>
+        <div class="guide" id="guide">
+            <img src="../images/guide.png" alt="">
+        </div>
+    </div>
+    <div class="popup">
+        <div class="popup__bg"></div>
+        <div class="popup__act popup__rules popup__msg">
+            <img src="../images/logo.png" alt="" class="logo">
+            <div class="info bounceIn">
+                <img src="../images/title_rules.png" alt="" class="title">
+                <div class="msg" style="margin-top: 0.8rem;">
+                    <p>活动时间 : 8月7日 6:00——8月11日 22:00</p>
+                    · 进入游戏，60s内捞西瓜、冰淇淋、风扇等夏日避暑神器以获得降温值。<br>
+                    · 降温值达到500分即降温成功，得分越高，获得的降温礼包越丰盛。<br>
+                    · 活动期间，每人每天3次机会，若3次机会用完，可额外邀请好友助力，一位好友一天可助力一次，每天最多3位好友助力机会。
+                </div>
+                <div class="msg" style="margin-top: 0.25rem;text-align: center;">
+                    <p>如何兑奖</p>
+                    请于8月11日17:00前，将【姓名+电话】私信给花生小姐姐获取<br>
+                    领奖时间：8月10-11日<br>
+                    <span style="color: #FD6746;">（花生小姐姐微信号：HSDT-wifi）</span>
+                </div>
+                <div class="btn btn-start" id="btn-start-rules" style="margin-top: 0.8rem;"></div>
+            </div>
+            <!-- <button class="btn btn-close"></button> -->
+        </div>
+        <div class="popup__act popup__login popup__msg">
+            <div class="info bounceIn">
+                <img src="../images/title_login.png" alt="" class="title">
+                <div class="main">
+                    <input class="line nickName" id="nickName" type="text" value="" placeholder="请输入昵称">
+                    <input class="line mobile" id="mobile" type="number" value="" placeholder="请输入手机号">
+                    <div class="line code-team">
+                        <input class="code" id="code" type="text" value="" placeholder="请输入验证码">
+                        <button class="get-code" id="get-code">发送验证码</button>
+                    </div>
+                    <button class="btn btn-submit" id="btn-submit"></button>
+                </div>
+            </div>
+            <button class="btn btn-close"></button>
+        </div>
+        <div class="popup__act popup__ranking popup__msg">
+            <div class="info bounceIn">
+                <img src="../images/title_ranking.png" alt="" class="title">
+                <div class="main">
+                    <ul id="ranking-list">
+                    </ul>
+                </div>
+            </div>
+            <button class="btn btn-close"></button>
+        </div>
+        <div class="popup__act popup__share popup__msg">
+            <div class="info bounceIn">
+                <div class="main">
+                    <!-- <img src="../images/fail_title.png" alt="" class="title"> -->
+                    <!-- <img src="../images/fail_face.png" alt="" class="face"> -->
+                    <!-- <div class="tips fail-tips">
+                        <h5 class="tips-1">500分以下即为挑战失败</h5>
+                        <h5 class="tips-2">别灰心</h5>
+                        <h5 class="tips-2">再多拾点降温神器</h5>
+                        <p class="tips-3">点击好友助力可获得更多机会喔</p>
+                    </div> -->
+                    <h5>机会已用完<br>邀请好友助力增加机会</h5>
+                    <button class="btn-share"></button>
+                </div>
+            </div>
+            <button class="btn btn-close"></button>
+        </div>
+        <div class="popup__act popup__win popup__result">
+            <div class="info bounceIn">
+                <div class="score">
+                    <h5 id="win-score">0</h5>
+                </div>
+                <div class="main">
+                    <img src="../images/win_title.png" alt="" class="title">
+                    <img src="../images/win_face.png" alt="" class="face">
+                    <div class="tips win-tips">
+                        <h5 class="tips-1">恭喜你</h5>
+                        <h5 class="tips-2">获得</h5>
+                        <h5 class="tips-3">降温礼品一份</h5>
+                        <p class="tips-4">请于8月11号17:00前，将【姓名+电话】私信给<br>
+                            花生小姐姐获取领奖方式<br>
+                            领奖时间：8月10-11日<br>
+                            （花生小姐姐微信号：HSDT-wifi）
+                        </p>
+                        <p class="tips-5">（分值越高，获得的奖品越好）</p>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-close"></button>
+        </div>
+        <div class="popup__act popup__fail popup__result">
+            <div class="info bounceIn">
+                <div class="score">
+                    <h5 id="fail-score">0</h5>
+                </div>
+                <div class="main">
+                    <img src="../images/fail_title.png" alt="" class="title">
+                    <img src="../images/fail_face.png" alt="" class="face">
+                    <div class="tips fail-tips">
+                        <h5 class="tips-1">500分以下即为挑战失败</h5>
+                        <h5 class="tips-2">别灰心</h5>
+                        <h5 class="tips-2">再多拾点降温神器</h5>
+                        <p class="tips-3">点击好友助力可获得更多机会喔</p>
+                    </div>
+                    <div class="btn">
+                        <button class="btn-again"></button>
+                        <button class="btn-share"></button>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-close"></button>
+        </div>
+
+        <div class="popup__act popup__wechat">
+            <div class="info">
+                <img src="../images/wechat_share.png" alt="" class="share-wechat">
+            </div>
+        </div>
+        <!-- <div class="popup__act popup__shareIcon">
+            <div class="icon-list">
+                <ul>
+                    <li data-type="0">
+                        <div class="icon icon-wechat-friends" data-type="0"></div>
+                        <p>朋友圈</p>
+                    </li>
+                    <li data-type="1">
+                        <div class="icon icon-wechat" data-type="1"></div>
+                        <p>微信好友</p>
+                    </li>
+                    <li data-type="2">
+                        <div class="icon icon-qq" data-type="2"></div>
+                        <p>QQ好友</p>
+                    </li>
+                    <li data-type="4">
+                        <div class="icon icon-weibo" data-type="4"></div>
+                        <p>微博</p>
+                    </li>
+                </ul>
+                <p class="btn-cancel">取消</p>
+            </div>
+        </div> -->
+    </div>
+    <div class="prompt" id="prompt"><em>提示信息</em></div>
+    <script src="http://cmsfile.wifi8.com/uploads/wifi/AppH5/api/zepto.min.js"></script>
+    <script src="http://cmsfile.wifi8.com/uploads/wifi/AppH5/api/zepto.cookie.min.js"></script>
+    <script src="http://cmsfile.wifi8.com/uploads/wifi/AppH5/api/nfygCommonPack.min.js"></script>
+    <script src="http://cmsfile.wifi8.com/uploads/wifi/AppH5/api/vconsole.min.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="../js/public.js"></script>
+    <script type="text/javascript" src="../js/start.js"></script>
+</body>
+
+</html>

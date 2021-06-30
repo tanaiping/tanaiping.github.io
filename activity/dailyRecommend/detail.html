@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="MobileOptimized" content="240" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />  
+    <meta content="email=no" name="format-detection" />
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title>每日一荐</title>
+    <link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="css/common.css">
+</head>
+<body>
+<div class="wrap">
+	<div class="recommend-con">
+		<div class="con-head">
+			<div class="date"></div>  <!-- 18 <em>Dec. 2020</em> -->
+			<div class="type"></div>
+		</div>
+		<img src="" alt="" class="recommend-img">
+		<div class="recom-title"></div>
+		<div class="recom-txt">
+		</div>
+		<div class="ope-box">
+			<div class="share-ico">分享</div>
+			<div class="zan-ico">155</div>
+		</div>
+		<div class="bottom-box" style="display: none;">
+			<div class="b-left">
+				<img src="images/download.png" alt="" class="b-download">
+				<div class="b-txt">长按识别<br />二维码</div>
+			</div>
+			<img src="images/logo.png" alt="" class="b-logo">
+		</div>
+	</div>
+</div>
+<div class="prompt" id="prompt"><em>提示信息</em></div>
+<script src="js/jquery-1.8.3.min.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script src="js/nfygCommonPack.js"></script>
+<script src="js/public.js"></script>
+<!-- <script src="js/html2canvas.min.js"></script> -->
+<!-- <script src="js/vconsole.min.js"></script> -->
+<div style="display: none;"><script type="text/javascript" src="https://v1.cnzz.com/z_stat.php?id=1279572410&web_id=1279572410"></script></div>
+<script>
+	$(function(){
+		//默认显示第一条详情 
+		var recommendId = getQueryString("recommendId");
+		var isShare = parseInt(getQueryString("isShare"));
+		if(isShare ==1){
+			$(".ope-box").hide();
+			$(".bottom-box").show();
+		}else{
+			$(".ope-box").show();
+			$(".bottom-box").hide();
+		}
+		//http://192.168.3.92:8081  http://activity.peanut8.com
+		shareData.url = "http://activity.peanut8.com/act/2020/dailyRecommend/detail.html?isShare=1&versionCode="+baseInfo.versionCode+"&sign="+baseInfo.sign+"&deviceCode="+baseInfo.deviceCode+"&userId="+baseInfo.userId+"&platform="+baseInfo.platform+"&recommendId="+recommendId;
+		
+		initList();
+		
+		//点分享
+		$(document).on("click",".share-ico",function(){
+			var sigleShareUrl = "http://activity.peanut8.com/act/2020/dailyRecommend/share.html?versionCode="+baseInfo.versionCode+"&sign="+baseInfo.sign+"&deviceCode="+baseInfo.deviceCode+"&userId="+baseInfo.userId+"&platform="+baseInfo.platform+"&recommendId="+$(this).parents(".recommend-con").attr("recommendId");
+			var title = $(this).parents(".recommend-con").find(".recom-title").text();
+			var txt =  $(this).parents(".recommend-con").find(".recom-txt").text();
+			nfyg.openSharePanel(sigleShareUrl,shareData.imageUrl, title, txt)
+			
+		})
+		//点赞
+		$(document).on("click",".zan-ico",function(){
+			if(!$(this).hasClass("act")){//点赞
+				like(1,this)
+			}else{//取消点赞
+				like(2,this)
+			}
+		})
+		
+		function initList(){
+			var params ='';
+			if(isApp){
+				params = {"baseInfo":baseInfo};
+				console.log(params)
+			}else{
+				var versionCode = getQueryString("versionCode")||null
+				var sign = getQueryString("sign")||null
+				var deviceCode = getQueryString("deviceCode")||null
+				var userId = getQueryString("userId")||null
+				var platform = getQueryString("platform")||null
+				params = {"baseInfo":{
+						"versionCode":versionCode,
+						"sign":sign,
+						"deviceCode":deviceCode,
+						"userId":userId,
+						"platform":platform
+					}}
+					
+			}
+			
+			nfyg.otherCommon.getDatanormal("post", baseUrl + '/v1/recommend/list', "json", JSON.stringify(params), true, function(res) {
+				// console.log(res);
+				if (res.resultCode == 0) {
+					if(res.data){
+						var html = ''
+						res.data.forEach(function(item,index,arr){
+							if(recommendId == -1){
+								if(index == 0){
+									var days = getDay(item.publishTime);
+									$(".con-head .date").html(days.day+'<em> '+days.mon+" "+days.year+'</em>')
+									$(".con-head .type").html(item.label)
+									$(".recommend-img").attr("src",item.img)
+									$(".recom-title").html(item.title)
+									$(".recom-txt").html(item.content);
+									$(".recommend-con").attr("recommendId",item.recommendId)
+									$(".zan-ico").text(item.zanNum)
+									if(item.isZan == 1){
+										$(".zan-ico").addClass("act");
+									}else{
+										$(".zan-ico").removeClass("act");
+									}
+								}
+							}else{
+								if(recommendId == item.recommendId){
+									var days = getDay(item.publishTime);
+									$(".con-head .date").html(days.day+'<em> '+days.mon+" "+days.year+'</em>')
+									$(".con-head .type").html(item.label)
+									$(".recommend-img").attr("src",item.img)
+									$(".recom-title").html(item.title)
+									$(".recom-txt").html(item.content);
+									$(".recommend-con").attr("recommendId",item.recommendId)
+									$(".zan-ico").text(item.zanNum)
+									if(item.isZan == 1){
+										$(".zan-ico").addClass("act");
+									}else{
+										$(".zan-ico").removeClass("act");
+									}
+								}
+							}
+							
+						});
+					}
+					
+				} else {
+					nfyg.otherCommon.promptShow(res.resultMsg);
+				}
+			})
+		}
+		
+		//点赞1/取消点赞2
+		function like(type,obj){
+			var recommendId = $(obj).parents(".recommend-con").attr("recommendId");
+			var userId = baseInfo.userId;
+			var params = {
+				"recommendId":recommendId,
+				"userId":userId,
+				"type":type,
+			}
+			nfyg.otherCommon.getDatanormal("post", baseUrl + '/v1/recommend/like', "json", JSON.stringify(params), true, function(res) {
+				console.log(res);
+				if (res.resultCode == 0) {
+					if(type==1){
+						$(obj).addClass("act").text(+$(obj).text()+1)
+					}else{
+						$(obj).removeClass("act").text(+$(obj).text()-1)
+					}
+				} else {
+					nfyg.otherCommon.promptShow(res.resultMsg);
+				}
+			})
+		}
+		
+		function getQueryString(name){
+		     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+		     var r = window.location.search.substr(1).match(reg);
+		     if(r!=null)return  unescape(r[2]); return null;
+		}
+		
+		//把日期格式 转为带英文的格式  2020-12-25  -----》25 Dec. 2020
+		function getDay(d){
+			var year = d.substring(0,4);
+			var mon = parseInt(d.substring(5,7));
+			var day = d.substring(8,10);
+			switch(mon){
+				case 01:mon = "Jan.";
+				break;
+				case 02:mon = "Feb.";
+				break;
+				case 03:mon = "Mar.";
+				break;
+				case 04:mon = "Apr.";
+				break;
+				case 05:mon = "May" ;
+				break;
+				case 06:mon = "Jun.";
+				break;
+				case 07:mon = "Jul.";
+				break;
+				case 08:mon = "Aug.";
+				break;
+				case 09:mon = "Sep.";
+				break;
+				case 10:mon = "Oct.";
+				break;
+				case 11:mon = "Nov.";
+				break;
+				case 12:mon = "Dec.";
+				break;
+			}
+			return {"year":year,"mon":mon,"day":day};
+		}
+	
+	 
+})
+</script>
+</body>
+</html>

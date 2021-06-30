@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+    <meta charset=UTF-8>
+    <meta name=viewport content="width=device-width, initial-scale=1.0, maximum-scale=1.0 user-scalable=no">
+    <meta name=apple-mobile-web-app-capable content=yes>
+    <meta name=apple-mobile-web-app-status-bar-style content=black>
+    <meta name=format-detection content="telephone=no, email=no">
+    <meta name=full-screen content=true>
+    <meta name=screen-orientation content=portrait>
+    <meta name=x5-fullscreen content=true>
+    <meta name=360-fullscreen content=true>
+    <title>城市人口调查室</title>
+    <link rel=stylesheet href=css/animate.min.css>
+    <link rel=stylesheet href=css/main-c6e6202a0e.css>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    <script>
+    var _hmt = _hmt || [];
+    //分享的变量
+    var url="",imageUrl="",title="",text="";
+    </script>
+  </head>
+  
+  <body>
+    <script>setBody();
+     function setBody() {
+        var WB = document.documentElement.clientWidth,
+        HB = document.documentElement.clientHeight,
+        dbody = document.getElementsByTagName('body')[0];
+
+        dbody.style.width = (HB < WB ? WB: HB) + 'px';
+        dbody.style.height = (HB < WB ? HB: WB) + 'px';
+      }
+      window.addEventListener('resize',
+      function() {
+        setBody();
+      })</script>
+    <img src=img/wxshareimg.jpg class="hide-wxshare dp-n">
+    <div class="loading dp-b" id=load>
+      <div class=loading-wave id=loadwave>
+        <img src=img/loadingwave.png class=loading-wave-img></div>
+      <img src=img/loadingcover.png class="loading-cover dp-b" id=loadcover>
+      <img src=img/loadingboy.png class=loading-boy>
+      <img src=img/loadinghint.png class=loading-hint></div>
+    <div class=container>
+      <img class="bg-music rotate dp-b" src=img/musicOn.png>
+      <div class="page p0 dp-n">
+        <div class="p0-gate-wrap clearfix">
+          <img src=img/p0gateleft.png class="p0-gate-left f-l">
+          <img src=img/p0gateright.png class="p0-gate-right f-r"></div>
+        <div class="p0-hint dp-b">
+          <img src=img/p0hintwords0.png class=p0-hint-words>
+          <img src=img/p0btnstart.png class="tag-btn btn-start dp-b">
+          <div class="tag-btn join-person dp-b">已有<em>888888</em>参与测试</div></div>
+      </div>
+      <div class="page p1">
+        <div class="scene-bg p1-bg"></div>
+        <div class=mask>
+          <img src=img/p1hint.png class=p1-mask-hint></div>
+        <div class=scene-cont>
+          <img src=img/p1question.png class=scene-title>
+          <img src="img/step-next.png" class="step-next" data-question=1>
+          <img src=img/p1ans1.png class="scene-ans scene-ans1" data-question=1 data-ans=1>
+          <img src=img/p1ans2.png class="scene-ans scene-ans2" data-question=1 data-ans=2>
+          <img src=img/p1ans3.png class="scene-ans scene-ans3" data-question=1 data-ans=3>
+          <img src=img/p1ans4.png class="scene-ans scene-ans4" data-question=1 data-ans=4>
+          <img src=img/figure-1-1.png class="scene-figure p1-figure1" data-question=1 data-ans=1>
+          <img src=img/figure-1-3.png class="scene-figure p1-figure3" data-question=1 data-ans=3>
+          <img src=img/figure-1-2.png class="scene-figure p1-figure2" data-question=1 data-ans=2>
+          <img src=img/figure-1-4.png class="scene-figure p1-figure4" data-question=1 data-ans=4>
+          
+        </div>
+      </div>
+      <div class="page p2">
+        <div class="scene-bg p2-bg"></div>
+        <div class=scene-cont>
+          <img src=img/p2question.png class=scene-title>
+          <img src="img/step-next.png" class="step-next" data-question=2>
+          <img src=img/p2ans1.png class="scene-ans scene-ans1" data-question=2 data-ans=1>
+          <img src=img/p2ans2.png class="scene-ans scene-ans2" data-question=2 data-ans=2>
+          <img src=img/p2ans3.png class="scene-ans scene-ans3" data-question=2 data-ans=3>
+          <img src=img/p2ans4.png class="scene-ans scene-ans4" data-question=2 data-ans=4>
+          <img src=img/figure-2-1.png class="scene-figure p2-figure1" data-question=2 data-ans=1>
+          <img src=img/figure-2-2.png class="scene-figure p2-figure2" data-question=2 data-ans=2>
+          <img src=img/figure-2-3.png class="scene-figure p2-figure3" data-question=2 data-ans=3>
+          <img src=img/figure-2-4.png class="scene-figure p2-figure4" data-question=2 data-ans=4>
+          
+        </div>
+      </div>
+      <div class="page p3">
+        <div class="scene-bg p3-bg"></div>
+        <div class=scene-cont>
+          <img src=img/p3question.png class=scene-title>
+          <img src="img/step-next.png" class="step-next" data-question=3>
+          <img src=img/p3ans1.png class="scene-ans scene-ans1" data-question=3 data-ans=1>
+          <img src=img/p3ans2.png class="scene-ans scene-ans2" data-question=3 data-ans=2>
+          <img src=img/p3ans3.png class="scene-ans scene-ans3" data-question=3 data-ans=3>
+          <img src=img/p3ans4.png class="scene-ans scene-ans4" data-question=3 data-ans=4>
+          <img src=img/figure-3-1.png class="scene-figure p3-figure1" data-question=3 data-ans=1>
+          <img src=img/figure-3-2.png class="scene-figure p3-figure2" data-question=3 data-ans=2>
+          <img src=img/figure-3-3.png class="scene-figure p3-figure3" data-question=3 data-ans=3>
+          <img src=img/figure-3-4.png class="scene-figure p3-figure4" data-question=3 data-ans=4>
+          
+        </div>
+      </div>
+      <div class="page p4">
+        <div class="scene-bg p4-bg"></div>
+        <div class=scene-cont>
+          <img src=img/p4question.png class=scene-title>
+          <img src="img/step-next.png" class="step-next" data-question=4>
+          <img src=img/p4ans1.png class="scene-ans scene-ans1" data-question=4 data-ans=1>
+          <img src=img/p4ans2.png class="scene-ans scene-ans2" data-question=4 data-ans=2>
+          <img src=img/p4ans1.png class="scene-ans scene-ans3" data-question=4 data-ans=3 style="display: none;">
+          <img src=img/p4ans1.png class="scene-ans scene-ans4" data-question=4 data-ans=4 style="display: none;">
+          <img src=img/figure-4-1.png class="scene-figure p4-figure1" data-question=4 data-ans=1>
+          <img src=img/figure-4-2.png class="scene-figure p4-figure2" data-question=4 data-ans=2>
+         
+        </div>
+      </div>
+      <div class="page p5">
+        <div class="scene-bg p5-bg"></div>
+        <div class=scene-cont>
+          <img src=img/p5question.png class=scene-title>
+          <img src="img/step-next.png" class="step-next" data-question=5>
+          <img src=img/p5ans1.png class="scene-ans scene-ans1" data-question=5 data-ans=1>
+          <img src=img/p5ans2.png class="scene-ans scene-ans2" data-question=5 data-ans=2>
+          <img src=img/p5ans3.png class="scene-ans scene-ans3" data-question=5 data-ans=3>
+          <img src=img/p5ans4.png class="scene-ans scene-ans4" data-question=5 data-ans=4>
+          <img src=img/figure-5-1.png class="scene-figure p5-figure1" data-question=5 data-ans=1>
+          <img src=img/figure-5-2.png class="scene-figure p5-figure2" data-question=5 data-ans=2>
+          <img src=img/figure-5-3.png class="scene-figure p5-figure3" data-question=5 data-ans=3>
+          <img src=img/figure-5-4.png class="scene-figure p5-figure4" data-question=5 data-ans=4>
+          
+        </div>
+      </div>
+      <div class="page p6">
+        <div class="scene-bg p6-bg"></div>
+        <div class=scene-cont>
+          <img src=img/p6question.png class=scene-title>
+          <img src="img/step-next.png" class="step-next" data-question=6>
+          <img src=img/p6ans1.png class="scene-ans scene-ans1" data-question=6 data-ans=1>
+          <img src=img/p6ans2.png class="scene-ans scene-ans2" data-question=6 data-ans=2>
+          <img src=img/p6ans3.png class="scene-ans scene-ans3" data-question=6 data-ans=3>
+          <img src=img/p6ans4.png class="scene-ans scene-ans4" data-question=6 data-ans=4>
+          <img src=img/figure-6-1.png class="scene-figure p6-figure1" data-question=6 data-ans=1>
+          <img src=img/figure-6-2.png class="scene-figure p6-figure2" data-question=6 data-ans=2>
+          <img src=img/figure-6-3.png class="scene-figure p6-figure3" data-question=6 data-ans=3>
+          <img src=img/figure-6-4.png class="scene-figure p6-figure4" data-question=6 data-ans=4>
+          
+        </div>
+      </div>
+      <div class="page p7">
+        <div class="scene-bg p7-bg"></div>
+        <div class=scene-cont>
+          <img src=img/p7question.png class=scene-title>
+          <img src="img/step-next.png" class="step-next" data-question=7>
+          <img src=img/p7ans1.png class="scene-ans scene-ans1" data-question=7 data-ans=1>
+          <img src=img/p7ans2.png class="scene-ans scene-ans2" data-question=7 data-ans=2>
+          <img src=img/p7ans1.png class="scene-ans scene-ans3" data-question=7 data-ans=3 style="display: none;">
+          <img src=img/p7ans1.png class="scene-ans scene-ans4" data-question=7 data-ans=4 style="display: none;">
+          <img src=img/figure-7-1.png class="scene-figure p7-figure1" data-question=7 data-ans=1>
+          <img src=img/figure-7-2.png class="scene-figure p7-figure2" data-question=7 data-ans=2>
+         
+        </div>
+      </div>
+      <div class="page p8">
+        <div class="scene-bg p8-bg"></div>
+        <div class=scene-cont>
+          <img src=img/p8question.png class=scene-title>
+          <img src="img/step-next.png" class="step-next" data-question=8>
+          <img src=img/p8ans1.png class="scene-ans scene-ans1" data-question=8 data-ans=1>
+          <img src=img/p8ans2.png class="scene-ans scene-ans2" data-question=8 data-ans=2>
+          <img src=img/p8ans2.png class="scene-ans scene-ans3" data-question=8 data-ans=3 style="display: none;">
+          <img src=img/p8ans2.png class="scene-ans scene-ans4" data-question=8 data-ans=4 style="display: none;">
+          <img src=img/figure-8-1.png class="scene-figure p8-figure1" data-question=8 data-ans=1>
+          <img src=img/figure-8-2.png class="scene-figure p8-figure2" data-question=8 data-ans=2>
+          
+        </div>
+      </div>
+      <div class="page p9">
+        <div class="scene-bg p9-bg"></div>
+        <div class=scene-cont>
+          <img src=img/p9question.png class=scene-title>
+          <img src="img/step-next.png" class="step-next" data-question=9>
+          <img src=img/p9ans1.png class="scene-ans scene-ans1" data-question=9 data-ans=1>
+          <img src=img/p9ans2.png class="scene-ans scene-ans2" data-question=9 data-ans=2>
+          <img src=img/p9ans3.png class="scene-ans scene-ans3" data-question=9 data-ans=3>
+          <img src=img/p9ans4.png class="scene-ans scene-ans4" data-question=9 data-ans=4>
+          <img src=img/figure-9-1.png class="scene-figure p9-figure1" data-question=9 data-ans=1>
+          <img src=img/figure-9-2.png class="scene-figure p9-figure2" data-question=9 data-ans=2>
+          <img src=img/figure-9-3.png class="scene-figure p9-figure3" data-question=9 data-ans=3>
+          <img src=img/figure-9-4.png class="scene-figure p9-figure4" data-question=9 data-ans=4>
+          
+        </div>
+      </div>
+      <div class="page p10">
+        <div class="scene-bg p10-bg"></div>
+        <div class=scene-cont>
+          <img src=img/p10question.png class=scene-title>
+          <img src="img/step-next.png" class="step-next" data-question=10>
+          <img src=img/p10ans1.png class="scene-ans scene-ans1" data-question=10 data-ans=1>
+          <img src=img/p10ans2.png class="scene-ans scene-ans2" data-question=10 data-ans=2>
+          <img src=img/p10ans3.png class="scene-ans scene-ans3" data-question=10 data-ans=3>
+          <img src=img/p10ans4.png class="scene-ans scene-ans4" data-question=10 data-ans=4>
+          <img src=img/figure-10-1.png class="scene-figure p10-figure1" data-question=10 data-ans=1>
+          <img src=img/figure-10-2.png class="scene-figure p10-figure2" data-question=10 data-ans=2>
+          <img src=img/figure-10-3.png class="scene-figure p10-figure3" data-question=10 data-ans=3>
+          <img src=img/figure-10-4.png class="scene-figure p10-figure4" data-question=10 data-ans=4>
+        </div>
+      </div>
+      <div class="page p11">
+        <div class="scene-bg p11-bg" ></div>
+          <div class="scene-cont scene-cont2">
+             <img src=img/whiteboard2.png class=p11-whiteboard>
+              <div class=p11-loading>
+                <img src=img/p11resultloading.jpg class=p11-loading-img>
+                <div class=p11-loading-cover></div>
+              </div>
+            <div class=p11-result>
+              <img src="img/p11resulttitle.png" class=p11-result-title>
+              <span class="hs_text">花生发现，有<span>45121222</span>人跟你适合住同一个城市</span>
+              <div class="result-con">
+                <div class="box-l">
+                  <div class="city-name">成都</div>
+                  <div class="city-img"><img src="img/cd.png" alt=""></div>
+                  <div class="com-btn btn-again-btn"><img src="img/btnagain.png" alt=""></div>
+                </div>
+                <div class="box-r">
+                  <div class="active-desc">吃货、颜值高、热爱生活</div>
+                  <div class="active-img"><img src="img/quan01.png" alt=""></div>
+                  <div class="com-btn active-btn"><img src="img/movie_btn.png" alt=""></div>
+                </div>
+              </div>
+              <!-- <img src=img/btnagain.jpg class="tag-btn btn-again">
+              <img src=img/btnshare.png class=btn-share-others> -->
+          </div>
+
+          <div class="tel-form-box">
+            <div class="tel-submit">
+              <h2>填写手机号码，领取电影票抽奖码</h2>
+              <p>抽奖结果我们将以短信的方式发送到您的手机！</p>
+              <div class="input-box">
+                <input type="tel" class="tel-input" maxlength="11" pattern="[0-9]*" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" placeholder="手机号码">
+                <img src="img/submit_btn.png" alt="" class="sub-btn">
+              </div>
+              <div class="msg"></div>
+            </div>
+            <div class="tel-result dp-n">
+              <div class="code-bg">
+                <div class="t1">花生抽奖券</div>
+                <div class="t2">75485</div>
+                <div class="t3">抽奖结活动将在2018年6月15日开奖</div>
+              </div>
+              <p>抽奖结果我们将以短信的方式发送到您的手机！</p>
+              <div class="tel-val">
+                手机号码:<span>1523252548</span>
+              </div>
+            </div>
+              <img src="img/btnshare.png" alt="" class="btn-share-btn">
+          </div>
+          
+          <img src=img/sharehint2.png class="sharehint tag-sharehint-right dp-n">
+          <img src=img/sharehintleft2.png class="sharehint tag-sharehint-left dp-n"></div>
+    </div>
+    <div class="debuglog dp-n" id=log>
+      <p id=log1></p>
+    </div>
+    <script>var WB = document.documentElement.clientWidth,
+      HB = document.documentElement.clientHeight;
+      coverLoad();
+      function coverLoad() {
+
+        var img = new Image();
+        img.src = 'img/loadingcover.png';
+
+        if (img.complete) {
+          // console.log('coverLoad complete')
+          setImg();
+        } else {
+          img.onload = function() {
+            // console.log('coverLoad onload')
+            setImg();
+            img.onload = null;
+          };
+        };
+      };
+      function setImg() {
+        WB = document.documentElement.clientWidth,
+        HB = document.documentElement.clientHeight;
+
+        var dloadwave = document.getElementById('loadwave');
+        var dloadcover = document.getElementById('loadcover');
+        var dbody = document.getElementsByTagName('body')[0];
+
+        // dbody.style.width = (HB < WB ? WB : HB )+'px';
+        // dbody.style.height = (HB < WB ? HB : WB) +'px';
+        dloadwave.style.opacity = 1;
+
+        if (HB / WB > 1336 / 649 || WB / HB > 1336 / 649) {
+          dloadcover.style.width = '100%';
+        } else {
+          dloadcover.style.width = 'auto';
+        }
+        
+      }
+      window.addEventListener('resize',
+      function() {
+        setImg();
+      })
+      </script>
+    <script src=http://cdn.bootcss.com/jquery/2.1.4/jquery.js></script>
+    <script src=http://cdn.bootcss.com/jquery.transit/0.9.12/jquery.transit.min.js></script>
+    <script src="js/nfygInlay.js"></script>
+    <script src=js/main-6ed37dbef3.js></script>
+    <script>
+      $(function(){
+        var wx_link = window.location.href
+        $.ajax({
+            type: "get",
+            url: 'http://activity.peanut8.com/api/ajaxWx',
+            data: {"url":wx_link},
+            dataType: 'json',
+            success: function(data) {
+                 wx.config({
+                      debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                      appId: data.data.sharePackage.appId, // 必填，公众号的唯一标识
+                      timestamp: data.data.sharePackage.timestamp, // 必填，生成签名的时间戳
+                      nonceStr: data.data.sharePackage.nonceStr, // 必填，生成签名的随机串
+                      signature: data.data.sharePackage.signature,// 必填，签名，见附录1
+                      jsApiList: [
+                        'checkJsApi',
+                        'onMenuShareTimeline',
+                        'onMenuShareAppMessage'
+                      ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                  });
+            },
+            error: function() {}
+          });
+
+
+      })
+    </script>
+  </body>
+
+</html>

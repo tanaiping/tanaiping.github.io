@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="MobileOptimized" content="240" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />  
+    <meta content="email=no" name="format-detection" />
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title>娃哈哈苏打水，轻简生活，我的健康主张。</title>
+    <link rel="stylesheet" href="css/base.css">
+    <style>
+        body{background-color: #0fa39c;}
+        .main-wrap{width: 100%; max-width: 750px; margin:0 auto;}
+        .main-con{background: url(images/bg.jpg) center top no-repeat; background-size: contain; width: 37.5rem; height: 91.7rem;}
+        .video-box{width: 33rem; height: 17.5rem; position: absolute; left:50%; top: 39.6rem; margin-left: -16.5rem;}
+      </style>
+</head>
+<body>
+    <div class="main-wrap">
+       <div class="main-con">
+         <div class="video-box">
+           <video poster="images/video.png" src="http://cmsfile.wifi8.com/uploads/activity/vide/whh1.mp4" width="100%" height="100%"  preload="auto" playsinline  webkit-playsinline  autoplay   loop="loop"  id="myVideo"></video>
+         </div>
+       </div>
+      <!-- http://cmsfile.wifi8.com/uploads/activity/vide/whh.mp4 -->
+    </div>
+
+<script src="js/zepto.min.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script src="js/public.js"></script>
+<script>
+    $(function(){
+        var url = 'http://activity.peanut8.com/act/2019/whh/index.html';
+        var imgUrl = 'http://activity.peanut8.com/act/2019/whh/images/share.jpg';
+        var title = '娃哈哈苏打水，轻简生活，我的健康主张。';
+        var desc = '娃哈哈苏打水，轻简生活，我的健康主张。';
+        var wx_url = window.location.href;
+        $.ajax({
+          type: "get",
+          url: 'http://activity.peanut8.com/WxShare/anxious',
+          data: {
+            url: wx_url
+          },
+          dataType: 'json',
+          success: function(data) {
+            if(data.code == 1) {
+              wx.config({
+                debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                appId: data.data.sharePackage.appId, // 必填，公众号的唯一标识
+                timestamp: data.data.sharePackage.timestamp, // 必填，生成签名的时间戳
+                nonceStr: data.data.sharePackage.nonceStr, // 必填，生成签名的随机串
+                signature: data.data.sharePackage.signature, // 必填，签名，见附录1
+                jsApiList: [
+                  'checkJsApi',
+                  'onMenuShareTimeline',
+                  'onMenuShareAppMessage'
+                ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+              });
+              var shareInfo = data.data.shareInfo;
+              wx.ready(function() {
+                //分享到朋友圈
+                wx.onMenuShareTimeline({
+                  title: title, // 分享标题
+                  desc: desc,
+                  link: url, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                  imgUrl: imgUrl, // 分享图标
+                  success: function() {
+
+                  },
+                  cancel: function(res) {
+
+                  }
+                });
+
+                //分享给朋友
+                wx.onMenuShareAppMessage({
+                  title: title, // 分享标题
+                  desc: desc, // 分享描述
+                  link: url, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                  imgUrl: imgUrl, // 分享图标
+                  success: function() {
+
+                  },
+                  cancel: function() {
+
+                  }
+                });
+              });
+            }
+          },
+          error: function() {}
+        })
+
+        //解决苹果不能自动播放   模拟点击
+        var video = document.getElementById("myVideo");
+        video.play();
+        document.addEventListener('WeixinJSBridgeReady',function(){
+            video.play();
+        },false);
+    })
+
+</script>
+<script>
+    
+</script>
+</body>
+</html>

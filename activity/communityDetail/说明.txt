@@ -1,0 +1,7 @@
+示例地址：http://cmsfile.wifi8.com/uploads/wifi/AppH5/communityDetail/detail.html?communityId=188
+
+cmd -  mstsc     开启远程
+
+远程服务器地址：101.37.36.167  （/uploads/wifi/AppH5/communityDetail）
+账号：nfygadmin
+密码：Iwon1$@nfyg

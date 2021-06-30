@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="MobileOptimized" content="240" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />  
+    <meta content="email=no" name="format-detection" />
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title>每日一荐</title>
+    <link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="css/common.css">
+</head>
+<body>
+<div class="wrap">
+	<div class="recommend-con">
+		<div class="con-head">
+			<div class="date"></div>  <!-- 18 <em>Dec. 2020</em> -->
+			<div class="type"></div>
+		</div>
+		<img src="" alt="" class="recommend-img">
+		<div class="recom-title"></div>
+		<div class="recom-txt">
+		</div>
+		<div class="ope-box">
+			<div class="share-ico">分享</div>
+			<div class="zan-ico">155</div>
+		</div>
+		<div class="bottom-box" style="display: none;">
+			<div class="b-left">
+				<img src="images/download.png" alt="" class="b-download">
+				<div class="b-txt">长按识别<br />二维码</div>
+			</div>
+			<img src="images/logo.png" alt="" class="b-logo">
+		</div>
+	</div>
+	<ul class="recommend-list">
+		<!-- <li>
+			<img src="images/download.png" alt="">
+			<div class="type">电影11</div>
+			<div class="date">2020-12-22</div>
+		</li> -->
+	</ul>
+</div>
+<div class="preview-conbox" id="preview_box">
+	<div class="recommend-con">
+		<div class="con-head">
+			<div class="date"></div>  <!-- 18 <em>Dec. 2020</em> -->
+			<div class="type"></div>
+		</div>
+		<img src="" alt="" class="recommend-img">
+		<div class="recom-title"></div>
+		<div class="recom-txt">
+		</div>
+		<div class="bottom-box2">
+			<div class="b-left">
+				<img src="images/download.png" alt="" class="b-download">
+				<div class="b-txt">长按识别<br />二维码</div>
+			</div>
+			<img src="images/logo.png" alt="" class="b-logo">
+		</div>
+	</div>
+</div>
+<div class="share-iconbox">
+	<ul class="iconlist">
+		<li><img src="images/pyq.png" alt=""><span>朋友圈</span></li>
+		<li><img src="images/wx.png" alt=""><span>微信好友</span></li>
+		<li><img src="images/qq.png" alt=""><span>QQ</span></li>
+		<li><img src="images/zone.png" alt=""><span>QQ空间</span></li>
+		<li><img src="images/wb.png" alt=""><span>微博</span></li>
+	</ul>
+	<div class="cancel-btn">取消</div>
+</div>
+<div class="prompt" id="prompt"><em>提示信息</em></div>
+<script src="js/jquery-1.8.3.min.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script src="js/nfygCommonPack.js"></script>
+<script src="js/public.js"></script>
+<script src="js/html2canvas.min.js"></script>
+<!-- <script src="js/vconsole.min.js"></script> -->
+<div style="display: none;"><script type="text/javascript" src="https://v1.cnzz.com/z_stat.php?id=1279572410&web_id=1279572410"></script></div>
+<script>
+	$(function(){
+		//默认显示第一条详情 
+		var recommendId = -1;
+		var isShare = parseInt(getQueryString("isShare"));
+		
+		var versionCode = "" ;
+		var sign = "";
+		var deviceCode = "";
+		var userId = "";
+		var platform = "";
+		
+		if(isShare ==1){
+			$(".ope-box").hide();
+			$(".bottom-box").show();
+		}else{
+			$(".ope-box").show();
+			$(".bottom-box").hide();
+		}
+		//http://192.168.3.92:8081  http://activity.peanut8.com
+		shareData.url = "http://activity.peanut8.com/act/2020/dailyRecommend/index.html?isShare=1&versionCode="+baseInfo.versionCode+"&sign="+baseInfo.sign+"&deviceCode="+baseInfo.deviceCode+"&userId="+baseInfo.userId+"&platform="+baseInfo.platform
+		
+		initList();
+		
+		
+		//点分享
+		$(document).on("click",".share-ico",function(){
+			//微信分享
+			// var sigleShareUrl = "http://activity.peanut8.com/act/2020/dailyRecommend/share.html?versionCode="+baseInfo.versionCode+"&sign="+baseInfo.sign+"&deviceCode="+baseInfo.deviceCode+"&userId="+baseInfo.userId+"&platform="+baseInfo.platform+"&recommendId="+$(this).parents(".recommend-con").attr("recommendId");
+			// var title = $(this).parents(".recommend-con").find(".recom-title").text();
+			// var txt =  $(this).parents(".recommend-con").find(".recom-txt").text();
+			// nfyg.openSharePanel(sigleShareUrl,shareData.imgUrl, title, txt)
+			
+			//图片预览
+			$(".wrap").hide();
+			$(".preview-conbox,.share-iconbox").show();
+			//把网络图片转成64格式 再去分享图片; 不然网络图片跨域
+			var base64Img = getBase64Img($(".recommend-img").attr("src"));
+		})
+		//取消分享
+		$(".cancel-btn").click(function(){
+			$(".wrap").show();
+			$(".preview-conbox,.share-iconbox").hide();
+		})
+		
+		$(".iconlist li").click(function(){
+			var i = $(".iconlist li").index(this);
+			takePhoto(i)
+		})
+		
+		/** sharePlatform  0：微信朋友圈 、 1：微信好友、2：QQ、3：QQ空间、4：微博 *  shareType      0：以表情的形式分享（限微信） 1：下载，2：以图片的形式分享 */
+		function takePhoto(sharePlatform) {
+				 window.pageYoffset = 0;
+				 document.documentElement.scrollTop = 0;
+				 document.body.scrollTop = 0;
+				 
+				 //创建一个新的canvas
+				 var canvas2 = document.createElement("canvas");
+				 //获取宽高
+				 var w = $('#preview_box').width();
+				 var h = $('#preview_box').height();
+				 var scale_v = 4;
+				 // // 将canvas画布放大若干倍，然后盛放在较小的容器内，就显得不模糊了
+				 canvas2.width = w * scale_v;
+				 canvas2.height = h * scale_v;
+				 canvas2.style.width = w + "px";
+				 canvas2.style.height = h + "px";
+				 		
+				 // //可以按照自己的需求，对context的参数修改,translate指的是偏移量
+				 var context = canvas2.getContext("2d");
+				 context.scale(scale_v, scale_v);
+				 
+				 html2canvas(document.querySelector('#preview_box'), {
+				 	//useCORS: true,
+				 	scale: scale_v,
+				 	width: w,
+				 	height: h,
+				 	background:'#FFFFFF',
+				 	canvas: canvas2,
+				 	dpi: window.devicePixelRatio * scale_v, // window.devicePixelRatio是设备像素比
+				 }).then(function(canvas) {
+				 	var imgBase64 = canvas.toDataURL('image/jpeg', 1.0);
+					getImgUrl(imgBase64,sharePlatform)
+				 	//nfyg.scriptShareImg(sharePlatform,imgBase64,2);
+				 });
+				
+		}
+		
+		//base64 返回http url地址
+		function getImgUrl(base64Img,sharePlatform){
+			nfyg.otherCommon.getDatanormal("post", baseUrl + '/uSystem/base64fileUpload', "json", JSON.stringify({"img":base64Img}), true, function(res) {
+				console.log(res);
+				if (res.resultCode == 0) {
+					nfyg.scriptShareImg(sharePlatform,res.data,2);
+				} else {
+					nfyg.otherCommon.promptShow(res.resultMsg);
+				}
+			})
+		}
+		function getBase64Img(imgUrl){
+			var dataURL = '';
+			var canvas = document.createElement('canvas'),
+			ctx = canvas.getContext('2d'),
+			img = new Image();
+		  img.crossOrigin = 'Anonymous'; // 重点！设置image对象可跨域请求
+		  img.src = imgUrl + "?timeStamp=" + new Date().getTime(); //解决缓存引起访问失败需要添加时间戳。。。。。问题的关键点
+	
+		  img.onload = function () {
+				canvas.height = img.height;
+				canvas.width = img.width;
+				ctx.drawImage(img, 0, 0);
+				dataURL = canvas.toDataURL('image/jpeg', 1.0);
+				console.log(canvas.toDataURL('image/jpeg'))
+				$(".recommend-img").eq(1).attr("src",dataURL);
+				//alert(dataURL)
+			}
+		}
+		
+		
+		//点赞
+		$(document).on("click",".zan-ico",function(){
+			if(!$(this).hasClass("act")){//点赞
+				like(1,this)
+			}else{//取消点赞
+				like(2,this)
+			}
+		})
+		
+		//获取当前日期
+		function getNowFormatDate() {
+			var date = new Date();
+			var seperator1 = "-";
+			var year = date.getFullYear();
+			var month = date.getMonth() + 1;
+			var strDate = date.getDate();
+			if (month >= 1 && month <= 9) {
+				month = "0" + month;
+			}
+			if (strDate >= 0 && strDate <= 9) {
+				strDate = "0" + strDate;
+			}
+			var currentdate = year + seperator1 + month + seperator1 + strDate;
+			return currentdate;
+		}
+		/**
+		 * 计算两个日期之间的天数
+		 * @param dateString1  开始日期 yyyy-MM-dd
+		 * @param dateString2  结束日期 yyyy-MM-dd
+		 * @returns {number} 如果日期相同 返回一天 开始日期大于结束日期，返回0
+		 */
+		function  getDaysBetween(dateString1){
+			var dateString2 = getNowFormatDate();
+		    var  startDate = Date.parse(dateString1);
+		    var  endDate = Date.parse(dateString2);
+		    if (startDate>endDate){
+		        return 0;
+		    }
+		    if (startDate==endDate){
+		        return 0;
+		    }
+		    var days=(endDate - startDate)/(1*24*60*60*1000);
+		    return  days;
+		}
+		
+		//点击列表
+		$(".recommend-list").on("click","li",function(){
+			recommendId = $(this).attr("recommendId");
+			// if(isApp){
+			// 	window.location.href="http://activity.peanut8.com/act/2020/dailyRecommend/detail.html?isShare="+isShare+"&versionCode="+baseInfo.versionCode+"&sign="+baseInfo.sign+"&deviceCode="+baseInfo.deviceCode+"&userId="+baseInfo.userId+"&platform="+baseInfo.platform+"&recommendId="+$(this).attr("recommendId");
+			// }else{
+			// 	window.location.href="http://activity.peanut8.com/act/2020/dailyRecommend/detail.html?isShare="+isShare+"&versionCode="+versionCode+"&sign="+sign+"&deviceCode="+deviceCode+"&userId="+userId+"&platform="+platform+"&recommendId="+$(this).attr("recommendId");
+			// }
+			$(window).scrollTop(0);
+			initList();
+		})
+		
+		
+
+		function initList(){
+			var params ='';
+			if(isApp){
+				params = {"baseInfo":baseInfo};
+				console.log(params)
+			}else{
+				var versionCode = getQueryString("versionCode")
+				var sign = getQueryString("sign")
+				var deviceCode = getQueryString("deviceCode")
+				var userId = getQueryString("userId")
+				var platform = getQueryString("platform")
+				params = {"baseInfo":{
+						"versionCode":versionCode,
+						"sign":sign,
+						"deviceCode":deviceCode,
+						"userId":userId,
+						"platform":platform
+					}}
+					
+			}
+			
+			nfyg.otherCommon.getDatanormal("post", baseUrl + '/v1/recommend/list', "json", JSON.stringify(params), true, function(res) {
+				// console.log(res);
+				if (res.resultCode == 0) {
+					if(res.data){
+						var html = ''
+						// console.log(recommendId)
+						res.data.forEach(function(item,index,arr){
+							//点击的公式  Y = X*常量+N+Q
+							var days = getDaysBetween(item.publishTime);
+							var len = res.data.length-index;
+							var N = 0;
+							var Q = 0;
+							var count_N = 0;
+							var zan_num = 0;
+							if(days == 0){
+								N = 90;
+							}else if(1<days<=1){
+								N = 100*days;
+							}else if(2<=days<=3){
+								N = 120*days;
+							}else if(4<=days<=5){
+								N = 121*days;
+							}else if(6<=days<=7){
+								N = 122*days;
+							}else if(8<=days<=9){
+								N = 123*days;
+							}else if(10<=days){
+								N = 124*days;
+							}
+							
+							if(len<=11){
+								Q = 1*len;
+							}else if(12<=len<=59){
+								var m =parseInt((len-12)/3)+1;
+								Q = m*50*len;
+							}else{
+								var ram = Math.random()*20000
+								Q =parseInt(ram+30000);
+							}
+							
+							if(0<=item.zanNum<=1){
+								count_N = 3;
+							}else if(2<=item.zanNum<=3){
+								count_N = 5;
+							}else if(4<=item.zanNum<=5){
+								count_N = 7;
+							}else if(6<=item.zanNum<=7){
+								count_N = 9;
+							}else if(8<=item.zanNum<=9){
+								count_N = 11;
+							}else if(10<=item.zanNum<=15){
+								count_N = 13;
+							}else if(16<=item.zanNum<=20){
+								count_N = 15;
+							}else if(21<=item.zanNum<=40){
+								count_N = 17;
+							}else if(41<=item.zanNum<=60){
+								count_N = 19;
+							}else if(61<=item.zanNum<=100){
+								count_N = 21;
+							}else if(101<=item.zanNum){
+								count_N = 300;
+							}
+							
+							zan_num = item.zanNum*count_N+N+Q;
+							
+							if(recommendId == -1){
+								if(index == 0){
+									var days = getDay(item.publishTime);
+									$(".con-head .date").html(days.day+'<em> '+days.mon+" "+days.year+'</em>')
+									$(".con-head .type").html(item.label)
+									$(".recommend-img").attr("src",item.img);//item.img
+									$(".recom-title").html(item.title)
+									$(".recom-txt").html(item.content);
+									$(".recommend-con").attr("recommendId",item.recommendId)
+									$(".zan-ico").text(zan_num)
+									if(item.isZan == 1){
+										$(".zan-ico").addClass("act");
+									}else{
+										$(".zan-ico").removeClass("act");
+									}
+								}else{
+									html +='<li recommendId ="'+item.recommendId+'"><img src="'+item.img+'" alt="">'+
+											'<div class="type">'+item.label+'</div>'+
+											'<div class="date">'+item.publishTime+'</div></li>'
+								}
+							}else{
+								if(recommendId == item.recommendId){
+									var days = getDay(item.publishTime);
+									$(".con-head .date").html(days.day+'<em> '+days.mon+" "+days.year+'</em>')
+									$(".con-head .type").html(item.label)
+									$(".recommend-img").attr("src",item.img);//item.img
+									$(".recom-title").html(item.title)
+									$(".recom-txt").html(item.content);
+									$(".recommend-con").attr("recommendId",item.recommendId)
+									$(".zan-ico").text(zan_num)
+									if(item.isZan == 1){
+										$(".zan-ico").addClass("act");
+									}else{
+										$(".zan-ico").removeClass("act");
+									}
+								}else{
+									html +='<li recommendId ="'+item.recommendId+'"><img src="'+item.img+'" alt="">'+
+											'<div class="type">'+item.label+'</div>'+
+											'<div class="date">'+item.publishTime+'</div></li>'
+								}
+							}
+							
+						});
+						$(".recommend-list").html(html);
+					}
+					
+				} else {
+					nfyg.otherCommon.promptShow(res.resultMsg);
+				}
+			})
+		}
+		
+		//点赞1/取消点赞2
+		function like(type,obj){
+			var recommendId = $(obj).parents(".recommend-con").attr("recommendId");
+			var userId = baseInfo.userId;
+			var params = {
+				"recommendId":recommendId,
+				"userId":userId,
+				"type":type,
+			}
+			nfyg.otherCommon.getDatanormal("post", baseUrl + '/v1/recommend/like', "json", JSON.stringify(params), true, function(res) {
+				console.log(res);
+				if (res.resultCode == 0) {
+					if(type==1){
+						$(obj).addClass("act").text(+$(obj).text()+1)
+					}else{
+						$(obj).removeClass("act").text(+$(obj).text()-1)
+					}
+				} else {
+					nfyg.otherCommon.promptShow(res.resultMsg);
+				}
+			})
+		}
+		
+		function getQueryString(name){
+		     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+		     var r = window.location.search.substr(1).match(reg);
+		     if(r!=null)return  unescape(r[2]); return null;
+		}
+		
+		//把日期格式 转为带英文的格式  2020-12-25  -----》25 Dec. 2020
+		function getDay(d){
+			var year = d.substring(0,4);
+			var mon = parseInt(d.substring(5,7));
+			var day = d.substring(8,10);
+			switch(mon){
+				case 01:mon = "Jan.";
+				break;
+				case 02:mon = "Feb.";
+				break;
+				case 03:mon = "Mar.";
+				break;
+				case 04:mon = "Apr.";
+				break;
+				case 05:mon = "May" ;
+				break;
+				case 06:mon = "Jun.";
+				break;
+				case 07:mon = "Jul.";
+				break;
+				case 08:mon = "Aug.";
+				break;
+				case 09:mon = "Sep.";
+				break;
+				case 10:mon = "Oct.";
+				break;
+				case 11:mon = "Nov.";
+				break;
+				case 12:mon = "Dec.";
+				break;
+			}
+			return {"year":year,"mon":mon,"day":day};
+		}
+	
+	 
+})
+</script>
+</body>
+</html>

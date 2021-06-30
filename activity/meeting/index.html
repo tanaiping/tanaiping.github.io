@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="MobileOptimized" content="240" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />  
+    <meta content="email=no" name="format-detection" />
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title>打卡~领绝版周边！</title>
+    <link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="css/common.css">
+</head>
+<body>
+<div class="wrap bg">
+	<img src="images/bg.png" alt="" class="head-img">
+	<div class="meeting-map">
+		<div class="m-start"></div>
+		<div class="m01 clock"></div>
+		<div class="m02 clock"></div>
+		<div class="m03 clock"></div>
+		<div class="m04 clock"></div>
+		<div class="m05 clock"></div>
+		<div class="m06 clock"></div>
+		<div class="m07 clock"></div>
+		<div class="gift01">
+			<div class="gift-box">
+				<img src="images/gift3.png" alt="">
+				<em class="icon-d"></em>
+			</div>
+		</div>	
+		<div class="gift02">
+			<div class="gift-box">
+				<img src="images/gift.png" alt="">
+				<em class="icon-d"></em>
+			</div>
+		</div>
+	</div>
+	<div class="rule-box">
+		<img src="images/rule_title.png" alt="" class="rule-img">
+		1、活动时间：2020年12月4日-2020年12月19日<br />
+		2、每个用户（手机号码）只能参与活动1次；<br />
+		3、每个用户活动期间最多只能获得1份奖品；<br />
+		4、连续打卡3天有机会得帆布袋1个；<br />
+	    5、连续打卡7天有机会得帆布袋1个+花生宝宝1个，且会随机额外赠送这就是街舞毛巾1条；<br />
+		6、间断打卡的小伙伴，要重新从第1天累积连续打卡天数；<br />
+		7、本活动解释权归花生地铁所有。
+	</div>
+</div>
+<div class="prompt" id="prompt"><em>提示信息</em></div>	
+<div class="blackbg"></div>
+<div class="popbox">
+	<div class="action-end">
+		<div class="t1">活动结束</div>
+		<a href="prize.html?timer=1" class="look-prize">查看奖品</a>
+	</div>
+</div>
+<img src="images/icon_open.png" alt="" class="wx_share">
+<script src="js/jquery-1.8.3.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script src="js/nfygCommonPack.js"></script>
+<script src="js/public.js"></script>
+<!-- <script src="js/vconsole.min.js"></script> -->
+<div style="display: none;"><script type="text/javascript" src="https://s4.cnzz.com/z_stat.php?id=1279480053&web_id=1279480053"></script></div>
+<script>
+	$(function(){
+		var  clockNum = 0 , isClock = false;// 今天未领  1 今天已领
+		//页面加载初始化数据
+		var Init = function (m){
+			nfyg.otherCommon.getDatanormal("post", baseUrl+'/20/clock/index', "json", {
+			  userId: m,
+			}, true, function (res) {
+				  console.log(res);
+			  if (res.code == 1) {
+				  clockNum = res.data.clockNum;
+				  isClock = res.data.isClock;
+				  if(clockNum>=7){
+					  $(".clock").addClass("act");
+				  }else{
+					  for(var i = 0;i<clockNum;i++){
+						  $(".clock").eq(i).addClass("act");
+					  }
+				  }
+				  if(res.data.isEnd == 1){
+					  $(".blackbg,.popbox").show();
+				  }
+			  } else {
+			    nfyg.otherCommon.promptShow(res.msg);
+				// $(".index-tips span").text(res.msg).css("display","block");
+				// setTimeout(function(){$(".index-tips span").text("").css("display","none");},3000);
+			  }
+			})
+		}
+		
+		
+		if(isApp){
+			if(!userInfo){//没登录跳到登录页面
+				pushToLoginView();
+			}else{
+				nfyg.encrypt(mobile, function(data) {
+					Init(data);
+				})
+			}
+		}else{
+			if (nfyg.browser.weixin || nfyg.browser.qq || nfyg.browser.ding || nfyg.browser.alipay || nfyg.browser.weibo) {
+				$(".blackbg,.wx_share").show();
+			}else{
+				if(nfyg.browser.ios){
+					window.location.href="nfyg://detail?url=http://activity.peanut8.com/act/2020/meeting/index.html"
+				}else{
+					window.location.href="nfyg://launcher?url=http://activity.peanut8.com/act/2020/meeting/index.html" 
+				}
+				setTimeout(() => {
+				  // 下载落地页
+				  window.location.href = "http://web.peanut8.com/download"
+				}, 4000);
+			}
+			
+		}
+		
+		$(".clock").click(function(){
+			if(isApp){
+				var idx = $(".clock").index(this);
+				if(!$(this).hasClass("act")){
+					if(clockNum == idx){
+						nfyg.encrypt(mobile, function(data) {
+							console.log(data);
+							sign(data)
+						})
+						
+					}else{
+						confirm('打卡要连续，不能跳级哦')
+					}
+					
+				}
+			}else{
+				if (nfyg.browser.weixin || nfyg.browser.qq || nfyg.browser.ding || nfyg.browser.alipay || nfyg.browser.weibo) {
+					$(".blackbg,.wx_share").show();
+				}else{
+					if(nfyg.browser.ios){
+						window.location.href="nfyg://detail?url=http://activity.peanut8.com/act/2020/meeting/index.html"
+					}else{
+						window.location.href="nfyg://launcher?url=http://activity.peanut8.com/act/2020/meeting/index.html" 
+					}
+					setTimeout(() => {
+					  // 下载落地页
+					  window.location.href = "http://web.peanut8.com/download"
+					}, 4000);
+				}
+				
+			}
+			
+			
+		})
+		
+		//关闭遮罩
+		$(".close-pop,.blackbg").click(function(){
+			$(".pop-com,.blackbg,.wx_share,.popbox").hide();
+		})
+		
+		function sign (m){
+			nfyg.otherCommon.getDatanormal("post", baseUrl+'/20/clock/sign', "json", {
+			  userId: m,
+			}, true, function (res) {
+				  console.log(res);
+			  if (res.code == 1) {
+				  clockNum ++;
+				  if(clockNum>=7){
+					  $(".clock").addClass("act");
+				  }else{
+					  for(var i = 0;i<clockNum;i++){
+						  $(".clock").eq(i).addClass("act");
+					  }
+				  }
+				  switch(clockNum){
+				  	case 1:
+				  		confirm("已打卡1天，还差2天就有机会拿奖品哦~");
+				  		break;
+				  	case 2:
+				  		confirm("已连续打卡2天，离奖品仅一天之遥！");
+				  		break;
+				  	case 3:
+				  		confirm(" 已连续打卡3天，一个小目标达成！向花生宝宝继续冲~");
+				  		break;
+				  	case 4:
+				  		confirm("已连续打卡4天，已超越两万多名小花生，恭喜！");
+				  		break;
+				  	case 5:
+				  		confirm("已连续打卡5天，相见不易，再坚持最后2天！");
+				  		break;
+				  	case 6:
+				  		confirm("已连续打卡6天，仅剩最后一天，明天也请准时见面");
+				  		break;
+				  	case 6:
+					case 7:
+					case 8:
+					case 9:
+					case 10:
+					case 11:
+					case 12:
+					case 13:
+					case 14:
+					case 15:
+				  		confirm(" 已连续打卡7天，完结撒花！来看看手气如何！");
+				  		break;
+				  }
+			  } else {
+			    nfyg.otherCommon.promptShow(res.msg);
+				
+			  }
+			})
+		}
+		
+	
+	
+	
+})
+</script>
+</body>
+</html>
