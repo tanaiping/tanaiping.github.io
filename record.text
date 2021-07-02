@@ -158,6 +158,21 @@ Vue 2 中给 data 中的对象属性添加一个新的属性时会发生什么�
 3.其他方式：通过创建一个bus，进行传值  $emit 传值  $on 接收值
 4.使用Vuex
 
+	1. props
+	2. 自定义事件
+	3. eventbus
+	4. vuex
+	5. 还有常见的边界情况$parent、$children、$root、$refs、provide/inject
+	6. 此外还有一些非props特性$attrs 、$listeners(透传事件)
+
+	$parent、$children、$root、$refs、$attrs、$listeners  
+	 props
+	 $emit 
+	 $ref 获取子组件数据 调用子组件方法  ref="child"   this.$refs.child.childFun()
+	 $children 获取子组件数据和调用子组件方法
+	 $parent 获取父组件数据和调用父组件方法
+	 $root 获取最高层的父组件及app.vue
+
 assets与static的区别
 
 assets中的文件会经过webpack打包，重新编译，推荐该方式。而static中的文件，不会经过编译。项目在经过打包后，会生成dist文件夹，
@@ -414,16 +429,98 @@ TCP 连接三次握手  断开 四次挥手
  
  let p1 = new Promise((resolve,reject) => {
 	 resolve('value')
-	 reject('reson')
+	 reject('reason')
  })
  
  p1.then((value)=>{
 	 console.log("成功回调"+value)
- },(reson)=>{
-	 console.log("失败回调"+reson)
+ },(reason)=>{
+	 console.log("失败回调"+reason)
  })
  
  
  
  二。项目中遇到的问题以及难点
- 1.vue-router  mode :history   配置上线上，出现刷新 按回车 404错误
+ 1.vue-router  mode :history   配置上线上，出现刷新 按回车 404错误 (需要后台配合配置)
+ 2.路由嵌套的问题： 就是在子页面实现router-view   路由配置的时候需要配置在 children数组里面
+ 3.解决整个项目的数据刷新问题  使用[provide/inject]实现刷新
+	this.$router.go(0); location.reload() 
+	//这两种方式都相当于f5刷新，页面会有卡顿，白屏的情况，用户体验极差
+	<router-view v-if="isRouterAlive"/>
+	provide () {
+	    return {
+	      reload: this.reload
+	    }
+	},
+	data () {
+	    return {
+	      isRouterAlive: true
+	    }
+	  },
+	methods: {
+	    reload () {
+	      this.isRouterAlive = false
+	      this.$nextTick(function () {
+	        this.isRouterAlive = true
+	      })
+	    }
+	  }
+	
+	子组件
+	inject:['reload'],
+	methods: {
+	addItem(){
+	//处理添加逻辑成功之后调用刷新
+	this.reload（）
+	},
+	}
+	
+4.单页面设置  vue-wechat-title
+一般做法：
+
+router.beforeEach((to, from, next) => {
+  const title = to.meta && to.meta.title;
+  if (title) {
+    document.title = title;
+  }
+  next();
+});
+
+下载安装插件依赖
+npm install vue-wechat-title --save
+在main.js中引入插件
+import VueWechatTitle from 'vue-wechat-title' Vue.use(VueWechatTitle)
+路由定义(只截取一部分)
+const routes = [
+  {
+    name: 'Home',
+    path: '/home',
+    meta: {
+      title: '首页'
+    },
+    component: require('../views/Home.vue')
+  },
+
+<router-view v-if="isRouterAlive" v-wechat-title='$route.meta.title' />
+	
+	
+5. 路由异步加载
+ 普通方式   是直接import
+ 
+异步{
+       path: '/Home',
+       name: 'Home',
+       component: () => import('./views/Home.vue'),
+       meta: {
+         title: '首页'
+       }
+     }
+6.watch监听object时，需要进行深度监听，因为vue默认只监听data中的属性一级
+
+vue项目中用v-for 循环本地图片， 图片不显示，
+解决办法：1.使用require动态引入图片，
+         2.或将图片放static文件夹里面
+		 
+css引用图片打包后找不到文件资源的问题
+build->utils.js ->style-loader  -->publicPath
+	
