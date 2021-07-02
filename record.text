@@ -47,10 +47,9 @@ Webpack优化可以分为优化开发体验和优化输出质量两部分
 2.dom 优化:
 	减少重绘与回流
 
-
 v-model原理
 <input v-model="msg" />
-等价于 <input :value="msg" @input="msg=@event.target.value" />
+等价于 <input :value="msg" @input="msg=$event.target.value" />
 
 
 
