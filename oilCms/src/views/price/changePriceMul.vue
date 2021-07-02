@@ -18,9 +18,9 @@
         </div>
       </el-form-item>
       <el-form-item label="价格调整">
-        <el-radio v-model="ruleForm.type" label="1">调低</el-radio>
-        <el-radio v-model="ruleForm.type" label="2">调高</el-radio>
-        <label class="form-static-tips">价格调低：售价=协议价*(1-调整百分比)</label>
+        <el-radio v-model="ruleForm.type" label='1'>调低</el-radio>
+        <el-radio v-model="ruleForm.type" label='2'>调高</el-radio>
+        <label class="form-static-tips">{{tipsTxt[ruleForm.type-1]}}</label>
       </el-form-item>
       <el-form-item label="调整百分比" prop="percent">
         <el-input placeholder="请输入内容" v-model="ruleForm.percent" style="width: 300px;">
@@ -162,6 +162,7 @@ import Page from '@/components/page'
           type:'2',
           percent:'',
         },
+        tipsTxt:['价格调低：售价=协议价*(1-调整百分比)','价格调高：售价=协议价*(1+调整百分比)'],
         province:'',
         city:'',
         address:'',

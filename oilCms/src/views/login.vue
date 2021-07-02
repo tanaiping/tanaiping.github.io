@@ -2,10 +2,11 @@
   <div class="login" :style="{backgroundImage:'url('+bgImg+')'}">
     <div class="login-box">
       <div class="title">微智行加油管理平台</div>
-      <el-form ref="loginForm" :model="login" label-width="0px" :rules="rules">
+      <el-form ref="loginForm" :model="login" label-width="0px" :rules="rules"
+      @keyup.enter.native="submitForm('loginForm')">
         <el-form-item label="" prop="userName"><el-input type="text" v-model="login.userName" placeholder="请输入账号" ></el-input></el-form-item>
         <el-form-item label="" prop="password"><el-input type="password" v-model="login.password" placeholder="请输入密码"></el-input></el-form-item>
-        <el-form-item label=""><el-button type="primary" style="width: 100%;" @click="submitForm('loginForm')">登录</el-button></el-form-item>
+        <el-form-item label=""><el-button type="primary" style="width: 100%;" @click="submitForm('loginForm')" >登录</el-button></el-form-item>
         <!-- <el-checkbox label="三天内自动登录" v-model="login.isChecked"></el-checkbox> -->
       </el-form>
 
@@ -90,7 +91,7 @@
   position: fixed;
   left: 50%;
   top: 50%;
-  margin: -90px 0 0 -150px;
+  margin: -90px 0 0 -205px;
   background: #FFF;
   border-radius: 10px;
   padding: 10px 30px 10px 30px;

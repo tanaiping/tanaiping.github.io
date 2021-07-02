@@ -1,7 +1,8 @@
 
 // const baseUrl = "http://192.168.1.118:7788" //玉芳
-const baseUrl = "http://192.168.201.153:7788"  // ceshi
+// const baseUrl = "http://192.168.201.153:7788"  // ceshi
 // const baseUrl = "http://192.168.1.147:7788" //liming
+const baseUrl = 'http://192.168.3.70:7788'
 
 export const Login = {
     login: baseUrl + "/sys/account/admin/login",

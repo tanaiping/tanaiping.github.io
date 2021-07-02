@@ -1,0 +1,429 @@
+面试资料以及工作中实用的内容
+
+css：
+
+1 box-sizing属性？
+
+用来控制元素的盒子模型的解析模式，默认为content-box
+context-box：W3C的标准盒子模型，设置元素的 height/width 属性指的是content部分的高/宽
+border-box：IE传统盒子模型。设置元素的height/width属性指的是border + padding + content部分的高/宽
+
+Webpack优化
+
+Webpack优化可以分为优化开发体验和优化输出质量两部分
+
+前端性能优化
+
+1.资源压缩合并，减少http请求
+2.非核心代码异步加载
+3.利用浏览器缓存 
+ 1. 强缓存 强缓存是利用 http 响应头中的Expires或Cache-Control实现的。【重要】 (response Headers)  Cache-Control （max-age）相对时间  Expires 绝对时间
+ 2. 协商缓存
+ •第一对：Last-Modified、If-Modified-Since
+ •第二对：ETag、If-None-Match
+		获取资源形式	  状态码         发送请求到服务器
+ 强缓存	 从缓存取	 200（from cache）	         否，  直接从缓存取
+ 协商缓存	 从缓存取	 304（not modified）	是，   正如其名，通过服务器来告知缓存是否可用
+4. 使用CDN
+5.DNS预解析（dns-prefetch）
+通过 DNS 预解析来告诉浏览器未来我们可能从某个特定的 URL 获取资源，当浏览器真正使用到该域中的某个资源时就可以尽快地完成 DNS 解析。
+
+第一步：打开或关闭DNS预解析
+
+你可以通过在服务器端发送 X-DNS-Prefetch-Control 报头。或是在文档中使用值为 http-equiv 的meta标签：
+
+	<meta http-equiv="x-dns-prefetch-control" content="on">
+需要说明的是，在一些高级浏览器中，页面中所有的超链接（<a>标签），默认打开了DNS预解析。但是，如果页面中采用的https协议，很多浏览器是默认关闭了超链接的DNS预解析。如果加了上面这行代码，则表明强制打开浏览器的预解析。（如果你能在面试中把这句话说出来，则一定是你出彩的地方）
+
+第二步：对指定的域名进行DNS预解析
+
+如果我们将来可能从 smyhvae.com 获取图片或音频资源，那么可以在文档顶部的 标签中加入以下内容：
+
+	<link rel="dns-prefetch" href="http://www.smyhvae.com/">
+
+
+编码优化
+1.减少 cookie 体积:
+2.dom 优化:
+	减少重绘与回流
+
+
+v-model原理
+<input v-model="msg" />
+等价于 <input :value="msg" @input="msg=@event.target.value" />
+
+
+
+手写 promise.all
+Promise.all可以将多个Promise实例包装成一个新的Promise实例。同时，成功和失败的返回值是不同的，
+成功的时候返回的是一个结果数组，而失败的时候则返回最先被reject失败状态的值
+
+let p1 = new Promise((resolve, reject) => {
+  resolve('成功了')
+})
+
+let p2 = new Promise((resolve, reject) => {
+  resolve('success')
+})
+
+let p3 = Promse.reject('失败')
+
+Promise.all([p1, p2]).then((result) => {
+  console.log(result)               //['成功了', 'success']
+}).catch((error) => {
+  console.log(error)
+})
+
+Promise.all([p1,p3,p2]).then((result) => {
+  console.log(result)
+}).catch((error) => {
+  console.log(error)      // 失败了，打出 '失败'
+})
+
+
+promise async/wait  区别
+1.提案版本不同：Promise是ES6的新特性，async、await是ES7中的提案
+2.代码简洁度：使用async函数可以让代码简洁很多；promise中，try/catch 不能处理 JSON.parse 的错误，因为它在Promise中。我们需要使用 .catch，这样错误处理代码非常冗余。
+
+错误调试：Async/Await 让 try/catch 可以同时处理同步和异步错误。如果 Promise 连续调用，对于错误的处理是很麻烦的。你无法知道错误出在哪里。
+不能在返回表达式的箭头函数中设置断点
+如果你在.then代码块中设置断点，使用Step Over快捷键，调试器不会跳到下一个.then，因为它只会跳过异步代码。
+使用await/async时，你不再需要那么多箭头函数，这样你就可以像调试同步代码一样跳过await语句。
+
+
+
+Options API 和 Composition API 的对比
+
+vue2中的Options API
+在vue2中，我们会在一个vue文件中methods，computed，watch，data中等等定义属性和方法，共同处理页面逻辑，我们称这种方式为Options API
+
+vue3中的Composition API(组合API)就是用来解决这个问题的
+在vue3 Composition API 中，我们的代码是根据逻辑功能来组织的，一个功能所定义的所有api会放在一起（更加的高内聚，低耦合），这样做，即时项目很大，功能很多，我们都能快速的定位到这个功能所用到的所有API，而不像vue2 Options API 中一个功能所用到的API都是分散的，需要改动功能，到处找API的过程是很费劲的
+
+
+
+1.key 的主要作用是高效的更新虚拟dom
+
+$route是“路由信息对象”，包括path，params，hash，query，fullPath，matched，name等路由信息参数。
+$router是“路由实例”对象包括了路由的跳转方法，钩子函数等。 go() replace() push()
+
+路由懒加载
+1.异步技术 { path: '/home', name: 'home', component: resolve => require(['@/components/home'],resolve) },
+2.import技术 const Index = () => import('@/components/index')
+
+vuex 核心概念
+
+state => 基本数据 
+getters => 从基本数据派生的数据 
+mutations => 修改数据，同步 
+actions => 修改数据，异步 
+modules => 模块化Vuex
+
+用户页面---(dispatch)--actions---(commit)----mutations-(getters)--state----用户页面
+
+Computed和Watch的区别
+1.computed 计算属性 : 依赖其它属性值,并且 computed 的值有缓存,只有它依赖的 属性值发生改变,下一次获取 computed 的值时才会重新计算 computed 的值。
+2.watch 侦听器 : 更多的是观察的作用,无缓存性,类似于某些数据的监听回调,每 当监听的数据变化时都会执行回调进行后续操作。
+运用场景：
+
+1.当我们需要进行数值计算,并且依赖于其它数据时,应该使用 computed,因为可以利用 computed 的缓存特性,避免每次获取值时,都要重新计算。
+2.当我们需要在数据变化时执行异步或开销较大的操作时,应该使用 watch,使用 watch 选项允许我们执行异步操作 ( 访问一个 API ),限制我们执行该操作的频率, 并在我们得到最终结果前,设置中间状态。这些都是计算属性无法做到的。
+3.多个因素影响一个显示，用Computed；一个因素的变化影响多个其他因素、显示，用Watch;
+
+1.18. Vue.js页面闪烁
+Vue. js提供了一个v-cloak指令，该指令一直保持在元素上，直到关联实例结束编译。当和CSS一起使用时，这个指令可以隐藏未编译的标签，直到实例编译结束。用法如下。
+
+[v-cloak]{ 
+ display:none; 
+} 
+<div v-cloak>{{ title }}</div>
+
+
+如何解决数据层级结构太深的问题
+span 'v-text="a.b.c.d"></span>, 可以使用vm.$set手动定义一层数据: vm.$set("demo"，a.b.c.d)
+
+Vue 2 中给 data 中的对象属性添加一个新的属性时会发生什么？如何解决？
+
+视图并未刷新。这是因为在Vue实例创建时，新属性并未声明，因此就没有被Vue转换为响应式的属性，自然就不会触发视图的更新，
+这时就需要使用Vue的全局 api $set()：this.$set(this.obj, 'new_property', 'new_value')
+
+2.3. keep-alive是什么？
+如果需要在组件切换的时候，保存一些组件的状态防止多次渲染，就可以使用 keep-alive 组件包裹需要保存的组件。
+
+两个重要属性，include 缓存组件名称，exclude 不需要缓存的组件名称。
+
+1.26. 组件传值方式有哪些
+1.父传子：子组件通过props['xx'] 来接收父组件传递的属性 xx 的值
+2.子传父：子组件通过 this.$emit('fnName',value) 来传递,父组件通过接收 fnName 事件方法来接收回调
+3.其他方式：通过创建一个bus，进行传值  $emit 传值  $on 接收值
+4.使用Vuex
+
+assets与static的区别
+
+assets中的文件会经过webpack打包，重新编译，推荐该方式。而static中的文件，不会经过编译。项目在经过打包后，会生成dist文件夹，
+static中的文件只是复制一遍而已。简单来说，static中建议放一些外部第三方，自己的放到assets，别人的放到static中。
+
+项目中引用图片 或者背景
+
+backgroundImgUrl: require('@/assets/login-bg.png')     // 也可用~@ 代码@
+
+<!-- 在img标签中可以直接使用backgroundImgUrl变量作为图片路径 -->
+<img :src="backgroundImgUrl">
+<!-- 在style中要把backgroundImgUrl变量拼接到url()中，才能正常引入图片 -->
+<div :style="{ backgroundImage: `url(${backgroundImgUrl})` }"></div>   //${变量} 将变量引入到字符串中
+
+
+v-bind class  对象语法 以及数组语法
+v-bind style 对象语法 以及数组语法
+
+闭包一定是一个函数对象  能保持对上层函数的作用域
+
+let  const  开发过程中优先使用const 只有定义的标识符需要修改的时候才用 let  如定义的const的标识符被再次赋值 就会报错； 且定义const的标识符时必须赋值
+var 没有作用域
+let 变量 有作用域
+const  常量  有作用域 不能再次赋值 定义的同时必须赋值 const定义的对象不能修改 但是对象内部的属性可以修改；
+
+
+说说Vue原理
+Vue是采用数据劫持配合发布者-订阅者模式，通过Object.defineProperty来劫持各个属性的getter和setter
+在数据发生变化的时候，发布消息给依赖收集器，去通知观察者，做出对应的回调函数去更新视图。
+
+vue路由守卫有哪些，怎么设置，使用场景等
+
+常用的两个路由守卫：router.beforeEach 和 router.afterEach
+
+每个守卫方法接收三个参数：
+
+to: Route: 即将要进入的目标 路由对象
+
+from: Route: 当前导航正要离开的路由
+
+next: Function: 一定要调用该方法来 resolve 这个钩子。
+
+在项目中，一般在beforeEach这个钩子函数中进行路由跳转的一些信息判断。
+判断是否登录，是否拿到对应的路由权限等等
+
+数组去重
+第一种： 通过ES6新特性Set()
+例如： var arr = [1, 2, 3, 1, 2]; var newArr= [...new Set(arr)]
+
+实现instanceOf
+function instanceOf(left, right) {
+    let leftValue = left.__proto__;
+    let rightValue = right.prototype;
+    while (true) {
+        if (leftValue === null) {
+            return false;
+        }
+        if (leftValue === rightValue) {
+          return true;
+        }
+    leftValue = leftValue.__proto__;
+   }
+}
+
+Css3新特性
+1.过渡 transition
+2.动画 animation
+3.形状转换 transform
+4.阴影 box-shadow
+5.滤镜 Filter
+6.颜色 rgba
+7.栅格布局 gird
+8.弹性布局 flex
+
+
+说一说什么是跨域，怎么解决
+
+因为浏览器出于安全考虑，有同源策略。也就是说，如果协议、域名或者端口有一个不同就是跨域，Ajax 请求会失败。
+为来防止CSRF攻击
+1.JSONP
+    JSONP 的原理很简单，就是利用 <script> 标签没有跨域限制的漏洞。
+    通过 <script> 标签指向一个需要访问的地址并提供一个回调函数来接收数据当需要通讯时。
+    <script src="http://domain/api?param1=a&param2=b&callback=jsonp"></script>
+    <script>
+        function jsonp(data) {
+        	console.log(data)
+    	}
+    </script>
+    JSONP 使用简单且兼容性不错，但是只限于 get 请求。
+2.CORS
+    CORS 需要浏览器和后端同时支持。IE 8 和 9 需要通过 XDomainRequest 来实现。
+3.document.domain
+    该方式只能用于二级域名相同的情况下，比如 a.test.com 和 b.test.com 适用于该方式。
+
+    只需要给页面添加 document.domain = 'test.com' 表示二级域名都相同就可以实现跨域
+4.webpack配置proxyTable设置开发环境跨域
+5.nginx代理跨域
+6.iframe跨域
+7.postMessage
+    这种方式通常用于获取嵌入页面中的第三方页面数据。一个页面发送消息，另一个页面判断来源并接收消息
+
+说一说SessionStorage和localStorage还有cookie
+
+共同点：都是保存在浏览器端、且同源的
+不同点：
+    1.cookie数据始终在同源的http请求中携带（即使不需要），即cookie在浏览器和服务器间来回传递。
+    cookie数据还有路径（path）的概念，可以限制cookie只属于某个路径下
+    sessionStorage和localStorage不会自动把数据发送给服务器，仅在本地保存。
+    2.存储大小限制也不同，cookie数据不能超过4K，sessionStorage和localStorage可以达到5M
+    3.sessionStorage：仅在当前浏览器窗口关闭之前有效；
+    localStorage：始终有效，窗口或浏览器关闭也一直保存，本地存储，因此用作持久数据；
+    cookie：只在设置的cookie过期时间之前有效，即使窗口关闭或浏览器关闭
+    4.作用域不同
+    sessionStorage：不在不同的浏览器窗口中共享，即使是同一个页面；
+    localstorage：在所有同源窗口中都是共享的；也就是说只要浏览器不关闭，数据仍然存在
+    cookie: 也是在所有同源窗口中都是共享的.也就是说只要浏览器不关闭，数据仍然存在
+
+5.diff算法
+    vue中diff算法实现流程：
+        1.在内存中构建虚拟dom树
+        2.将内存中虚拟dom树渲染成真实dom结构
+        3.数据改变的时候，将之前的虚拟dom树结合新的数据生成新的虚拟dom树
+        4.将此次生成好的虚拟dom树和上一次的虚拟dom树进行一次比对(diff算法进行比对)，来更新只需要被替换的DOM，
+        而不是全部重绘。在Diff算法中，只平层的比较前后两棵DOM树的节点，没有进行深度的遍历。
+        5.会将对比出来的差异进行重新渲染
+        
+    react中diff算法实现流程:
+        DOM结构发生改变-----直接卸载并重新create
+        DOM结构一样-----不会卸载,但是会update变化的内容
+        所有同一层级的子节点.他们都可以通过key来区分-----同时遵循1.2两点
+        (其实这个key的存在与否只会影响diff算法的复杂度,换言之,你不加key的情况下,
+        diff算法就会以暴力的方式去根据一二的策略更新,但是你加了key,diff算法会引入一些另外的操作)
+
+Proxy 相比于 defineProperty 的优势
+	数组变化也能监听到
+	不需要深度遍历监听
+
+Object.defineProperty() 的问题主要有三个：
+不能监听数组的变化
+必须遍历对象的每个属性
+必须深层遍历嵌套的对象    
+	
+	
+virtual dom 原理实现
+
+创建dom树
+树的diff,同层对比，输出patches(listDiff/diffChilder/diffProps)
+
+		没有新节点，返回
+		新的节点tagName与key不变，对比props,继续递归遍历子树
+		对比属性(对比新旧属性列表)
+		旧属性是否存在与新属性列表中
+		都存在的是否有变化
+		是否出现旧列表中没有的新属性
+		tagName和key值变化了，则直接替换成新节点
+		渲染差异
+
+遍历patches，把需要更改的节点取出来
+局部更新dom
+
+代码的复用
+当你发现任何代码开始写第二遍时，就要开始考虑如何复用。一般有以下的方式:
+
+函数封装
+继承
+复制extend
+混入mixin
+借用apply/call
+
+
+require与import的区别
+
+require支持 动态导入，import不支持，正在提案 (babel 下可支持)
+require是 同步 导入，import属于 异步 导入
+require是 值拷贝，导出值变化不会影响导入值；import指向 内存地址，导入值会随导出值而变化
+
+
+apply和call
+
+apply和call都是改变this指向功能一样，
+只是传入的参数列表形式不同：如 func.call(func1,var1,var2,var3)   对应的apply写法为：func.apply(func1,[var1,var2,var3])
+
+浏览器下事件循环(Event Loop)
+事件循环是指: 执行一个宏任务，然后执行清空微任务列表，循环再执行宏任务，再清微任务列表
+
+微任务 microtask(jobs): promise / ajax
+宏任务 macrotask(task): setTimout / script / IO / UI Rendering
+
+从输入URL到网页呈现的过程
+1.从内存中读取dns
+2.解析DNS
+3.TCP 三次握手
+		第一次握手：建立连接时，客户端向服务端发送请求报文
+		第二次握手：服务器收到请求报文后，如同意连接，则向客户端发送确认报文
+		第三次握手，客户端收到服务器的确认后，再次向服务器给出确认报文，完成连接。
+4.浏览器发送请求
+5服务器处理请求
+6.渲染页面
+	页面渲染的过程 
+	1.下载html文档
+	2.解析html文档并生成dom树
+	3.解析dom树 
+7.断开连接  四次挥手
+		第一次挥手：客户端想分手，发送消息给服务器
+		第二次挥手：服务器通知客户端已经接受到分手请求，但还没做好分手准备
+		第三次回收：服务器已经做好分手准备，通知客户端
+		第四次挥手：客户端发送消息给服务器，确定分手，服务器关闭连接
+TCP 连接三次握手  断开 四次挥手
+2.2 三次握手过程分析：
+第一次：客户端发送请求到服务器，服务器知道客户端发送，自己接收正常。SYN=1,seq=x
+第二次：服务器发给客户端，客户端知道自己发送、接收正常，服务器接收、发送正常。ACK=1,ack=x+1,SYN=1,seq=y
+第三次：客户端发给服务器：服务器知道客户端发送，接收正常，自己接收，发送也正常.seq=x+1,ACK=1,ack=y+1
+（上面分析过程可以看出，握手两次达不到让双方都得出自己、对方的接收、发送能力都正常的结论的。）
+
+ 第一次：客户端请求断开FIN,seq=u
+ 第二次：服务器确认客户端的断开请求ACK,ack=u+1,seq=v
+ 第三次：服务器请求断开FIN,seq=w,ACK,ack=u+1
+ 第四次：客户端确认服务器的断开ACK,ack=w+1,seq=u+1
+ 
+ 1为什么三次握手和四次挥手？
+ 三次握手时，服务器同时把ACK和SYN放在一起发送到了客户端那里
+ 四次挥手时，当收到对方的 FIN 报文时，仅仅表示对方不再发送数据了但是还能接收数据，己方是否现在关闭发送数据通道，需要上层应用来决定，因此，己方 ACK 和 FIN 一般都会分开发送。
+
+ HTTP与HTTPS的区别( 握手的过程 )
+ HTTP： 直接通过明文在浏览器和服务器之间传递信息。
+ https  加密后的http   ssl+http  
+ 
+ 1、https协议需要到ca申请证书，一般免费证书较少，因而需要一定费用。
+ 2、http是超文本传输协议，信息是明文传输，https则是具有安全性的ssl加密传输协议。
+ 3、http和https使用的是完全不同的连接方式，用的端口也不一样，前者是80，后者是443。
+ 4、http的连接很简单，是无状态的；HTTPS协议是由SSL+HTTP协议构建的可进行加密传输、身份认证的网络协议，比http协议安全。
+ 
+ Websocket 是一个 持久化的协议， 基于 http ， 服务端可以 主动 push
+ 
+ xss 跨站脚本攻击 cross site script
+ csrf  跨站请求伪造 cross-site request forgery
+ 
+ 防御CSRF攻击：
+ 1  验证 HTTP Referer 字段
+ 2.在请求地址中添加 token 并验证
+ 3. 请求头中自定义属性验证 token  现在的登录token验证（最好的）
+ 
+ Promise 的声明
+ 
+ 一个叫resolve（成功），一个叫reject（失败）。
+ Promise存在三个状态（state）pending、fulfilled、rejected
+ pending（等待态）为初始态，并可以转化为fulfilled（成功态）和rejected（失败态）
+ 成功时，不可转为其他状态，且必须有一个不可改变的值（value）
+ 失败时，不可转为其他状态，且必须有一个不可改变的原因（reason）
+ 
+ Promise有一个叫做then的方法，里面有两个参数：onFulfilled,onRejected,成功有成功的值，失败有失败的原因
+ 当状态state为fulfilled，则执行onFulfilled，传入this.value。当状态state为rejected，则执行onRejected，传入this.reason
+ onFulfilled,onRejected如果他们是函数，则必须分别在fulfilled，rejected后被调用，value或reason依次作为他们的第一个参数
+ 
+ let p1 = new Promise((resolve,reject) => {
+	 resolve('value')
+	 reject('reson')
+ })
+ 
+ p1.then((value)=>{
+	 console.log("成功回调"+value)
+ },(reson)=>{
+	 console.log("失败回调"+reson)
+ })
+ 
+ 
+ 
+ 二。项目中遇到的问题以及难点
+ 1.vue-router  mode :history   配置上线上，出现刷新 按回车 404错误

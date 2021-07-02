@@ -14,6 +14,10 @@ const routes = [
       redirect: '/login',
     },
     {
+      path: '*',
+      redirect: '/login',
+    },
+    {
       name: 'login',
       path: '/login',
       meta:{
