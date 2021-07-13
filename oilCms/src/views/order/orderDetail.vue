@@ -35,7 +35,7 @@
         // }
         _this.$axios.get(Order.getDetail+"?orderNo="+_this.orderNo,{headers: {'Content-Type': 'application/json','token':token}})
           .then((res) => {
-            console.log(res)
+            // console.log(res)
             if (res.data.resultCode == 0) {
               _this.contentData = res.data.data;
             }else if(res.data.resultCode == 3){

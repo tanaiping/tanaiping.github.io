@@ -1,6 +1,7 @@
 <template>
   <div class="content">
     <div class="flex-search">
+      <el-form ref="form"  label-width="80px" @keyup.enter.native="search">
         <label class="mr10 lab-t">昨日新增({{yesAdd}})</label>
         <label class="mr10 lab-t">累计用户({{totalUser}})</label>
         <el-input v-model="mobile" placeholder="请输入手机号" class="filter-input mr10"></el-input>
@@ -15,6 +16,7 @@
             </el-date-picker>
         <el-button  icon="el-icon-refresh" @click="resetForm">重置</el-button>
         <el-button type="primary"  icon="el-icon-search" @click="search">搜索</el-button>
+      </el-form>
     </div>
     <!-- 过虑条件  end-->
     <div class="mt20">
@@ -156,9 +158,13 @@ import Page from '@/components/page'
         }
         _this.$axios.post(User.userInfoList, JSON.stringify(formData),{headers: {'Content-Type': 'application/json','token':token}})
           .then((res) => {
-            console.log(res)
+            // console.log(res)
             if (res.data.resultCode == 0) {
-              _this.contentData = res.data.data.data;
+              if(res.data.data.data){
+                _this.contentData = res.data.data.data;
+              }else{
+                _this.contentData = [];
+              }
               _this.total = res.data.data.total
               _this.pageSize = res.data.data.limit
               _this.curPage = res.data.data.pageNo

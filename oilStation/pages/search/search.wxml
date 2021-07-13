@@ -1,5 +1,5 @@
 <!--pages/search/search.wxml-->
-<view class="container">
+<view class="container" wx-if="{{!ishidden}}">
   <view class="search-wrap">
     <view class="flex-between">
       <picker bindchange="bindPickerChangeCity" value="{{cityIndex}}}" range="{{cityList}}" >
@@ -17,8 +17,8 @@
     </view>
    
   </view>
-  <view class="result-box">
-    <view bindtap="bindSearch" data-keywords="{{item.name}}" wx:for="{{tips}}" wx:for-item="item" wx:key="{{item.id}}" class="result-elem" data-lat="{{item.lat}}" data-lng="{{item.lng}}">
+  <view class="result-box"  wx:if="{{tips.length>0}}">
+    <view bindtap="bindSearch"  wx:for="{{tips}}" wx:for-item="item" wx:key="{{item.id}}"  data-keywords="{{item.name}}"class="result-elem" data-lat="{{item.lat}}" data-lng="{{item.lng}}">
       <view class="flex-row">
         <image src="../images/location_i.png" class="location-icon"></image>
         <view class="address">

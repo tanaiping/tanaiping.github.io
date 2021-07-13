@@ -1,5 +1,8 @@
 {
   "usingComponents": {
     "station-list": "../components/stationList/stationList"
-  }
+  },
+  "navigationBarBackgroundColor": "#136FD1",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": ""
 }

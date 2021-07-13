@@ -59,3 +59,15 @@
   font-size: 28rpx;
   padding-left: 14rpx;
 }
+.contact-kf  .contact-service{
+  line-height: 40rpx;
+  color: #136FD1;
+  font-size: 28rpx;
+  background: transparent;
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  padding-left: 14rpx;
+  font-weight: normal;
+}

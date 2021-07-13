@@ -18,7 +18,7 @@ Page({
     lng2:'',
     priceList:{
       sale_price:'',
-      contract_price:'',
+      list_price:'',
       official_price:'',
     },
     discount_price:'',//单价优惠
@@ -47,7 +47,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // console.log(options)
+    console.log(options)
     const _this = this;
     let uid = wx.getStorageSync('uid');
     let deviceSN ='';
@@ -90,39 +90,43 @@ Page({
   },
   getPhoneNumber (e) {
     const _this =this;
-    // console.log(e)
-    const session_key = wx.getStorageSync('session_key');
-    const uid = wx.getStorageSync('uid');
-    if(e.detail.encryptedData){
-      wx.request({
-        url: baseUrl+'/v1/user/getUserMobile', //仅为示例，并非真实的接口地址
-        data: {
-            "encrypted": e.detail.encryptedData,
-            "iv": e.detail.iv,
-            "session_key": session_key,
-            "uid":uid
-        },
-        method:'POST',
-        header: {
-          'content-type': 'application/json' // 默认值
-        },
-        success (res) {
-          // console.log(res.data)
-          if(res.data.resultCode == 0){
-            wx.setStorageSync('phone', res.data.data)
-            _this.setData({
-              isLogin:true
-            })
-          }else{
-            util.showMsg(res.data.resultMsg,'none',2000)
-          }
-        },
-        fail (res) {
-          console.log(res);
-        }
+    util.login(baseUrl).then(function(res){
+      const uid = wx.getStorageSync('uid');
+      const session_key = wx.getStorageSync('session_key');
+      _this.setData({
+        uid:uid
       })
-      
-    }
+      if(e.detail.encryptedData){
+        wx.request({
+          url: baseUrl+'/v1/user/getUserMobile', //仅为示例，并非真实的接口地址
+          data: {
+              "encrypted": e.detail.encryptedData,
+              "iv": e.detail.iv,
+              "session_key": session_key,
+              "uid":uid
+          },
+          method:'POST',
+          header: {
+            'content-type': 'application/json' // 默认值
+          },
+          success (res) {
+            console.log(res.data)
+            if(res.data.resultCode == 0){
+              wx.setStorageSync('phone', res.data.data)
+              _this.setData({
+                isLogin:true
+              })
+            }else{
+              util.showMsg(res.data.resultMsg,'none',2000)
+            }
+          },
+          fail (res) {
+            console.log(res);
+          }
+        })
+        
+      }
+    })
    
   },
   /**
@@ -195,7 +199,7 @@ Page({
             lat2:res.data.data.latitude,
             lng2:res.data.data.longitude,
             ['priceList.sale_price']:res.data.data.sale_price,
-            ['priceList.contract_price']:res.data.data.contract_price,
+            ['priceList.list_price']:res.data.data.list_price,
             ['priceList.official_price']:res.data.data.official_price,
           })
           // console.log(_this.data.stationData)
@@ -221,14 +225,16 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success (res) {
-        // console.log(res.data.data)
+        console.log(res.data.data)
         if(res.data.resultCode == 0){
           const newArr = res.data.data.gunList;
           newArr.unshift('请选择油枪号')
+         console.log(res.data.data.discount_price?res.data.data.discount_price:0)
+         console.log(res.data.data.discount_price?res.data.data.discount_price:0)
           _this.setData({
             selectGunData:newArr,
-            discount_price:res.data.data.discount_price,
-            sale_price:res.data.data.sale_price,
+            discount_price:res.data.data.discount_price?res.data.data.discount_price:0,
+            sale_price:res.data.data.sale_price?res.data.data.sale_price:0,
           })
         }else{
           util.showMsg(res.data.resultMsg,'none',2000)
@@ -243,14 +249,15 @@ Page({
     // console.log(e.detail.value);
     const _this = this;
     let  idx = -1;
-    let money = e.detail.value;99
+    let money = e.detail.value;
+    money = money.replace("￥",'');
     let x = money.indexOf(".")//获取小数点的位置
     let count = 0;
     if(x != -1){
       count = money.slice(x+1).length
     }
-    if(e.detail.value>999.99){
-      money = 999.99
+    if(money>8000){
+      money =8000
     }
     if(count>2) money = util.reservedDecimal(money,2);
     _this.setData({ 
@@ -270,12 +277,15 @@ Page({
   },
   couputedDisPrice(){
     const _this = this;
-
     const sale_price = _this.data.sale_price;
     const discount_price = _this.data.discount_price;
+    console.log(_this.data.amountPrice)
     const  amountPrice = _this.data.amountPrice==''?0:_this.data.amountPrice
-    // console.log(amountPrice)
-    let discount_total = amountPrice/sale_price*discount_price
+    console.log(amountPrice)
+    let discount_total = 0;
+    if(sale_price != 0 &&discount_price != 0){
+      discount_total = amountPrice/sale_price*discount_price
+    }
     discount_total = util.reservedDecimal(discount_total,2)
     _this.setData({
       dis_price: discount_total
@@ -302,7 +312,7 @@ Page({
         if(res.data.resultCode == 0){
           _this.setData({
             ['priceList.sale_price']:res.data.data.sale_price,
-            ['priceList.contract_price']:res.data.data.contract_price,
+            ['priceList.list_price']:res.data.data.list_price,
             ['priceList.official_price']:res.data.data.official_price,
           })
         }else{
@@ -395,12 +405,12 @@ Page({
     })
   },
   phoneCall(e){
-     util.comTakePhone(e.currentTarget.dataset.phone)
+     util.comTackPhone(e.currentTarget.dataset.phone)
   },
   checkPrice(e){
     console.log(e)
     const _this = this;
-    console.log(e.currentTarget.dataset.price)
+    // console.log(e.currentTarget.dataset.price)
     if(_this.data.isdisabledInput == false){
       _this.setData({
         amountPrice:e.currentTarget.dataset.price,
@@ -413,6 +423,7 @@ Page({
   },
   pay(e){//支付
     const _this = this;
+    if(_this.data.amountPrice==0||_this.data.isLogin==false||_this.data.amountPrice=='') return;
     wx.getLocation({
       type: 'gcj02', //返回可以用于wx.openLocation的经纬度
       success (res) {
@@ -420,7 +431,7 @@ Page({
         const lat1 = res.latitude;
         const lng1 = res.longitude;
         const distance = util.getDistance(lat1, lng1, _this.data.lat2, _this.data.lng2); //(39.928712, 116.393345, 39.928722, 116.393853)//
-        console.log(distance)
+        // console.log(distance)
         if(distance>2000){//2公里
           _this.setData({
             isdisableDistance:true
@@ -466,7 +477,7 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success (res) {
-        console.log(res.data.data)
+        // console.log(res.data.data)
         if(res.data.resultCode == 0){
           if(res.data.data){
             _this.wxPay(res.data.data.prepayId,res.data.data.timeStamp,res.data.data.pay_amount,res.data.data.nonceStr,res.data.data.sub_openid,res.data.data.paySign,res.data.data.orderNo)
@@ -508,33 +519,6 @@ Page({
         console.log("支付完成")
       }
       })
-    // wx.request({
-    //   url: 'http://zhaoyin.lfwin.com/payapi/mini/wxpay', //仅为示例，并非真实的接口地址
-    //   data: {
-    //     "service": 'com_mini_pay',
-    //     "apikey":'00014005',
-    //     "money": money,
-    //     "nonce_str":nonce_str,
-    //     "sub_appid": appId,
-    //     "sub_openid": sub_openid,
-    //     "sign": sign,
-    //   },
-    //   method:'POST',
-    //   header: {
-    //     'content-type': 'application/json' // 默认值
-    //   },
-    //   success (res) {
-    //     console.log(res.data.data)
-    //     if(res.data.resultCode == 0){
-    //       _this.wxPay(res.data.prepay_id)
-    //     }else{
-    //       util.showMsg(res.data.resultMsg,'none',2000)
-    //     }
-    //   },
-    //   fail (res) {
-    //     console.log(res);
-    //   }
-    // })
 
   },
   

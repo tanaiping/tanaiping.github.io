@@ -39,6 +39,9 @@
   background: transparent;
   border: none;
 }
+.search-input .search-keys.act{
+  color: #333;
+}
 .person-icon{
   width: 60rpx;
   height: 52rpx;
@@ -59,7 +62,7 @@
   font-size: 28rpx;
 }
 .station-box{
-  padding: 200rpx 26rpx 40rpx 26rpx;
+  padding: 220rpx 26rpx 40rpx 26rpx;
 }
 .map-box{
   width: 100%;
@@ -86,6 +89,7 @@
 .station-img{
   width:60rpx;
   height: 60rpx;
+  border-radius: 10rpx;
 }
 .navigate-img{
   width: 20rpx;
@@ -122,6 +126,10 @@
 }
 .station-info .price .t1 .pri1{
   color: #FF742C;
+  font-size: 20rpx;
+  font-weight: bold;
+ }
+ .station-info .price .t1 .pri1 text{
   font-size: 28rpx;
  }
 .station-info .price .t1 .pri2{
@@ -220,4 +228,12 @@
   padding: 0 52rpx;
   border-radius: 30rpx;
   font-size: 24rpx;
+}
+.move-img{
+  position: fixed;
+  bottom: 300rpx;
+  right: 28rpx;
+  z-index: 100;
+  width: 120rpx;
+  height: 120rpx;
 }

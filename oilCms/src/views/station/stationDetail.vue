@@ -2,11 +2,17 @@
   <div class="content">
     <div style="width: 360px;">
       <el-form :model="ruleForm" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+        <el-form-item label="渠道名称">
+          <label >{{ruleForm.source}}</label>
+        </el-form-item>
+        <el-form-item label="油站ID">
+          <label >{{ruleForm.station_id}}</label>
+        </el-form-item>
         <el-form-item label="油站名称">
           <label >{{ruleForm.station_name}}</label>
         </el-form-item>
         <el-form-item label="油站logo">
-         <img :src="ruleForm.logo" alt="">
+         <img :src="ruleForm.logo" alt="" style="width: 100px;">
         </el-form-item>
         <el-form-item label="油站类型">
           <label >{{ruleForm.type}}</label>

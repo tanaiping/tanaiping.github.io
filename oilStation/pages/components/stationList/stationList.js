@@ -51,6 +51,16 @@ Component({
         url: '../orderSubmit/orderSubmit?id='+id+"&oil_no="+oil_no+"&latitude="+latitude+"&longitude="+longitude
       })
     },
+    
 
-  }
+  },
+  attached(){
+    // 第二种方式通过组件的生命周期函数执行代码
+    const _this = this;
+    if(_this.properties.len > _this.properties.stationData.length){
+      this.setData({
+        len: _this.properties.stationData.length
+      });
+    }
+  },
 })

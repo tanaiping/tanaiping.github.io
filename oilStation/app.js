@@ -5,8 +5,12 @@ App({
     
   },
   globalData: {
-    baseUrl: 'http://192.168.1.118:5566'  //玉芳
-    // baseUrl: 'http://192.168.1.147:5566'  //李明
+    // baseUrl: 'http://192.168.1.118:5566'  //yf
+    // baseUrl: 'http://192.168.1.147:5566'  //lm
     // baseUrl: 'http://192.168.201.153:5566' //
+    // baseUrl: 'https://cj.sljoy.cn'  //ceshi
+    baseUrl: 'https://api.wextone.com'  //online
+    
+    
   }
 })

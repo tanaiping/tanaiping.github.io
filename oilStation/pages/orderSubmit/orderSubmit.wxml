@@ -2,13 +2,13 @@
 <view class="container">
   <view class="station-box">
     <view class="station-list">
-          <image src="{{stationData.logo}}" class="station-img" mode="aspectFill"></image>
+          <image src="{{stationData.logo?stationData.logo:'../images/default.png'}}" class="station-img" mode="aspectFill"></image>
           <view class="station-info">
-            <text class="name">{{stationData.station_name}}</text>
-            <text class="address">{{stationData.address}}</text>
+            <text class="name">{{stationData.station_name?stationData.station_name:'--'}}</text>
+            <text class="address">{{stationData.address?stationData.address:'--'}}</text>
           </view>
           <view class="distance-box">
-              <view class="distance">{{stationData.distance}}km<text></text></view>
+              <view class="distance">{{stationData.distance?stationData.distance:'0'}}km<text></text></view>
               <view class="line"></view>
               <image src="../images/navigate.png" mode="aspectFill" class="navigate-ico"></image>
               <text class="nav-btn" bindtap="openMap" data-address="{{stationData.address}}" data-stationName="{{stationData.station_name}}">导航</text>
@@ -28,17 +28,17 @@
         <view class="price-list">
           <view class="price-elem">
             <text class="t1" style="color:#136FD1">微智行价</text>
-            <text class="t2" style="color:#136FD1">￥{{priceList.sale_price}}</text>
+            <text class="t2" style="color:#136FD1">￥ {{priceList.sale_price?priceList.sale_price:'--'}}</text>
           </view>
           <view class="column-line"></view>
           <view class="price-elem">
             <text class="t1">油站价</text>
-            <text class="t2">￥{{priceList.contract_price}}</text>
+            <text class="t2">￥ {{priceList.list_price?priceList.list_price:'--'}}</text>
           </view>
           <view class="column-line"></view>
           <view class="price-elem">
             <text class="t1">指导价</text>
-            <text class="t2">￥{{priceList.official_price}}</text>
+            <text class="t2">￥ {{priceList.official_price?priceList.official_price:'--'}}</text>
           </view>
         </view>
     </view>
@@ -47,11 +47,10 @@
   <view class="discount-box">
     <view class="discount-header">
       <text class="title">优惠加油</text>
-      <text class="contact-service"  catchtap="phoneCall" data-phone="150">联系客服</text>
+      <!-- <text class="contact-service"  catchtap="phoneCall" data-phone="13823774672">联系客服</text> -->
+      <button class="contact-service" open-type="contact" session-from="weapp">联系客服</button>
     </view>
     <view class="border-box flex-between" catchtap="showSelectPop">
-      <!-- <picker bindchange="bindPickerChangeGun" value="{{index_gun}}" range="{{selectGunData}}" mode="multiSelector" bindcolumnchange="bindCustomPickerColumnChange" style="width:100%"> -->
-        <!-- <view class="flex-between" catchtap="selectOil"> -->
           <view  class="flex-row">
             <image src="../images/oil_no.png" class="gun-img"></image>
             <view class="picker-com" style="padding:10rpx 0">
@@ -66,14 +65,11 @@
               <image  src='../images/up.png'  mode="aspectFill" class="pick-icon"></image> 
             </view>
           </view>
-        <!-- </view> -->
-         
-       <!-- </picker> -->
 
     </view>
     <view class="select-price">
       <view class="input-box">
-        <input type="digit" placeholder="{{placeholder}}" placeholder-style="color:rgba(19, 111, 209, 0.5)"  model:value="{{amountPrice}}"  bindinput="changePrice" disabled="{{isdisabledInput}}" ></input>
+        <input type="digit" placeholder="{{placeholder}}" placeholder-style="color:rgba(19, 111, 209, 0.5);font-size:28rpx;"  model:value="{{amountPrice===''?'':'￥'+amountPrice}}"  bindinput="changePrice" disabled="{{isdisabledInput}}" ></input>
       </view>
       <view class="price-con">
         <block wx:for="{{totalList}}" wx:for-index="idx" wx:key="idx">
@@ -90,10 +86,10 @@
   <view class="pay-fixed-bottom">
     <view class="pad-box">
       <block wx:if="{{dis_price!=0}}">
-        <text class="t1">已优惠 <text>￥{{dis_price}}</text></text>
+        <text class="t1"><text>已优惠</text> <text class="m">￥{{dis_price}}</text></text>
       </block>
-      <text class="t2">合计 <text>￥{{amountPrice ===''?'0.00':amountPrice}}</text></text>
-      <view catchtap="pay"  class="pay-btn {{(amountPrice!=0&&isLogin==true&&amountPrice!='')?'ttt':'disabled'}}">去支付</view>
+      <text class="t2"><text>合计</text> <text class="m">￥{{amountPrice ===''?'0.00':amountPrice}}</text></text>
+      <view catchtap="pay"  class="pay-btn {{(amountPrice!=0&&isLogin==true&&amountPrice!='')?'':'disabled'}}">去支付</view>
     </view>
   </view>
    
@@ -120,12 +116,12 @@
         <text class="btn-submit" catchtap="hideSelectPop" data-type="1">确认</text>
       </view>
       <view class="oil-box">
-       <block wx:for="{{selectOilData2}}" wx:for-index="idx" wx:key="{{item[idx]}}" >
-          <text class="{{index_oil2 == idx?'act':''}}" catchtap="changeOil" data-index ="{{idx}}">{{item}}</text>
+       <block wx:for="{{selectOilData2}}" wx:for-index="idx" wx:key="*this" >
+          <text class="{{index_oil2 == idx?'act':''}}" catchtap="changeOil" data-index ="{{idx}}">{{item}}#</text>
        </block>
       </view>
      <view class="gun-box">
-      <block wx:for="{{selectGunData}}" wx:for-index="idx" wx:key="{{item[idx]}}">
+      <block wx:for="{{selectGunData}}" wx:for-index="idx" wx:key="*this">
         <text wx:if="{{idx>0}}" class="{{index_gun == idx?'act':''}}" catchtap="changeGun"data-index ="{{idx}}">{{item}}</text>
       </block>
      </view>

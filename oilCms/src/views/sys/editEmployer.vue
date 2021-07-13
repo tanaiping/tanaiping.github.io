@@ -2,16 +2,16 @@
   <div class="content" style="width: 500px">
     <el-form :model="employee" ref="ruleForm" label-width="100px">
       <el-form-item label="员工姓名" >
-       <el-input v-model="employee.nickName"></el-input>
+       <el-input v-model="employee.nickName" autoComplete="off" autocomplete="new-password"></el-input>
        </el-form-item>
        <el-form-item label="员工职位" >
-        <el-input v-model="employee.position"></el-input>
+        <el-input v-model="employee.position" autoComplete="off" autocomplete="new-password"></el-input>
         </el-form-item>
-       <el-form-item label="员工账号" >
+       <el-form-item label="员工账号" autoComplete="off" autocomplete="new-password">
           <label>{{employee.userName}}</label>
         </el-form-item>
        <el-form-item label="账号密码" >
-        <el-input type="password" v-model="employee.password"></el-input>
+        <el-input type="password" v-model="employee.password" autoComplete="off" autocomplete="new-password"></el-input>
         </el-form-item>
         <el-form-item label="">
          <el-button type="primary" @click="editEmployee('ruleForm')">保存</el-button>
@@ -44,21 +44,16 @@ import {Login} from '@/config/url'
           const _this = this;
           const token = localStorage.getItem('token');
           const formData = {
-            userName:'',
-            nickName:'',
-            startTime:'',
-            endTime:'',
-            pageNo:pageNo
+            userId:_this.id
           }
-          _this.$axios.post(Login.employeeList, JSON.stringify(formData),{headers: {'Content-Type': 'application/json','token':token}})
+          console.log(formData)
+          _this.$axios.get(Login.getEmployeeInfo+"?userId="+_this.id,{headers: {'Content-Type': 'application/json','token':token}})
             .then((res) => {
               console.log(res)
               if (res.data.resultCode == 0) {
-                res.data.data.data.forEach(function(item,index){
-                  if(item.id == _this.id){
-                    _this.employee = item;
-                  }
-                })
+                if(res.data.data){
+                   _this.employee = res.data.data;
+                }
               }else if(res.data.resultCode == 3){
                 localStorage.removeItem("token");
                 localStorage.removeItem("userName");

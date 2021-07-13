@@ -1,6 +1,7 @@
 <template>
   <div class="content">
     <div class="flex">
+      <el-form ref="form" label-width="80px" @keyup.enter.native="search">
         <el-input v-model="orderNo" placeholder="请输入订单号" class="filter-input mr10"></el-input>
         <el-input v-model="stationName" placeholder="请输入油站名称" class="filter-input mr10"></el-input>
         <el-input v-model="source" placeholder="请输入渠道名称" class="filter-input mr10"></el-input>
@@ -13,6 +14,7 @@
         <el-button  icon="el-icon-refresh" @click="resetForm">重置</el-button>
         <el-button type="primary"  icon="el-icon-search" @click="search">查询</el-button>
         <el-button type="warning" icon="el-icon-download" @click="exportTable">导出表格</el-button>
+      </el-form>
     </div>
     <!-- <div class="flex" style="padding: 20px 0;">
       <el-button  type="primary" icon="el-icon-plus" @click="add">新增</el-button>
@@ -224,17 +226,17 @@ import orderDetail from '@/components/orderDetail'
       changeCurPage(p){
         const _this = this;
         this.curPage = p;
-        console.log(this.curPage);
+        // console.log(this.curPage);
         _this.getListData(_this.curPage);
       },
       handleDetail(index, row) {
-        console.log(index, row);
+        // console.log(index, row);
         const _this = this;
          _this.$router.push({name:'orderDetail',"params":{'orderNo':row.orderNo}})
 
       },
       handleRefund(index, row) {
-        console.log(index, row);
+        // console.log(index, row);
         const _this = this;
         if(row.status == 1){ //退款
           _this.contentData.forEach(function(item,index){
@@ -298,9 +300,13 @@ import orderDetail from '@/components/orderDetail'
         }
         _this.$axios.post(Order.orderList, JSON.stringify(formData),{headers: {'Content-Type': 'application/json','token':token}})
           .then((res) => {
-            console.log(res)
+            // console.log(res)
             if (res.data.resultCode == 0) {
-              _this.contentData = res.data.data.data;
+              if(res.data.data.data){
+                _this.contentData = res.data.data.data;
+              }else{
+                _this.contentData = [];
+              }
               _this.total = res.data.data.total
               _this.pageSize = res.data.data.limit
               _this.curPage = res.data.data.pageNo
@@ -330,7 +336,7 @@ import orderDetail from '@/components/orderDetail'
         }
         _this.$axios.post(Order.exportOrderList, JSON.stringify(formData),{headers: {'Content-Type': 'application/json','token':token}})
           .then((res) => {
-            console.log(res)
+            // console.log(res)
             if (res.data.resultCode == 0) {
               window.open(res.data.data)
             }else if(res.data.resultCode == 3){

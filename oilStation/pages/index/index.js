@@ -25,7 +25,7 @@ Page({
   toAllStionList() {
     const _this = this;
     wx.navigateTo({
-      url: '../station/station?latitude='+_this.data.latitude+"&longitude="+_this.data.longitude+"&longitude="+_this.data.longitude,
+      url: '../station/station?latitude=' + _this.data.latitude +"&longitude="+_this.data.longitude,
     })
   },
   getPhoneNumber (e) {
@@ -34,38 +34,44 @@ Page({
     // console.log(e.detail.iv)
     // console.log(e.detail.encryptedData)
     // console.log(baseUrl);
-    const session_key = wx.getStorageSync('session_key');
-    const uid = wx.getStorageSync('uid');
-    if(e.detail.encryptedData){
-      wx.request({
-        url: baseUrl+'/v1/user/getUserMobile', //仅为示例，并非真实的接口地址
-        data: {
-            "encrypted": e.detail.encryptedData,
-            "iv": e.detail.iv,
-            "session_key": session_key,
-            "uid":uid
-        },
-        method:'POST',
-        header: {
-          'content-type': 'application/json' // 默认值
-        },
-        success (res) {
-          console.log(res.data)
-          if(res.data.resultCode == 0){
-            wx.setStorageSync('phone', res.data.data)
-            _this.setData({
-              isLogin:true
-            })
-          }else{
-            util.showMsg(res.data.resultMsg,'none',2000)
-          }
-        },
-        fail (res) {
-          console.log(res);
-        }
+    util.login(baseUrl).then(function(res){
+      const uid = wx.getStorageSync('uid');
+      const session_key = wx.getStorageSync('session_key');
+      _this.setData({
+        uid:uid
       })
-      
-    }
+      if(e.detail.encryptedData){
+        wx.request({
+          url: baseUrl+'/v1/user/getUserMobile', //仅为示例，并非真实的接口地址
+          data: {
+              "encrypted": e.detail.encryptedData,
+              "iv": e.detail.iv,
+              "session_key": session_key,
+              "uid":uid
+          },
+          method:'POST',
+          header: {
+            'content-type': 'application/json' // 默认值
+          },
+          success (res) {
+            // console.log(res.data)
+            if(res.data.resultCode == 0){
+              wx.setStorageSync('phone', res.data.data)
+              _this.setData({
+                isLogin:true
+              })
+            }else{
+              util.showMsg(res.data.resultMsg,'none',2000)
+            }
+          },
+          fail (res) {
+            console.log(res);
+          }
+        })
+        
+      }
+    })
+    
    
   },
   onLoad() {
@@ -86,7 +92,7 @@ Page({
     });
     
     let phone = wx.getStorageSync('phone');
-    console.log(phone)
+    // console.log(phone)
     if(phone){
       _this.setData({
         phone:phone,
@@ -98,7 +104,8 @@ Page({
         isLogin:false
       });
     }
-    console.log(_this.data.isLogin)
+    // console.log(_this.data.isLogin)
+    
   },
   onShow(){
     this.onLoad();
@@ -108,17 +115,20 @@ Page({
     wx.request({
       url: baseUrl+'/v1/oil/getStationList', //仅为示例，并非真实的接口地址
       data: {
-        "latitude": _this.data.latitude,
+        "latitude":_this.data.latitude,
         "longitude": _this.data.longitude,
+        // "latitude": 22.601521,
+        // "longitude": 113.847456,
         "oil_no": 92,
-        "type": 1
+        "type": 1,
+        "pageNo":1,
       },
       method:'POST',
       header: {
         'content-type': 'application/json' // 默认值
       },
       success (res) {
-        console.log(res.data)
+        // console.log(res.data)
         if(res.data.resultCode == 0){
             _this.setData({
               stationData:res.data.data
@@ -129,6 +139,7 @@ Page({
         _this.setData({
           ishidden:false,
         });
+
       },
       fail (res) {
         console.log(res);
@@ -147,7 +158,7 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success (res) {
-        console.log(res.data)
+        // console.log(res.data)
         if(res.data.resultCode == 0){
             _this.setData({
               rechargeCnt:res.data.data.rechargeCnt,
@@ -163,5 +174,16 @@ Page({
       }
     })
   },
+  otherMin(){
+    wx.navigateToMiniProgram({
+      appId: 'wxe7faadbd87ff4d96',
+      path: '',
+      extraData: {},
+      envVersion: 'release',//
+      success(res) {
+        // 打开成功
+      }
+    })
+  }
   
 })

@@ -1,11 +1,16 @@
 <!--pages/components/stationList.wxml-->
-<block wx:for="{{stationData}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
-        <view class="station-list" wx:if="{{idx<len}}">
-          <image src="{{item.logo}}" class="station-img" mode="aspectFill"></image>
+<block wx:for="{{stationData}}" wx:for-index="idx" wx:for-item="item" wx:key="id">
+        <view class="station-list {{idx==(len-1)?'':'bom'}}" wx:if="{{idx<len}}" catchtap="addOil" data-id="{{item.id}}" data-latitude = "{{item.latitude}}" data-longitude = "{{item.longitude}}">
+          <image src="{{item.logo?item.logo:'../../images/default.png'}}" class="station-img" mode="aspectFill"></image>
           <view class="station-info">
             <text class="name">{{item.station_name}}</text>
             <view class="price">
-              <view class="t1"><text class="pri1">￥{{item.sale_price}}</text><text class="pri2">￥{{item.contract_price}}</text> 已降{{item.discount_price}}元</view>  
+              <view class="t1"><text class="pri1">￥<text>{{item.sale_price}}</text></text>
+              <block wx:if="{{item.sale_price != item.official_price}}">
+                <text class="pri2">￥{{item.official_price}}</text> 已降{{item.discount_price}}元
+              </block>
+              
+              </view>  
             </view>
             <text class="address">{{item.address}}</text>
           </view>
@@ -16,7 +21,7 @@
               <view class="distance">{{item.distance}}km</view> <!--{{item.distance<1000?item.distance:item.distance/1000+'km'}}-->
               <view class="line"></view>
               <image src="../../images/navigate.png" mode="aspectFill" class="navigate-ico"></image>
-              <text class="nav-btn" bindtap="openMap"  data-stationName="{{item.station_name}}" data-address="{{item.address}}" data-latitude = "{{item.latitude}}" data-longitude = "{{item.longitude}}">导航</text>
+              <text class="nav-btn" catchtap="openMap"  data-stationName="{{item.station_name}}" data-address="{{item.address}}" data-latitude = "{{item.latitude}}" data-longitude = "{{item.longitude}}">导航</text>
             </view>
           </view>
         </view>   

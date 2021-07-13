@@ -9,19 +9,17 @@
               start-placeholder="开始日期"
               end-placeholder="结束日期" class="mr10">
             </el-date-picker>
+        <el-select v-model="citys" multiple placeholder="请选择">
+            <el-option
+              v-for="(item,i) in options"
+              :key="item.city"
+              :label="item.city"
+              :value="item.city">
+            </el-option>
+          </el-select>
         <el-button  icon="el-icon-refresh" @click="resetForm">重置</el-button>
         <el-button type="primary"  icon="el-icon-search" @click="search">查询</el-button>
         <el-button type="warning" icon="el-icon-download" @click="downTable" >下载表格</el-button>
-    </div>
-    <div class="flex mt20">
-      <el-select v-model="citys" multiple placeholder="请选择">
-          <el-option
-            v-for="(item,i) in options"
-            :key="item.city"
-            :label="item.city"
-            :value="item.city">
-          </el-option>
-        </el-select>
     </div>
     <!-- 过虑条件  end-->
     <!-- 标题  end-->
@@ -192,9 +190,13 @@
         }
         _this.$axios.post(Statistics.orderList, JSON.stringify(formData),{headers: {'Content-Type': 'application/json','token':token}})
           .then((res) => {
-            console.log(res)
+            // console.log(res)
             if (res.data.resultCode == 0) {
-              _this.contentData = res.data.data.data;
+              if(res.data.data.data){
+                _this.contentData = res.data.data.data;
+              }else{
+                _this.contentData = [];
+              }
               _this.total = res.data.data.total
               _this.pageSize = res.data.data.limit
               _this.curPage = res.data.data.pageNo
@@ -256,7 +258,7 @@
           .then((res) => {
             console.log(res)
             if (res.data.resultCode == 0) {
-                // window.open(data.data);
+                window.open(res.data.data);
             }else if(res.data.resultCode == 3){
               localStorage.removeItem("token");
               localStorage.removeItem("userName");

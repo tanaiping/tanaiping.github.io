@@ -1,6 +1,7 @@
 <template>
   <div class="content">
       <div class="flex">
+        <el-form ref="form" label-width="80px"  @keyup.enter.native="search">
           <el-select v-model="type" placeholder="请选择油站类型" class="mr10">
             <el-option label="全部" value='-1'></el-option>
             <el-option label="中石油" value='1'></el-option>
@@ -18,6 +19,7 @@
           <el-input v-model="address" placeholder="请输入油站地址" class="filter-input mr10"></el-input>
           <el-button  icon="el-icon-refresh" @click="resetForm">重置</el-button>
           <el-button type="primary"  icon="el-icon-search" @click="search">查询</el-button>
+        </el-form>
       </div>
 
       <!-- 过虑条件  end-->
@@ -29,6 +31,8 @@
             stripe
             type="selection"
             @selection-change="selectionLineChangeHandle"
+            @row-click="handleRowClick"
+            ref="handSelectTest_multipleTable"
             :row-key='getRowKey'
             style="width: 100%">
             <el-table-column type="selection"  :reserve-selection="true" width="55"> </el-table-column>
@@ -97,7 +101,7 @@
               <template slot-scope="scope">
                 <el-button
                   size="mini"
-                  @click="handlechange(scope.$index, scope.row)" >修改单价</el-button>
+                  @click.stop="handlechange(scope.$index, scope.row)" >修改单价</el-button>
               </template>
             </el-table-column>
           </el-table>
@@ -147,22 +151,24 @@ import Page from '@/components/page'
         this.type = '';
         this.province = '';
         this.city = '';
-        this.statioName = '';
+        this.stationName = '';
         this.address = '';
       },
       changeCurPage(p){
          const _this = this;
         _this.curPage = p;
-        console.log(_this.curPage);
+        // console.log(_this.curPage);
          _this.getListData(_this.curPage);
       },
       handlechange(index, row) {
-        console.log(index, row);
-        this.$router.push({name:'changePriceSingle',"params":{'stationId':row.stationId}})
+        this.$router.push({name:'changePriceSingle',"query":{'stationId':row.stationId}})
       },
       selectionLineChangeHandle (val) {
              this.stationIdList = val
              console.log(this.stationIdList)
+      },
+      handleRowClick(row, column, event) {
+          this.$refs.handSelectTest_multipleTable.toggleRowSelection(row);
       },
       getRowKey(row){
              return row.id;
@@ -173,19 +179,26 @@ import Page from '@/components/page'
         const formData = {
           type:_this.type==-1?'':_this.type,
           address:_this.address,
-          station_name:_this.statioName,
+          station_name:_this.stationName,
           pageNo:pageNo,
           city:_this.city,
           province:_this.province
         }
+        console.log(formData)
         _this.$axios.post(Price.list, JSON.stringify(formData),{headers: {'Content-Type': 'application/json','token':token}})
           .then((res) => {
-            console.log(res)
+            // console.log(res)
             if (res.data.resultCode == 0) {
-              _this.contentData = res.data.data.data;
+              if(res.data.data.data){
+                _this.contentData = res.data.data.data;
+
+              }else{
+                 _this.contentData = [];
+              }
               _this.total = res.data.data.total
               _this.pageSize = res.data.data.limit
               _this.curPage = res.data.data.pageNo
+
             }else if(res.data.resultCode == 3){
               localStorage.removeItem("token");
               localStorage.removeItem("userName");
@@ -207,7 +220,8 @@ import Page from '@/components/page'
         })
          stationStr = JSON.stringify(stationStr);
         _this.$router.push({name:'changePriceMul',"params":{'stationObj':stationStr}})
-      }
+      },
+
     }
   }
 </script>

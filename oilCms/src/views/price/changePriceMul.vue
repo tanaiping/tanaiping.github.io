@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <el-form label-width="100px" :rules="rules" ref="ruleForm" :model="ruleForm">
+    <el-form label-width="100px" :rules="rules" ref="ruleForm" :model="ruleForm" @submit.native.prevent @keyup.enter.native="saveModify('ruleForm')">
       <el-form-item label="油站名称">
         <el-button  type="primary" @click="checkStation">选择油站</el-button>
       </el-form-item>
@@ -43,18 +43,22 @@
         width="60%"
         :before-close="handleClose">
          <div class="flex">
+           <el-form ref="form" label-width="80px"  @keyup.enter.native="search">
              <el-input v-model="province" placeholder="请输入省份" class="filter-input mr10"></el-input>
              <el-input v-model="city" placeholder="城市" class="filter-input mr10"></el-input>
              <el-input v-model="stationName" placeholder="请输入油站名称" class="filter-input mr10"></el-input>
              <el-input v-model="address" placeholder="请输入油站地址" class="filter-input mr10"></el-input>
              <el-button  icon="el-icon-refresh" @click="resetForm">重置</el-button>
              <el-button type="primary"  icon="el-icon-search" @click="search">查询</el-button>
+           </el-form>
          </div>
          <el-table
              :data="contentData"
              stripe
              type="selection"
              @selection-change="selectionLineChangeHandle"
+             @row-click="handleRowClick"
+             ref="handSelectTest_multipleTable"
              :row-key='getRowKey'
              style="width: 100%">
              <el-table-column type="selection"  :reserve-selection="true" width="55"> </el-table-column>
@@ -151,6 +155,8 @@ import Page from '@/components/page'
           callback(new Error("不能为空"));
         }else if (!reg.test(value)) {
           callback(new Error("只能输入数值，最多两位小数"));
+        }else if (value>100) {
+          callback(new Error("请输入0-100数字"));
         }else {
           callback();
         }
@@ -190,7 +196,7 @@ import Page from '@/components/page'
       }else{
          this.ruleForm.stationObj = '';
       }
-      console.log(this.ruleForm.stationObj)
+      // console.log(this.ruleForm.stationObj)
       this.listPage = this.$route.params.pageNo
       //this.initStation()
       _this.getListData(_this.curPage)
@@ -204,13 +210,13 @@ import Page from '@/components/page'
         this.ruleForm.type = '';
         this.province = '';
         this.city = '';
-        this.statioName = '';
+        this.stationName = '';
         this.address = '';
       },
       changeCurPage(p){
          const _this = this;
         this.curPage = p;
-        console.log(this.curPage);
+        // console.log(this.curPage);
         _this.getListData(_this.curPage)
       },
       saveChecked() {
@@ -238,7 +244,10 @@ import Page from '@/components/page'
       },
       selectionLineChangeHandle (val) {
            this.stationIdList = val
-           console.log(this.stationIdList)
+           // console.log(this.stationIdList)
+      },
+      handleRowClick(row, column, event) {
+          this.$refs.handSelectTest_multipleTable.toggleRowSelection(row);
       },
       getRowKey(row){
              return row.id;
@@ -249,14 +258,14 @@ import Page from '@/components/page'
           const formData = {
             type:'',
             address:_this.address,
-            station_name:_this.statioName,
+            station_name:_this.stationName,
             pageNo:pageNo,
             city:_this.city,
             province:_this.province
           }
           _this.$axios.post(Price.list, JSON.stringify(formData),{headers: {'Content-Type': 'application/json','token':token}})
             .then((res) => {
-              console.log(res)
+              // console.log(res)
               if (res.data.resultCode == 0) {
                 _this.contentData = res.data.data.data;
                 _this.total = res.data.data.total
@@ -299,7 +308,7 @@ import Page from '@/components/page'
               }
               _this.$axios.post(Price.batchReviseOilPrice, JSON.stringify(formData),{headers: {'Content-Type': 'application/json','token':token}})
                 .then((res) => {
-                  console.log(res)
+                  // console.log(res)
                   if (res.data.resultCode == 0) {
                     _this.$message('改价成功');
                     setTimeout(function(){_this.$router.go(-1);},1000)

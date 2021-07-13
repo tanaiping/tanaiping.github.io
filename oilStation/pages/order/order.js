@@ -65,7 +65,8 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    this.orderList(false)
+    // this.orderList(false)
+    //wx.stopPullDownRefresh();
   },
 
   /**
@@ -105,7 +106,9 @@ Page({
     })
   },
   orderList(isFirst){
-   
+    wx.showLoading({
+      title: '加载中',
+    })
     const _this = this;
     if(isFirst){
       _this.setData({
@@ -126,7 +129,7 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success (res) {
-        console.log(res.data)
+        // console.log(res.data)
         if(res.data.resultCode == 0){
           let oridata = _this.data.orderList;
           let obj = res.data.data;
@@ -136,8 +139,6 @@ Page({
           }else{
             obj = [];
           }
-          console.log(oridata)
-          console.log(obj)
           let arr = [...oridata,...obj]
           _this.setData({
             orderList:arr, //res.data.data
@@ -147,6 +148,7 @@ Page({
         }else{
           util.showMsg(res.data.resultMsg,'none',2000)
         }
+        wx.hideLoading();
         _this.setData({
           ishidden:false
         })

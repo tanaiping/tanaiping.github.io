@@ -5,18 +5,7 @@ const baseUrl = app.globalData.baseUrl;
 const util = require('../../utils/util.js') //util.getDistance(lat1, lng1, _this.data.lat2, _this.data.lng2)
 Page({
   data: {
-    tips: [
-    //   {adcode: "440304",
-    //   address: "莲花路1120号",
-    //   city: [],
-    //   distance: "10.6km",
-    //   district: "广东省深圳市福田区",
-    //   id: "B02F3006F9",
-    //   location: "114.049074,22.556296",
-    //   name: "北京大学深圳医院",
-    //   typecode: "090101",
-    // },
-    ],
+    tips: [],
     cityList:[],
     keywords:'',
     cityIndex:0,
@@ -25,27 +14,51 @@ Page({
     lng1:'',//自己位置纬度
     lat2:'',//查找的位置的经度
     lng2:'',//查找的位置的纬度
-    
+    ishidden:true
   },
   onLoad: function(e){
-    this.getLocation();
-    this.getCityList();
-  },
-  getLocation(){
+    // this.getLocation();
+    wx.showLoading({
+      title: '定位中',
+    })
     const _this = this;
-    wx.getLocation({
-      type: 'gcj02', //返回可以用于wx.openLocation的经纬度
-      success (res) {
-        console.log(res)
-        const lat1 = res.latitude;
-        const lng1 = res.longitude;
-        //const distance = util.getDistance(lat1, lng1, _this.data.lat2, _this.data.lng2); 
-        _this.setData({
-          lat1:lat1,
-          lng1:lng1
-        })
-      }
-     })
+    this.getCityList();
+    util.getLocation.then(function(res){
+      _this.setData({
+        lat1:res.latitude,
+        lng1:res.longitude
+     });
+      let key = config.Config.key;
+      let myAmapFun = new amapFile.AMapWX({key:key});
+      myAmapFun.getRegeo({
+        success: function(data){
+          //成功回调
+          // console.log(_this.data.cityList)
+          const curCity = data[0].regeocodeData.addressComponent.city
+          // console.log(curCity)
+          _this.data.cityList.forEach(function(item,index){
+            if(curCity.includes(item)){
+              _this.setData({
+                cityIndex:index,
+             });
+            }
+          })
+          _this.setData({
+            ishidden:false,
+         });
+          wx.hideLoading();
+        },
+        fail: function(info){
+          //失败回调
+          _this.setData({
+            cityIndex:0,
+            ishidden:false,
+         });
+          console.log(info)
+        }
+      })
+
+   });
   },
   getCityList(){
     const _this = this;
@@ -127,7 +140,7 @@ Page({
     console.log(e)
     const obj = e.currentTarget.dataset;
     const keywords = obj.keywords; //这个字段暂不用  
-    const url = '../station/station?latitude=' + obj.lat +"&longitude="+obj.lng;
+    const url = '../station/station?latitude=' + obj.lat +"&longitude="+obj.lng+"&keywords="+keywords;
     wx.redirectTo({
       url: url
     })

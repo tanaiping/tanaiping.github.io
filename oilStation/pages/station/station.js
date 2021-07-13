@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    pageNo:1,
     isMapmodel: false,// ==false 列表模式  ==true 地图模式
     screenH:0,
     selectOilData: ['92','95','98','0'],//下拉列表的数据
@@ -14,38 +15,21 @@ Page({
     showCheck:0, // 0不显示  1 显示 油号  2 显示离我最近
     selectTypeData: ['离我最近','低价优先'],//下拉列表的数据
     index_type: 0,//选择的下拉列表下标
-    stationData:[
-    ],
-    "longitude": "",
-    "latitude": "",
+    stationData:[],
+    longitude: "",
+    latitude: "",
+    c_lat:'',// 默认第一个油站为地图中间点
+    c_lng:'',// 默认第一个油站为地图中间点
     ishidden:true,
-    markers:[
-    // {
-    //   "id": 1,
-    //   "longitude": "111.62852107566833",
-    //   "latitude": "26.42142999357519",
-    //   "iconPath":'../images/maptips.png',
-    //   "width":116,
-    //   "height":62,
-    //   "label":{
-    //    "content":'￥5.56' ,
-    //    "color":'#333',
-    //    "fontSize":'30rpx',
-    //    "bgColor":'red',
-    //    "display":'ALWAYS',
-    //    'anchorX':'15rpx',
-    //    "anchorY":'-95rpx',
-    //    'textAlign':'center'
-    //   }
-    // },
-  ],
-  selectMarketId:0,
+    markers:[],
+    keywords:'',
+    selectMarketId:0,
   circles:[{
     "latitude": "",
     "longitude": "",
-    color: '#007BFF66',
-    fillColor: 'rgba(0, 123, 255, 0.3)',
-    radius: 4000,
+    color: '#007BFF4D',//007BFF4D
+    fillColor:'#007BFF4D',//#007BFF4D
+    radius: 6000,
     strokeWidth: 0
   }],
   },
@@ -57,16 +41,16 @@ Page({
     const _this = this;
     let  lat = 'circles[0].latitude'
     let  lgt = 'circles[0].longitude'
-
-    _this.setData({
+    _this.setData({
       screenH: wx.getSystemInfoSync().windowHeight,
       latitude:options.latitude,
       longitude:options.longitude,
       [lat]:options.latitude,
       [lgt]:options.longitude,
-    })
+      keywords:options.keywords
+     });
     _this.getStation();
-    this.selectMarket(this.data.selectMarketId); //地图模式 默认选中第一个
+
   },
 
   /**
@@ -101,14 +85,17 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    const _this = this;
+    // _this.getStation()
+   // wx.stopPullDownRefresh();
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    const _this = this;
+    // _this.getStation()
   },
 
   /**
@@ -142,7 +129,10 @@ Page({
       markers:newMap,
       selectMarketId:selectedIndex,
     });
-    console.log(_this.data.selectMarketId)
+    // console.log(_this.data.selectMarketId)
+    // console.log(_this.data.markers)
+    // console.log(_this.data.c_lat)
+    // console.log(_this.data.c_lng)
   },
   markertap(e){ //点击图片的标记
     // console.log(e.detail.markerId)
@@ -157,8 +147,8 @@ Page({
     const obj = e.currentTarget.dataset;
     const latitude =parseFloat(obj.latitude)
     const longitude = parseFloat(obj.longitude)
-    console.log(latitude)
-    console.log(longitude)
+    // console.log(latitude)
+    // console.log(longitude)
     wx.openLocation({
       latitude: latitude, // 纬度，范围为-90~90，负数表示南纬  传入字符串 就打不开地图
       longitude: longitude, // 经度，范围为-180~180，负数表示西经
@@ -202,84 +192,117 @@ Page({
     })
   },
   bindChangeOil: function(e) {//切换油号
-    this.setData({
+    const _this = this;
+    _this.setData({
       index_oil: e.currentTarget.dataset.index,
-      showCheck: 0
+      showCheck: 0,
+      pageNo:1,
     })
-    this.getStation();
+    _this.getStation();
   },
   bindChangeType: function(e) {//切换类型
-    this.setData({
+    const _this = this;
+    _this.setData({
       index_type: e.currentTarget.dataset.index,
-      showCheck: 0
+      showCheck: 0,
+      pageNo:1,
     })
-    this.getStation();
+    _this.getStation();
   },
   switchModel(){ //切换模式
-    this.setData({
+    const _this = this;
+    _this.setData({
       isMapmodel: !this.data.isMapmodel
     })
   },
   getStation() {
     const _this = this;
-    wx.request({
-      url: baseUrl+'/v1/oil/getStationList', //仅为示例，并非真实的接口地址
-      data: {
-        "latitude": _this.data.latitude,
-        "longitude": _this.data.longitude,
-        "oil_no": _this.data.selectOilData[_this.data.index_oil],
-        "type": _this.data.index_type+1
-      },
-      method:'POST',
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success (res) {
-        console.log(res.data)
-        if(res.data.resultCode == 0){
-            let markerList = [];
-            res.data.data.forEach(function(item,index){ 
-              
-              let obj = {
-                "id": index, //item.id
-                "longitude":item.longitude,
-                "latitude": item.latitude,
-                "iconPath":'../images/maptips.png',
-                "width":116,
-                "height":62,
-                "label":{
-                 "content":'￥'+item.sale_price,
-                 "color":'#333',
-                 "fontSize":'30rpx',
-                 "bgColor":'red',
-                 "display":'ALWAYS',
-                 'anchorX':'15rpx',
-                 "anchorY":'-95rpx',
-                 'textAlign':'center'
-                }
-              }
-              if(index == 0){//默认第一个选中
-                obj.iconPath = '../images/maptips_checked.png';
-                obj.label.color = "#FFF";
-              }
-              markerList.push(obj);
-            })
-            _this.setData({
-              stationData:res.data.data,
-              markers:markerList
-            })
-            console.log(_this.data.stationData)
-            // console.log(_this.data.markers)
-        }else{
-          util.showMsg(res.data.resultMsg,'none',2000)
-        }
-        _this.setData({
-          ishidden:false,
-        });
-      },
-      fail (res) {
-        console.log(res);
-      }
+    wx.showLoading({
+      title: '加载中',
     })
+      wx.request({
+        url: baseUrl+'/v1/oil/getStationList', //仅为示例，并非真实的接口地址
+        data: {
+          "latitude": _this.data.latitude,
+          "longitude": _this.data.longitude,
+          "oil_no": _this.data.selectOilData[_this.data.index_oil],
+          "type": _this.data.index_type+1,
+          "pageNo":_this.data.pageNo,
+          "allType":2
+        },
+        method:'POST',
+        header: {
+          'content-type': 'application/json' // 默认值
+        },
+        success (res) {
+          // console.log(res.data)
+          if(res.data.resultCode == 0){
+              let markerList = [];
+              let newObj = [];
+              if(res.data.data){
+                res.data.data.forEach(function(item,index){ 
+                  let obj = {
+                    "id": index, //item.id
+                    "longitude":item.longitude,
+                    "latitude": item.latitude,
+                    "iconPath":'../images/maptips.png',
+                    "width":116,
+                    "height":62,
+                    "label":{
+                    "content":'￥'+item.sale_price,
+                    "color":'#333',
+                    "fontSize":'30rpx',
+                    "bgColor":'red',
+                    "display":'ALWAYS',
+                    'anchorX':'-15',
+                    "anchorY":'-46',
+                    'textAlign':'right'
+                    }
+                  }
+                  if(index == 0){//默认第一个选中
+                    obj.iconPath = '../images/maptips_checked.png';
+                    obj.label.color = "#FFF";
+                    
+                    _this.setData({
+                      c_lat:item.latitude,
+                      c_lng:item.longitude,
+                    })
+                  }
+                  markerList.push(obj);
+
+                  const sale_price = item.sale_price;
+                  const discount_price = item.discount_price;
+                  let discount_total = 0;
+                  if(sale_price != 0 &&discount_price != 0){
+                    discount_total = 200/sale_price*discount_price
+                  }
+                  discount_total = util.reservedDecimal(discount_total,2)
+                  item.dis_price = discount_total;
+                  newObj.push(item);
+                })
+              }
+              _this.setData({
+                stationData:newObj,
+                markers:markerList,
+                selectMarketId:0,
+                pageNo:_this.data.pageNo+1
+              })
+          }else{
+            util.showMsg(res.data.resultMsg,'none',2000)
+          }
+          _this.setData({
+            ishidden:false,
+          });
+          wx.hideLoading();
+        },
+        fail (res) {
+          console.log(res);
+        }
+      })
+      _this.selectMarket(_this.data.selectMarketId); //地图模式 默认选中第一个
   },
+  moveTolocation:function(e){
+    var mapCtx = wx.createMapContext("map");
+    mapCtx.moveToLocation();
+},
 })

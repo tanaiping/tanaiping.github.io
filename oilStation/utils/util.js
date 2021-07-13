@@ -17,13 +17,13 @@ const getDistance = (la1, lo1, la2, lo2) => { //计算两点距离 （经 纬 �
 const computedDistance = distance => {
   // console.log(distance +"====")
   let dis = '';
-  if(distance<1000){
-    dis = distance.toFixed(1) + 'm';
-  }else{
+  // if(distance<1000){
+  //   dis = distance.toFixed(1) + 'm';
+  // }else{
     dis = distance/1000;
-    dis = dis.toFixed(1);
+    dis = dis.toFixed(2);
     dis = dis + 'km';
-  }
+  // }
   return dis
 }
 
@@ -32,7 +32,7 @@ const getLocation = new Promise(function(resolve,reject){ //获取你当前位�
   wx.getLocation({
     type: 'gcj02', //返回可以用于wx.openLocation的经纬度
     success (res) {
-      console.log(res)
+      // console.log(res)
       // const lat1 = res.latitude;
       // const lng1 = res.longitude;
       // return res;
@@ -43,7 +43,7 @@ const getLocation = new Promise(function(resolve,reject){ //获取你当前位�
 
 const login = (baseUrl) =>{
   return new Promise(function(resolve,reject){ //登录
-    console.log(baseUrl)
+    // console.log(baseUrl+"===================")
       wx.login({
         success (res) {
           if (res.code) {
@@ -98,7 +98,7 @@ const showMsg = (msg,icon,times) => {//公共的错误提示
 function reservedDecimal(val, digit) {
   return Number(val).toFixed(digit);
 }
-const comTackPhone = (phone) =>{ 拨打电话
+const comTackPhone = (phone) =>{ //拨打电话
   wx.makePhoneCall({
     phoneNumber: phone //仅为示例，并非真实的电话号码
   })

@@ -1,11 +1,13 @@
 <template>
   <div class="content">
     <div class="flex">
+      <el-form ref="form" label-width="80px" @keyup.enter.native="search">
         <el-input v-model="statioName" placeholder="请输入油站名称" class="filter-input mr10"></el-input>
         <el-input v-model="address" placeholder="请输入油站地址" class="filter-input mr10"></el-input>
         <el-input v-model="phone" placeholder="请输入油站电话" class="filter-input mr10"></el-input>
         <el-button  icon="el-icon-refresh" @click="resetForm">重置</el-button>
         <el-button type="primary"  icon="el-icon-search" @click="search">查询</el-button>
+      </el-form>
     </div>
     <!-- 标题  end-->
     <div class="mt20">
@@ -110,11 +112,11 @@ import Page from '@/components/page'
       changeCurPage(p){
          const _this = this;
         _this.curPage = p;
-        console.log(_this.curPage);
+        // console.log(_this.curPage);
         _this.getListData(_this.curPage);
       },
       handleDetail(index, row) {
-        console.log(index, row);
+        // console.log(index, row);
         const _this = this;
         _this.$router.push({name:'stationDetail',"params":{'stationId':row.stationId}})
       },
@@ -129,9 +131,14 @@ import Page from '@/components/page'
         }
         _this.$axios.post(Station.stationList, JSON.stringify(formData),{headers: {'Content-Type': 'application/json','token':token}})
           .then((res) => {
-            console.log(res)
+            // console.log(res)
             if (res.data.resultCode == 0) {
-              _this.contentData = res.data.data.data;
+              if(res.data.data.data){
+                _this.contentData = res.data.data.data;
+              }else{
+                _this.contentData = [];
+              }
+
               _this.total = res.data.data.total
               _this.pageSize = res.data.data.limit
               _this.curPage = res.data.data.pageNo

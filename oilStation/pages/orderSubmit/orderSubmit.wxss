@@ -9,6 +9,7 @@
 .station-img{
   width: 60rpx;
   height: 60rpx;
+  border-radius: 10rpx;
 }
 .station-info{
   display: flex;
@@ -126,6 +127,7 @@
 .discount-header{
   display: flex;
   justify-content: space-between;
+  position: relative;
 }
 .discount-header .title{
   line-height: 40rpx;
@@ -136,6 +138,12 @@
   font-size: 24rpx;
   color: #136FD1;
   line-height: 40rpx;
+  background: transparent;
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  font-weight: normal;
 }
 .border-box{
   border:2rpx solid #136FD1;
@@ -159,18 +167,21 @@
   justify-content: space-between;
 }
 .input-box{
-  line-height: 200px;
   box-sizing: border-box;
   border-right:2rpx solid rgba(19, 111, 209, 0.1);
-   width: 498rpx;
+  width: 498rpx;
+  padding: 50rpx 52rpx;
 }
 .input-box input{
   width: 100%;
-  height: 100%;
-  line-height: 200rpx;
-  text-align: center;
-  color: rgba(19, 111, 209, 1);
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: left;
+  color: #000;
+  font-size: 60rpx;
+  text-indent: 52rpx;
 }
+
 .price-con{
   display: flex;
   flex-direction: column;
@@ -199,33 +210,36 @@
   width: 100%;
 }
 .pay-fixed-bottom .pad-box{
-  padding:40rpx 26rpx;
+  padding:30rpx 26rpx;
   display: flex;
   justify-content: space-between;
 }
 .pay-fixed-bottom .pad-box .t1{
   font-size: 28rpx;
   color: #136FD1;
-  line-height: 80rpx;
+  line-height: 100rpx;
   max-width: 36%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.pay-fixed-bottom .pad-box .t1 text{
+.pay-fixed-bottom .pad-box .t1 text.m{
   font-size: 30rpx;
 }
 .pay-fixed-bottom .pad-box .t2{
   font-size: 28rpx;
   color: #000;
-  line-height: 80rpx;
+  line-height: 100rpx;
   max-width: 36%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.pay-fixed-bottom .pad-box .t2 text{
-  font-size: 44rpx;
+.pay-fixed-bottom .pad-box .t1 text,.pay-fixed-bottom .pad-box .t2 text{
+vertical-align: middle;
+}
+.pay-fixed-bottom .pad-box .t2 text.m{
+  font-size:44rpx;
 }
 .pay-btn{
   width: 200rpx;
@@ -236,6 +250,7 @@
   color: #FFF;
   text-align: center;
   border-radius: 56rpx;
+  margin: 10rpx 0;
 }
 .pay-btn.disabled{
   background: #A3A3A3;
