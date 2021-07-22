@@ -54,6 +54,7 @@
          </div>
          <el-table
              :data="contentData"
+             :height="300"
              stripe
              type="selection"
              @selection-change="selectionLineChangeHandle"
@@ -277,7 +278,13 @@ import Page from '@/components/page'
                 localStorage.removeItem("pwd1");
                 _this.$router.push('/login');
               }else{
-                _this.$message(res.data.resultMsg);
+                // _this.$message(res.data.resultMsg);
+                _this.$alert(res.data.resultMsg, '温馨提示', {
+                  confirmButtonText: '确定',
+                   type: 'error',
+                  callback: action => {
+                  }
+                });
               }
             })
             .catch((error) => {
@@ -297,7 +304,13 @@ import Page from '@/components/page'
                 });
                 stationIds  = stationIds.join(",")
               }else{
-                _this.$message('请选择油站')
+                // _this.$message('请选择油站')
+                _this.$alert('请选择油站', '温馨提示', {
+                  confirmButtonText: '确定',
+                   type: 'error',
+                  callback: action => {
+                  }
+                });
                 return false;
               }
 
@@ -310,15 +323,29 @@ import Page from '@/components/page'
                 .then((res) => {
                   // console.log(res)
                   if (res.data.resultCode == 0) {
-                    _this.$message('改价成功');
-                    setTimeout(function(){_this.$router.go(-1);},1000)
+                    // _this.$message('改价成功');
+                    // setTimeout(function(){_this.$router.go(-1);},1000)
+                    _this.$alert('改价成功', '温馨提示', {
+                      confirmButtonText: '确定',
+                       type: 'success',
+                      callback: action => {
+                        _this.$router.go(-1);
+                      }
+                    });
+
                   }else if(res.data.resultCode == 3){
                     localStorage.removeItem("token");
                     localStorage.removeItem("userName");
                     localStorage.removeItem("pwd1");
                     _this.$router.push('/login');
                   }else{
-                    _this.$message(res.data.resultMsg);
+                    // _this.$message(res.data.resultMsg);
+                    _this.$alert(res.data.resultMsg, '温馨提示', {
+                      confirmButtonText: '确定',
+                       type: 'error',
+                      callback: action => {
+                      }
+                    });
                   }
                 })
                 .catch((error) => {

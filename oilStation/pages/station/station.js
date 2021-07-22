@@ -78,7 +78,9 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    // wx.reLaunch({
+    //   url: '../index/index'
+    // })
   },
 
   /**
@@ -178,6 +180,8 @@ Page({
     const longitude = _this.data.longitude
     const id =  obj.id;
     const oil_no = _this.data.selectOilData[_this.data.index_oil];
+
+   
     wx.navigateTo({
       url: '../orderSubmit/orderSubmit?id='+id+"&oil_no="+oil_no+"&latitude="+latitude+"&longitude="+longitude
     })
@@ -252,7 +256,6 @@ Page({
                     "content":'￥'+item.sale_price,
                     "color":'#333',
                     "fontSize":'30rpx',
-                    "bgColor":'red',
                     "display":'ALWAYS',
                     'anchorX':'-15',
                     "anchorY":'-46',
@@ -270,14 +273,19 @@ Page({
                   }
                   markerList.push(obj);
 
+                  const list_price = item.list_price;
                   const sale_price = item.sale_price;
-                  const discount_price = item.discount_price;
+                  let discount_price = list_price - sale_price;
+                  discount_price = discount_price.toFixed(2);
                   let discount_total = 0;
-                  if(sale_price != 0 &&discount_price != 0){
-                    discount_total = 200/sale_price*discount_price
+                  if(list_price != 0 &&discount_price != 0){
+                    discount_total = util.reservedDecimal((200/list_price),4)*discount_price
                   }
                   discount_total = util.reservedDecimal(discount_total,2)
+
                   item.dis_price = discount_total;
+                  let dis = item.official_price - item.sale_price
+                  item.dis = dis.toFixed(2)
                   newObj.push(item);
                 })
               }

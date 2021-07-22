@@ -1,12 +1,15 @@
 {
   "pages": [
+   
     "pages/index/index",
-    "pages/order/order",
     "pages/orderDetail/orderDetail",
     "pages/orderSubmit/orderSubmit",
+    "pages/order/order",
+    "pages/orderLose/orderLose",
+    
     "pages/station/station",
     "pages/search/search",
-    "pages/map/map"
+    "pages/components/nav/nav"
   ],
   "permission": {
     "scope.userLocation": {

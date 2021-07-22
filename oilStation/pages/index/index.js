@@ -15,6 +15,7 @@ Page({
     ],
     ishidden:true,
     isLogin:false,
+    isload:false
   },
   // 事件处理函数
   toOrderList() {
@@ -29,58 +30,77 @@ Page({
     })
   },
   getPhoneNumber (e) {
-    const _this =this;
-    // console.log(e.detail.errMsg)
-    // console.log(e.detail.iv)
-    // console.log(e.detail.encryptedData)
-    // console.log(baseUrl);
-    util.login(baseUrl).then(function(res){
-      const uid = wx.getStorageSync('uid');
-      const session_key = wx.getStorageSync('session_key');
-      _this.setData({
-        uid:uid
-      })
-      if(e.detail.encryptedData){
-        wx.request({
-          url: baseUrl+'/v1/user/getUserMobile', //仅为示例，并非真实的接口地址
-          data: {
-              "encrypted": e.detail.encryptedData,
-              "iv": e.detail.iv,
-              "session_key": session_key,
-              "uid":uid
-          },
-          method:'POST',
-          header: {
-            'content-type': 'application/json' // 默认值
-          },
-          success (res) {
-            // console.log(res.data)
-            if(res.data.resultCode == 0){
-              wx.setStorageSync('phone', res.data.data)
-              _this.setData({
-                isLogin:true
-              })
-            }else{
-              util.showMsg(res.data.resultMsg,'none',2000)
-            }
-          },
-          fail (res) {
-            console.log(res);
-          }
+    if (e.detail.errMsg == "getPhoneNumber:ok") {
+      const _this =this;
+      // console.log(e.detail.errMsg)
+      // console.log(e.detail.iv)
+      // console.log(e.detail.encryptedData)
+      // console.log(baseUrl);
+      wx.removeStorageSync('openId')
+      wx.removeStorageSync('uid')
+      wx.removeStorageSync('phone')
+      wx.removeStorageSync('session_key')
+
+      util.login(baseUrl).then(function(res){
+        const uid = wx.getStorageSync('uid');
+        const session_key = wx.getStorageSync('session_key');
+        _this.setData({
+          uid:uid
         })
-        
-      }
-    })
-    
-   
+        if(e.detail.encryptedData){
+          wx.request({
+            url: baseUrl+'/v1/user/getUserMobile', //仅为示例，并非真实的接口地址
+            data: {
+                "encrypted": e.detail.encryptedData,
+                "iv": e.detail.iv,
+                "session_key": session_key,
+                "uid":uid
+            },
+            method:'POST',
+            header: {
+              'content-type': 'application/json' // 默认值
+            },
+            success (res) {
+              // console.log(res.data)
+              if(res.data.resultCode == 0){
+                wx.setStorageSync('phone', res.data.data)
+                _this.setData({
+                  isLogin:true
+                })
+              }else{
+                util.showMsg(res.data.resultMsg,'none',2000)
+              }
+            },
+            fail (res) {
+              console.log(res);
+            }
+          })
+          
+        }
+      })
+    }
   },
   onLoad() {
     const _this = this;
+    console.log("load")
     util.login(baseUrl).then(function(res){
       let uid = wx.getStorageSync('uid');
       _this.setData({
         uid:uid
       })
+      let phone = wx.getStorageSync('phone');
+      // console.log(phone)
+      if(phone){
+        _this.setData({
+          phone:phone,
+          isLogin:true
+        });
+      }else{
+        _this.setData({
+          phone:'',
+          isLogin:false
+        });
+      }
       _this.rechargeInfo();
     })
     util.getLocation.then(function(res){
@@ -91,24 +111,25 @@ Page({
       _this.getStation();
     });
     
-    let phone = wx.getStorageSync('phone');
-    // console.log(phone)
-    if(phone){
-      _this.setData({
-        phone:phone,
-        isLogin:true
-      });
-    }else{
-      _this.setData({
-        phone:'',
-        isLogin:false
-      });
-    }
+    _this.setData({
+      isload:true
+    });
+
+
+    
     // console.log(_this.data.isLogin)
     
   },
   onShow(){
-    this.onLoad();
+    if(!this.data.isload){
+      this.onLoad();
+    }
+   
+  },
+  onHide(){
+    this.setData({
+      isload:false
+    });
   },
   getStation() {
     const _this = this;
@@ -130,9 +151,16 @@ Page({
       success (res) {
         // console.log(res.data)
         if(res.data.resultCode == 0){
-            _this.setData({
-              stationData:res.data.data
-            })
+            if(res.data.data){
+              res.data.data.forEach(function(item,i){
+                let dis = item.official_price - item.sale_price
+                  item.dis = dis.toFixed(2)
+              })
+              _this.setData({
+                stationData:res.data.data
+              })
+            }
+            
         }else{
           util.showMsg(res.data.resultMsg,'none',2000)
         }
@@ -160,10 +188,15 @@ Page({
       success (res) {
         // console.log(res.data)
         if(res.data.resultCode == 0){
+          let amount_price = 0;
+          res.data.data.amount_price==null?(amount_price = 0):(amount_price = res.data.data.amount_price);
+          if(amount_price != 0){
+            amount_price = util.reservedDecimal(amount_price,2);
+          }
             _this.setData({
               rechargeCnt:res.data.data.rechargeCnt,
-              amount_price:res.data.data.amount_price,
-              discount_price:res.data.data.discount_price
+              amount_price: amount_price,
+              discount_price:res.data.data.discount_price,
             })
         }else{
           util.showMsg(res.data.resultMsg,'none',2000)

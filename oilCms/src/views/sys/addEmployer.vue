@@ -8,14 +8,14 @@
         <el-input v-model="employee.position"></el-input>
         </el-form-item>
        <el-form-item label="员工账号" prop="userName" >
-         <el-input v-model="employee.userName"></el-input>
+         <el-input v-model="employee.userName" autocomplete="off"></el-input>
         </el-form-item>
        <el-form-item label="账号密码" prop="password" >
-        <el-input type="password" v-model="employee.password"></el-input>
+        <el-input type="password" v-model="employee.password" autocomplete="new-password"></el-input>
         </el-form-item>
         <el-form-item label="">
          <el-button type="primary" @click="addEmployee('ruleForm')">保存</el-button>
-         <el-button @click="resetForm('ruleForm')">重置</el-button>
+         <el-button @click="back">取消</el-button>
          </el-form-item>
     </el-form>
 
@@ -56,18 +56,31 @@ import {Login} from '@/config/url'
                   .then((res) => {
                     // console.log(res)
                     if (res.data.resultCode == 0) {
-                       _this.$message('新增账户成功~');
-                       // _this.employee = {};
-                       setTimeout(function(){
-                         _this.$router.push({name:'employerList'})
-                       },1000)
+                       // _this.$message('新增账户成功~');
+                       // // _this.employee = {};
+                       // setTimeout(function(){
+                       //   _this.$router.push({name:'employerList'})
+                       // },1000)
+                       _this.$alert('新增账户成功~', '温馨提示', {
+                         confirmButtonText: '确定',
+                          type: 'success',
+                         callback: action => {
+                           _this.$router.push({name:'employerList'})
+                         }
+                       });
                     }else if(res.data.resultCode == 3){
                       localStorage.removeItem("token");
                       localStorage.removeItem("userName");
                       localStorage.removeItem("pwd1");
                       _this.$router.push('/login');
                     }else{
-                      _this.$message(res.data.resultMsg);
+                      // _this.$message(res.data.resultMsg);
+                      _this.$alert(res.data.resultMsg, '温馨提示', {
+                        confirmButtonText: '确定',
+                         type: 'error',
+                        callback: action => {
+                        }
+                      });
                     }
                   })
                   .catch((error) => {
@@ -80,10 +93,8 @@ import {Login} from '@/config/url'
           });
 
         },
-        resetForm(formName) {
-          this.$nextTick(function() {
-            this.$refs[formName].resetFields();
-           })
+        back() {
+          this.$router.go(-1);
         }
 
     }

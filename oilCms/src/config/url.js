@@ -3,8 +3,8 @@
 // const baseUrl = "http://192.168.201.153:7788"  // ceshi
 // const baseUrl = "http://192.168.1.147:7788" //liming
 // const baseUrl = 'http://192.168.3.70:7788' //内网
-const baseUrl = 'https://platform.wextone.com' //外网
-// const baseUrl = '/apis' //本地代理线上
+// const baseUrl = 'https://platform.wextone.com' //外网
+const baseUrl = '/apis' //本地代理线上
 
 
 

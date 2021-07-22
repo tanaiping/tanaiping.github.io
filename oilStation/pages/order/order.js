@@ -13,10 +13,10 @@ Page({
     uid:1,
     type:-1,
     lastOrderId:'',
-    menuList:['全部','已付款','已退款'],
-    status:['支付成功','支付中','支付失败','退款成功','退款中','退款失败'],
-    orderList:[
-    ]
+    menuList:['全部','已下单','已退款'],
+    status:['支付成功','支付中','支付失败','退款成功','退款中','退款失败','支付超时','下单成功','下单失败','申请退款'],
+    orderList:[],
+    isNull:false
   },
 
   /**
@@ -88,14 +88,15 @@ Page({
     if(e.currentTarget.dataset.index == 0){
       type = -1
     }else if(e.currentTarget.dataset.index == 1){
-      type = 1
+      type = 8
     }else if(e.currentTarget.dataset.index == 2){
       type = 4
     }
     if(_this.data.selectIndex == e.currentTarget.dataset.index) return;
     this.setData({
       selectIndex:e.currentTarget.dataset.index,
-      type:type
+      type:type,
+      isNull:false,
     })
     _this.orderList(true);
 
@@ -106,10 +107,11 @@ Page({
     })
   },
   orderList(isFirst){
+    const _this = this;
+    if(_this.data.isNull) return;
     wx.showLoading({
       title: '加载中',
     })
-    const _this = this;
     if(isFirst){
       _this.setData({
         orderList:[], 
@@ -122,7 +124,7 @@ Page({
       data: {
         "lastOrderId": _this.data.lastOrderId,
         "type": _this.data.type,
-        "uid": _this.data.uid
+        "uid":_this.data.uid
       },
       method:'POST',
       header: {
@@ -135,16 +137,26 @@ Page({
           let obj = res.data.data;
           let lastOrderId = '';
           if(obj){
-            lastOrderId = obj[obj.length-1].orderNo
+            lastOrderId = obj[obj.length-1].orderId
+            if(obj.length<10){
+              _this.setData({
+                isNull:true, 
+              })
+            }
           }else{
             obj = [];
+            lastOrderId = _this.data.lastOrderId
+            _this.setData({
+              isNull:true, 
+            })
+            
           }
           let arr = [...oridata,...obj]
           _this.setData({
             orderList:arr, //res.data.data
             lastOrderId:lastOrderId
           })
-          
+          console.log(_this.data.orderList.length)
         }else{
           util.showMsg(res.data.resultMsg,'none',2000)
         }

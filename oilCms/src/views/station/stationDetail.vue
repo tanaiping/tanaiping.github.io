@@ -54,7 +54,7 @@
     },
     mounted(){
       const _this = this;
-      _this.stationId = _this.$route.params.stationId;
+      _this.stationId = _this.$route.query.stationId;
       _this.getDetailData();
     },
     methods:{
@@ -76,7 +76,13 @@
               localStorage.removeItem("pwd1");
               _this.$router.push('/login');
             }else{
-              _this.$message(res.data.resultMsg);
+              // _this.$message(res.data.resultMsg);
+              _this.$alert(res.data.resultMsg, '温馨提示', {
+                confirmButtonText: '确定',
+                 type: 'error',
+                callback: action => {
+                }
+              });
             }
           })
           .catch((error) => {

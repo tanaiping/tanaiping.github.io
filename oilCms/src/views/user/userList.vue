@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <div class="flex-search">
+    <div class="flex-search" id="searchBox">
       <el-form ref="form"  label-width="80px" @keyup.enter.native="search">
         <label class="mr10 lab-t">昨日新增({{yesAdd}})</label>
         <label class="mr10 lab-t">累计用户({{totalUser}})</label>
@@ -19,46 +19,61 @@
       </el-form>
     </div>
     <!-- 过虑条件  end-->
-    <div class="mt20">
+    <div class="mt20" :style="{'height':tabH+'px','overflow':'auto'}">
       <el-table
           :data="contentData"
+          :height="tabH"
           stripe
           style="width: 100%">
-          <el-table-column
+          <el-table-column align="center" width="50"
           label="编号">
           <template slot-scope="scope">
             {{ (scope.$index+1)+(curPage-1)*pageSize}}
           </template>
           </el-table-column>
-          <el-table-column
+          <el-table-column align="center"
             label="头像" width="100">
             <template slot-scope="scope">
-              <img :src="scope.row.headimgurl" alt="" class="tx">
+              <img :src="!scope.row.headimgurl?defaultTx:scope.row.headimgurl" alt="" class="tx">
             </template>
           </el-table-column>
-            <el-table-column
+            <el-table-column align="center"
             prop="nickName"
               label="昵称">
-            </el-table-column>
-            <el-table-column
-            prop="mobile"
-            label="绑定的手机号">
-            </el-table-column>
-            <el-table-column
-                  label="性别">
               <template slot-scope="scope">
-                {{scope.row.sex==1?'男':'女'}}
+                {{!scope.row.nickName?'-':scope.row.nickName}}
               </template>
             </el-table-column>
-            <el-table-column
+            <el-table-column align="center"
+            label="绑定的手机号">
+            <template slot-scope="scope">
+              {{!scope.row.mobile?'尚未绑定':scope.row.mobile}}
+            </template>
+            </el-table-column>
+            <el-table-column align="center"
+                  label="性别">
+              <template slot-scope="scope">
+                {{!scope.row.sex?'-':(scope.row.sex==1)?'男':'女'}}
+              </template>
+            </el-table-column>
+            <el-table-column align="center"
                 prop="province"
                   label="省市">
+                  <template slot-scope="scope">
+                    {{!scope.row.province?'-':scope.row.province}}
+                  </template>
             </el-table-column>
-            <el-table-column
-                prop="firstOrderTime"
+            <el-table-column align="center"
+                prop="channelName"
+                  label="渠道名称">
+            </el-table-column>
+            <el-table-column align="center"
                   label="首单时间">
+                  <template slot-scope="scope">
+                    {{!scope.row.firstOrderTime?'尚未下单':scope.row.firstOrderTime}}
+                  </template>
             </el-table-column>
-            <el-table-column
+            <el-table-column align="center"
                 prop="createTime"
                   label="注册时间">
             </el-table-column>
@@ -89,22 +104,39 @@ import Page from '@/components/page'
         mobile:'',
         nickName:'',
         dateRange:'',
-       contentData: [],
-       "pageSize":10,
-       curPage:1,
-       total:0,
-        txImg:require('@/assets/login-background.jpg')
+        contentData: [],
+        pageSize:10,
+        curPage:1,
+        total:0,
+        defaultTx:require('@/assets/default_tx.png'),
+        tabH:0
       }
 
     },
     mounted(){
       const _this = this;
+      _this.$nextTick(() => {
+          _this.getTabH();
+      });
+      window.onresize = () => {
+         return (() => {
+           _this.getTabH();
+         })()
+       }
       _this.getListData(_this.curPage);
       _this.getUserCount();
     },
     methods:{
+      getTabH(){
+        const _this = this;
+        let clientH = document.body.clientHeight || document.documentElement.clientHeight;
+        let searchH = document.getElementById("searchBox").offsetHeight;
+        let tabH = clientH - 60 - 20 - searchH - 20 - 52;
+        _this.tabH = tabH;
+      },
       search(){
         const _this = this;
+        _this.curPage = 1;
         _this.getListData(_this.curPage);
       },
       resetForm(){
@@ -113,8 +145,9 @@ import Page from '@/components/page'
         this.dateRange = ''
       },
       changeCurPage(p){
-        this.curPage = p;
-        console.log(this.curPage);
+        const _this = this;
+        _this.curPage = p;
+        _this.getListData(_this.curPage);
       },
       getUserCount(){
         const _this = this;
@@ -132,7 +165,13 @@ import Page from '@/components/page'
               localStorage.removeItem("pwd1");
               _this.$router.push('/login');
             }else{
-              _this.$message(res.data.resultMsg);
+              // _this.$message(res.data.resultMsg);
+              _this.$alert(res.data.resultMsg, '温馨提示', {
+                confirmButtonText: '确定',
+                 type: 'error',
+                callback: action => {
+                }
+              });
             }
           })
           .catch((error) => {
@@ -174,7 +213,13 @@ import Page from '@/components/page'
               localStorage.removeItem("pwd1");
               _this.$router.push('/login');
             }else{
-              _this.$message(res.data.resultMsg);
+              // _this.$message(res.data.resultMsg);
+              _this.$alert(res.data.resultMsg, '温馨提示', {
+                confirmButtonText: '确定',
+                 type: 'error',
+                callback: action => {
+                }
+              });
             }
           })
           .catch((error) => {

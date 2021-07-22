@@ -87,4 +87,13 @@ export default {
     color: #f56c6c;
     margin-left: 10px;
   }
+  .ellipsis{
+    text-overflow: -o-ellipsis-lastline;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
 </style>

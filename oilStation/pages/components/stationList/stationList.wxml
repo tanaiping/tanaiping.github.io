@@ -7,7 +7,7 @@
             <view class="price">
               <view class="t1"><text class="pri1">￥<text>{{item.sale_price}}</text></text>
               <block wx:if="{{item.sale_price != item.official_price}}">
-                <text class="pri2">￥{{item.official_price}}</text> 已降{{item.discount_price}}元
+                <text class="pri2">￥{{item.official_price}}</text> 已降{{item.dis}}元
               </block>
               
               </view>  

@@ -1,6 +1,6 @@
 <template>
   <div class="content" style="width: 500px">
-    <el-form :model="employee" ref="ruleForm" label-width="100px">
+    <el-form :model="employee"  ref="ruleForm" label-width="100px">
       <el-form-item label="员工姓名" >
        <el-input v-model="employee.nickName" autoComplete="off" autocomplete="new-password"></el-input>
        </el-form-item>
@@ -15,7 +15,7 @@
         </el-form-item>
         <el-form-item label="">
          <el-button type="primary" @click="editEmployee('ruleForm')">保存</el-button>
-         <el-button @click="resetForm('ruleForm')">重置</el-button>
+         <el-button @click="back">取消</el-button>
          </el-form-item>
     </el-form>
 
@@ -35,8 +35,8 @@ import {Login} from '@/config/url'
     },
     mounted(){
       const _this = this;
-      _this.pageNo = _this.$route.params.pageNo
-      _this.id = _this.$route.params.id
+      _this.pageNo = _this.$route.query.pageNo
+      _this.id = _this.$route.query.id
       _this.getListData(_this.pageNo);
     },
     methods:{
@@ -60,7 +60,13 @@ import {Login} from '@/config/url'
                 localStorage.removeItem("pwd1");
                 _this.$router.push('/login');
               }else{
-                _this.$message(res.data.resultMsg);
+                // _this.$message(res.data.resultMsg);
+                _this.$alert(res.data.resultMsg, '温馨提示', {
+                  confirmButtonText: '确定',
+                   type: 'error',
+                  callback: action => {
+                  }
+                });
               }
             })
             .catch((error) => {
@@ -78,10 +84,17 @@ import {Login} from '@/config/url'
                   .then((res) => {
                     // console.log(res)
                     if (res.data.resultCode == 0) {
-                       _this.$message('信息修改成功~');
-                       setTimeout(function(){
-                         _this.$router.push({name:'employerList'})//
-                       },1000)
+                       // _this.$message('信息修改成功~');
+                       // setTimeout(function(){
+                       //   _this.$router.push({name:'employerList'})//
+                       // },1000)
+                       _this.$alert('信息修改成功~', '温馨提示', {
+                           confirmButtonText: '确定',
+                            type: 'success',
+                           callback: action => {
+                             _this.$router.push({name:'employerList'})//
+                           }
+                         });
 
                     }else if(res.data.resultCode == 3){
                       localStorage.removeItem("token");
@@ -89,7 +102,13 @@ import {Login} from '@/config/url'
                       localStorage.removeItem("pwd1");
                       _this.$router.push('/login');
                     }else{
-                      _this.$message(res.data.resultMsg);
+                      // _this.$message(res.data.resultMsg);
+                      _this.$alert(res.data.resultMsg, '温馨提示', {
+                        confirmButtonText: '确定',
+                         type: 'error',
+                        callback: action => {
+                        }
+                      });
                     }
                   })
                   .catch((error) => {
@@ -102,10 +121,8 @@ import {Login} from '@/config/url'
           });
 
         },
-        resetForm(formName) {
-          this.$nextTick(function() {
-            this.$refs[formName].resetFields();
-           })
+        back() {
+          this.$router.go(-1);
         }
     }
   }

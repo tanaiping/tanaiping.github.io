@@ -4,6 +4,10 @@
       <el-form-item label="订单状态" prop="name">
         <label >{{status[detailData.status-1]}}</label>
       </el-form-item>
+      <el-form-item label="退款原因" prop="name">
+        <label style="width: 600px;display: block;">{{detailData.refuntMsg}}</label>
+      </el-form-item>
+
       <el-form-item label="渠道名称" prop="name" >
        <label >{{detailData.source}}</label>
       </el-form-item>
@@ -76,7 +80,7 @@
     name:'ordetail',
     data(){
         return {
-          status:['支付成功','支付中','支付失败','退款成功','退款中','退款失败'],
+          status:['支付成功','支付中','支付失败','退款成功','退款中','退款失败','支付超时','下单成功','下单失败','申请退款'],
         }
     },
     props:['detailData']

@@ -64,6 +64,7 @@ const login = (baseUrl) =>{
                   if(res.data.resultCode == 0){
                     wx.setStorageSync('openId', res.data.data.miniOpenid)
                     wx.setStorageSync('uid', res.data.data.uid)
+                    wx.setStorageSync('phone', res.data.data.mobile)
                     wx.setStorageSync('session_key', res.data.data.session_key)
                     resolve(res.data.data);//uid
                   }else{
@@ -103,6 +104,7 @@ const comTackPhone = (phone) =>{ //拨打电话
     phoneNumber: phone //仅为示例，并非真实的电话号码
   })
 }
+
 
 
 module.exports = {

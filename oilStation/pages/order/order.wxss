@@ -4,6 +4,10 @@
   justify-content: space-evenly;
   border-bottom: 12rpx solid #E9E9E9;
   background-color: #FFF;
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
 }
 .nav-menu view{
   width: 33.33%;
@@ -21,7 +25,7 @@
   display: inline-block;
 }
 .order-list{
-  padding: 0 26rpx 26rpx 26rpx;
+  padding: 112rpx 26rpx 26rpx 26rpx;
 }
 .order-elem{
   display: flex;
@@ -51,7 +55,10 @@
   color: #FF742C;
   line-height: 40rpx;
   padding-top: 16rpx;
-  
+  font-weight: bold;
+}
+.station-info .price text{
+  font-size: 22rpx;
 }
 .station-info .oil-no{
   font-size: 24rpx;

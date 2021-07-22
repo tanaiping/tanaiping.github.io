@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    interval:'',//定时的字段 用于刷新支付中 退款中的状态
     orderNo:'',
     uid:1,
     status:[
@@ -35,9 +36,25 @@ Page({
         typeIcon:'../images/icon_pop2.png',
         name:'退款失败'
       },
-
+      {
+        typeIcon:'../images/icon_pop2.png',
+        name:'支付超时'
+      },
+      {
+        typeIcon:'../images/icon_pop1.png',
+        name:'下单成功'
+      },
+      {
+        typeIcon:'../images/icon_pop2.png',
+        name:'下单失败'
+      },
+      {
+        typeIcon:'../images/icon_pop2.png',
+        name:'申请退款'
+      },
     ],
-    orderData:{}
+    orderData:{},
+    payTypeData:['微信','支付宝','微信小程序','支付宝小程序'],
   },
 
   /**
@@ -75,14 +92,17 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    clearInterval(this.data.interval);
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    clearInterval(this.data.interval);
+    // wx.reLaunch({
+    //   url: '../index/index'
+    // })
   },
 
   /**
@@ -107,11 +127,14 @@ Page({
   },
   getOrderDetail(){
     const _this = this;
+    let interval = '';
     wx.request({
       url: baseUrl+ '/v1/oil/order/detail', //仅为示例，并非真实的接口地址
       data: {
         "orderNo": _this.data.orderNo,
         "uid": _this.data.uid
+        // "orderNo": 'P2831840326010958857',//_this.data.orderNo,
+        // "uid": 40//_this.data.uid
       },
       method:'POST',
       header: {
@@ -119,10 +142,18 @@ Page({
       },
       success (res) {
         // console.log(res.data)
+        clearInterval(_this.data.interval);
         if(res.data.resultCode == 0){
           _this.setData({
             orderData:res.data.data
           })
+          if(res.data.data.status == 2 || res.data.data.status == 5){
+            let time = setInterval(_this.getOrderDetail,1000);
+            _this.setData({
+              interval:time
+            })
+          }
+
         }else{
           util.showMsg(res.data.resultMsg,'none',2000)
         }

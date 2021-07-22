@@ -23,7 +23,7 @@
       orderDetail
     },
     mounted(){
-      this.orderNo = this.$route.params.orderNo;
+      this.orderNo = this.$route.query.orderNo;
       this.getOrderDetail()
     },
     methods:{
@@ -44,7 +44,13 @@
               localStorage.removeItem("pwd1");
               _this.$router.push('/login');
             }else{
-              _this.$message(res.data.resultMsg);
+              // _this.$message(res.data.resultMsg);
+              _this.$alert(res.data.resultMsg, '温馨提示', {
+                confirmButtonText: '确定',
+                 type: 'error',
+                callback: action => {
+                }
+              });
             }
           })
           .catch((error) => {

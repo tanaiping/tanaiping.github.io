@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <div class="flex">
+    <div class="flex-search" id="searchBox">
       <el-form ref="form" label-width="80px" @keyup.enter.native="search">
         <el-input v-model="orderNo" placeholder="请输入订单号" class="filter-input mr10"></el-input>
         <el-input v-model="stationName" placeholder="请输入油站名称" class="filter-input mr10"></el-input>
@@ -11,9 +11,17 @@
               type="datetime"
               placeholder="付款时间" class="mr10">
             </el-date-picker>
+        <el-select v-model="status_v" placeholder="请选择订单状态" class="mr10">
+          <el-option label="全部" value='-1'></el-option>
+          <el-option label="支付成功" value='1'></el-option>
+          <el-option label="下单成功" value='8'></el-option>
+          <el-option label="下单失败" value='9'></el-option>
+          <el-option label="已退款" value='4'></el-option>
+          <el-option label="申请退款" value='10'></el-option>
+        </el-select>
         <el-button  icon="el-icon-refresh" @click="resetForm">重置</el-button>
         <el-button type="primary"  icon="el-icon-search" @click="search">查询</el-button>
-        <el-button type="warning" icon="el-icon-download" @click="exportTable">导出表格</el-button>
+        <el-button type="error" icon="el-icon-download" @click="exportTable">导出表格</el-button>
       </el-form>
     </div>
     <!-- <div class="flex" style="padding: 20px 0;">
@@ -21,111 +29,137 @@
       <el-button type="success" icon="el-icon-edit" disabled>修改</el-button>
       <el-button   icon="el-icon-delete" disabled>删除</el-button>
       <el-button type="info" icon="el-icon-upload2" disabled>导入</el-button>
-      <el-button type="warning" icon="el-icon-download" disabled>导出</el-button>
+      <el-button type="error" icon="el-icon-download" disabled>导出</el-button>
     </div> -->
     <!-- 过虑条件  end-->
     <!-- 标题  end-->
-    <div class="mt20">
+    <div class="mt20" :style="{'height':tabH+'px','overflow':'auto'}">
       <el-table
           :data="contentData"
           stripe
+          :height="tabH"
           style="width: 100%">
-          <el-table-column
+          <el-table-column align="center"
+          width="50px"
           label="编号">
           <template slot-scope="scope">
             {{ (scope.$index+1)+(curPage-1)*pageSize}}
           </template>
           </el-table-column>
-          <el-table-column
+          <el-table-column align="center"
           prop="source"
             label="渠道名称">
           </el-table-column>
-          <el-table-column
+          <el-table-column align="center"
           prop="order_code"
-          width="100px"
+          width="110px"
           label="渠道订单号">
           </el-table-column>
-          <el-table-column
+          <el-table-column  width="110px" align="center"
           prop="orderNo"
             label="订单号">
             </el-table-column>
-            <el-table-column
-            prop="station_name"
+            <el-table-column  width="100px" align="center"
             label="油站名称">
+            <template slot-scope="scope">
+              <div class="ellipsis">{{scope.row.station_name}}</div>
+            </template>
             </el-table-column>
-            <el-table-column
+            <el-table-column width="110px" align="center"
             prop="phone"
               label="手机号">
             </el-table-column>
-            <el-table-column
-            prop="oil_no"
+            <el-table-column width="50px" align="center"
               label="油号">
+              <template slot-scope="scope">
+                {{scope.row.oil_no}}#
+              </template>
             </el-table-column>
-            <el-table-column
+            <el-table-column width="50px" align="center"
             prop="gun_no"
               label="油枪">
             </el-table-column>
-            <el-table-column
-            prop="official_price"
+            <el-table-column align="center"
               label="发改委价">
+              <template slot-scope="scope">
+                ￥{{scope.row.official_price==''?'--':scope.row.official_price}}
+              </template>
             </el-table-column>
-            <el-table-column
-            prop="list_price"
+            <el-table-column align="center" width="70px"
               label="挂牌价">
+              <template slot-scope="scope">
+                ￥{{scope.row.list_price==''?'--':scope.row.list_price}}
+              </template>
             </el-table-column>
-            <el-table-column
-            prop="contract_price"
+            <el-table-column align="center" width="70px"
               label="协议价">
+              <template slot-scope="scope">
+                ￥{{scope.row.contract_price==''?'--':scope.row.contract_price}}
+              </template>
             </el-table-column>
-            <el-table-column
-            prop="sale_price"
+            <el-table-column align="center" width="65px"
               label="售价">
+              <template slot-scope="scope">
+                ￥{{scope.row.sale_price==''?'--':scope.row.sale_price}}
+              </template>
             </el-table-column>
-            <el-table-column
-            prop="total_amount"
+            <el-table-column align="center"
               label="加油金额">
+              <template slot-scope="scope">
+                ￥{{scope.row.total_amount==''?'--':scope.row.total_amount}}
+              </template>
             </el-table-column>
             <el-table-column
-            prop="liters"
+            prop="liters" align="center" width="70px"
               label="加油量">
             </el-table-column>
-            <el-table-column
-            prop="service_fee_amount"
+            <el-table-column  align="center" width="70px"
               label="服务费">
+              <template slot-scope="scope">
+                ￥{{scope.row.service_fee_amount==''?'--':scope.row.service_fee_amount}}
+              </template>
             </el-table-column>
-            <el-table-column
-            prop="discount_amount"
+            <el-table-column  align="center"
               label="优惠金额">
+              <template slot-scope="scope">
+                ￥{{scope.row.discount_amount==''?'--':scope.row.discount_amount}}
+              </template>
             </el-table-column>
-            <el-table-column
-            prop="pay_amount"
+            <el-table-column  align="center" width="70px"
               label="实付款">
+              <template slot-scope="scope">
+                ￥{{scope.row.pay_amount==''?'--':scope.row.pay_amount}}
+              </template>
             </el-table-column>
-            <el-table-column
-            prop="contract_amount"
+            <el-table-column align="center"
               label="协议金额">
+              <template slot-scope="scope">
+                ￥{{scope.row.contract_amount==''?'--':scope.row.contract_amount}}
+              </template>
             </el-table-column>
-            <el-table-column
+            <el-table-column align="center"
               label="状态">
               <template slot-scope="scope">
                 {{ status[scope.row.status-1]}}
               </template>
             </el-table-column>
-            <el-table-column
+            <el-table-column align="center" width="95px"
             prop="payTime"
               label="付款时间">
             </el-table-column>
-            <el-table-column
-            prop="refuntMsg"
+            <el-table-column align="center" width="110px"
               label="退款原因">
+              <template slot-scope="scope">
+                <div class="ellipsis">{{scope.row.refuntMsg}}</div>
+              </template>
             </el-table-column>
 
-          <el-table-column label="操作" width="200px">
+          <el-table-column label="操作" width="200px" align="center">
             <template slot-scope="scope">
               <el-button
                 size="mini"
                 @click="handleDetail(scope.$index, scope.row)">查看详情</el-button>
-                <el-button v-if="scope.row.status == 1"
+                <el-button v-if="scope.row.status == 10"
                   size="mini"
                   type="primary"
                   @click="handleRefund(scope.$index, scope.row)">标记退款</el-button>
@@ -151,12 +185,12 @@
         <orderDetail :detailData = "contentData2"></orderDetail>
         <el-form :model="refund" label-width="100px" class="demo-ruleForm">
           <el-form-item label="退款原因" prop="reson">
-            <el-input type="textarea" v-model="refund.reson"></el-input>
+            <el-input type="textarea" v-model="refund.reason"></el-input>
           </el-form-item>
         </el-form>
         <span slot="footer" class="dialog-footer">
           <el-button @click="dialogVisible1 = false">取 消</el-button>
-          <el-button type="primary" @click="cancelRefund(1)">确 定</el-button>
+          <el-button type="primary" @click="cancelRefund(4)">确 定</el-button>
         </span>
       </el-dialog>
 
@@ -168,7 +202,7 @@
         取消标记退款，订单状态还是已付款
         <span slot="footer" class="dialog-footer">
           <el-button @click="dialogVisible2 = false">取 消</el-button>
-          <el-button type="primary" @click="cancelRefund(4)">确 定</el-button>
+          <el-button type="primary" @click="cancelRefund(10)">确 定</el-button>
         </span>
       </el-dialog>
 
@@ -178,6 +212,7 @@
 
 <script>
  import {Order} from '@/config/url'
+ import {reservedDecimal} from '@/config/public'
 import Page from '@/components/page'
 import orderDetail from '@/components/orderDetail'
   export default{
@@ -187,7 +222,8 @@ import orderDetail from '@/components/orderDetail'
     },
     data(){
       return{
-        status:['支付成功','支付中','支付失败','退款成功','退款中','退款失败'],
+        status:['支付成功','支付中','支付失败','退款成功','退款中','退款失败','支付超时','下单成功','下单失败','申请退款'],
+        status_v:'',
         orderNo:'',
         title:'标记退款',
         phone:'',
@@ -198,22 +234,40 @@ import orderDetail from '@/components/orderDetail'
         dialogVisible2: false,
         contentData: [],
         contentData2: {},
+        curOrderNo:'',
         "pageSize":10,
         curPage:1,
         total:0,
         refund:{
           reason:''
         },
+        tabH:0
       }
 
     },
     mounted(){
       const _this = this;
+      _this.$nextTick(() => {
+          _this.getTabH();
+      });
+      window.onresize = () => {
+         return (() => {
+           _this.getTabH();
+         })()
+       }
       this.getListData(_this.curPage);
     },
     methods:{
+      getTabH(){
+        const _this = this;
+        let clientH = document.body.clientHeight || document.documentElement.clientHeight;
+        let searchH = document.getElementById("searchBox").offsetHeight;
+        let tabH = clientH - 60 - 20 - searchH -20 - 52;
+        _this.tabH = tabH;
+      },
       search(){
         const _this = this;
+        _this.curPage = 1;
         _this.getListData(_this.curPage);
       },
       resetForm(){
@@ -222,6 +276,7 @@ import orderDetail from '@/components/orderDetail'
         this.createTime = '';
         this.orderNo = '';
         this.statioName = '';
+        this.status_v = '';
       },
       changeCurPage(p){
         const _this = this;
@@ -232,32 +287,38 @@ import orderDetail from '@/components/orderDetail'
       handleDetail(index, row) {
         // console.log(index, row);
         const _this = this;
-         _this.$router.push({name:'orderDetail',"params":{'orderNo':row.orderNo}})
+         _this.$router.push({name:'orderDetail',"query":{'orderNo':row.orderNo}})
 
       },
       handleRefund(index, row) {
         // console.log(index, row);
         const _this = this;
-        if(row.status == 1){ //退款
+        if(row.status == 10){ //退款
           _this.contentData.forEach(function(item,index){
-            if(item.orderId == row.orderId){
+            if(item.orderNo == row.orderNo){
               _this.contentData2 = item;
+               _this.curOrderNo = row.orderNo
             }
           })
           this.title="标记退款"
           this.dialogVisible1 = true
         }else{
-
+          _this.contentData.forEach(function(item,index){
+            if(item.orderNo == row.orderNo){
+               _this.curOrderNo = row.orderNo
+            }
+          })
           this.title="取消退款"
           this.dialogVisible2 = true
         }
+
 
       },
       cancelRefund(status){
         const _this = this;
         const token = localStorage.getItem('token');
         const formData = {
-          orderNo:_this.orderNo,
+          orderNo:_this.curOrderNo,
           reason:_this.refund.reason,
           status:status,
         }
@@ -265,19 +326,42 @@ import orderDetail from '@/components/orderDetail'
           .then((res) => {
             console.log(res)
             if (res.data.resultCode == 0) {
-              if(status == 1){
-                _this.dialogVisible1 = false
+              console.log(status)
+              if(status == 4){
+                 // _this.$message('标记退款成功');
+                _this.dialogVisible1 = false;
+                _this.refund.reason = '';
+                _this.$alert('标记退款成功', '温馨温馨提示', {
+                    confirmButtonText: '确定',
+                     type: 'success',
+                    callback: action => {
+                    }
+                  });
               }else{
+                 // _this.$message('取消退款成功');
                 _this.dialogVisible2 = false
+                _this.$alert('取消退款成功', '温馨温馨提示', {
+                    confirmButtonText: '确定',
+                     type: 'success',
+                    callback: action => {
+                    }
+                  });
               }
 
+              _this.getListData(_this.curPage);
             }else if(res.data.resultCode == 3){
               localStorage.removeItem("token");
               localStorage.removeItem("userName");
               localStorage.removeItem("pwd1");
               _this.$router.push('/login');
             }else{
-              _this.$message(res.data.resultMsg);
+              // _this.$message(res.data.resultMsg);
+              _this.$alert(res.data.resultMsg, '温馨温馨提示', {
+                  confirmButtonText: '确定',
+                   type: 'error',
+                  callback: action => {
+                  }
+                });
             }
           })
           .catch((error) => {
@@ -297,13 +381,22 @@ import orderDetail from '@/components/orderDetail'
           phone:_this.phone,
           statio_name:_this.stationName,
           createTime:_this.createTime,
+          status:_this.status_v
         }
         _this.$axios.post(Order.orderList, JSON.stringify(formData),{headers: {'Content-Type': 'application/json','token':token}})
           .then((res) => {
             // console.log(res)
             if (res.data.resultCode == 0) {
+
               if(res.data.data.data){
-                _this.contentData = res.data.data.data;
+                let obj = res.data.data.data;
+                // obj.forEach(function(item,i){
+                //   item.liters = reservedDecimal((item.total_amount/item.sale_price),4);//加油量
+                //   item.discount_amount = reservedDecimal(item.liters*(item.list_price-item.sale_price),2);//优惠金额
+                //   item.pay_amount = reservedDecimal((item.total_amount-item.discount_amount),2)//实付金额
+                //   item.contract_amount = reservedDecimal(item.liters*item.contract_price,2);//协议金额
+                // })
+                _this.contentData = obj;
               }else{
                 _this.contentData = [];
               }
@@ -316,7 +409,13 @@ import orderDetail from '@/components/orderDetail'
               localStorage.removeItem("pwd1");
               _this.$router.push('/login');
             }else{
-              _this.$message(res.data.resultMsg);
+              // _this.$message(res.data.resultMsg);
+              _this.$alert(res.data.resultMsg, '温馨温馨提示', {
+                confirmButtonText: '确定',
+                 type: 'error',
+                callback: action => {
+                }
+              });
             }
           })
           .catch((error) => {
@@ -336,16 +435,22 @@ import orderDetail from '@/components/orderDetail'
         }
         _this.$axios.post(Order.exportOrderList, JSON.stringify(formData),{headers: {'Content-Type': 'application/json','token':token}})
           .then((res) => {
-            // console.log(res)
+            console.log(res.data.data)
             if (res.data.resultCode == 0) {
-              window.open(res.data.data)
+              window.open(res.data.data,"_blank");
             }else if(res.data.resultCode == 3){
               localStorage.removeItem("token");
               localStorage.removeItem("userName");
               localStorage.removeItem("pwd1");
               _this.$router.push('/login');
             }else{
-              _this.$message(res.data.resultMsg);
+              // _this.$message(res.data.resultMsg);
+              _this.$alert(res.data.resultMsg, '温馨提示', {
+                confirmButtonText: '确定',
+                 type: 'error',
+                callback: action => {
+                }
+              });
             }
           })
           .catch((error) => {

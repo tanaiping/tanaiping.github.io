@@ -92,8 +92,8 @@
   border-radius: 10rpx;
 }
 .navigate-img{
-  width: 20rpx;
-  height: 20rpx;
+  width: 25rpx;
+  height: 25rpx;
   padding: 7.5rpx 4rpx;
 }
 .station-info{

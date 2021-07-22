@@ -57,7 +57,7 @@
   </view>
    <view class="map-box" wx:else >
       <map id="map" longitude="{{c_lng}}" latitude="{{c_lat}}" bindmarkertap="markertap" bindlabeltap = "markertap"   scale="12.3" markers="{{markers}}" style="width:100%;height:{{screenH}}px" show-location show-compass></map>
-      <view class="tips">共{{stationData.length}}家油站（50km内）</view>
+      <view class="tips">共{{stationData.length}}家油站（30km内）</view>
       <image src="../images/move.png" class="move-img"  mode="aspectFill" catchtap="moveTolocation"></image>
         <view class="cur-station" >
           <image src="../images/bgbox.png" class="cur-station-bg"></image>

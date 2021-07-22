@@ -123,7 +123,13 @@
               localStorage.removeItem("pwd1");
               _this.$router.push('/login');
             }else{
-              _this.$message(res.data.resultMsg);
+              // _this.$message(res.data.resultMsg);
+              _this.$alert(res.data.resultMsg, '温馨提示', {
+                confirmButtonText: '确定',
+                 type: 'error',
+                callback: action => {
+                }
+              });
             }
           })
           .catch((error) => {
@@ -141,9 +147,8 @@
               const newArr = JSON.parse(JSON.stringify(str));
               newArr.forEach(function(item,index){
                 if(parseFloat(item.list_price) <parseFloat(item.sale_price)){
-                  console.log(item.list_price)
-                  console.log(item.sale_price)
-                  _this.$message(item.list_price+'请修改售价，售价≤挂牌价==='+item.sale_price);
+                  // console.log(item.list_price)
+                  // console.log(item.sale_price)
                   isflag =  true;
                 }else{
                   _this.$delete(item,'official_price')
@@ -152,7 +157,13 @@
                 }
               })
               if(isflag){
-                _this.$message('请修改售价，售价≤挂牌价');
+                // _this.$message('请修改售价，售价≤挂牌价');
+                _this.$alert('请修改售价，售价≤挂牌价', '温馨提示', {
+                  confirmButtonText: '确定',
+                   type: 'error',
+                  callback: action => {
+                  }
+                });
                 return false;
               }
               const formData = {
@@ -163,15 +174,28 @@
                 .then((res) => {
                   console.log(res)
                   if (res.data.resultCode == 0) {
-                    _this.$message('改价成功');
-                    setTimeout(function(){_this.$router.go(-1);},1000)
+                    // _this.$message('改价成功');
+                    // setTimeout(function(){_this.$router.go(-1);},1000)
+                    _this.$alert('改价成功', '温馨提示', {
+                      confirmButtonText: '确定',
+                       type: 'success',
+                      callback: action => {
+                        _this.$router.go(-1);
+                      }
+                    });
                   }else if(res.data.resultCode == 3){
                     localStorage.removeItem("token");
                     localStorage.removeItem("userName");
                     localStorage.removeItem("pwd1");
                     _this.$router.push('/login');
                   }else{
-                    _this.$message(res.data.resultMsg);
+                    // _this.$message(res.data.resultMsg);
+                    _this.$alert(res.data.resultMsg, '温馨提示', {
+                      confirmButtonText: '确定',
+                       type: 'error',
+                      callback: action => {
+                      }
+                    });
                   }
                 })
                 .catch((error) => {

@@ -23,17 +23,20 @@ Page({
     },
     discount_price:'',//单价优惠
     sale_price:'',
-    selectOilData: ['92','95','98','0'],//下拉列表的数据
+    list_price:'',
+    selectOilData: [],//下拉列表的数据
     index_oil: 0,//选择的下拉列表下标
-    selectOilData2: ['92','95','98','0'],//下拉列表的数据
+    selectOilData2: [],//下拉列表的数据
     index_oil2: 0,//选择的下拉列表下标
     selectGunData: [],//下拉列表的数据
     index_gun: 0,//选择的下拉列表下标
     isShow:false,
     history_oil:0,
     history_gun:0,
+    inputPrice:'',//输入金额
     amountPrice:'', //合计
     dis_price:0, //优惠总金额
+    liters:0,
     totalList:[200,300],
     curprice:-1, // 默认没有快速选择价格（200，300）
     placeholder:'请选油枪，再输入金额',
@@ -75,59 +78,68 @@ Page({
     _this.getDetail();
     _this.initGunList(_this.data.oil_no) 
 
-    let phone = wx.getStorageSync('phone');
-    if(phone){
-      _this.setData({
-        phone:phone,
-        isLogin:true
-      });
-    }else{
-      _this.setData({
-        phone:'',
-        isLogin:false
-      });
-    }
-  },
-  getPhoneNumber (e) {
-    const _this =this;
     util.login(baseUrl).then(function(res){
-      const uid = wx.getStorageSync('uid');
-      const session_key = wx.getStorageSync('session_key');
-      _this.setData({
-        uid:uid
-      })
-      if(e.detail.encryptedData){
-        wx.request({
-          url: baseUrl+'/v1/user/getUserMobile', //仅为示例，并非真实的接口地址
-          data: {
-              "encrypted": e.detail.encryptedData,
-              "iv": e.detail.iv,
-              "session_key": session_key,
-              "uid":uid
-          },
-          method:'POST',
-          header: {
-            'content-type': 'application/json' // 默认值
-          },
-          success (res) {
-            console.log(res.data)
-            if(res.data.resultCode == 0){
-              wx.setStorageSync('phone', res.data.data)
-              _this.setData({
-                isLogin:true
-              })
-            }else{
-              util.showMsg(res.data.resultMsg,'none',2000)
-            }
-          },
-          fail (res) {
-            console.log(res);
-          }
-        })
-        
+      let phone = wx.getStorageSync('phone');
+      // console.log(phone)
+      if(phone){
+        _this.setData({
+          phone:phone,
+          isLogin:true
+        });
+      }else{
+        _this.setData({
+          phone:'',
+          isLogin:false
+        });
       }
     })
-   
+    
+  },
+  getPhoneNumber (e) {
+    if (e.detail.errMsg == "getPhoneNumber:ok") {
+      const _this =this;
+      wx.removeStorageSync('openId')
+      wx.removeStorageSync('uid')
+      wx.removeStorageSync('phone')
+      wx.removeStorageSync('session_key')
+      util.login(baseUrl).then(function(res){
+        const uid = wx.getStorageSync('uid');
+        const session_key = wx.getStorageSync('session_key');
+        _this.setData({
+          uid:uid
+        })
+        if(e.detail.encryptedData){
+          wx.request({
+            url: baseUrl+'/v1/user/getUserMobile', //仅为示例，并非真实的接口地址
+            data: {
+                "encrypted": e.detail.encryptedData,
+                "iv": e.detail.iv,
+                "session_key": session_key,
+                "uid":uid
+            },
+            method:'POST',
+            header: {
+              'content-type': 'application/json' // 默认值
+            },
+            success (res) {
+              console.log(res.data)
+              if(res.data.resultCode == 0){
+                wx.setStorageSync('phone', res.data.data)
+                _this.setData({
+                  isLogin:true
+                })
+              }else{
+                util.showMsg(res.data.resultMsg,'none',2000)
+              }
+            },
+            fail (res) {
+              console.log(res);
+            }
+          })
+          
+        }
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -196,11 +208,14 @@ Page({
         if(res.data.resultCode == 0){
           _this.setData({
             stationData:res.data.data,
+            list_price:res.data.data.list_price,
             lat2:res.data.data.latitude,
             lng2:res.data.data.longitude,
             ['priceList.sale_price']:res.data.data.sale_price,
             ['priceList.list_price']:res.data.data.list_price,
             ['priceList.official_price']:res.data.data.official_price,
+            selectOilData:res.data.data.oilNoList,
+            selectOilData2:res.data.data.oilNoList
           })
           // console.log(_this.data.stationData)
         }else{
@@ -226,15 +241,18 @@ Page({
       },
       success (res) {
         console.log(res.data.data)
+        const obj = res.data.data;
         if(res.data.resultCode == 0){
           const newArr = res.data.data.gunList;
           newArr.unshift('请选择油枪号')
-         console.log(res.data.data.discount_price?res.data.data.discount_price:0)
-         console.log(res.data.data.discount_price?res.data.data.discount_price:0)
+         let dis = obj.list_price - obj.sale_price
+          dis = dis.toFixed(2);
+          console.log(dis)
           _this.setData({
             selectGunData:newArr,
-            discount_price:res.data.data.discount_price?res.data.data.discount_price:0,
-            sale_price:res.data.data.sale_price?res.data.data.sale_price:0,
+            discount_price:dis?dis:0,
+            list_price:obj.list_price?obj.list_price:0,
+            sale_price:obj.sale_price?obj.sale_price:0,
           })
         }else{
           util.showMsg(res.data.resultMsg,'none',2000)
@@ -261,7 +279,7 @@ Page({
     }
     if(count>2) money = util.reservedDecimal(money,2);
     _this.setData({ 
-      amountPrice :money
+      inputPrice :money
     })
     _this.data.totalList.forEach(function(item,index){
       if(money == item){
@@ -277,18 +295,25 @@ Page({
   },
   couputedDisPrice(){
     const _this = this;
-    const sale_price = _this.data.sale_price;
+    const list_price = _this.data.list_price;
     const discount_price = _this.data.discount_price;
-    console.log(_this.data.amountPrice)
-    const  amountPrice = _this.data.amountPrice==''?0:_this.data.amountPrice
-    console.log(amountPrice)
+    
+    const  inputPrice = _this.data.inputPrice==''?0:_this.data.inputPrice
+    const liters = util.reservedDecimal((inputPrice/list_price),4);
     let discount_total = 0;
-    if(sale_price != 0 &&discount_price != 0){
-      discount_total = amountPrice/sale_price*discount_price
+    if(list_price != 0 &&discount_price != 0){
+      discount_total = liters*discount_price
     }
-    discount_total = util.reservedDecimal(discount_total,2)
+
+    discount_total = util.reservedDecimal(discount_total,2);
+    let amountPrice = inputPrice - discount_total;
+    amountPrice = util.reservedDecimal(amountPrice,2);
+    
+     
     _this.setData({
-      dis_price: discount_total
+      dis_price: discount_total,
+      amountPrice:amountPrice,
+      liters:liters
     })
   },
   bindPickerChangeOil: function(e) { //切换油号 展示相应的价格
@@ -345,7 +370,7 @@ Page({
       _this.setData({
         isdisabledInput: true,
         isShow: false,
-        amountPrice:'',
+        inputPrice:'',
         curprice:-1
       })
     }else{
@@ -353,9 +378,9 @@ Page({
         isdisabledInput: false,
         isShow: false,
       })
-      if(_this.data.amountPrice == ''){
+      if(_this.data.inputPrice == ''){
         _this.setData({
-          amountPrice:200,
+          inputPrice:200,
           curprice:0
         })
       }
@@ -413,7 +438,7 @@ Page({
     // console.log(e.currentTarget.dataset.price)
     if(_this.data.isdisabledInput == false){
       _this.setData({
-        amountPrice:e.currentTarget.dataset.price,
+        inputPrice:e.currentTarget.dataset.price,
         curprice:e.currentTarget.dataset.idx
       })
       _this.couputedDisPrice();
@@ -458,8 +483,11 @@ Page({
     const deviceSN = _this.data.deviceSN;
     const gun_no = _this.data.selectGunData[_this.data.index_gun];
     const oil_no = _this.data.selectOilData2[_this.data.index_oil2];
-    const total_amount = _this.data.amountPrice*100;
+    const total_amount = _this.data.inputPrice*100;
     const phone = wx.getStorageSync('phone');
+    wx.showLoading({
+      title: '加载中',
+    })
     wx.request({
       url: baseUrl+'/v1/oil/order/commit', //仅为示例，并非真实的接口地址
       data: {
@@ -470,7 +498,9 @@ Page({
         "total_amount": total_amount,
         "uid": _this.data.uid,
         "payType":3,
-        // "phone":phone,
+        "discount_amount":_this.data.dis_price*100,
+        "pay_amount":_this.data.amountPrice*100,
+        "liters":_this.data.liters
       },
       method:'POST',
       header: {
@@ -480,20 +510,32 @@ Page({
         // console.log(res.data.data)
         if(res.data.resultCode == 0){
           if(res.data.data){
-            _this.wxPay(res.data.data.prepayId,res.data.data.timeStamp,res.data.data.pay_amount,res.data.data.nonceStr,res.data.data.sub_openid,res.data.data.paySign,res.data.data.orderNo)
+            // let [prepayId,timeStamp,pay_amount,nonceStr,sub_openid,paySign,orderNo,sign_type,timeout] = res.data.data;
+            _this.wxPay(res.data.data.prepayId,res.data.data.timeStamp,res.data.data.pay_amount,res.data.data.nonceStr,res.data.data.sub_openid,res.data.data.paySign,res.data.data.orderNo,res.data.data.sign_type)
             // wxPay(money,nonce_str,sub_openid,sign)
+          }else{
+            util.showMsg('下单失败，请重新下单','none',2000)
           }
          
         }else{
+          console.log(res);
+          let msgStr = res.data.resultMsg;
+          if( msgStr.indexOf('余额不足')>-1|| msgStr.indexOf('不是合作商户，请与喂车工作人员联系')>-1){
+            wx.navigateTo({
+              url: '../orderLose/orderLose'
+            })
+            return false;
+          }
           util.showMsg(res.data.resultMsg,'none',2000)
         }
+        wx.hideLoading();
       },
       fail (res) {
         console.log(res);
       }
     })
   },
-  wxPay(prepayId,timeStamp,money,nonce_str,sub_openid,sign,orderNo){
+  wxPay(prepayId,timeStamp,money,nonce_str,sub_openid,sign,orderNo,signType){
     const _this = this;
     const appId='wxb1bec7d809e7cf40';
     wx.requestPayment(
@@ -501,7 +543,7 @@ Page({
       "timeStamp":timeStamp,
       "nonceStr": nonce_str,
       "package": "prepay_id="+prepayId,
-      "signType": "MD5",
+      "signType": signType,
       "paySign": sign,
       "success":function(res){
         console.log(res)

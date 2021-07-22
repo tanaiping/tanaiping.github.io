@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <div class="flex">
+    <div class="flex-search" id="searchBox">
       <el-form ref="form" label-width="80px" @keyup.enter.native="search">
         <el-input v-model="statioName" placeholder="请输入油站名称" class="filter-input mr10"></el-input>
         <el-input v-model="address" placeholder="请输入油站地址" class="filter-input mr10"></el-input>
@@ -10,53 +10,57 @@
       </el-form>
     </div>
     <!-- 标题  end-->
-    <div class="mt20">
+    <div class="mt20" :style="{'height':tabH+'px','overflow':'auto'}">
       <el-table
           :data="contentData"
+          :height="tabH"
           stripe
           style="width: 100%">
-          <el-table-column
+          <el-table-column align="center" width="50px"
           label="编号">
           <template slot-scope="scope">
             {{ (scope.$index+1)+(curPage-1)*pageSize}}
           </template>
           </el-table-column>
-          <el-table-column
+          <el-table-column align="center"
           prop="source"
             label="渠道名称">
           </el-table-column>
-          <el-table-column
+          <el-table-column align="center"
           prop="type"
           label="油站类型">
           </el-table-column>
-          <el-table-column
+          <el-table-column align="center"
           prop="city"
             label="城市">
             </el-table-column>
-            <el-table-column
+            <el-table-column align="center"
             label="油站logo">
             <template slot-scope="scope">
               <img :src="scope.row.logo" alt="" class="table-logo">
             </template>
             </el-table-column>
-            <el-table-column
+            <el-table-column align="center"
             prop="station_name"
               label="油站名称">
             </el-table-column>
             <el-table-column
-            prop="address"
+            prop="address" align="center"
             label="油站地址">
             </el-table-column>
             <el-table-column
-            prop="oilName"
+            prop="oilName" align="center"
               label="合作的油品">
             </el-table-column>
-            <el-table-column
+            <el-table-column align="center"
             prop="phone"
             label="油站电话">
+            <template slot-scope="scope">
+              {{!scope.row.phone?'-':scope.row.phone}}
+            </template>
             </el-table-column>
 
-          <el-table-column label="操作" width="100px">
+          <el-table-column label="操作" width="100px" align="center">
             <template slot-scope="scope">
               <el-button
                 size="mini"
@@ -66,11 +70,10 @@
           </el-table-column>
         </el-table>
     </div>
-
-      <!-- 表格  end-->
-      <div class="page">
-          <Page :pageSize="pageSize" :cur="curPage" :total="total" @pageChange="changeCurPage"/>
-       </div>
+    <!-- 表格  end-->
+    <div class="page page-box">
+        <Page :pageSize="pageSize" :cur="curPage" :total="total" @pageChange="changeCurPage"/>
+    </div>
 
   </div>
 
@@ -92,16 +95,34 @@ import Page from '@/components/page'
         "pageSize":10,
         curPage:1,
         total:0,
+        tabH:0,
       }
 
     },
     mounted(){
       const _this = this;
+      _this.$nextTick(() => {
+          _this.getTabH();
+      });
+      window.onresize = () => {
+         return (() => {
+           _this.getTabH();
+         })()
+       }
       _this.getListData(_this.curPage);
+
     },
     methods:{
+      getTabH(){
+        const _this = this;
+        let clientH = document.body.clientHeight || document.documentElement.clientHeight;
+        let searchH = document.getElementById("searchBox").offsetHeight;
+        let tabH = clientH - 60 - 20 - searchH -20 - 52;
+        _this.tabH = tabH;
+      },
       search(){
         const _this = this;
+        _this.curPage = 1;
         _this.getListData(_this.curPage);
       },
       resetForm(){
@@ -118,7 +139,7 @@ import Page from '@/components/page'
       handleDetail(index, row) {
         // console.log(index, row);
         const _this = this;
-        _this.$router.push({name:'stationDetail',"params":{'stationId':row.stationId}})
+        _this.$router.push({name:'stationDetail',"query":{'stationId':row.stationId}})
       },
       getListData(pageNo) {
         const _this = this;
@@ -148,7 +169,13 @@ import Page from '@/components/page'
               localStorage.removeItem("pwd1");
               _this.$router.push('/login');
             }else{
-              _this.$message(res.data.resultMsg);
+              // _this.$message(res.data.resultMsg);
+              _this.$alert(res.data.resultMsg, '温馨提示', {
+                confirmButtonText: '确定',
+                 type: 'error',
+                callback: action => {
+                }
+              });
             }
           })
           .catch((error) => {
@@ -162,5 +189,6 @@ import Page from '@/components/page'
 <style scoped>
 .table-logo{
   width: 40px;
+  border-radius: 20px;
 }
 </style>

@@ -1,3 +1,4 @@
+/* pages/orderLose/orderLose.wxss */
 /* pages/orderDetail/orderDetail.wxss */
 .order-type{
   border-bottom: 12rpx solid #E9E9E9;

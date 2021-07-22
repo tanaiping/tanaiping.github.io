@@ -54,7 +54,13 @@
                   localStorage.setItem("pwd1",_this.login.password);
                   _this.$router.push('/home');
                 }else{
-                  _this.$message(res.data.resultMsg);
+                  // _this.$message(res.data.resultMsg);
+                  _this.$alert(res.data.resultMsg, '温馨提示', {
+                      confirmButtonText: '确定',
+                       type: 'error',
+                      callback: action => {
+                      }
+                    });
                 }
               })
               .catch((error) => {

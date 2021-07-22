@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <div class="flex-search">
+    <div class="flex-search" id="searchBox">
       <el-form ref="form"  label-width="80px" @keyup.enter.native="search">
         <el-input v-model="nickName" placeholder="请输入员工姓名" class="filter-input mr10"></el-input>
         <el-input v-model="userName" placeholder="请输入员工账号" class="filter-input mr10"></el-input>
@@ -14,46 +14,47 @@
             </el-date-picker>
         <el-button  icon="el-icon-refresh" @click="resetForm">重置</el-button>
         <el-button type="primary"  icon="el-icon-search" @click="search">搜索</el-button>
-        <el-button type="warning"  icon="el-icon-plus" @click="add">新增员工</el-button>
+        <el-button type="error"  icon="el-icon-plus" @click="add">新增员工</el-button>
       </el-form>
     </div>
     <!-- 过虑条件  end-->
-    <div class="mt20">
+    <div class="mt20" :style="{'height':tabH+'px','overflow':'auto'}">
       <el-table
           :data="employeeList"
+          :height="tabH"
           stripe
           style="width: 100%">
-          <el-table-column
+          <el-table-column align="center" width="50px"
           label="编号">
           <template slot-scope="scope">
             {{ (scope.$index+1)+(curPage-1)*pageSize}}
           </template>
           </el-table-column>
-            <el-table-column
+            <el-table-column align="center"
             prop="nickName"
               label="员工姓名">
             </el-table-column>
-            <el-table-column
+            <el-table-column align="center"
             prop="position"
             label="员工职位">
             </el-table-column>
-            <el-table-column
+            <el-table-column align="center"
                 prop="userName"
                   label="员工账号">
             </el-table-column>
-            <el-table-column
+            <el-table-column align="center"
                 prop="password"
                   label="员工密码">
             </el-table-column>
-            <el-table-column
+            <el-table-column align="center"
                 prop="createTime"
                   label="注册时间">
             </el-table-column>
-            <el-table-column
+            <el-table-column align="center"
                 prop="statusName"
                   label="状态">
             </el-table-column>
-            <el-table-column label="操作" width="250px">
+            <el-table-column label="操作" width="250px" align="center">
               <template slot-scope="scope">
 
                 <el-button v-if="scope.row.status == 0"
@@ -114,17 +115,34 @@ import Page from '@/components/page'
         total:0,
         status:'',
         id:'',
-        dialogTxt:'是否启用该账号'//禁用后不可用，该账号无法使用  是否启用该账号  是否删除，删除后将不存在？
+        dialogTxt:'是否启用该账号',//禁用后不可用，该账号无法使用  是否启用该账号  是否删除，删除后将不存在？
+        tabH:0
       }
 
     },
     mounted(){
       const _this = this;
+      _this.$nextTick(() => {
+          _this.getTabH();
+      });
+      window.onresize = () => {
+         return (() => {
+           _this.getTabH();
+         })()
+       }
       _this.getListData(_this.curPage);
     },
     methods:{
+      getTabH(){
+        const _this = this;
+        let clientH = document.body.clientHeight || document.documentElement.clientHeight;
+        let searchH = document.getElementById("searchBox").offsetHeight;
+        let tabH = clientH - 60 - 20 - searchH - 20 - 52;
+        _this.tabH = tabH;
+      },
       search(){
         const _this = this;
+        _this.curPage = 1;
         _this.getListData(_this.curPage);
       },
       resetForm(){
@@ -135,12 +153,12 @@ import Page from '@/components/page'
       changeCurPage(p){
          const _this = this;
         _this.curPage = p;
-        _this.getListData(_this.curPage);;
+        _this.getListData(_this.curPage);
       },
       handleEdit(index, row) {
         console.log(index, row);
         const _this = this;
-         _this.$router.push({name:'editEmployer',"params":{'id':row.id,'pageNo':_this.curPage}})//
+         _this.$router.push({name:'editEmployer',"query":{'id':row.id,'pageNo':_this.curPage}})//
       },
       handleStatus(index, row,type) {
         console.log(index, row);
@@ -200,7 +218,13 @@ import Page from '@/components/page'
               localStorage.removeItem("pwd1");
               _this.$router.push('/login');
             }else{
-              _this.$message(res.data.resultMsg);
+              // _this.$message(res.data.resultMsg);
+              _this.$alert(res.data.resultMsg, '温馨提示', {
+                  confirmButtonText: '确定',
+                   type: 'error',
+                  callback: action => {
+                  }
+                });
             }
           })
           .catch((error) => {
@@ -219,14 +243,37 @@ import Page from '@/components/page'
              // console.log(res)
              if (res.data.resultCode == 0) {
                _this.dialogVisible1 = false;
-                _this.getListData(_this.curPage);
+               setTimeout(function(){
+                 let msgTxt = '';
+                 switch(_this.status){
+                   case 0: msgTxt = '启用'; break;
+                   case 1: msgTxt = '禁用'; break;
+                   case 2: msgTxt = '删除'; break;
+                 }
+                 _this.$alert(msgTxt+'成功', '提示', {
+                     confirmButtonText: '确定',
+                      type: 'success',
+                     callback: action => {
+                       _this.getListData(_this.curPage);
+                     }
+                   });
+               },200)
+
+
+
              }else if(res.data.resultCode == 3){
                localStorage.removeItem("token");
                localStorage.removeItem("userName");
                localStorage.removeItem("pwd1");
                _this.$router.push('/login');
              }else{
-               _this.$message(res.data.resultMsg);
+               // _this.$message(res.data.resultMsg);
+               _this.$alert(res.data.resultMsg, '温馨提示', {
+                   confirmButtonText: '确定',
+                    type: 'error',
+                   callback: action => {
+                   }
+                 });
              }
            })
            .catch((error) => {

@@ -1,4 +1,5 @@
 <!--pages/order/order.wxml-->
+<wxs module="filters" src="../../utils/filters.wxs"></wxs>
 <view class="container">
   <view class="nav-menu">
     <block wx:for="{{menuList}}" wx:for-item="item" wx:for-index="idx" wx:key="idx">
@@ -13,7 +14,7 @@
             <image src="{{item.logo}}" mode="aspectFill" class="station-img"></image>
             <view class="station-info">
               <text class="name">{{item.station_name}}</text>
-              <view class="flex-row"><text class="price">￥{{item.pay_amount}}</text><text class="oil-no">{{item.oil_no}}#</text></view>
+              <view class="flex-row"><text class="price"><text>￥</text>{{filters.toFix(item.pay_amount/100)}}</text><text class="oil-no">{{item.oil_no}}#</text></view>
               <text class="payTime">{{item.payTime}}</text>
             </view>
           </view>

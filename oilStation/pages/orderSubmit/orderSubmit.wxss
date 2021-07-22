@@ -46,15 +46,15 @@
 }
 .distance-box .line{
   width: 2rpx;
-  height: 12rpx;
-  margin: 8rpx 4rpx 8rpx 0;
+  height: 18rpx;
+  margin: 5rpx 4rpx 5rpx 0;
   background-color: #A7A7A7;
 }
 .navigate-ico{
-  width: 20rpx;
-  height: 20rpx;
-  margin:4rpx 0;
-  line-height: 20rpx;
+  width: 25rpx;
+  height: 25rpx;
+  margin:1rpx 0;
+  line-height: 25rpx;
 }
 .nav-btn{
   height: 28rpx;
@@ -217,8 +217,7 @@
 .pay-fixed-bottom .pad-box .t1{
   font-size: 28rpx;
   color: #136FD1;
-  line-height: 100rpx;
-  max-width: 36%;
+  line-height: 40rpx;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -229,8 +228,7 @@
 .pay-fixed-bottom .pad-box .t2{
   font-size: 28rpx;
   color: #000;
-  line-height: 100rpx;
-  max-width: 36%;
+  line-height: 60rpx;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -424,4 +422,9 @@ button.login-btn{
   position: absolute;
   right: 0;
   top: 0;
+}
+.price-box{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

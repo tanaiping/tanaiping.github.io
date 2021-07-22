@@ -17,7 +17,7 @@
           </div>
 
         </el-header>
-        <el-main>
+        <el-main style="overflow: hidden;">
           <router-view />
         </el-main>
         <!-- <el-footer>Footer</el-footer> -->
@@ -138,20 +138,36 @@
                     //console.log(res)
                     if (res.data.resultCode == 0) {
                       _this.dialogVisible1 = false;
-                       _this.$message('密码设置成功~');
-                       setTimeout(function(){
-                         localStorage.removeItem("token");
-                         localStorage.removeItem("userName");
-                         localStorage.removeItem("pwd1");
-                         _this.$router.push('/login');
-                       },1000)
+                       // _this.$message('密码设置成功~');
+                       _this.$alert('密码设置成功~', '温馨提示', {
+                           confirmButtonText: '确定',
+                            type: 'success',
+                           callback: action => {
+                             localStorage.removeItem("token");
+                             localStorage.removeItem("userName");
+                             localStorage.removeItem("pwd1");
+                             _this.$router.push('/login');
+                           }
+                         });
+                       // setTimeout(function(){
+                       //   localStorage.removeItem("token");
+                       //   localStorage.removeItem("userName");
+                       //   localStorage.removeItem("pwd1");
+                       //   _this.$router.push('/login');
+                       // },1000)
                     }else if(res.data.resultCode == 3){
                       localStorage.removeItem("token");
                       localStorage.removeItem("userName");
                       localStorage.removeItem("pwd1");
                       _this.$router.push('/login');
                     }else{
-                      _this.$message(res.data.resultMsg);
+                      // _this.$message(res.data.resultMsg);
+                      _this.$alert(res.data.resultMsg, '温馨提示', {
+                        confirmButtonText: '确定',
+                         type: 'error',
+                        callback: action => {
+                        }
+                      });
                     }
                   })
                   .catch((error) => {
@@ -192,6 +208,7 @@
             })
         },
         handleClose(done) {
+          console.log(done)
           done();
         },
      }

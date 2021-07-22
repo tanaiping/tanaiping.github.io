@@ -69,7 +69,7 @@
     </view>
     <view class="select-price">
       <view class="input-box">
-        <input type="digit" placeholder="{{placeholder}}" placeholder-style="color:rgba(19, 111, 209, 0.5);font-size:28rpx;"  model:value="{{amountPrice===''?'':'￥'+amountPrice}}"  bindinput="changePrice" disabled="{{isdisabledInput}}" ></input>
+        <input type="digit" placeholder="{{placeholder}}" placeholder-style="color:rgba(19, 111, 209, 0.5);font-size:28rpx;"  model:value="{{inputPrice===''?'':'￥'+inputPrice}}"  bindinput="changePrice" disabled="{{isdisabledInput}}" ></input>
       </view>
       <view class="price-con">
         <block wx:for="{{totalList}}" wx:for-index="idx" wx:key="idx">
@@ -84,11 +84,13 @@
   </view>
   <!-- discount-box -->
   <view class="pay-fixed-bottom">
-    <view class="pad-box">
-      <block wx:if="{{dis_price!=0}}">
-        <text class="t1"><text>已优惠</text> <text class="m">￥{{dis_price}}</text></text>
-      </block>
-      <text class="t2"><text>合计</text> <text class="m">￥{{amountPrice ===''?'0.00':amountPrice}}</text></text>
+    <view class="pad-box ">
+      <view class="price-box">
+        <view class="t2"><text>￥</text><text class="m">{{amountPrice ===''?'0.00':amountPrice}}</text></view>
+        <block wx:if="{{dis_price!=0}}">
+          <view class="t1"><text>按油站价折算优惠:</text> <text class="m">￥{{dis_price}}</text></view>
+        </block>
+      </view>
       <view catchtap="pay"  class="pay-btn {{(amountPrice!=0&&isLogin==true&&amountPrice!='')?'':'disabled'}}">去支付</view>
     </view>
   </view>

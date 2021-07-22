@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-      <div class="flex">
+      <div class="flex-search" id="searchBox">
         <el-form ref="form" label-width="80px"  @keyup.enter.native="search">
           <el-select v-model="type" placeholder="请选择油站类型" class="mr10">
             <el-option label="全部" value='-1'></el-option>
@@ -26,85 +26,87 @@
       <!-- 标题  end-->
       <div class="mt20">
         <div class="flex-end"><el-button type="success" @click="changeChecked">批量改价</el-button></div>
-        <el-table
-            :data="contentData"
-            stripe
-            type="selection"
-            @selection-change="selectionLineChangeHandle"
-            @row-click="handleRowClick"
-            ref="handSelectTest_multipleTable"
-            :row-key='getRowKey'
-            style="width: 100%">
-            <el-table-column type="selection"  :reserve-selection="true" width="55"> </el-table-column>
-            <el-table-column
-            label="编号">
-            <template slot-scope="scope">
-              {{ (scope.$index+1)+(curPage-1)*pageSize}}
-            </template>
-            </el-table-column>
-            <el-table-column
-            prop="source"
-              label="渠道名称">
-            </el-table-column>
-            </el-table-column>
-            <el-table-column
-            prop="type"
-            label="油站类型">
-            </el-table-column>
-            <el-table-column
-            prop="province"
-            label="省份">
-            </el-table-column>
-            <el-table-column
-            prop="city"
-            label="城市">
-            </el-table-column>
-            <el-table-column
-            prop="station_name"
-            label="油站名称">
-            </el-table-column>
-            <el-table-column
-            prop="address"
-            label="油站地址">
-            </el-table-column>
-            <el-table-column
-            label="油号">
-            <template slot-scope="scope">
-               <div v-for="(item,index) in scope.row.oilInfoList" :key="item.id">#{{item.oil_no}}</div>
-            </template>
-            </el-table-column>
-            <el-table-column
-            label="发改委价">
-            <template slot-scope="scope">
-               <div v-for="(item,index) in scope.row.oilInfoList" :key="item.id">￥{{item.official_price}}</div>
-            </template>
-            </el-table-column>
-            <el-table-column
-            label="挂牌价">
-            <template slot-scope="scope">
-               <div v-for="(item,index) in scope.row.oilInfoList" :key="item.id">￥{{item.list_price}}</div>
-            </template>
-            </el-table-column>
-            <el-table-column
-            label="协议价">
-            <template slot-scope="scope">
-               <div v-for="(item,index) in scope.row.oilInfoList" :key="item.id">￥{{item.contract_price}}</div>
-            </template>
-            </el-table-column>
-            <el-table-column
-            label="售价">
-            <template slot-scope="scope">
-               <div v-for="(item,index) in scope.row.oilInfoList" :key="item.id">￥{{item.sale_price}}</div>
-            </template>
-            </el-table-column>
-            <el-table-column label="操作" width="100px">
+        <div :style="{'height':tabH+'px','overflow':'auto'}">
+          <el-table
+              :data="contentData"
+              :height="tabH"
+              stripe
+              type="selection"
+              @selection-change="selectionLineChangeHandle"
+              @row-click="handleRowClick"
+              ref="handSelectTest_multipleTable"
+              :row-key='getRowKey'
+              style="width: 100%">
+              <el-table-column type="selection" align="center" :reserve-selection="true" width="50"> </el-table-column>
+              <el-table-column align="center" width="50px"
+              label="编号">
               <template slot-scope="scope">
-                <el-button
-                  size="mini"
-                  @click.stop="handlechange(scope.$index, scope.row)" >修改单价</el-button>
+                {{ (scope.$index+1)+(curPage-1)*pageSize}}
               </template>
-            </el-table-column>
-          </el-table>
+              </el-table-column>
+              <el-table-column align="center"
+              prop="source"
+                label="渠道名称">
+              </el-table-column>
+              <el-table-column align="center"
+              prop="type"
+              label="油站类型">
+              </el-table-column>
+              <el-table-column align="center"
+              prop="province"
+              label="省份">
+              </el-table-column>
+              <el-table-column align="center"
+              prop="city"
+              label="城市">
+              </el-table-column>
+              <el-table-column align="center"
+              prop="station_name"
+              label="油站名称">
+              </el-table-column>
+              <el-table-column
+              prop="address" align="center"
+              label="油站地址">
+              </el-table-column>
+              <el-table-column align="center"
+              label="油号">
+              <template slot-scope="scope">
+                 <div v-for="(item,index) in scope.row.oilInfoList" :key="item.id">{{item.oil_no}}#</div>
+              </template>
+              </el-table-column>
+              <el-table-column align="center"
+              label="发改委价">
+              <template slot-scope="scope">
+                 <div v-for="(item,index) in scope.row.oilInfoList" :key="item.id">￥{{item.official_price==''?'--':item.official_price}}</div>
+              </template>
+              </el-table-column>
+              <el-table-column align="center"
+              label="挂牌价">
+              <template slot-scope="scope">
+                 <div v-for="(item,index) in scope.row.oilInfoList" :key="item.id">￥{{item.list_price==''?'--':item.list_price}}</div>
+              </template>
+              </el-table-column>
+              <el-table-column align="center"
+              label="协议价">
+              <template slot-scope="scope">
+                 <div v-for="(item,index) in scope.row.oilInfoList" :key="item.id">￥{{item.contract_price==''?'--':item.contract_price}}</div>
+              </template>
+              </el-table-column>
+              <el-table-column align="center"
+              label="售价">
+              <template slot-scope="scope">
+                 <div v-for="(item,index) in scope.row.oilInfoList" :key="item.id">￥{{item.sale_price==''?'--':item.sale_price}}</div>
+              </template>
+              </el-table-column>
+              <el-table-column label="操作" width="100px" align="center">
+                <template slot-scope="scope">
+                  <el-button
+                    size="mini"
+                    @click.stop="handlechange(scope.$index, scope.row)" >修改单价</el-button>
+                </template>
+              </el-table-column>
+            </el-table>
+          </div>
       </div>
 
         <!-- 表格  end-->
@@ -134,17 +136,34 @@ import Page from '@/components/page'
         "pageSize":10,
         curPage:1,
         total:0,
-        stationIdList:[]
+        stationIdList:[],
+        tabH:0
       }
 
     },
     mounted(){
       const _this = this;
+      _this.$nextTick(() => {
+          _this.getTabH();
+      });
+      window.onresize = () => {
+         return (() => {
+           _this.getTabH();
+         })()
+       }
       _this.getListData(_this.curPage);
     },
     methods:{
+      getTabH(){
+        const _this = this;
+        let clientH = document.body.clientHeight || document.documentElement.clientHeight;
+        let searchH = document.getElementById("searchBox").offsetHeight;
+        let tabH = clientH - 60 - 20 - searchH -20 - 40 - 52;
+        _this.tabH = tabH;
+      },
       search(){
         const _this = this;
+        _this.curPage = 1;
         _this.getListData(_this.curPage);
       },
       resetForm(){
@@ -205,7 +224,13 @@ import Page from '@/components/page'
               localStorage.removeItem("pwd1");
               _this.$router.push('/login');
             }else{
-              _this.$message(res.data.resultMsg);
+              // _this.$message(res.data.resultMsg);
+              _this.$alert(res.data.resultMsg, '温馨提示', {
+                confirmButtonText: '确定',
+                 type: 'error',
+                callback: action => {
+                }
+              });
             }
           })
           .catch((error) => {

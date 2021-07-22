@@ -11,11 +11,18 @@ import * as echarts from 'echarts'
 
 Vue.use(ElementUI)
 Vue.config.productionTip = false
+// 修改 el-dialog 默认点击遮照为不关闭
+ElementUI.Dialog.props.closeOnClickModal.default = false
 
 Vue.prototype.$axios = axios;
 Vue.prototype.$echarts = echarts;
 //axios.defaults.baseURL = "http://192.168.3.70:5566"
 
+
+import {
+  regFenToYuan,
+  confirm
+} from './config/public';
 
 /* eslint-disable no-new */
 new Vue({

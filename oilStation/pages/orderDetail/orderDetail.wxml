@@ -1,8 +1,9 @@
 <!--pages/orderDetail/orderDetail.wxml-->
 <view class="container">
+  <navbar page-name="订单详情"></navbar>
   <view class="order-type">
-    <image src="{{status[orderData.status].typeIcon}}" mode="aspectFill" class="type-icon"></image>
-    <text class="type-t">{{status[orderData.status].name}}</text>
+    <image src="{{status[orderData.status-1].typeIcon}}" mode="aspectFill" class="type-icon"></image>
+    <text class="type-t">{{status[orderData.status-1].name}}</text>
   </view>
   <view class="order-list-detail">
     <view class="order-detail-elem mb20">
@@ -31,7 +32,7 @@
       <text class="order-val" style="color:#136FD1">-￥{{orderData.discount_amount?orderData.discount_amount:'--'}}</text>
     </view>
     <view class="order-detail-elem mb20 f24">
-      <text>单价金额</text>
+      <text>单价优惠</text>
       <text class="order-val" style="color:#9B9B9B; font-size:24rpx">-￥{{orderData.discount_price?orderData.discount_price:'--'}}</text>
     </view>
     <view class="order-detail-elem ">
@@ -41,7 +42,7 @@
     <view class="line"></view>
     <view class="order-detail-elem mb20">
       <text>支付方式</text>
-      <text class="order-val">{{orderData.prize?orderData.prize:'--'}}</text>
+      <text class="order-val">{{orderData.payType?payTypeData[orderData.payType-1]:'--'}}</text>
     </view>
     <view class="order-detail-elem mb20">
       <text>订单编号</text>

@@ -1,0 +1,13 @@
+<!--pages/orderLose/orderLose.wxml-->
+<!--pages/orderDetail/orderDetail.wxml-->
+<view class="container">
+  <view class="order-type">
+    <image src="../images/icon_pop2.png" mode="aspectFill" class="type-icon"></image>
+    <text class="type-t">下单失败</text>
+  </view>
+  <view class="contact-kf">
+    <image src="../images/kf_icon.png" mode="aspectFill" class="kf-icon"></image>
+    <button class="contact-service" open-type="contact" session-from="weapp">联系客服</button>
+  </view>
+</view>
+

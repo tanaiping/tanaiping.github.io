@@ -17,8 +17,8 @@
         <text class="t2">累计消费(次)</text>
       </view>
       <view class="elem">
-        <text class="t1">{{amount_price==null?0:amount_price}}</text>
-        <text class="t2">消费金额 (万)</text>
+        <text class="t1">{{amount_price}}</text>
+        <text class="t2">消费金额 (元)</text>
       </view>
       <view class="elem">
         <text class="t1">{{discount_price==null?0:discount_price}}</text>
@@ -58,5 +58,4 @@
       </view>
       <image src="../images/img01.png" mode="aspectFill" class="oil-card" bindtap="otherMin"></image>
   </view>
-
 </view>
