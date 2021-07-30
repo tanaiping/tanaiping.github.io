@@ -91,6 +91,7 @@
   justify-content: space-between;
   align-items: center;
   height: 90rpx;
+  margin-top: 48rpx;
 }
 .price-list{
   display: flex;
@@ -121,7 +122,7 @@
 }
 .discount-box{
   padding: 32rpx 26rpx;
-  border-top:2rpx solid #E9E9E9;
+  border-top:12rpx solid #E9E9E9;
   /* border-width: 12rpx 0; */
 }
 .discount-header{
@@ -152,6 +153,7 @@
   margin:28rpx 0 40rpx 0;
   display: flex;
   justify-content: space-between;
+  background-color: rgba(19, 111, 209, 0.04);
 }
 .gun-img{
   width: 60rpx;
@@ -333,7 +335,7 @@ vertical-align: middle;
   justify-content: space-between;
   line-height: 60rpx;
   height: 60rpx;
-  margin: 40rpx 60rpx 50rpx 60rpx ;
+  margin: 40rpx 60rpx 10rpx 60rpx ;
   line-height: 40rpx;
   height: 40rpx;
 }
@@ -396,7 +398,7 @@ vertical-align: middle;
   color: #FFF;
 }
 .login-box{
-  margin: 80rpx auto 0 auto;
+  margin: 40rpx auto;
   display: flex;
   width: 480rpx;
   position: relative;
@@ -427,4 +429,21 @@ button.login-btn{
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+.import-tips{
+  width: 100%;
+  color: #666;
+  font-size: 24rpx;
+  text-align: right;
+  padding-top: 20rpx;
+}
+.check-tips{
+  background-color: rgb(246,155,28);
+  color: #FFF;
+  font-size: 24rpx;
+  text-align: center;
+  width: 100%;
+  line-height: 60rpx;
+  height: 60rpx;
+  margin-bottom: 40rpx;
 }

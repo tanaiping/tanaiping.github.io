@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <div style="width: 360px;">
+    <div :style="{'width': '360px','height':conH+'px','overflow':'auto','width':'100%'}">
       <el-form :model="ruleForm" ref="ruleForm" label-width="100px" class="demo-ruleForm">
         <el-form-item label="渠道名称">
           <label >{{ruleForm.source}}</label>
@@ -49,15 +49,30 @@
       return{
         ruleForm:{},
         stationId:'',
+        conH:0
       }
 
     },
     mounted(){
       const _this = this;
+      _this.$nextTick(() => {
+          _this.getConH();
+      });
+      window.onresize = () => {
+         return (() => {
+           _this.getConH();
+         })()
+       }
       _this.stationId = _this.$route.query.stationId;
       _this.getDetailData();
     },
     methods:{
+      getConH(){
+        const _this = this;
+        let clientH = document.body.clientHeight || document.documentElement.clientHeight;
+        let conH = clientH - 60 - 20;
+        _this.conH = conH;
+      },
       getDetailData() {
         const _this = this;
         const token = localStorage.getItem('token');
@@ -66,10 +81,10 @@
         // }
         _this.$axios.get(Station.stationDetail+"?stationId="+_this.stationId,{headers: {'Content-Type': 'application/json','token':token}})
           .then((res) => {
-            console.log(res)
+            // console.log(res)
             if (res.data.resultCode == 0) {
               _this.ruleForm = res.data.data;
-               console.log(_this.ruleForm)
+               // console.log(_this.ruleForm)
             }else if(res.data.resultCode == 3){
               localStorage.removeItem("token");
               localStorage.removeItem("userName");

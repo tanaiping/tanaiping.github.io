@@ -19,9 +19,9 @@
   <view class="compare-price">
     <image src="../images/orderSubmitBg.png" class="compare-img" mode="aspectFit"></image>
     <view class="conpare-con">
-        <picker bindchange="bindPickerChangeOil" value="{{index_oil}}" range="{{selectOilData}}">
+        <picker bindchange="bindPickerChangeOil" value="{{index_oil2}}" range="{{selectOilData}}">
           <view class="picker-com">
-            <text class="pick-txt">{{selectOilData[index_oil]}}#</text>
+            <text class="pick-txt">{{selectOilData2[index_oil2]}}#</text>
             <image  src='../images/up.png'  mode="aspectFill" class="pick-icon"></image> 
           </view>
         </picker>
@@ -51,13 +51,6 @@
       <button class="contact-service" open-type="contact" session-from="weapp">联系客服</button>
     </view>
     <view class="border-box flex-between" catchtap="showSelectPop">
-          <view  class="flex-row">
-            <image src="../images/oil_no.png" class="gun-img"></image>
-            <view class="picker-com" style="padding:10rpx 0">
-              <text class="pick-txt">{{selectOilData2[index_oil2]}}#</text>
-              <image  src='../images/up.png'  mode="aspectFill" class="pick-icon"></image> 
-            </view>
-          </view>
           <view class="flex-row">
             <image src="../images/gun_no.png" class="gun-img"></image>
             <view class="picker-com" style="padding:10rpx 0">
@@ -65,11 +58,17 @@
               <image  src='../images/up.png'  mode="aspectFill" class="pick-icon"></image> 
             </view>
           </view>
-
+          <view  class="flex-row">
+            <image src="../images/oil_no.png" class="gun-img"></image>
+            <view class="picker-com" style="padding:10rpx 0">
+              <text class="pick-txt">{{selectOilData2[index_oil2]}}#</text>
+              <image  src='../images/up.png'  mode="aspectFill" class="pick-icon"></image> 
+            </view>
+          </view>
     </view>
     <view class="select-price">
       <view class="input-box">
-        <input type="digit" placeholder="{{placeholder}}" placeholder-style="color:rgba(19, 111, 209, 0.5);font-size:28rpx;"  model:value="{{inputPrice===''?'':'￥'+inputPrice}}"  bindinput="changePrice" disabled="{{isdisabledInput}}" ></input>
+        <input type="digit" placeholder="{{placeholder}}" placeholder-style="color:rgba(19, 111, 209, 0.5);font-size:28rpx;"  model:value="{{inputPrice===''?'':'￥'+inputPrice}}"  bindinput="changePrice" disabled="{{isdisabledInput}}" catchtap="inputClick" ></input>
       </view>
       <view class="price-con">
         <block wx:for="{{totalList}}" wx:for-index="idx" wx:key="idx">
@@ -77,6 +76,7 @@
         </block>
       </view>
     </view>
+    <view class="import-tips">重要说明：请您到达油站加油后再付款下单</view>
     <view class="login-box" wx:if="{{!isLogin}}">
       <text class="login-t">你还尚未登录，请先登录</text>
       <button  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" class="login-btn">登录</button>
@@ -117,6 +117,7 @@
         <text class="t1">选择油枪号</text>
         <text class="btn-submit" catchtap="hideSelectPop" data-type="1">确认</text>
       </view>
+      <view class="check-tips">请先确认油号是否正确，并向加油员确认加油枪号</view>
       <view class="oil-box">
        <block wx:for="{{selectOilData2}}" wx:for-index="idx" wx:key="*this" >
           <text class="{{index_oil2 == idx?'act':''}}" catchtap="changeOil" data-index ="{{idx}}">{{item}}#</text>

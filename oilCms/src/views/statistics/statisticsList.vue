@@ -9,7 +9,7 @@
               start-placeholder="开始日期"
               end-placeholder="结束日期" class="mr10">
             </el-date-picker>
-        <el-select v-model="citys" multiple placeholder="请选择">
+        <el-select v-model="citys" multiple placeholder="请选择" class="mr10">
             <el-option
               v-for="(item,i) in options"
               :key="item.city"
@@ -19,12 +19,13 @@
           </el-select>
         <el-button  icon="el-icon-refresh" @click="resetForm">重置</el-button>
         <el-button type="primary"  icon="el-icon-search" @click="search">查询</el-button>
-        <el-button type="error" icon="el-icon-download" @click="downTable" >下载表格</el-button>
+
     </div>
     <!-- 过虑条件  end-->
     <!-- 标题  end-->
     <div class="mt20">
       <div class="flex-end">
+        <el-button type="primary" icon="el-icon-download" @click="downTable" >下载表格</el-button>
         <el-tooltip class="item" effect="dark" placement="bottom">
           <el-button type="text">名词释义<i class="el-icon-question"></i></el-button>
           <div slot="content">
@@ -42,6 +43,7 @@
             :data="contentData"
             :height="tabH"
             stripe
+            ref="tableList"
             style="width: 100%">
             <el-table-column align="center" width="120"
               prop="reportTime"
@@ -74,7 +76,19 @@
             <el-table-column align="center"
               label="交易金额">
               <template slot-scope="scope">
-                ￥{{scope.row.pay_amount==''?'--':scope.row.pay_amount}}
+                ￥{{!scope.row.pay_amount?'0.00':scope.row.pay_amount}}
+              </template>
+            </el-table-column>
+            <el-table-column align="center"
+              label="协议金额">
+              <template slot-scope="scope">
+                ￥{{!scope.row.contract_amount?'0.00':scope.row.contract_amount}}
+              </template>
+            </el-table-column>
+            <el-table-column align="center"
+              label="盈利">
+              <template slot-scope="scope">
+                ￥{{!scope.row.discount_amount?'0.00':scope.row.discount_amount}}
               </template>
             </el-table-column>
           </el-table>
@@ -134,6 +148,14 @@
             title:'交易金额',
             name:'当日已付款订单的交易金额总和'
           },
+          {
+            title:'协议金额',
+            name:'当日下单成功订单的协议金额总和'
+          },
+          {
+            title:'盈利',
+            name:'当日下单成功订单的盈利综合（盈利=交易金额-协议金额）'
+          },
         ],
         tabH:0
       }
@@ -172,14 +194,15 @@
       changeCurPage(p){
         const _this = this;
         this.curPage = p;
+        this.$refs.tableList.bodyWrapper.scrollTop = 0;
         _this.getListData(_this.curPage);
       },
       handleShow(index, row) {
-        console.log(index, row);
+        // console.log(index, row);
         this.dialogVisible = true
       },
       handleEdit(index, row) {
-        console.log(index, row);
+        // console.log(index, row);
         const _this = this;
         _this.contentData.forEach(function(item,index){
           if(item.id == row.id){
@@ -247,7 +270,7 @@
         const formData = {}
         _this.$axios.post(Statistics.getCityList, JSON.stringify(formData),{headers: {'Content-Type': 'application/json','token':token}})
           .then((res) => {
-            console.log(res)
+            // console.log(res)
             if (res.data.resultCode == 0) {
               _this.options = res.data.data;
             }else if(res.data.resultCode == 3){
@@ -290,7 +313,7 @@
         }
         _this.$axios.post(Statistics.exportOrderList, JSON.stringify(formData),{headers: {'Content-Type': 'application/json','token':token}})
           .then((res) => {
-            console.log(res.data.data)
+            // console.log(res.data.data)
             if (res.data.resultCode == 0) {
                 // window.open(res.data.data);
                 window.open(res.data.data,"_blank");

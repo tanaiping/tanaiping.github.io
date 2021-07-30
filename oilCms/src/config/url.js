@@ -22,6 +22,9 @@ export const Login = {
 export const User = {
     userInfoCount: baseUrl + '/sys/account/userInfoCount',
     userInfoList: baseUrl + '/sys/account/userInfoList',
+    deviceList: baseUrl + '/sys/device/deviceList',
+    deviceActive: baseUrl + '/sys/device/deviceActive',
+
 }
 
 export const Station = {

@@ -11,6 +11,14 @@
 }
 .ope-pad{
   padding:30rpx 40rpx;
+  position: relative;
+  z-index: 2;
+}
+.ope-bg{
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: -136rpx;
 }
 .search-wrap{
   display: flex;
@@ -123,31 +131,96 @@
 .station-info .price .t1{
  color: #136FD1;
  font-size: 24rpx;
+ display: flex;
+ flex-direction: row;
+ height: 34rpx;
+ line-height: 34rpx;
 }
 .station-info .price .t1 .pri1{
   color: #FF742C;
   font-size: 20rpx;
   font-weight: bold;
+  display: flex;
+  flex-direction: row;
+  height: 34rpx;
+  line-height: 34rpx;
  }
- .station-info .price .t1 .pri1 text{
+ .station-info .price .t1 .pri1 .ico-p{
+   padding-top: 6rpx;
+  line-height: 26rpx;
+  height: 26rpx;
+ }
+ .station-info .price .t1 .pri1 .sale{
   font-size: 28rpx;
  }
 .station-info .price .t1 .pri2{
   color: #999;
   font-size: 24rpx;
-  padding:0 8rpx;
-  text-decoration: line-through;
+  display:flex;
+  flex-direction: row;
+  height: 34rpx;
+  line-height: 34rpx;
+ }
+
+ .pri-h{
+   position: relative;
+   width: 72rpx;
+   display: flex;
+   flex-direction: row;
+   color: #999;
+   text-align: center;
+   justify-content: center;
+ }
+   
+ .pri-h .line-through{
+  width: 100%;
+  height: 2rpx;
+  position:absolute;
+  left:0;
+  top: 16rpx;
+  background-color: #999;
+ }
+ .station-info .price .t1 .pri2 .p8{
+  width: 8rpx;
+  height: 34rpx;
+ }
+ .station-info .price .t1 .pri3{
+  width: 135rpx;
  }
  .price .desc{
   font-size: 20rpx;
   color: #fff;
   line-height: 34rpx;
   height: 34rpx;
-  padding: 0 16rpx;
-  background: #136FD1;
   margin: 7rpx 0;
-  border-radius: 0 6px;
+  position: relative;
+  width: 220rpx;
 } 
+.disprice-img{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 220rpx;
+  height: 34rpx;
+}
+.dis-box{
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  line-height: 34rpx;
+  justify-content: center;
+  width: 220rpx;
+}
+.price .desc .p16{
+  width: 16rpx;
+  height: 34rpx;
+}
+.dis-box .t11,.dis-box .t12{
+  line-height: 34rpx;
+  height: 34rpx;
+}
 .station-info .address{
   color: #999;
   font-size: 24rpx;
@@ -195,6 +268,8 @@
   padding: 40rpx 40rpx 0 40rpx;
   display: flex;
   flex-wrap: wrap;
+  position: relative;
+  z-index: 2;
 }
 
 .filter-select-box .oil-elem{
@@ -221,7 +296,6 @@
   position: fixed;
   left: 50%;
   margin-left: -180rpx;
-  top: 220rpx;
   height: 60rpx;
   line-height: 60rpx;
   color: #FFF;

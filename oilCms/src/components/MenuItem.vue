@@ -1,9 +1,9 @@
 <template>
   <div class="menu">
-    <el-menu-item :index="item.url" v-if="!item.child">
-      <span slot="title">{{item.name}}</span>
+    <el-menu-item :index="item.url + ''" v-if="!item.child">
+      <span slot="title" >{{item.name}}</span>
     </el-menu-item>
-    <el-submenu :index="item.url" v-else>
+    <el-submenu :index="item.url + ''" v-else>
       <template slot="title">
         <span>{{item.name}}</span>
       </template>
@@ -18,9 +18,11 @@
     data(){
         return {}
     },
-    props:['item']
-
+    props:['item'],
+    methods:{
     }
+ }
+
 </script>
 
 <style>

@@ -2,6 +2,7 @@
 const app = getApp();
 const baseUrl = app.globalData.baseUrl;
 const util = require('../../utils/util.js') 
+let that;
 Page({
 
   /**
@@ -50,7 +51,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
+    // console.log(options)
+    that = this;
     const _this = this;
     let uid = wx.getStorageSync('uid');
     let deviceSN ='';
@@ -59,14 +61,7 @@ Page({
     }else{
       deviceSN = _this.data.deviceSN
     }
-    _this.data.selectOilData.forEach(function(item,idx){
-      if(item == options.oil_no){
-        _this.setData({
-          index_oil:idx,
-          index_oil2:idx
-        })
-      }
-    })
+    
     _this.setData({
       id:options.id,
       oil_no:options.oil_no,
@@ -122,7 +117,7 @@ Page({
               'content-type': 'application/json' // 默认值
             },
             success (res) {
-              console.log(res.data)
+              // console.log(res.data)
               if(res.data.resultCode == 0){
                 wx.setStorageSync('phone', res.data.data)
                 _this.setData({
@@ -204,7 +199,7 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success (res) {
-        console.log(res.data)
+        // console.log(res.data)
         if(res.data.resultCode == 0){
           _this.setData({
             stationData:res.data.data,
@@ -216,6 +211,14 @@ Page({
             ['priceList.official_price']:res.data.data.official_price,
             selectOilData:res.data.data.oilNoList,
             selectOilData2:res.data.data.oilNoList
+          })
+          res.data.data.oilNoList.forEach(function(item,idx){
+            if(item == _this.data.oil_no){
+              _this.setData({
+                index_oil:idx,
+                index_oil2:idx
+              })
+            }
           })
           // console.log(_this.data.stationData)
         }else{
@@ -240,7 +243,7 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success (res) {
-        console.log(res.data.data)
+        // console.log(res.data.data)
         const obj = res.data.data;
         if(res.data.resultCode == 0){
           const newArr = res.data.data.gunList;
@@ -263,8 +266,19 @@ Page({
       }
     })
   },
+  inputClick(){
+    const _this = this;
+    if(_this.data.placeholder == '请选油枪，再输入金额'){
+      wx.showToast({
+        title: '请先选择油枪油号',
+        icon: 'none',
+        duration: 2000
+      })
+    }
+  },
   changePrice(e){
     // console.log(e.detail.value);
+    console.log("xxx")
     const _this = this;
     let  idx = -1;
     let money = e.detail.value;
@@ -294,6 +308,7 @@ Page({
    
   },
   couputedDisPrice(){
+    console.log("couputed")
     const _this = this;
     const list_price = _this.data.list_price;
     const discount_price = _this.data.discount_price;
@@ -318,37 +333,86 @@ Page({
   },
   bindPickerChangeOil: function(e) { //切换油号 展示相应的价格
     const _this = this;
+    if(_this.data.index_oil2 == e.detail.value) return;
     _this.setData({
-      index_oil: e.detail.value,
+      index_oil2: e.detail.value,
+      isdisabledInput: true,
+      inputPrice:'',
+      curprice:-1,
+      index_gun:0,
+      placeholder:'请选油枪，再输入金额'
     })
-    const oil_no = _this.data.selectOilData[_this.data.index_oil]
-    wx.request({
-      url: baseUrl+'/v1/oil/getStationPrice', //仅为示例，并非真实的接口地址
-      data: {
-        "oil_no": oil_no,
-        "stationId": _this.data.id,
-      },
-      method:'POST',
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success (res) {
-        console.log(res.data.data)
-        if(res.data.resultCode == 0){
-          _this.setData({
-            ['priceList.sale_price']:res.data.data.sale_price,
-            ['priceList.list_price']:res.data.data.list_price,
-            ['priceList.official_price']:res.data.data.official_price,
-          })
-        }else{
-          util.showMsg(res.data.resultMsg,'none',2000)
-        }
-      },
-      fail (res) {
-        console.log(res);
-      }
-    })
+    const oil_no = _this.data.selectOilData2[_this.data.index_oil2]
+    _this.initGunList(oil_no)
+    _this.getStationPrice(oil_no, _this.data.id).then(function(res){
+      _this.couputedDisPrice();
+    });
+    
+    
+    
   },
+   getStationPrice : (oil_no,id) =>{
+    return new Promise(function(resolve,reject){
+      const _this = that;
+      wx.request({
+        url: baseUrl+'/v1/oil/getStationPrice', //仅为示例，并非真实的接口地址
+        data: {
+          "oil_no": oil_no,
+          "stationId": id,
+        },
+        method:'POST',
+        header: {
+          'content-type': 'application/json' // 默认值
+        },
+        success (res) {
+          // console.log(res.data.data)
+          if(res.data.resultCode == 0){
+            _this.setData({
+              ['priceList.sale_price']:res.data.data.sale_price,
+              ['priceList.list_price']:res.data.data.list_price,
+              ['priceList.official_price']:res.data.data.official_price,
+            })
+            resolve(res.data.data);//uid
+          }else{
+            util.showMsg(res.data.resultMsg,'none',2000)
+          }
+        },
+        fail (res) {
+          console.log(res);
+        }
+      })
+
+    });
+  },
+  // getStationPrice(oil_no,id){
+  //   const _this = this;
+  //   wx.request({
+  //     url: baseUrl+'/v1/oil/getStationPrice', //仅为示例，并非真实的接口地址
+  //     data: {
+  //       "oil_no": oil_no,
+  //       "stationId": id,
+  //     },
+  //     method:'POST',
+  //     header: {
+  //       'content-type': 'application/json' // 默认值
+  //     },
+  //     success (res) {
+  //       // console.log(res.data.data)
+  //       if(res.data.resultCode == 0){
+  //         _this.setData({
+  //           ['priceList.sale_price']:res.data.data.sale_price,
+  //           ['priceList.list_price']:res.data.data.list_price,
+  //           ['priceList.official_price']:res.data.data.official_price,
+  //         })
+  //       }else{
+  //         util.showMsg(res.data.resultMsg,'none',2000)
+  //       }
+  //     },
+  //     fail (res) {
+  //       console.log(res);
+  //     }
+  //   })
+  // },
   showSelectPop(){
     const _this = this;
     _this.setData({
@@ -371,25 +435,33 @@ Page({
         isdisabledInput: true,
         isShow: false,
         inputPrice:'',
-        curprice:-1
+        curprice:-1,
+        placeholder:'请选油枪，再输入金额'
       })
     }else{
       _this.setData({
         isdisabledInput: false,
         isShow: false,
+        placeholder:'请输入加油金额'
       })
-      if(_this.data.inputPrice == ''){
-        _this.setData({
-          inputPrice:200,
-          curprice:0
-        })
-      }
+      // if(_this.data.inputPrice == ''){
+      //   _this.setData({
+      //     inputPrice:'200',
+      //     curprice:0
+      //   })
+      // }
     }
-    _this.couputedDisPrice();
+   
+    const oil_no = _this.data.selectOilData2[_this.data.index_oil2]
+    _this.initGunList(oil_no);
+    _this.getStationPrice(oil_no, _this.data.id).then(function(res){
+      _this.couputedDisPrice();
+    });
+    console.log(_this.data)
   },
   changeOil: function(e) {
     const _this = this;
-    console.log( e.currentTarget.dataset.index)
+    // console.log( e.currentTarget.dataset.index)
     if(_this.data.index_oil2 == e.currentTarget.dataset.index) return
     this.setData({
       index_oil2: e.currentTarget.dataset.index,
@@ -397,12 +469,13 @@ Page({
     })
     const oil_no = _this.data.selectOilData2[_this.data.index_oil2]
     _this.initGunList(oil_no);
+    _this.getStationPrice(oil_no,_this.data.id)
   },
   changeGun: function(e) {
-    console.log( e.currentTarget.dataset.index)
+    // console.log( e.currentTarget.dataset.index)
     if(this.data.index_gun == e.currentTarget.dataset.index){
       this.setData({
-        index_gun: 0
+        index_gun: 0,
       })
     }else{
       this.setData({
@@ -416,8 +489,8 @@ Page({
     const latitude = parseFloat(_this.data.lat2) //lat2
     const longitude = parseFloat(_this.data.lng2) //lng2
     const obj = e.currentTarget.dataset
-    console.log(latitude)
-    console.log(longitude)
+    // console.log(latitude)
+    // console.log(longitude)
     wx.openLocation({
       latitude: latitude, // 纬度，范围为-90~90，负数表示南纬  传入字符串 就打不开地图
       longitude: longitude, // 经度，范围为-180~180，负数表示西经
@@ -433,7 +506,7 @@ Page({
      util.comTackPhone(e.currentTarget.dataset.phone)
   },
   checkPrice(e){
-    console.log(e)
+    // console.log(e)
     const _this = this;
     // console.log(e.currentTarget.dataset.price)
     if(_this.data.isdisabledInput == false){
@@ -452,7 +525,7 @@ Page({
     wx.getLocation({
       type: 'gcj02', //返回可以用于wx.openLocation的经纬度
       success (res) {
-        console.log(res)
+        // console.log(res)
         const lat1 = res.latitude;
         const lng1 = res.longitude;
         const distance = util.getDistance(lat1, lng1, _this.data.lat2, _this.data.lng2); //(39.928712, 116.393345, 39.928722, 116.393853)//
@@ -518,7 +591,7 @@ Page({
           }
          
         }else{
-          console.log(res);
+          // console.log(res);
           let msgStr = res.data.resultMsg;
           if( msgStr.indexOf('余额不足')>-1|| msgStr.indexOf('不是合作商户，请与喂车工作人员联系')>-1){
             wx.navigateTo({

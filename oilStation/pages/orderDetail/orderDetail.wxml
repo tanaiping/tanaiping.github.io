@@ -29,11 +29,11 @@
     </view>
     <view class="order-detail-elem ">
       <text>优惠金额</text>
-      <text class="order-val" style="color:#136FD1">-￥{{orderData.discount_amount?orderData.discount_amount:'--'}}</text>
+      <text class="order-val" style="color:#136FD1">-￥{{orderData.discount_amount?orderData.discount_amount:'0.00'}}</text>
     </view>
     <view class="order-detail-elem mb20 f24">
       <text>单价优惠</text>
-      <text class="order-val" style="color:#9B9B9B; font-size:24rpx">-￥{{orderData.discount_price?orderData.discount_price:'--'}}</text>
+      <text class="order-val" style="color:#9B9B9B; font-size:24rpx">-￥{{orderData.discount_price?orderData.discount_price:'0.00'}}</text>
     </view>
     <view class="order-detail-elem ">
       <text>实付金额</text>

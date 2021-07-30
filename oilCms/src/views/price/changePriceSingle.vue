@@ -72,8 +72,8 @@
         // rule 对应使用salePrice自定义验证的 对象
         // value 对应使用salePrice自定义验证的 数值
         // callback 回调函数
-        console.log(rule)
-        console.log(event.target.dataset.i)
+        // console.log(rule)
+        // console.log(event.target.dataset.i)
         if (value == null || String(value).trim() === "") {
           callback(new Error("不能为空"));
         } else if (value> event.target.dataset.i) {
@@ -102,7 +102,7 @@
     },
     mounted(){
       this.stationId = this.$route.query.stationId;
-      console.log(this.stationId)
+      // console.log(this.stationId)
       this.getDetailData();
     },
     methods:{
@@ -114,7 +114,7 @@
         // }
         _this.$axios.get(Price.detail+"?stationId="+_this.stationId,{headers: {'Content-Type': 'application/json','token':token}})
           .then((res) => {
-            console.log(res)
+            // console.log(res)
             if (res.data.resultCode == 0) {
               _this.ruleForm.params = res.data.data;
             }else if(res.data.resultCode == 3){
@@ -172,7 +172,7 @@
               }
               _this.$axios.post(Price.reviseOilPrice, JSON.stringify(formData),{headers: {'Content-Type': 'application/json','token':token}})
                 .then((res) => {
-                  console.log(res)
+                  // console.log(res)
                   if (res.data.resultCode == 0) {
                     // _this.$message('改价成功');
                     // setTimeout(function(){_this.$router.go(-1);},1000)

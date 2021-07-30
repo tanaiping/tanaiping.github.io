@@ -41,8 +41,9 @@
         title="选择油站"
         :visible.sync="dialogVisible1"
         width="60%"
-        :before-close="handleClose">
-         <div class="flex">
+        height='600'
+        :before-close="handleClose" id="dislog">
+         <div class="flex-search" id="searchBox">
            <el-form ref="form" label-width="80px"  @keyup.enter.native="search">
              <el-input v-model="province" placeholder="请输入省份" class="filter-input mr10"></el-input>
              <el-input v-model="city" placeholder="城市" class="filter-input mr10"></el-input>
@@ -54,7 +55,7 @@
          </div>
          <el-table
              :data="contentData"
-             :height="300"
+             height="403"
              stripe
              type="selection"
              @selection-change="selectionLineChangeHandle"
@@ -164,6 +165,8 @@ import Page from '@/components/page'
       };
 
       return{
+        diaH:0,
+        tabH:0,
         ruleForm:{
           stationObj:{},
           type:'2',
@@ -191,18 +194,35 @@ import Page from '@/components/page'
     mounted(){
       //this.getListData();
       const _this = this;
+
+
+      window.onresize = () => {
+         return (() => {
+           _this.getTabH();
+         })()
+       }
+
       let str = this.$route.params.stationObj;
       if(str||str === ''){
         this.ruleForm.stationObj = eval("(" + str + ")");
       }else{
          this.ruleForm.stationObj = '';
       }
+
       // console.log(this.ruleForm.stationObj)
       this.listPage = this.$route.params.pageNo
       //this.initStation()
       _this.getListData(_this.curPage)
     },
     methods:{
+      getTabH(){
+        const _this = this;
+        let clientH = document.body.clientHeight || document.documentElement.clientHeight;
+        _this.diaH = clientH*0.85;
+        let searchH = document.getElementById("searchBox").offsetHeight;
+        let tabH = clientH*0.85 - searchH -70-60-54-52;
+        _this.tabH = tabH;
+      },
       search(){
         const _this = this;
         _this.getListData(_this.curPage);
@@ -241,7 +261,8 @@ import Page from '@/components/page'
       },
       checkStation(){
          const _this = this;
-        this.dialogVisible1 = true
+        this.dialogVisible1 = true;
+
       },
       selectionLineChangeHandle (val) {
            this.stationIdList = val
@@ -369,4 +390,5 @@ import Page from '@/components/page'
 .tagslist .el-tag{
   margin: 0 10px 10px 0;
 }
+
 </style>

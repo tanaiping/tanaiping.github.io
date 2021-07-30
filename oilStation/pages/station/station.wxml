@@ -1,42 +1,38 @@
 <!--pages/station/station.wxml-->
 <view class="container">
   <view class="ope-box">
+    <!-- <cover-image src="../images/bgtop.png" mode="aspectFit" class="ope-bg"></cover-image> -->
     <view class="ope-pad">
       <view class="search-wrap">
         <view class="search-input">
           <image src="../images/search.png" mode="aspectFill" class="search-icon"></image>
-          <text class="search-keys {{keywords==''?'':'act'}}" bindtap="toSearch">{{keywords==''?'输入目的地，查找附近油站':keywords}}</text>
+          <view class="search-keys {{keywords==''?'':'act'}}" bindtap="toSearch">{{keywords==''?'输入目的地，查找附近油站':keywords}}</view>
         </view>
         <image src="../images/person.png" mode="aspectFill" bindtap="goUserOrder" class="person-icon"></image>
       </view>
       <!-- search-wrap -->
       <view class="filter-box">
-        <!-- <picker bindchange="bindPickerChangeOil" value="{{index_oil}}" range="{{selectOilData}}"> -->
           <view class="picker-com" catchtap="showFilterBox" data-type ='1'>
-            <text class="pick-txt">{{selectOilData[index_oil]}}#</text>
+            <view class="pick-txt">{{selectOilData[index_oil]}}#</view>
             <image  src="{{showCheck==1?'../images/down.png':'../images/up.png'}}"  mode="aspectFill" class="pick-icon"></image> 
           </view>
-        <!-- </picker> -->
-          <!-- <picker bindchange="bindPickerChangeType" value="{{index_type}}" range="{{selectTypeData}}"> -->
           <view class="picker-com" catchtap="showFilterBox" data-type = '2'>
-            <text class="pick-txt">{{selectTypeData[index_type]}}</text>
+            <view class="pick-txt">{{selectTypeData[index_type]}}</view>
             <image  src="{{showCheck==2?'../images/down.png':'../images/up.png'}}"  mode="aspectFill" class="pick-icon"></image> 
           </view>
-        <!-- </picker> -->
-        <text bindtap="switchModel"  class="type-btn">{{isMapmodel == false?'地图模式':'返回列表'}}</text>
+        <view bindtap="switchModel"  class="type-btn">{{isMapmodel == false?'地图模式':'返回列表'}}</view>
       </view>
-      <!-- filter-box -->
     </view>
     <block wx:if="{{showCheck!=0}}">
       <view class="filter-select-box">
         <block wx:if="{{showCheck==1}}">
           <block wx:for="{{selectOilData}}" wx:for-index="idx" wx:key="*this" >
-              <text class="oil-elem {{index_oil == idx?'act':''}}" catchtap="bindChangeOil" data-index ="{{idx}}">{{item}}#</text>
+              <view class="oil-elem {{index_oil == idx?'act':''}}" catchtap="bindChangeOil" data-index ="{{idx}}">{{item}}#</view>
           </block>
         </block>
         <block wx:else>
           <block wx:for="{{selectTypeData}}" wx:for-index="idx" wx:key="item.id" >
-              <text class="oil-elem {{index_type == idx?'act':''}}" catchtap="bindChangeType" data-index ="{{idx}}" >{{item}}</text>
+              <view class="oil-elem {{index_type == idx?'act':''}}" catchtap="bindChangeType" data-index ="{{idx}}" >{{item}}</view>
           </block>
         </block>
       </view>
@@ -57,41 +53,55 @@
   </view>
    <view class="map-box" wx:else >
       <map id="map" longitude="{{c_lng}}" latitude="{{c_lat}}" bindmarkertap="markertap" bindlabeltap = "markertap"   scale="12.3" markers="{{markers}}" style="width:100%;height:{{screenH}}px" show-location show-compass></map>
-      <view class="tips">共{{stationData.length}}家油站（30km内）</view>
-      <image src="../images/move.png" class="move-img"  mode="aspectFill" catchtap="moveTolocation"></image>
-        <view class="cur-station" >
-          <image src="../images/bgbox.png" class="cur-station-bg"></image>
-            <view class="station-map-con">
-              <view class="flex-row">
-                <image src="{{stationData[selectMarketId].logo?stationData[selectMarketId].logo:'../images/default.png'}}" mode="aspectFill" class="station-img"></image>
-                <view class="flex-column station-info">
-                  <view class="flex-between">
-                    <text class="station-title">{{stationData[selectMarketId].station_name}}</text>
-                    <view class="distance-box">
-                      <image src="../images/navigate.png" mode="aspectFill" class="navigate-img"></image>
-                      <text class="distance">{{stationData[selectMarketId].distance}}km</text>
-                    </view>
-                  </view>
-                  <view class="price">
-                    <view class="t1"><text class="pri1">￥<text>{{stationData[selectMarketId].sale_price}}</text></text>
+        <cover-view class="tips" style='top:{{tipsTop}}px;'>共{{stationData.length}}家油站（30km内）</cover-view>
+        <cover-image src="../images/move.png" class="move-img"  mode="aspectFill" catchtap="moveTolocation"></cover-image>
+        <cover-view class="cur-station">
+          <cover-image src="../images/bgbox.png" class="cur-station-bg"></cover-image>
+            <cover-view class="station-map-con">
+              <cover-view class="flex-row">
+                <cover-image src="{{stationData[selectMarketId].logo?stationData[selectMarketId].logo:'../images/default.png'}}" mode="aspectFill" class="station-img"></cover-image>
+                <cover-view class="flex-column station-info">
+                  <cover-view class="flex-between">
+                    <cover-view class="station-title">{{stationData[selectMarketId].station_name}}</cover-view>
+                    <cover-view class="distance-box">
+                      <cover-image src="../images/navigate.png" mode="aspectFill" class="navigate-img"></cover-image>
+                      <cover-view class="distance">{{stationData[selectMarketId].distance}}km</cover-view>
+                    </cover-view>
+                  </cover-view>
+                  <cover-view class="price">
+                    <cover-view class="t1">
+                      <cover-view class="pri1"><cover-view class="ico-p">¥</cover-view><cover-view class="sale">{{stationData[selectMarketId].sale_price}}</cover-view></cover-view>
                       <block wx:if="{{stationData[selectMarketId].sale_price != stationData[selectMarketId].official_price}}">
-                        <text class="pri2">￥{{stationData[selectMarketId].official_price}}</text> 已降{{stationData[selectMarketId].discount_price}}元
+                        <cover-view class="pri2">
+                          <cover-view class="p8"></cover-view>
+                          <cover-view class="pri-h">
+                            ¥{{stationData[selectMarketId].official_price}}
+                            <cover-view class="line-through"></cover-view>
+                          </cover-view>
+                          <cover-view class="p8"></cover-view>
+                        </cover-view> 
+                        <cover-view class="pri3">已降{{stationData[selectMarketId].discount_price}}元</cover-view>
                       </block>
-                  
-                    </view> 
+                    </cover-view> 
                     <block wx:if="{{stationData[selectMarketId].sale_price != stationData[selectMarketId].official_price}}">
-                      <view class="desc">加￥200约省￥{{stationData[selectMarketId].dis_price}}</view>
+                      <cover-view class="desc"><cover-image src="../images/bg02.png" mode="aspectFill" class="disprice-img"></cover-image>
+                        <cover-view class="dis-box">
+                        <cover-view class="p16"></cover-view>
+                        加¥200约省¥{{stationData[selectMarketId].dis_price}}
+                        <cover-view class="p16"></cover-view></cover-view>
+                      </cover-view>
                     </block>
-                  </view>
-                  <text class="address">{{stationData[selectMarketId].address}}</text>
-                  <view class="map-btn-box">
-                    <view class="btn1" bindtap="addOil" data-id="{{stationData[selectMarketId].id}}">加油</view>
-                    <view class="btn2" bindtap="openMap"  data-latitude="{{stationData[selectMarketId].latitude}}"  data-longitude="{{stationData[selectMarketId].longitude}}" data-stationName="{{stationData[selectMarketId].station_name}}" data-address="{{stationData[selectMarketId].address}}">导航</view>
-                  </view>
-                </view>
-            </view>
+                  </cover-view>
+                  <cover-view class="address">{{stationData[selectMarketId].address}}</cover-view>
+                  <cover-view class="map-btn-box">
+                    <cover-view class="btn1" catchtap="addOil" data-id="{{stationData[selectMarketId].id}}">加油</cover-view>
+                    <cover-view class="btn2" catchtap="openMap"  data-latitude="{{stationData[selectMarketId].latitude}}"  data-longitude="{{stationData[selectMarketId].longitude}}" data-stationName="{{stationData[selectMarketId].station_name}}" data-address="{{stationData[selectMarketId].address}}">导航</cover-view>
+                  </cover-view>
+                </cover-view>
+            </cover-view>
 
-            </view>
-        </view>
+            </cover-view>
+        </cover-view>
+      
   </view>
 </view>

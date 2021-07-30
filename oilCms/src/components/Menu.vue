@@ -64,7 +64,16 @@
           },
           {
             name:"用户管理",
-            url:"/userList",
+            child:[
+              {
+                name:"用户信息",
+                url:"/userList",
+              },
+              {
+                name:"设备信息",
+                url:"/deviceList",
+              }
+            ]
           },
           {
             name:"系统管理",
@@ -78,9 +87,40 @@
       MenuItem,
     },
     created(){
-      this.defaultActive = this.$route.path
+      let path = this.$route.path;
+      let sessionPath = sessionStorage.getItem('path');
+      let isflag = false;
+      for(let item of this.items){
+        if(path == item.url) isflag = true;
+      }
+      if(!isflag){
+        path = sessionPath;
+      }
+      this.defaultActive = path;
+
     },
     methods: {
+    },
+    watch:{
+      $route: function (to, from) {
+        const _this = this;
+        if (to != from) {
+            if(!to.query.isChangeMenu){
+              if(to.meta.top){
+                _this.defaultActive = to.path;
+                sessionStorage.setItem("path", to.path);
+              }else{
+                _this.defaultActive = from.path;
+                sessionStorage.setItem("path", from.path);
+              }
+
+            }else{
+               _this.defaultActive = to.path;
+               sessionStorage.setItem("path", to.path);
+            }
+        }
+      }
+
     }
   }
 </script>

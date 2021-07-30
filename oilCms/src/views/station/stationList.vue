@@ -15,6 +15,7 @@
           :data="contentData"
           :height="tabH"
           stripe
+          ref="tableList"
           style="width: 100%">
           <el-table-column align="center" width="50px"
           label="编号">
@@ -99,17 +100,38 @@ import Page from '@/components/page'
       }
 
     },
+    //路由守卫
+    beforeRouteEnter:(to,from,next)=>{
+        //从详情跳转
+        if (from.path == '/stationDetail') {
+           to.meta.keepAlive = true;
+        }else{
+          to.meta.keepAlive = false;
+        }
+        next()
+    },
     mounted(){
       const _this = this;
+
       _this.$nextTick(() => {
           _this.getTabH();
+          setTimeout(function(){
+            _this.$refs.tableList.bodyWrapper.scrollTop = parseFloat(sessionStorage.getItem('his_scroll'));
+            sessionStorage.clear();
+            _this.$route.meta.keepAlive = false
+          },20)
       });
       window.onresize = () => {
          return (() => {
            _this.getTabH();
          })()
        }
-      _this.getListData(_this.curPage);
+       if(_this.$route.meta.keepAlive){
+         _this.getSessionInfo()
+       }else{
+          _this.getListData(_this.curPage);
+       }
+
 
     },
     methods:{
@@ -133,12 +155,13 @@ import Page from '@/components/page'
       changeCurPage(p){
          const _this = this;
         _this.curPage = p;
-        // console.log(_this.curPage);
+        this.$refs.tableList.bodyWrapper.scrollTop = 0;
         _this.getListData(_this.curPage);
       },
       handleDetail(index, row) {
         // console.log(index, row);
         const _this = this;
+        _this.saveInfo();
         _this.$router.push({name:'stationDetail',"query":{'stationId':row.stationId}})
       },
       getListData(pageNo) {
@@ -181,6 +204,32 @@ import Page from '@/components/page'
           .catch((error) => {
             window.console.log(error);
           })
+      },
+      saveInfo(){
+        const _this = this;
+        let scroll = this.$refs.tableList.bodyWrapper.scrollTop;
+        let params = {
+          phone:_this.phone,
+          address:_this.address,
+          station_name:_this.statioName,
+        }
+        sessionStorage.setItem('his_scroll',scroll)
+        sessionStorage.setItem('his_page',_this.curPage);
+        sessionStorage.setItem('his_data',JSON.stringify(_this.contentData));
+        sessionStorage.setItem('his_params',JSON.stringify(params));
+        sessionStorage.setItem('his_total',_this.total);
+        sessionStorage.setItem('his_pageSize',_this.pageSize);
+      },
+      getSessionInfo(){
+        const _this = this;
+        _this.curPage = parseInt(sessionStorage.getItem('his_page'));
+        _this.total = parseInt(sessionStorage.getItem('his_total'));
+        _this.pageSize = parseInt(sessionStorage.getItem('his_pageSize'));
+        _this.contentData =JSON.parse(sessionStorage.getItem('his_data'));
+        let params = JSON.parse(sessionStorage.getItem('his_params'));
+        _this.phone = params.phone
+        _this.address = params.address
+        _this.statioName = params.statioName
       },
     }
   }

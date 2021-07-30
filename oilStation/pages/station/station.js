@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    tipsTop:110,
     pageNo:1,
     isMapmodel: false,// ==false 列表模式  ==true 地图模式
     screenH:0,
@@ -188,11 +189,14 @@ Page({
   },
   showFilterBox(e){
     let  type = e.currentTarget.dataset.type;
+    let tipsTop = 181;
     if(this.data.showCheck == type){
       type = 0;
+      tipsTop = 110;
     }
     this.setData({
-      showCheck: type
+      showCheck: type,
+      tipsTop:tipsTop
     })
   },
   bindChangeOil: function(e) {//切换油号
@@ -200,6 +204,7 @@ Page({
     _this.setData({
       index_oil: e.currentTarget.dataset.index,
       showCheck: 0,
+      tipsTop:110,
       pageNo:1,
     })
     _this.getStation();
@@ -209,6 +214,7 @@ Page({
     _this.setData({
       index_type: e.currentTarget.dataset.index,
       showCheck: 0,
+      tipsTop:110,
       pageNo:1,
     })
     _this.getStation();
@@ -252,14 +258,15 @@ Page({
                     "iconPath":'../images/maptips.png',
                     "width":116,
                     "height":62,
+                    "zIndex":index*10,
                     "label":{
-                    "content":'￥'+item.sale_price,
+                    "content":'¥'+item.sale_price,
                     "color":'#333',
                     "fontSize":'30rpx',
                     "display":'ALWAYS',
                     'anchorX':'-15',
                     "anchorY":'-46',
-                    'textAlign':'right'
+                    'textAlign':'right',
                     }
                   }
                   if(index == 0){//默认第一个选中
@@ -284,7 +291,7 @@ Page({
                   discount_total = util.reservedDecimal(discount_total,2)
 
                   item.dis_price = discount_total;
-                  let dis = item.official_price - item.sale_price
+                  let dis = item.list_price - item.sale_price
                   item.dis = dis.toFixed(2)
                   newObj.push(item);
                 })
@@ -310,7 +317,11 @@ Page({
       _this.selectMarket(_this.data.selectMarketId); //地图模式 默认选中第一个
   },
   moveTolocation:function(e){
-    var mapCtx = wx.createMapContext("map");
-    mapCtx.moveToLocation();
-},
+      var mapCtx = wx.createMapContext("map");
+      mapCtx.moveToLocation();
+  },
+  fff:function(e){
+    console.log(e)
+      return false;
+  }
 })

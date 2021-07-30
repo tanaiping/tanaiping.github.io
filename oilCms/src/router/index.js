@@ -30,7 +30,8 @@ const routes = [
       path: '/home',
       redirect: '/station',
       meta:{
-        title:'首页'
+        title:'首页',
+        top:1,
       },
       component: () => import('@/views/home'),
       children:[
@@ -39,7 +40,8 @@ const routes = [
           path: '/station',
           redirect: '/stationList',
           meta:{
-            title:'油站管理'
+            title:'油站管理',
+            top:1,
           },
           component: () => import('@/views/station/index'),
           children:[
@@ -47,7 +49,8 @@ const routes = [
               name: 'stationList',
               path: '/stationList',
               meta:{
-                title:'油站管理'
+                title:'油站管理',
+                top:1,
               },
               component: () => import('@/views/station/stationList')
             },
@@ -66,7 +69,8 @@ const routes = [
           path: '/price',
           redirect: '/priceList',
           meta:{
-            title:'价格管理'
+            title:'价格管理',
+            top:1,
           },
           component: () => import('@/views/price/index'),
           children:[
@@ -74,9 +78,10 @@ const routes = [
               name: 'priceList',
               path: '/priceList',
               meta:{
-                title:'价格管理'
+                title:'价格管理',
+                top:1,
               },
-              component: () => import('@/views/price/priceList')
+              component: () => import('@/views/price/priceList'),
             },
             {
               name: 'changePriceSingle',
@@ -84,7 +89,7 @@ const routes = [
               meta:{
                 title:'修改售价'
               },
-              component: () => import('@/views/price/changePriceSingle')
+              component: () => import('@/views/price/changePriceSingle'),
             },
             {
               name: 'changePriceMul',
@@ -92,7 +97,7 @@ const routes = [
               meta:{
                 title:'批量改价'
               },
-              component: () => import('@/views/price/changePriceMul')
+              component: () => import('@/views/price/changePriceMul'),
             }
           ]
         },
@@ -101,7 +106,8 @@ const routes = [
           path: '/order',
           redirect: '/orderList',
           meta:{
-            title:'订单管理'
+            title:'订单管理',
+            top:1,
           },
           component: () => import('@/views/order/index'),
           children:[
@@ -109,7 +115,8 @@ const routes = [
               name: 'orderList',
               path: '/orderList',
               meta:{
-                title:'订单管理'
+                title:'订单管理',
+                top:1,
               },
               component: () => import('@/views/order/orderList')
             },
@@ -128,7 +135,8 @@ const routes = [
           path: '/statistics',
           redirect: '/statisticsList',
           meta:{
-            title:'数据统计'
+            title:'数据统计',
+            top:1,
           },
           component: () => import('@/views/statistics/index'),
           children:[
@@ -136,7 +144,8 @@ const routes = [
               name: 'statisticsList',
               path: '/statisticsList',
               meta:{
-                title:'数据统计'
+                title:'数据统计',
+                top:1,
               },
               component: () => import('@/views/statistics/statisticsList')
             },
@@ -147,7 +156,8 @@ const routes = [
           path: '/user',
           redirect: '/userList',
           meta:{
-            title:'用户管理'
+            title:'用户管理',
+            top:1,
           },
           component: () => import('@/views/user/index'),
           children:[
@@ -155,9 +165,19 @@ const routes = [
               name: 'userList',
               path: '/userList',
               meta:{
-                title:'用户管理'
+                title:'用户信息',
+                top:1,
               },
               component: () => import('@/views/user/userList')
+            },
+            {
+              name: 'deviceList',
+              path: '/deviceList',
+              meta:{
+                title:'设备信息',
+                top:1,
+              },
+              component: () => import('@/views/user/deviceList')
             },
           ]
         },
@@ -166,7 +186,8 @@ const routes = [
           path: '/sys',
           redirect: '/employerList',
           meta:{
-            title:'系统管理'
+            title:'系统管理',
+            top:1,
           },
           component: () => import('@/views/sys/index'),
           children:[
@@ -174,7 +195,8 @@ const routes = [
               name: 'employerList',
               path: '/employerList',
               meta:{
-                title:'员工管理'
+                title:'员工管理',
+                top:1,
               },
               component: () => import('@/views/sys/employerList')
             },
@@ -225,5 +247,6 @@ const title = to.meta && to.meta.title;
   }
 
 });
+
 
 export default router

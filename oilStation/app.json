@@ -6,7 +6,6 @@
     "pages/orderSubmit/orderSubmit",
     "pages/order/order",
     "pages/orderLose/orderLose",
-    
     "pages/station/station",
     "pages/search/search",
     "pages/components/nav/nav"
@@ -19,7 +18,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "微智行加油",
+    "navigationBarTitleText": "智行加油",
     "navigationBarTextStyle": "black"
   },
   "style": "v2",

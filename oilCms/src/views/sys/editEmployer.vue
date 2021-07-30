@@ -46,10 +46,10 @@ import {Login} from '@/config/url'
           const formData = {
             userId:_this.id
           }
-          console.log(formData)
+          // console.log(formData)
           _this.$axios.get(Login.getEmployeeInfo+"?userId="+_this.id,{headers: {'Content-Type': 'application/json','token':token}})
             .then((res) => {
-              console.log(res)
+              // console.log(res)
               if (res.data.resultCode == 0) {
                 if(res.data.data){
                    _this.employee = res.data.data;

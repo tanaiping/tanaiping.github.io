@@ -7,9 +7,12 @@
         <el-input v-model="source" placeholder="请输入渠道名称" class="filter-input mr10"></el-input>
         <el-input v-model="phone" placeholder="请输入手机号" class="filter-input mr10"></el-input>
         <el-date-picker
-              v-model="createTime"
-              type="datetime"
-              placeholder="付款时间" class="mr10">
+              v-model="dateRange"
+              type="daterange"
+              value-format="yyyy-MM-dd"
+              range-separator="至"
+              start-placeholder="开始日期"
+              end-placeholder="结束日期" class="mr10">
             </el-date-picker>
         <el-select v-model="status_v" placeholder="请选择订单状态" class="mr10">
           <el-option label="全部" value='-1'></el-option>
@@ -21,7 +24,7 @@
         </el-select>
         <el-button  icon="el-icon-refresh" @click="resetForm">重置</el-button>
         <el-button type="primary"  icon="el-icon-search" @click="search">查询</el-button>
-        <el-button type="error" icon="el-icon-download" @click="exportTable">导出表格</el-button>
+
       </el-form>
     </div>
     <!-- <div class="flex" style="padding: 20px 0;">
@@ -33,11 +36,15 @@
     </div> -->
     <!-- 过虑条件  end-->
     <!-- 标题  end-->
-    <div class="mt20" :style="{'height':tabH+'px','overflow':'auto'}">
+    <div class="flex-end mt20">
+      <el-button type="primary" icon="el-icon-download" @click="exportTable">导出表格</el-button>
+    </div>
+    <div :style="{'height':tabH+'px','overflow':'auto'}">
       <el-table
           :data="contentData"
           stripe
           :height="tabH"
+          ref="tableList"
           style="width: 100%">
           <el-table-column align="center"
           width="50px"
@@ -82,31 +89,31 @@
             <el-table-column align="center"
               label="发改委价">
               <template slot-scope="scope">
-                ￥{{scope.row.official_price==''?'--':scope.row.official_price}}
+                ￥{{!scope.row.official_price?'0.00':scope.row.official_price}}
               </template>
             </el-table-column>
             <el-table-column align="center" width="70px"
               label="挂牌价">
               <template slot-scope="scope">
-                ￥{{scope.row.list_price==''?'--':scope.row.list_price}}
+                ￥{{!scope.row.list_price?'0.00':scope.row.list_price}}
               </template>
             </el-table-column>
             <el-table-column align="center" width="70px"
               label="协议价">
               <template slot-scope="scope">
-                ￥{{scope.row.contract_price==''?'--':scope.row.contract_price}}
+                ￥{{!scope.row.contract_price?'0.00':scope.row.contract_price}}
               </template>
             </el-table-column>
             <el-table-column align="center" width="65px"
               label="售价">
               <template slot-scope="scope">
-                ￥{{scope.row.sale_price==''?'--':scope.row.sale_price}}
+                ￥{{!scope.row.sale_price?'0.00':scope.row.sale_price}}
               </template>
             </el-table-column>
             <el-table-column align="center"
               label="加油金额">
               <template slot-scope="scope">
-                ￥{{scope.row.total_amount==''?'--':scope.row.total_amount}}
+                ￥{{!scope.row.total_amount?'0.00':scope.row.total_amount}}
               </template>
             </el-table-column>
             <el-table-column
@@ -116,25 +123,25 @@
             <el-table-column  align="center" width="70px"
               label="服务费">
               <template slot-scope="scope">
-                ￥{{scope.row.service_fee_amount==''?'--':scope.row.service_fee_amount}}
+                ￥{{!scope.row.service_fee_amount?'0.00':scope.row.service_fee_amount}}
               </template>
             </el-table-column>
             <el-table-column  align="center"
               label="优惠金额">
               <template slot-scope="scope">
-                ￥{{scope.row.discount_amount==''?'--':scope.row.discount_amount}}
+                ￥{{!scope.row.discount_amount?'0.00':scope.row.discount_amount}}
               </template>
             </el-table-column>
             <el-table-column  align="center" width="70px"
               label="实付款">
               <template slot-scope="scope">
-                ￥{{scope.row.pay_amount==''?'--':scope.row.pay_amount}}
+                ￥{{!scope.row.pay_amount?'0.00':scope.row.pay_amount}}
               </template>
             </el-table-column>
             <el-table-column align="center"
               label="协议金额">
               <template slot-scope="scope">
-                ￥{{scope.row.contract_amount==''?'--':scope.row.contract_amount}}
+                ￥{{!scope.row.contract_amount?'0.00':scope.row.contract_amount}}
               </template>
             </el-table-column>
             <el-table-column align="center"
@@ -222,6 +229,7 @@ import orderDetail from '@/components/orderDetail'
     },
     data(){
       return{
+        scroll:0,
         status:['支付成功','支付中','支付失败','退款成功','退款中','退款失败','支付超时','下单成功','下单失败','申请退款'],
         status_v:'',
         orderNo:'',
@@ -229,7 +237,7 @@ import orderDetail from '@/components/orderDetail'
         phone:'',
         source:'',
         stationName:'',
-        createTime:'',
+        dateRange:'',
         dialogVisible1: false,
         dialogVisible2: false,
         contentData: [],
@@ -245,24 +253,44 @@ import orderDetail from '@/components/orderDetail'
       }
 
     },
+    //路由守卫
+    beforeRouteEnter:(to,from,next)=>{
+        //从详情跳转
+        if (from.path == '/orderDetail') {
+           to.meta.keepAlive = true;
+        }else{
+          to.meta.keepAlive = false;
+        }
+        next()
+    },
     mounted(){
       const _this = this;
+      _this.phone = _this.$route.query.phone;
       _this.$nextTick(() => {
           _this.getTabH();
+          setTimeout(function(){
+            _this.$refs.tableList.bodyWrapper.scrollTop = parseFloat(sessionStorage.getItem('his_scroll'));
+            sessionStorage.clear();
+            _this.$route.meta.keepAlive = false
+          },20)
       });
       window.onresize = () => {
          return (() => {
            _this.getTabH();
          })()
        }
-      this.getListData(_this.curPage);
+      if(_this.$route.meta.keepAlive){
+        _this.getSessionInfo()
+      }else{
+         _this.getListData(_this.curPage);
+      }
     },
     methods:{
       getTabH(){
         const _this = this;
         let clientH = document.body.clientHeight || document.documentElement.clientHeight;
         let searchH = document.getElementById("searchBox").offsetHeight;
-        let tabH = clientH - 60 - 20 - searchH -20 - 52;
+        let tabH = clientH - 60 - 20 - searchH -20 - 52 -40;
         _this.tabH = tabH;
       },
       search(){
@@ -273,7 +301,7 @@ import orderDetail from '@/components/orderDetail'
       resetForm(){
         this.phone = '';
         this.source = '';
-        this.createTime = '';
+        this.dateRange = '';
         this.orderNo = '';
         this.statioName = '';
         this.status_v = '';
@@ -281,12 +309,13 @@ import orderDetail from '@/components/orderDetail'
       changeCurPage(p){
         const _this = this;
         this.curPage = p;
-        // console.log(this.curPage);
+        this.$refs.tableList.bodyWrapper.scrollTop = 0;
         _this.getListData(_this.curPage);
       },
       handleDetail(index, row) {
         // console.log(index, row);
         const _this = this;
+        _this.saveInfo();
          _this.$router.push({name:'orderDetail',"query":{'orderNo':row.orderNo}})
 
       },
@@ -324,9 +353,9 @@ import orderDetail from '@/components/orderDetail'
         }
         _this.$axios.post(Order.cancelOrder, JSON.stringify(formData),{headers: {'Content-Type': 'application/json','token':token}})
           .then((res) => {
-            console.log(res)
+            // console.log(res)
             if (res.data.resultCode == 0) {
-              console.log(status)
+              // console.log(status)
               if(status == 4){
                  // _this.$message('标记退款成功');
                 _this.dialogVisible1 = false;
@@ -374,13 +403,21 @@ import orderDetail from '@/components/orderDetail'
       getListData(pageNo) {
         const _this = this;
         const token = localStorage.getItem('token');
+        const dateRange = _this.dateRange;
+        let startTime = '';
+        let endTime = '';
+        if(dateRange.length>0){
+          startTime = dateRange[0]
+          endTime = dateRange[1]
+        }
         const formData = {
           pageNo:pageNo,
           source:_this.source,
           orderNo:_this.orderNo,
           phone:_this.phone,
           statio_name:_this.stationName,
-          createTime:_this.createTime,
+          startTime:startTime,
+          endTime:endTime,
           status:_this.status_v
         }
         _this.$axios.post(Order.orderList, JSON.stringify(formData),{headers: {'Content-Type': 'application/json','token':token}})
@@ -425,13 +462,21 @@ import orderDetail from '@/components/orderDetail'
       exportTable(){
         const _this = this;
         const token = localStorage.getItem('token');
+        const dateRange = _this.dateRange;
+        let startTime = '';
+        let endTime = '';
+        if(dateRange.length>0){
+          startTime = dateRange[0]
+          endTime = dateRange[1]
+        }
         const formData = {
           pageNo:_this.curPage,
           source:_this.source,
           orderNo:_this.orderNo,
           phone:_this.phone,
           statio_name:_this.stationName,
-          createTime:_this.createTime,
+          startTime:startTime,
+          endTime:endTime,
         }
         _this.$axios.post(Order.exportOrderList, JSON.stringify(formData),{headers: {'Content-Type': 'application/json','token':token}})
           .then((res) => {
@@ -457,6 +502,54 @@ import orderDetail from '@/components/orderDetail'
             window.console.log(error);
           })
 
+      },
+      saveInfo(){
+        const _this = this;
+        let scroll = this.$refs.tableList.bodyWrapper.scrollTop;
+        const dateRange = _this.dateRange;
+        let startTime = '';
+        let endTime = '';
+        if(dateRange.length>0){
+          startTime = dateRange[0]
+          endTime = dateRange[1]
+        }
+        let params = {
+          source:_this.source,
+          orderNo:_this.orderNo,
+          phone:_this.phone,
+          stationName:_this.stationName,
+          startTime:startTime,
+          endTime:endTime,
+          status_v:_this.status_v
+        }
+        sessionStorage.setItem('his_scroll',scroll)
+        sessionStorage.setItem('his_page',_this.curPage);
+        sessionStorage.setItem('his_data',JSON.stringify(_this.contentData));
+        sessionStorage.setItem('his_params',JSON.stringify(params));
+        sessionStorage.setItem('his_total',_this.total);
+        sessionStorage.setItem('his_pageSize',_this.pageSize);
+      },
+      getSessionInfo(){
+        const _this = this;
+        _this.curPage = parseInt(sessionStorage.getItem('his_page'));
+        _this.total = parseInt(sessionStorage.getItem('his_total'));
+        _this.pageSize = parseInt(sessionStorage.getItem('his_pageSize'));
+        _this.contentData =JSON.parse(sessionStorage.getItem('his_data'));
+        let params = JSON.parse(sessionStorage.getItem('his_params'));
+        _this.source = params.source
+        _this.orderNo = params.orderNo
+        _this.stationName = params.stationName
+        _this.phone = params.phone
+        _this.status_v = params.status_v
+
+        if(params.startTime == ''||params.endTime == ''){
+          _this.dateRange = '';
+        }else{
+          let dateRange = [];
+          dateRange[0] = params.startTime
+          dateRange[1] = params.endTime
+          _this.dateRange = dateRange;
+        }
       },
     }
   }

@@ -469,9 +469,9 @@ TCP 连接三次握手  断开 四次挥手
  csrf  跨站请求伪造 cross-site request forgery
  
  防御CSRF攻击：
- 1  验证 HTTP Referer 字段
+ 1 验证 HTTP Referer 字段
  2.在请求地址中添加 token 并验证
- 3. 请求头中自定义属性验证 token  现在的登录token验证（最好的）
+ 3.请求头中自定义属性验证 token  现在的登录token验证（最好的）
  
  Promise 的声明
  
@@ -817,4 +817,360 @@ build->utils.js ->style-loader  -->publicPath
 
 利用wxs  完成wxml里面的脚本  用来计算对数据特殊处理；
 
+
+
+webpack
+ /**
+  *安装命令：
+  * npm init -y
+  * 全局安装 npm install webpack webpack-cli –g   （不推荐）  
+  * 本地安装：npm install webpack webpack-cli --save-dev （推荐）
+  * 开发环境配置 让代码运行
+  * 运行项目指令：
+ 	webpack:会将打包结果输出；
+ 	npx webpack-dev-server 只会在内存中编译打包，没有输出
+  */
+
+modules.exports = {
+	entry:'./src/js/index.js',
+	output:{
+		filename:'js/built.js',
+		path:resolve(__dirname,'build')
+	},
+	module:{
+		//处理图片资源
+		{
+			test:/\.(jpg|png|gif)/,
+			loader:['url-loader'],
+			options:{
+				limit:8*1024,
+				name:[hash:10].[ext],
+				esModule:false,
+				outputpath:'imgs'
+			}
+		},
+		//处理css资源
+		{
+			test:/\.css$/,
+			use:[
+				// 'style-loader',//创建style标签 把样式放入
+				MiniCssExtractPlugin.loader,//取代style-loader 提取js中的css文件  生成单独的css文件
+				'css-loader',
+				]
+		},
+		/**
+		 * 正常情况下 一个文件只能执行一个loader处理
+			当一个文件要被多个loader处理 那么一定要指定 loader的执行先后顺序  加 enforce:'pre'
+			先执行eslint 再执行babel （1.先语法检测再兼容  2.如果先）
+		 */
+		
+		//处理语法检查资源
+		{
+			/**
+			 * 
+			 package.json中eslintConfig设置
+			 "eslintConfig":{
+				 "extend":"airbnb-base"//继续
+			 }
+			 airbnb --> eslint-config-airbnb-base  eslint-plugin-import    eslint
+			 */
+			test:/\.js$/,
+			exclude:/node_modules/，//不检查第三方的库脚本；
+			include:resolve(__dirname,'src'), //只检查src目标下的js文件
+			enforce:'pre', //优先执行   post 延后执行
+			loader:'eslint-loader'
+			options:{
+				fix:true//自动修复eslint的错误
+			}
+		},
+		{
+			test:/\.js$/,
+			exclude:/node_modules/,
+			loader:'babel-loader',
+			options:[
+				{
+					'@babel/preset-env',
+					{
+						//按需加载
+						useBuiltIns:'usage',
+						//指定core-js版本
+						corejs:{
+							version:3
+						},
+						//指定兼容性做到哪个版本浏览器
+						targets:{
+							chrome:'60',
+							firefox:'60',
+							ie:'9',
+							safari:'10',
+							edge:'17'
+						}
+					}
+				}
+			]
+		},
+	},
+	plugins:[//插件集
+		new HtmlWebpackPlugin({ //此插件生成一个html
+			template:'./src/index.html'
+		}),
+		new MiniCssExtractPlugin({//
+			filename:'css/built.css'
+		}),
+		new OptimizeCssAssetsWebpackPlugin()//压缩css
+		
+	],
+	mode:'development', //生产环境：production
+	devServer:{
+		contentBase:resolve(__dirname,'build'),
+		compress:true,//压缩
+		port:3000,
+		open:true
+	},
+	devtool:'inline-source-map', //
+	resolve: {//解析模块规则
+	  extensions: ['.js', '.vue', '.json'],//配置省略文件路径的后缀名
+	  alias: {//配置路径别名
+		'vue$': 'vue/dist/vue.esm.js',
+		'@': resolve('src'),
+		},
+   }
+}
+
+
+webpack兼容 一般都是loader 
+1. css兼容性处理：postcss --> postcss-loader postcss-preset-env
+2. js兼容处理： babel-loader @babel/core
+	1.基本的js兼容性处理--》 @babel/preset-env
+	  问题：只能转换基本语法， 如promise高级语法不能转换
+	2.全部JS兼容处理 --》@babel-polyfill (下载后直接import引入即可)
+	  问题：我只要解决部分兼容性问题，但是将所有兼容性代码引入，体积太大了~
+	3.需要做兼容性处理的就做：按需加载---》core-js
+	{
+		test:/\.js$/,
+		exclude:/node_modules/,
+		loader:'babel-loader',
+		options:[
+			{
+				'@babel/preset-env',
+				{
+					//按需加载
+					useBuiltIns:'usage',
+					//指定core-js版本
+					corejs:{
+						version:3
+					},
+					//指定兼容性做到哪个版本浏览器
+					targets:{
+						chrome:'60',
+						firefox:'60',
+						ie:'9',
+						safari:'10',
+						edge:'17'
+					}
+				},
+				cacheDirectory:true  //开启babel缓存  第二次构建时，会读取之前的缓存
+			}
+			
+		]
+		use:[//执行顺序是自下往上
+			// 'style-loader',//创建style标签 把样式放入
+			MiniCssExtractPlugin.loader,//取代style-loader 提取js中的css文件  生成单独的css文件
+			'css-loader',
+			]
+	},
+文件压缩一般都是插件 plugin
+语法检查eslint   eslint-loader   airbnb 代码检查规范   
+//eslint-disabled-next-line    执行这条语句;(下一行不执行检查)
+webpack默认执行生产环境  也就是 process.env.NODE_ENV === 'production'   生产环境下会自动压缩js代码 
+
+/**
+ * HMR hot module replacement  热模块替换/模块热替换
+ 作用：一个模块发生变化， 只会重新打包这一个模块  极大的提供构建速度
+ 样式文件： 可以使用HMR功能：因为style-loader内部实现了~
+ JS文件： 默认是不能使用HMR功能的--》修改js代码  添加支持HMR功能的代码
+ 注意：只能对非入口文件的JS进行热模块替换
+ if(module.hot){
+	 //一旦module.hot为true 说明开启了HMR功能 --》让HMR功能代码生效
+	 module.hot.accept('./print.js',function(){
+		 //方法会监听print.js的变化  一旦发生变化 其他默认不会重新构建
+		 //会执行后面的回调函数
+		 print();
+	 }) //如果多个js文件发生修改  可以写多个
+	 module.hot.accept('./public.js',function(){
+	 		 //方法会监听public.js的变化  一旦发生变化 其他默认不会重新构建
+	 		 //会执行后面的回调函数
+	 		 print();
+	 })
+ }
+ HTML文件：默认是不能使用HMR功能 同时会导致问题： HTML不能热更新了；
+ 解决：修改entry入口  将HTML文件引入
+ */
+
+
+
+/**
+ * source-map 一种提供源代码到构建后代码映射技术（如果构建代码出错了，通过映射可以追踪代码错误信息）
+   [inline-|hidden-|eval-][nosources-|][cheap-[module-]][source-map]
+   source-map：外部   错误代码准备信息 和源代码错误位置
+   inline-source-map：内部 只生成一个内联souce-map   错误代码准备信息 和源代码错误位置
+   hidden-source-map： 外部  错误代码错误原因，但是没有错误位置，不能追踪到源码代码错误 只能提示到构建代码的错误位置
+   eval-source-map：内部 每个文件都生成对应的source-map 都在eval   错误代码准备信息 和源代码错误位置
+	nosources-source-map ：外部 错误代码准备信息 但没有任何源代码信息
+	cheap-source-map:外部 错误代码准备信息 和源代码错误位置  错误信息只精确到‘行’ 不会提示到哪一列
+	cheap-module-source-map:外部 错误代码准备信息 和源代码错误位置 会将loader的source map加入
+ */
+
+开发环境：速度快 调试更友好 eval-source-map(推荐) /  eval-cheap-module-source-map
+速度快（eval>inline>cheap>...） eval-cheap-source-map eval-source-map 
+ 调试更友好 souce-map  cheap-module-source-map  cheap-source-map
+生产环境:源代码要不要隐藏 调试要不要更友好
+内联会让体积变大 所以生产环境不用内联
+nosources-source-map  全部隐藏
+hidden-source-map  只隐藏源代码  会提示构建后代码
+source-map（生产推荐）
+
+##生产环境性能优化
+1.打包性能优化
+
+oneof[] //一个只会匹配一个  注意：不能有两个配置处理同一个类型文件；  提升构建速度 
+
+
+缓存：
+1.babel缓存   第二次构建更快
+cacheDirectory:true  //开启babel缓存  第二次构建时，会读取之前的缓存
+2. 文件资源缓存
+   1.hash ：每次webpack打包都会生成唯一的hash值
+     问题： 因为js css同时使用一个hash值  如果重新打包  会导致缓存失效（只能我只修改了一个CSS文件 JS跟着缓存失效）
+   2.chunkhash: 根据chunk生成的hash值 如果打包来源于同一个chunk   那么hash值是一样的；
+    问题：js 和css的值还是一样；  因为CSS是在JS中被引入的  所以同属于一个chunk
+   3.contenthash 根据内容生成不一样的hash值  不同文件的hash值一定不一样； 
+	--》让代码上线  缓存更好使用
+	
+	
+tree shaking '树摇':去除无用代码    
+前提：1.必须使用es6模块化 2.开启production环境
+作用：减少代码体积
+在package.json中配置
+sideEffects:false  所有代码都没有副作用 （都可以进行 tree shaking）
+   问题： 可能会把css /@babel/polyfill(副作用)文件干掉
+   "sideEffects":['*.css','*.less']  // 标记为没有副作用的代码 css less sass等等
+ 
+ 
+  代码分割 code split
+/**
+ * 1可以将node_modules中代码单独打包一个chunk最终输出
+   2.自动分析多入口chunk中， 有没有公共的文件 如果有会打包成单独一个chunk
+ */
+optimization:{
+		splitChunks:{
+			chunks:'all'
+		}
+	},
+	
+	/**
+	 *3. import 动态导入语法；  能将某个文件单独打包
+	 webpackChunkName:'text'  给单独打包的文件 取固定的名字
+	 */
+	import(/*webpackChunkName:'text'*/'./test').then((result)=> {
+		console.log(result)
+	})
+	
+	js懒加载
+	//懒加载  当文件需要使用时才加载
+	 document.getElementById('btn').onclick = function(){
+		 import(/*webpackChunkName:'text',webpackPrefetch:true*/'./test').then((result)=> {
+		 	console.log(result)
+		 })
+	 }
+	 //预加载  webpackPrefetch:true   会在使用之前 提前加载js文件  有兼容性的问题
+	 //正常加载可以认为并行加载（同一时间加载多文件） 
+	 //预加载 prefrech: 等其他资源加载完毕  浏览器空闲了 再偷偷加载资源
+	 
+	 
+	 PWA 激进式网络开发应用程序（离线可访问）workbox-webpack-plugin
+	 
+	 thread-loader //开启多进程打包
+	 
+	 externals: webpack打包忽略插件，采用cdn方式引入  在入口文件处引入cdn文件地址；
+	 script src="https://cdn.bootcss.com/vue/2.5.2/vue.min.js"></script>
+	<script src="https://cdn.bootcss.com/vue-router/3.0.1/vue-router.min.js"></script>
+	<script src="https://cdn.bootcss.com/axios/0.18.0/axios.min.js"></script>
+	 externals: {
+		'vue': 'Vue',
+		'vue-router': 'VueRouter',
+		'axios': 'axios',
+		'element-ui': 'element-ui',
+		'i18n': 'i18n',
+	},
+	
+	dll:动态链接库；  对某些库进行单独打包（jquery  reac  vue 等第三方库）；
+	新建webpack.dll.js  
+	webpack 默认查找webpack.config.js文件  
+	运行指令  webpack --config webpack.dll.js
+	module.exports = {
+		entry:{
+			//最终打包生成的[name] -- jquery
+			//['jquery'] -- 要打包的库是jquery
+			jquery:['jquery']
+		},
+		output:{
+			filename:'[name],js'
+			path:resolve(__dirname,'dll'),
+			library:'[name]_[hash]'//暴露出去的内容叫什么名字  比如一个jquery库   整个库向外暴露的变量名 var jquery =
+		},
+		plugins:[
+			//打包生成一个manifest.json -->提供和jquery映射
+			new webpack.DllPlugin({
+				name:'[name]_[hash]',//映射库的暴露的内容名称
+				path:resolve(__dirname,'dll/manifest.json')//输出文件路径
+			})
+		]，
+		mode:'production'
+	}
+	
+	webpack.config.js  plugin中的设置 
+	引入webpack
+	plugins:[
+		//告诉哪些库不需要参与打包 同时使用的名字也要变
+		new webpack.DllRefercePlugin({
+			manifest:resolve(__dirname,'dll/manifest.json')
+		}),
+		//将某个文件打出输出去 并在html中自动导入该资源
+		new AddAssetHtmlWebpackPlugin({
+			filepath:resolve(__dirname,'dll/manifest.json')
+		})
+	]
+	
+	
+	webpack 性能优化总结：
+	
+	
+	webpack性能优化
+	1.开发环境性能优化
+	2.生产环境性能优化
+	
+	##开发环境性能优化
+	1.优化打包构建速度
+	   1.HMR （css- style-loader   HTML 默认的   JS  module.hot）
+	2.调试优化
+		source-map(源码和构建代码的映射)  
+	
+	##生产环境性能优化
+	1.优化打包构建速度
+		1.oneof 
+		2.缓存  babel缓存  
+		3.多进程打包 （要考虑一个问题 开启一个进程要很长的时间；）
+		4.dll   为了让某些库不打包 单独打包
+		5.externals 为了让某些库不打包  cdn方式引入外部文件
+	2.优化代码运行的性能 
+	   1.缓存 （hash-chunkhash- contenthash）
+	   2 tree shaking (ES6 MODULE)
+	   3.代码分割（code split） optimization  import引入的方式
+	   4.js懒加载/预加载 import引入的方式
+	   5.pwa 作用：离线访问 缺点 兼容性比较严重
+	   
+	   
+	   
+	   
 	

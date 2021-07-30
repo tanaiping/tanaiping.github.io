@@ -96,4 +96,7 @@ export default {
     line-clamp: 2;
     -webkit-box-orient: vertical;
   }
+  .el-dialog__body{
+    padding-bottom: 0;
+  }
 </style>

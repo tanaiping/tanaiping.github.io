@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <div style="width: 360px;">
+    <div :style="{'width': '360px','height':conH+'px','overflow':'auto','width':'100%'}">
       <orderDetail :detailData = "contentData"></orderDetail>
     </div>
 
@@ -15,7 +15,8 @@
     data(){
       return{
         contentData:{},
-        orderId:''
+        orderId:'',
+        conH:0
       }
 
     },
@@ -23,10 +24,25 @@
       orderDetail
     },
     mounted(){
-      this.orderNo = this.$route.query.orderNo;
-      this.getOrderDetail()
+      const _this = this;
+      _this.orderNo = _this.$route.query.orderNo;
+      _this.$nextTick(() => {
+          _this.getConH();
+      });
+      window.onresize = () => {
+         return (() => {
+           _this.getConH();
+         })()
+       }
+      _this.getOrderDetail()
     },
     methods:{
+      getConH(){
+        const _this = this;
+        let clientH = document.body.clientHeight || document.documentElement.clientHeight;
+        let conH = clientH - 60 - 20;
+        _this.conH = conH;
+      },
       getOrderDetail(){
         const _this = this;
         const token = localStorage.getItem('token');

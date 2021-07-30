@@ -82,7 +82,6 @@ Page({
   },
   onLoad() {
     const _this = this;
-    console.log("load")
     util.login(baseUrl).then(function(res){
       let uid = wx.getStorageSync('uid');
       _this.setData({
@@ -115,9 +114,6 @@ Page({
       isload:true
     });
 
-
-    
-    // console.log(_this.data.isLogin)
     
   },
   onShow(){
@@ -217,6 +213,12 @@ Page({
         // 打开成功
       }
     })
-  }
+  },
+  /**
+ * 用户点击右上角分享
+ */
+onShareAppMessage: function () {
+
+}
   
 })

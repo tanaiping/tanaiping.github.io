@@ -24,6 +24,7 @@
           :data="contentData"
           :height="tabH"
           stripe
+          ref="tableList"
           style="width: 100%">
           <el-table-column align="center" width="50"
           label="编号">
@@ -68,6 +69,17 @@
                   label="渠道名称">
             </el-table-column>
             <el-table-column align="center"
+                prop="orderCnt"
+                  label="订单数">
+            </el-table-column>
+            <el-table-column align="center"
+                prop="channelName"
+                  label="订单金额">
+                  <template slot-scope="scope">
+                    ￥{{!scope.row.orderPrice?'0.00':scope.row.orderPrice}}
+                  </template>
+            </el-table-column>
+            <el-table-column align="center"
                   label="首单时间">
                   <template slot-scope="scope">
                     {{!scope.row.firstOrderTime?'尚未下单':scope.row.firstOrderTime}}
@@ -77,7 +89,14 @@
                 prop="createTime"
                   label="注册时间">
             </el-table-column>
-
+            <el-table-column label="操作" width="100px" align="center">
+              <template slot-scope="scope">
+                <el-button v-if="scope.row.orderCnt>0"
+                  size="mini"
+                  type="primary"
+                  @click="linkToOrder(scope.$index, scope.row)">查看订单</el-button>
+              </template>
+            </el-table-column>
         </el-table>
     </div>
 
@@ -147,6 +166,7 @@ import Page from '@/components/page'
       changeCurPage(p){
         const _this = this;
         _this.curPage = p;
+        this.$refs.tableList.bodyWrapper.scrollTop = 0;
         _this.getListData(_this.curPage);
       },
       getUserCount(){
@@ -155,7 +175,7 @@ import Page from '@/components/page'
         const formData = {}
         _this.$axios.post(User.userInfoCount, JSON.stringify(formData),{headers: {'Content-Type': 'application/json','token':token}})
           .then((res) => {
-            console.log(res)
+            // console.log(res)
             if (res.data.resultCode == 0) {
               _this.totalUser = res.data.data.totalUser
               _this.yesAdd = res.data.data.yesAdd
@@ -225,6 +245,13 @@ import Page from '@/components/page'
           .catch((error) => {
             window.console.log(error);
           })
+      },
+      linkToOrder(index, row) {
+        // console.log(index, row);
+        const _this = this;
+        let phone = '';
+        row.mobile?phone = row.mobile:phone = '';
+        _this.$router.push({name:'orderList',"query":{'phone':phone,'isChangeMenu':true}})
       },
     }
   }

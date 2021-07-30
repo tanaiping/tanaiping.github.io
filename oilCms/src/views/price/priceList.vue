@@ -25,7 +25,7 @@
       <!-- 过虑条件  end-->
       <!-- 标题  end-->
       <div class="mt20">
-        <div class="flex-end"><el-button type="success" @click="changeChecked">批量改价</el-button></div>
+        <div class="flex-end"><el-button type="primary" @click="changeChecked">批量改价</el-button></div>
         <div :style="{'height':tabH+'px','overflow':'auto'}">
           <el-table
               :data="contentData"
@@ -34,7 +34,7 @@
               type="selection"
               @selection-change="selectionLineChangeHandle"
               @row-click="handleRowClick"
-              ref="handSelectTest_multipleTable"
+              ref="tableList"
               :row-key='getRowKey'
               style="width: 100%">
               <el-table-column type="selection" align="center" :reserve-selection="true" width="50"> </el-table-column>
@@ -77,25 +77,25 @@
               <el-table-column align="center"
               label="发改委价">
               <template slot-scope="scope">
-                 <div v-for="(item,index) in scope.row.oilInfoList" :key="item.id">￥{{item.official_price==''?'--':item.official_price}}</div>
+                 <div v-for="(item,index) in scope.row.oilInfoList" :key="item.id">￥{{!item.official_price?'0.00':item.official_price}}</div>
               </template>
               </el-table-column>
               <el-table-column align="center"
               label="挂牌价">
               <template slot-scope="scope">
-                 <div v-for="(item,index) in scope.row.oilInfoList" :key="item.id">￥{{item.list_price==''?'--':item.list_price}}</div>
+                 <div v-for="(item,index) in scope.row.oilInfoList" :key="item.id">￥{{!item.list_price?'0.00':item.list_price}}</div>
               </template>
               </el-table-column>
               <el-table-column align="center"
               label="协议价">
               <template slot-scope="scope">
-                 <div v-for="(item,index) in scope.row.oilInfoList" :key="item.id">￥{{item.contract_price==''?'--':item.contract_price}}</div>
+                 <div v-for="(item,index) in scope.row.oilInfoList" :key="item.id">￥{{!item.contract_price?'0.00':item.contract_price}}</div>
               </template>
               </el-table-column>
               <el-table-column align="center"
               label="售价">
               <template slot-scope="scope">
-                 <div v-for="(item,index) in scope.row.oilInfoList" :key="item.id">￥{{item.sale_price==''?'--':item.sale_price}}</div>
+                 <div v-for="(item,index) in scope.row.oilInfoList" :key="item.id">￥{{!item.sale_price?'0.00':item.sale_price}}</div>
               </template>
               </el-table-column>
               <el-table-column label="操作" width="100px" align="center">
@@ -141,17 +141,36 @@ import Page from '@/components/page'
       }
 
     },
+    //路由守卫
+    beforeRouteEnter:(to,from,next)=>{
+        //从详情跳转
+        if (from.path == '/changePriceSingle'||from.path =='/changePriceMul') {
+           to.meta.keepAlive = true;
+        }else{
+          to.meta.keepAlive = false;
+        }
+        next()
+    },
     mounted(){
       const _this = this;
       _this.$nextTick(() => {
           _this.getTabH();
+          setTimeout(function(){
+            _this.$refs.tableList.bodyWrapper.scrollTop = parseFloat(sessionStorage.getItem('his_scroll'));
+            sessionStorage.clear();
+            _this.$route.meta.keepAlive = false
+          },20)
       });
       window.onresize = () => {
          return (() => {
            _this.getTabH();
          })()
        }
-      _this.getListData(_this.curPage);
+      if(_this.$route.meta.keepAlive){
+        _this.getSessionInfo()
+      }else{
+         _this.getListData(_this.curPage);
+      }
     },
     methods:{
       getTabH(){
@@ -175,19 +194,21 @@ import Page from '@/components/page'
       },
       changeCurPage(p){
          const _this = this;
+         this.$refs.tableList.bodyWrapper.scrollTop = 0;
         _this.curPage = p;
         // console.log(_this.curPage);
          _this.getListData(_this.curPage);
       },
       handlechange(index, row) {
+        this.saveInfo()
         this.$router.push({name:'changePriceSingle',"query":{'stationId':row.stationId}})
       },
       selectionLineChangeHandle (val) {
              this.stationIdList = val
-             console.log(this.stationIdList)
+             // console.log(this.stationIdList)
       },
       handleRowClick(row, column, event) {
-          this.$refs.handSelectTest_multipleTable.toggleRowSelection(row);
+          this.$refs.tableList.toggleRowSelection(row);
       },
       getRowKey(row){
              return row.id;
@@ -203,7 +224,7 @@ import Page from '@/components/page'
           city:_this.city,
           province:_this.province
         }
-        console.log(formData)
+        // console.log(formData)
         _this.$axios.post(Price.list, JSON.stringify(formData),{headers: {'Content-Type': 'application/json','token':token}})
           .then((res) => {
             // console.log(res)
@@ -243,8 +264,40 @@ import Page from '@/components/page'
         this.stationIdList.forEach(function(item,index){
             stationStr.push({stationId:item.stationId,"station_name":item.station_name})
         })
+        _this.saveInfo()
+
          stationStr = JSON.stringify(stationStr);
         _this.$router.push({name:'changePriceMul',"params":{'stationObj':stationStr}})
+      },
+      saveInfo(){
+        const _this = this;
+        let scroll = this.$refs.tableList.bodyWrapper.scrollTop;
+        let params = {
+          type:_this.type,
+          address:_this.address,
+          stationName:_this.stationName,
+          city:_this.city,
+          province:_this.province
+        }
+        sessionStorage.setItem('his_scroll',scroll)
+        sessionStorage.setItem('his_page',_this.curPage);
+        sessionStorage.setItem('his_data',JSON.stringify(_this.contentData));
+        sessionStorage.setItem('his_params',JSON.stringify(params));
+        sessionStorage.setItem('his_total',_this.total);
+        sessionStorage.setItem('his_pageSize',_this.pageSize);
+      },
+      getSessionInfo(){
+        const _this = this;
+        _this.curPage = parseInt(sessionStorage.getItem('his_page'));
+        _this.total = parseInt(sessionStorage.getItem('his_total'));
+        _this.pageSize = parseInt(sessionStorage.getItem('his_pageSize'));
+        _this.contentData =JSON.parse(sessionStorage.getItem('his_data'));
+        let params = JSON.parse(sessionStorage.getItem('his_params'));
+        _this.type = params.type
+        _this.address = params.address
+        _this.stationName = params.stationName
+        _this.city = params.city
+        _this.province = params.province
       },
 
     }
