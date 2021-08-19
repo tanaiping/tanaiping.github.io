@@ -15,8 +15,8 @@
               <i class="el-icon-location"></i>
               <span>广告</span>
             </template>
-             <el-menu-item index="/ad/list">列表</el-menu-item>
-              <el-menu-item index="/ad/add">新增</el-menu-item>
+             <el-menu-item index="/ad/list"><span slot="title">首页</span></el-menu-item>
+              <el-menu-item index="/ad/add"><span slot="title">首页</span></el-menu-item>
           </el-submenu>
           <el-submenu index="3">
             <template slot="title">
@@ -35,6 +35,9 @@
               <el-menu-item index="/statisc/mList">管理员报表</el-menu-item>
           </el-submenu> -->
 
+
+
+
         <MenuItem v-for="v in items" :key = "v.url" :item="v" />
        </el-menu>
   </div>
@@ -52,7 +55,17 @@
           },
           {
             name:"价格管理",
-            url:"/priceList",
+            url:"2",
+            child:[
+              {
+                name:"价格信息",
+                url:"/priceList",
+              },
+              {
+                name:"默认价格",
+                url:"/priceUpdate",
+              }
+            ]
           },
           {
             name:"订单管理",
@@ -64,6 +77,7 @@
           },
           {
             name:"用户管理",
+            url:"4",
             child:[
               {
                 name:"用户信息",

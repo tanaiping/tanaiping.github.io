@@ -149,7 +149,7 @@ Page({
         if(res.data.resultCode == 0){
             if(res.data.data){
               res.data.data.forEach(function(item,i){
-                let dis = item.official_price - item.sale_price
+                let dis = item.list_price - item.sale_price
                   item.dis = dis.toFixed(2)
               })
               _this.setData({

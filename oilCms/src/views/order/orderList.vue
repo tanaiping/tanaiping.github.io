@@ -2,10 +2,11 @@
   <div class="content">
     <div class="flex-search" id="searchBox">
       <el-form ref="form" label-width="80px" @keyup.enter.native="search">
+        <el-input v-model="phone" placeholder="请输入手机号" class="filter-input mr10"></el-input>
         <el-input v-model="orderNo" placeholder="请输入订单号" class="filter-input mr10"></el-input>
         <el-input v-model="stationName" placeholder="请输入油站名称" class="filter-input mr10"></el-input>
         <el-input v-model="source" placeholder="请输入渠道名称" class="filter-input mr10"></el-input>
-        <el-input v-model="phone" placeholder="请输入手机号" class="filter-input mr10"></el-input>
+        
         <el-date-picker
               v-model="dateRange"
               type="daterange"
@@ -98,18 +99,19 @@
                 ￥{{!scope.row.list_price?'0.00':scope.row.list_price}}
               </template>
             </el-table-column>
-            <el-table-column align="center" width="70px"
-              label="协议价">
-              <template slot-scope="scope">
-                ￥{{!scope.row.contract_price?'0.00':scope.row.contract_price}}
-              </template>
-            </el-table-column>
             <el-table-column align="center" width="65px"
               label="售价">
               <template slot-scope="scope">
                 ￥{{!scope.row.sale_price?'0.00':scope.row.sale_price}}
               </template>
             </el-table-column>
+            <el-table-column align="center" width="70px"
+              label="协议价">
+              <template slot-scope="scope">
+                ￥{{!scope.row.contract_price?'0.00':scope.row.contract_price}}
+              </template>
+            </el-table-column>
+            
             <el-table-column align="center"
               label="加油金额">
               <template slot-scope="scope">
@@ -166,7 +168,7 @@
               <el-button
                 size="mini"
                 @click="handleDetail(scope.$index, scope.row)">查看详情</el-button>
-                <el-button v-if="scope.row.status == 10"
+                <el-button v-if="scope.row.status == 10||scope.row.status == 9"
                   size="mini"
                   type="primary"
                   @click="handleRefund(scope.$index, scope.row)">标记退款</el-button>
@@ -191,7 +193,7 @@
         :before-close="handleClose">
         <orderDetail :detailData = "contentData2"></orderDetail>
         <el-form :model="refund" label-width="100px" class="demo-ruleForm">
-          <el-form-item label="退款原因" prop="reson">
+          <el-form-item label="退款原因：" prop="reson">
             <el-input type="textarea" v-model="refund.reason"></el-input>
           </el-form-item>
         </el-form>
@@ -303,7 +305,7 @@ import orderDetail from '@/components/orderDetail'
         this.source = '';
         this.dateRange = '';
         this.orderNo = '';
-        this.statioName = '';
+        this.stationName = '';
         this.status_v = '';
       },
       changeCurPage(p){
@@ -322,7 +324,7 @@ import orderDetail from '@/components/orderDetail'
       handleRefund(index, row) {
         // console.log(index, row);
         const _this = this;
-        if(row.status == 10){ //退款
+        if(row.status == 10||row.status == 9){ //退款
           _this.contentData.forEach(function(item,index){
             if(item.orderNo == row.orderNo){
               _this.contentData2 = item;
@@ -415,7 +417,7 @@ import orderDetail from '@/components/orderDetail'
           source:_this.source,
           orderNo:_this.orderNo,
           phone:_this.phone,
-          statio_name:_this.stationName,
+          station_name:_this.stationName,
           startTime:startTime,
           endTime:endTime,
           status:_this.status_v

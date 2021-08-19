@@ -2,10 +2,10 @@
   <div class="content">
     <div class="title-com">油站信息</div>
     <el-form :model="ruleForm" label-width="100px" ref="ruleForm" :rules="ruleForm.dataRules">
-      <el-form-item label="油站名称" prop="name">
+      <el-form-item label="油站名称：" prop="name">
         <label >{{ruleForm.params.station_name}}</label>
       </el-form-item>
-      <el-form-item label="油站地址" prop="name">
+      <el-form-item label="油站地址：" prop="name">
         <label >{{ruleForm.params.address}}</label>
       </el-form-item>
 

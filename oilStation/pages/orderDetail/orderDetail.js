@@ -141,7 +141,7 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success (res) {
-        // console.log(res.data)
+        console.log(res.data)
         clearInterval(_this.data.interval);
         if(res.data.resultCode == 0){
           _this.setData({

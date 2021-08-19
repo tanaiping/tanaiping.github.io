@@ -3,8 +3,8 @@
 // const baseUrl = "http://192.168.201.153:7788"  // ceshi
 // const baseUrl = "http://192.168.1.147:7788" //liming
 // const baseUrl = 'http://192.168.3.70:7788' //内网
-// const baseUrl = 'https://platform.wextone.com' //外网
-const baseUrl = '/apis' //本地代理线上
+const baseUrl = 'https://platform.wextone.com' //外网
+// const baseUrl = '/apis' //本地代理线上
 
 
 
@@ -37,6 +37,8 @@ export const Price = {
     batchReviseOilPrice: baseUrl + '/sys/oil/batchReviseOilPrice',//批量改价
     detail: baseUrl + '/sys/oil/getOilInfoDetail',
     reviseOilPrice: baseUrl + '/sys/oil/reviseOilPrice',
+    getOilRate: baseUrl + '/sys/oil/getOilRate',
+    updateOilRate: baseUrl + '/sys/oil/updateOilRate',
 }
 export const Statistics = {
     orderList: baseUrl + "/sys/orderReport/orderList",

@@ -2,6 +2,7 @@
   <div class="content">
       <div class="flex-search" id="searchBox">
         <el-form ref="form" label-width="80px"  @keyup.enter.native="search">
+          <el-input v-model="stationName" placeholder="请输入油站名称" class="filter-input mr10"></el-input>
           <el-select v-model="type" placeholder="请选择油站类型" class="mr10">
             <el-option label="全部" value='-1'></el-option>
             <el-option label="中石油" value='1'></el-option>
@@ -14,9 +15,16 @@
             <el-option label="未知" value='0'></el-option>
           </el-select>
           <el-input v-model="province" placeholder="请输入省份" class="filter-input mr10"></el-input>
-          <el-input v-model="city" placeholder="城市" class="filter-input mr10"></el-input>
-          <el-input v-model="stationName" placeholder="请输入油站名称" class="filter-input mr10"></el-input>
-          <el-input v-model="address" placeholder="请输入油站地址" class="filter-input mr10"></el-input>
+          <!-- <el-input v-model="city" placeholder="请选择城市" class="filter-input mr10"></el-input> -->
+          <el-select v-model="city" placeholder="请选择城市" class="mr10">
+              <el-option
+                v-for="(item,i) in options"
+                :key="item.city"
+                :label="item.city"
+                :value="item.city">
+              </el-option>
+            </el-select>
+          <!-- <el-input v-model="address" placeholder="请输入油站地址" class="filter-input mr10"></el-input> -->
           <el-button  icon="el-icon-refresh" @click="resetForm">重置</el-button>
           <el-button type="primary"  icon="el-icon-search" @click="search">查询</el-button>
         </el-form>
@@ -25,7 +33,20 @@
       <!-- 过虑条件  end-->
       <!-- 标题  end-->
       <div class="mt20">
-        <div class="flex-end"><el-button type="primary" @click="changeChecked">批量改价</el-button></div>
+        <div class="flex-end">
+          <el-button type="primary" @click="changeChecked">批量改价</el-button>
+          <el-tooltip class="item" effect="dark" placement="bottom">
+            <el-button type="text">名词释义<i class="el-icon-question"></i></el-button>
+            <div slot="content">
+              <ul class="tipslist">
+              	<li v-for="(item,i) in tips"  :key="i">
+                  <div class="t1">{{item.title}}</div>
+                  <div class="t2">{{item.name}}</div>
+                </li>
+              </ul>
+            </div>
+          </el-tooltip>
+        </div>
         <div :style="{'height':tabH+'px','overflow':'auto'}">
           <el-table
               :data="contentData"
@@ -49,6 +70,14 @@
                 label="渠道名称">
               </el-table-column>
               <el-table-column align="center"
+              prop="station_name"
+              label="油站名称">
+              </el-table-column>
+              <el-table-column
+              prop="address" align="center"
+              label="油站地址">
+              </el-table-column>
+              <el-table-column align="center"
               prop="type"
               label="油站类型">
               </el-table-column>
@@ -59,14 +88,6 @@
               <el-table-column align="center"
               prop="city"
               label="城市">
-              </el-table-column>
-              <el-table-column align="center"
-              prop="station_name"
-              label="油站名称">
-              </el-table-column>
-              <el-table-column
-              prop="address" align="center"
-              label="油站地址">
               </el-table-column>
               <el-table-column align="center"
               label="油号">
@@ -119,7 +140,7 @@
 </template>
 
 <script>
-import {Price} from '@/config/url'
+import {Price,Statistics} from '@/config/url'
 import Page from '@/components/page'
   export default{
     components:{
@@ -127,6 +148,24 @@ import Page from '@/components/page'
     },
     data(){
       return{
+        tips:[
+          {
+            title:'①发改委价',
+            name:'俗称：指导价，国家制定的指导价格'
+          },
+          {
+            title:'②挂牌价',
+            name:'又称：油站价，油站的实际销售价格'
+          },
+          {
+            title:'③协议价',
+            name:'又称：结算价，喂车给我们的成本结算价'
+          },
+          {
+            title:'④售价',
+            name:'又称：智行价，微智行对外的销售价格'
+          },
+        ],
         type:'',
         province:'',
         city:'',
@@ -137,7 +176,8 @@ import Page from '@/components/page'
         curPage:1,
         total:0,
         stationIdList:[],
-        tabH:0
+        tabH:0,
+        options:[]
       }
 
     },
@@ -171,6 +211,7 @@ import Page from '@/components/page'
       }else{
          _this.getListData(_this.curPage);
       }
+      _this.getCityList();
     },
     methods:{
       getTabH(){
@@ -221,7 +262,7 @@ import Page from '@/components/page'
           address:_this.address,
           station_name:_this.stationName,
           pageNo:pageNo,
-          city:_this.city,
+          city:_this.city=='全部'?'':_this.city,
           province:_this.province
         }
         // console.log(formData)
@@ -299,10 +340,57 @@ import Page from '@/components/page'
         _this.city = params.city
         _this.province = params.province
       },
+      getCityList(){
+        const _this = this;
+        const token = localStorage.getItem('token');
+        const formData = {}
+        _this.$axios.post(Statistics.getCityList, JSON.stringify(formData),{headers: {'Content-Type': 'application/json','token':token}})
+          .then((res) => {
+            // console.log(res)
+            if (res.data.resultCode == 0) {
+              let list = res.data.data
+              _this.options = [{'city':'全部'},...list];
+            }else if(res.data.resultCode == 3){
+              localStorage.removeItem("token");
+              localStorage.removeItem("userName");
+              localStorage.removeItem("pwd1");
+              _this.$router.push('/login');
+            }else{
+              // _this.$message(res.data.resultMsg);
+              _this.$alert(res.data.resultMsg, '温馨提示', {
+                  confirmButtonText: '确定',
+                   type: 'error',
+                  callback: action => {
+                  }
+                });
+            }
+          })
+          .catch((error) => {
+            window.console.log(error);
+          })
+      },
 
     }
   }
 </script>
 
 <style scoped>
+  .tipslist{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    padding: 20px 20px 0 20px;
+  }
+  .tipslist li{
+    margin-bottom: 20px;
+  }
+   .tipslist li .t1{
+     color: #FFF;
+     font-size: 14px;
+   }
+   .tipslist li .t2{
+     color: #999;
+     font-size: 12px;
+     line-height: 22px;
+   }
 </style>

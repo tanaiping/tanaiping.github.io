@@ -1,8 +1,9 @@
 <template>
   <div class="content">
     <el-form label-width="100px" :rules="rules" ref="ruleForm" :model="ruleForm" @submit.native.prevent @keyup.enter.native="saveModify('ruleForm')">
-      <el-form-item label="油站名称">
+      <el-form-item label="油站名称：">
         <el-button  type="primary" @click="checkStation">选择油站</el-button>
+        <label class="form-static-tips2" v-show="ruleForm.stationObj.length>0">您已选择{{ruleForm.stationObj.length}}个油站</label>
       </el-form-item>
       <el-form-item label="">
         <div v-if="ruleForm.stationObj.length>0" class="tagslist">
@@ -17,16 +18,20 @@
           </el-tag>
         </div>
       </el-form-item>
-      <el-form-item label="价格调整">
+      <el-form-item label="价格调整：">
         <el-radio v-model="ruleForm.type" label='1'>调低</el-radio>
         <el-radio v-model="ruleForm.type" label='2'>调高</el-radio>
-        <label class="form-static-tips">{{tipsTxt[ruleForm.type-1]}}</label>
       </el-form-item>
-      <el-form-item label="调整百分比" prop="percent">
+      <el-form-item :label="tipsLabel[ruleForm.type-1]">
+        <label style="color: #F56C6C;">{{tipsTxt[ruleForm.type-1]}}</label>
+      </el-form-item>
+      <el-form-item label="调整百分比：" prop="percent">
         <el-input placeholder="请输入内容" v-model="ruleForm.percent" style="width: 300px;">
             <template slot="append">%</template>
           </el-input>
-        <label class="form-static-tips">限制条件：售价不能大于挂牌价；若售价大于挂牌价，则等于挂牌价</label>
+      </el-form-item>
+      <el-form-item label="限制条件：">
+        <label style="color: #F56C6C;">售价不能大于挂牌价；若售价大于挂牌价，则等于挂牌价</label>
       </el-form-item>
       <el-form-item label="">
         <div class="mt20">
@@ -92,8 +97,10 @@
              label="油站名称">
              </el-table-column>
              <el-table-column
-             prop="address"
              label="油站地址">
+             <template slot-scope="scope">
+                <div class="ellipsis">{{scope.row.address}}</div>
+             </template>
              </el-table-column>
              <el-table-column
              label="油号">
@@ -172,7 +179,8 @@ import Page from '@/components/page'
           type:'2',
           percent:'',
         },
-        tipsTxt:['价格调低：售价=协议价*(1-调整百分比)','价格调高：售价=协议价*(1+调整百分比)'],
+        tipsLabel:['价格调低：','价格调高：'],
+        tipsTxt:['售价=协议价*(1-调整百分比)','售价=协议价*(1+调整百分比)'],
         province:'',
         city:'',
         address:'',
@@ -183,6 +191,7 @@ import Page from '@/components/page'
         curPage:1,
         total:0,
         stationIdList:[],
+        listTotal:0,
         rules:{
           percent:[
             { validator: percents, trigger: 'blur' },
@@ -196,11 +205,11 @@ import Page from '@/components/page'
       const _this = this;
 
 
-      window.onresize = () => {
-         return (() => {
-           _this.getTabH();
-         })()
-       }
+      // window.onresize = () => {
+      //    return (() => {
+      //      _this.getTabH();
+      //    })()
+      //  }
 
       let str = this.$route.params.stationObj;
       if(str||str === ''){
@@ -215,14 +224,14 @@ import Page from '@/components/page'
       _this.getListData(_this.curPage)
     },
     methods:{
-      getTabH(){
-        const _this = this;
-        let clientH = document.body.clientHeight || document.documentElement.clientHeight;
-        _this.diaH = clientH*0.85;
-        let searchH = document.getElementById("searchBox").offsetHeight;
-        let tabH = clientH*0.85 - searchH -70-60-54-52;
-        _this.tabH = tabH;
-      },
+      // getTabH(){
+      //   const _this = this;
+      //   let clientH = document.body.clientHeight || document.documentElement.clientHeight;
+      //   _this.diaH = clientH*0.85;
+      //   let searchH = document.getElementById("searchBox").offsetHeight;
+      //   let tabH = clientH*0.85 - searchH -70-60-54-52;
+      //   _this.tabH = tabH;
+      // },
       search(){
         const _this = this;
         _this.getListData(_this.curPage);
@@ -266,13 +275,12 @@ import Page from '@/components/page'
       },
       selectionLineChangeHandle (val) {
            this.stationIdList = val
-           // console.log(this.stationIdList)
       },
       handleRowClick(row, column, event) {
           this.$refs.handSelectTest_multipleTable.toggleRowSelection(row);
       },
       getRowKey(row){
-             return row.id;
+             return row.stationId;
         },
       getListData(pageNo) {
           const _this = this;
@@ -387,6 +395,10 @@ import Page from '@/components/page'
 </script>
 
 <style scoped>
+.tagslist{
+  max-height: 300px;
+  overflow: auto;
+}
 .tagslist .el-tag{
   margin: 0 10px 10px 0;
 }

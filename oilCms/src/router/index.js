@@ -98,7 +98,17 @@ const routes = [
                 title:'批量改价'
               },
               component: () => import('@/views/price/changePriceMul'),
-            }
+            },
+            {
+              name: 'priceUpdate',
+              path: '/priceUpdate',
+              meta:{
+                title:'默认价格',
+                top:1,
+              },
+              component: () => import('@/views/price/priceUpdate'),
+            },
+
           ]
         },
         {

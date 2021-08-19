@@ -40,7 +40,7 @@
     mounted() {
       const _this = this;
       let p = parseInt(sessionStorage.getItem('his_page'));
-      p?(_this.curPage = p):(_this.curPage = _this.cur);
+      _this.curPage = p||_this.cur
     }
 
   }

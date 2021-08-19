@@ -54,8 +54,8 @@
     </view>
     <view class="line"></view>
     <view class="order-detail-elem ">
-      <text>开票方式</text>
-      <text class="order-val">如需发票请您前往收银台索取</text>
+      <text class="t1">开票方式</text>
+      <text class="order-val">该油站不支持线上开票\n如需发票请前往收银台索取</text>
     </view>
   </view>
   <view class="contact-kf">

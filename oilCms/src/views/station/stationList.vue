@@ -2,9 +2,18 @@
   <div class="content">
     <div class="flex-search" id="searchBox">
       <el-form ref="form" label-width="80px" @keyup.enter.native="search">
-        <el-input v-model="statioName" placeholder="请输入油站名称" class="filter-input mr10"></el-input>
-        <el-input v-model="address" placeholder="请输入油站地址" class="filter-input mr10"></el-input>
-        <el-input v-model="phone" placeholder="请输入油站电话" class="filter-input mr10"></el-input>
+        <el-input v-model="stationId" placeholder="油站ID" class="filter-input mr10"></el-input>
+        <el-input v-model="province" placeholder="请输入省份" class="filter-input mr10"></el-input>
+        <!-- <el-input v-model="city" placeholder="请选择城市" class="filter-input mr10"></el-input> -->
+        <el-select v-model="city" placeholder="请选择城市" class="mr10">
+            <el-option
+              v-for="(item,i) in options"
+              :key="item.city"
+              :label="item.city"
+              :value="item.city">
+            </el-option>
+          </el-select>
+        <el-input v-model="stationName" placeholder="请输入油站名称" class="filter-input mr10"></el-input>
         <el-button  icon="el-icon-refresh" @click="resetForm">重置</el-button>
         <el-button type="primary"  icon="el-icon-search" @click="search">查询</el-button>
       </el-form>
@@ -28,22 +37,26 @@
             label="渠道名称">
           </el-table-column>
           <el-table-column align="center"
+          label="油站logo">
+          <template slot-scope="scope">
+            <img :src="scope.row.logo" alt="" class="table-logo">
+          </template>
+          </el-table-column>
+          <el-table-column align="center"
+          prop="stationId"
+            label="油站ID">
+          </el-table-column>
+          <el-table-column align="center"
+          prop="station_name"
+            label="油站名称">
+          </el-table-column>
+          <el-table-column align="center"
           prop="type"
           label="油站类型">
           </el-table-column>
           <el-table-column align="center"
           prop="city"
             label="城市">
-            </el-table-column>
-            <el-table-column align="center"
-            label="油站logo">
-            <template slot-scope="scope">
-              <img :src="scope.row.logo" alt="" class="table-logo">
-            </template>
-            </el-table-column>
-            <el-table-column align="center"
-            prop="station_name"
-              label="油站名称">
             </el-table-column>
             <el-table-column
             prop="address" align="center"
@@ -81,7 +94,7 @@
 </template>
 
 <script>
- import {Station} from '@/config/url'
+ import {Station,Statistics} from '@/config/url'
 import Page from '@/components/page'
   export default{
     components:{
@@ -89,9 +102,11 @@ import Page from '@/components/page'
     },
     data(){
       return{
-        statioName:'',
-        phone:'',
-        address:'',
+        stationId:'',
+        province:'',
+        stationName:'',
+        city:'',
+        options:[],
         contentData: [],
         "pageSize":10,
         curPage:1,
@@ -131,6 +146,7 @@ import Page from '@/components/page'
        }else{
           _this.getListData(_this.curPage);
        }
+       _this.getCityList();
 
 
     },
@@ -148,9 +164,10 @@ import Page from '@/components/page'
         _this.getListData(_this.curPage);
       },
       resetForm(){
-        this.phone = ''
-        this.address = ''
-        this.statioName = ''
+        this.stationName = ''
+        this.stationId = ''
+        this.province = ''
+        this.city = ''
       },
       changeCurPage(p){
          const _this = this;
@@ -168,10 +185,11 @@ import Page from '@/components/page'
         const _this = this;
         const token = localStorage.getItem('token');
         const formData = {
-          phone:_this.phone,
-          address:_this.address,
-          station_name:_this.statioName,
-          pageNo:pageNo
+          stationId:_this.stationId,
+          province:_this.province,
+          city:_this.city=='全部'?'':_this.city,
+          station_name:_this.stationName,
+          pageNo:pageNo,
         }
         _this.$axios.post(Station.stationList, JSON.stringify(formData),{headers: {'Content-Type': 'application/json','token':token}})
           .then((res) => {
@@ -209,9 +227,10 @@ import Page from '@/components/page'
         const _this = this;
         let scroll = this.$refs.tableList.bodyWrapper.scrollTop;
         let params = {
-          phone:_this.phone,
-          address:_this.address,
-          station_name:_this.statioName,
+          stationId:_this.stationId,
+          province:_this.province,
+          city:_this.city,
+          station_name:_this.stationName,
         }
         sessionStorage.setItem('his_scroll',scroll)
         sessionStorage.setItem('his_page',_this.curPage);
@@ -227,9 +246,39 @@ import Page from '@/components/page'
         _this.pageSize = parseInt(sessionStorage.getItem('his_pageSize'));
         _this.contentData =JSON.parse(sessionStorage.getItem('his_data'));
         let params = JSON.parse(sessionStorage.getItem('his_params'));
-        _this.phone = params.phone
-        _this.address = params.address
-        _this.statioName = params.statioName
+        _this.stationId = params.stationId
+        _this.province = params.province
+        _this.city = params.city
+        _this.stationName = params.stationName
+      },
+      getCityList(){
+        const _this = this;
+        const token = localStorage.getItem('token');
+        const formData = {}
+        _this.$axios.post(Statistics.getCityList, JSON.stringify(formData),{headers: {'Content-Type': 'application/json','token':token}})
+          .then((res) => {
+            // console.log(res)
+            if (res.data.resultCode == 0) {
+              let list = res.data.data
+              _this.options = [{'city':'全部'},...list];
+            }else if(res.data.resultCode == 3){
+              localStorage.removeItem("token");
+              localStorage.removeItem("userName");
+              localStorage.removeItem("pwd1");
+              _this.$router.push('/login');
+            }else{
+              // _this.$message(res.data.resultMsg);
+              _this.$alert(res.data.resultMsg, '温馨提示', {
+                  confirmButtonText: '确定',
+                   type: 'error',
+                  callback: action => {
+                  }
+                });
+            }
+          })
+          .catch((error) => {
+            window.console.log(error);
+          })
       },
     }
   }
@@ -239,5 +288,6 @@ import Page from '@/components/page'
 .table-logo{
   width: 40px;
   border-radius: 20px;
+  height: 40px;
 }
 </style>

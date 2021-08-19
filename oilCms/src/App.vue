@@ -69,9 +69,12 @@ export default {
   display: flex;
   flex-wrap: wrap;
  }
- .flex-search .el-input,.flex-search .el-select{
+ .flex-search .el-input{
    margin-bottom: 20px;
-   height: 40px;
+ }
+ .flex-search .el-select .el-input
+ {
+   margin-bottom: 0;
  }
  .flex-search .el-button{
    height: 40px;
@@ -85,6 +88,10 @@ export default {
   }
   .form-static-tips{
     color: #f56c6c;
+    margin-left: 10px;
+  }
+  .form-static-tips2{
+    color: #606266;
     margin-left: 10px;
   }
   .ellipsis{

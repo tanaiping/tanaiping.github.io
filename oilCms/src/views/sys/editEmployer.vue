@@ -1,16 +1,16 @@
 <template>
   <div class="content" style="width: 500px">
     <el-form :model="employee"  ref="ruleForm" label-width="100px">
-      <el-form-item label="员工姓名" >
+      <el-form-item label="员工姓名：" >
        <el-input v-model="employee.nickName" autoComplete="off" autocomplete="new-password"></el-input>
        </el-form-item>
-       <el-form-item label="员工职位" >
+       <el-form-item label="员工职位：" >
         <el-input v-model="employee.position" autoComplete="off" autocomplete="new-password"></el-input>
         </el-form-item>
-       <el-form-item label="员工账号" autoComplete="off" autocomplete="new-password">
+       <el-form-item label="员工账号：" autoComplete="off" autocomplete="new-password">
           <label>{{employee.userName}}</label>
         </el-form-item>
-       <el-form-item label="账号密码" >
+       <el-form-item label="账号密码：" >
         <el-input type="password" v-model="employee.password" autoComplete="off" autocomplete="new-password"></el-input>
         </el-form-item>
         <el-form-item label="">

@@ -2,21 +2,21 @@
   <div class="content">
     <div class="flex-search" id="searchBox">
         <el-date-picker
-              v-model="dateRange"
-              type="daterange"
-               value-format="yyyy-MM-dd"
-              range-separator="至"
-              start-placeholder="开始日期"
-              end-placeholder="结束日期" class="mr10">
-            </el-date-picker>
-        <el-select v-model="citys" multiple placeholder="请选择" class="mr10">
-            <el-option
-              v-for="(item,i) in options"
-              :key="item.city"
-              :label="item.city"
-              :value="item.city">
-            </el-option>
-          </el-select>
+            v-model="dateRange"
+            type="daterange"
+             value-format="yyyy-MM-dd"
+            range-separator="至"
+            start-placeholder="开始日期"
+            end-placeholder="结束日期" class="mr10">
+          </el-date-picker>
+          <el-select v-model="citys" multiple placeholder="请选择" class="mr10" @change="currentSel">
+              <el-option
+                v-for="(item,i) in options"
+                :key="item.city"
+                :label="item.city"
+                :value="item.city">
+              </el-option>
+            </el-select>
         <el-button  icon="el-icon-refresh" @click="resetForm">重置</el-button>
         <el-button type="primary"  icon="el-icon-search" @click="search">查询</el-button>
 
@@ -121,39 +121,39 @@
         total:0,
         tips:[
           {
-            title:'支付用户数',
-            name:'当日成功付款的用户数'
+            title:'①支付用户数',
+            name:'当日下单成功的用户数'
           },
           {
-            title:'支付订单数',
-            name:'当日已付款的订单数'
+            title:'②支付订单数',
+            name:'当日下单成功的订单数'
           },
           {
-            title:'退款订单',
-            name:'当日退款的订单数'
+            title:'③退款订单',
+            name:'当日申请退款/已退款的订单数'
           },
           {
-            title:'支付新用户',
-            name:'当日首次付款下单的用户数'
+            title:'④支付新用户',
+            name:'当日新用户首次下单成功的用户数'
           },
           {
-            title:'新用户订单',
-            name:'当日首次付款下单的订单数'
+            title:'⑤新用户订单',
+            name:'当日新用户首次下单成功的订单数'
           },
           {
-            title:'交易升数',
-            name:'当日已付款加油订单的加油量总和'
+            title:'⑥交易升数',
+            name:'当日下单成功订单的加油量总和'
           },
           {
-            title:'交易金额',
-            name:'当日已付款订单的交易金额总和'
+            title:'⑦交易金额',
+            name:'当日下单成功订单的交易金额总和'
           },
           {
-            title:'协议金额',
+            title:'⑧协议金额',
             name:'当日下单成功订单的协议金额总和'
           },
           {
-            title:'盈利',
+            title:'⑨盈利',
             name:'当日下单成功订单的盈利综合（盈利=交易金额-协议金额）'
           },
         ],
@@ -175,6 +175,10 @@
       this.getListData(_this.curPage);
     },
     methods:{
+      currentSel(){
+         const _this = this;
+        setTimeout(function(){_this.getTabH();},20)
+      },
       getTabH(){
         const _this = this;
         let clientH = document.body.clientHeight || document.documentElement.clientHeight;

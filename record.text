@@ -29,7 +29,12 @@ Css3新特性
 ES6 新特性
 
 变量定义：let Const
-箭头函数
+箭头函数(
+不适用场景  
+1.构造函数；
+2.需要绑定到dom的时候
+3 需要使用arguments
+)
 imoprt模块导入
 ${} 变量拼接
 解构赋值   let arr = [1,2,3]; const [x,y,z] = arr; console.log(${x}${y}${z})
@@ -40,9 +45,89 @@ obj{
 for...of..循环
 
 
-扩展运算符
+扩展运算符  (放在赋值一方)
+拼接数组  将对象插入到另一个对象 
+let arr1 = [1,2,3]
+let arr2 = [...arr1,4,5,6]
+
+obj1 ={a:1,b:2}
+obj2 = {
+	...obj1,
+	c:3,d:4
+}
+
+剩余运算符 (放在被赋值一方)
+1.当函数参数个数不确定时  用剩余运算符
+function aaa(...tem)  ===》 console.log(tem) ==>[2,3,4]
+aaa(1,2,3,4)
+
 Symbol数据类型
 Set 和 Map 数据结构
+set 存储无重复的有序列表的对象 
+Set内部使用Object.is()方法来判断两个数据项是否相等，唯一不同的是+0和-0在Set中被判断为是相等的。
+
+ add()添加元素 has() 判断是否存在某个值 delete()删除某个值  clear()删除所有值
+ set.forEach(value,key,item)     set的forEach  value 和 key的值是一样的。 但是三个参数必须一定要有； 
+  set对象转数组   
+  let set = new Set([1,2,3,3,4,5])  //set[1,2,3]
+  let [...arr] = set
+  
+  
+  Set在存放对象时，实际上是存放的是对象的引用，即Set也被称之为Strong Set。如果所存储的对象被置为null，但是Set实例仍然存在的话，对象依然无法被垃圾回收器回收，从而无法释放内存：
+  
+  
+  let set = new Set();
+  let key={};
+  let key2 = {};
+  set.add(key);
+  set.add(key2);
+  console.log(set.size); //2
+  
+  key=null;
+  console.log(set.size); //2
+  
+  对于Weak Set和Set之间的重要差异：
+  
+  对于Weak Set实例，若调用了add()方法时传入了非对象的参数，则会抛出错误。如果在has()或者delete()方法中传入了非对象的参数则会返回false；
+  Weak Set不可迭代，因此不能用于for-of循环；
+  Weak Set 无法暴露出任何迭代器（例如 keys() 与 values() 方法） ，因此没有任何编程手段可用于判断 Weak Set 的内容；
+  Weak Set没有forEach()方法；
+  Weak Set没有size属性；
+  
+  
+  ES6中的Map
+  ES6中提供了Map数据结构，能够存放键值对，其中，键的去重是通过Object.is()方法进行比较，键的数据类型可以是基本类型数据也可以是对象，而值也可以是任意类型数据。
+  使用set()方法可以给Map添加键值对
+  
+   let map = new Map();
+   map.set('title','hello world');
+   map.set('year','2018');
+   
+   console.log(map.size); //2
+  
+  通过get()方法可以从Map中提取值  console.log(map.get('title'));
+  has(),delete()以及clear()方法
+  
+  Map的初始化
+  
+  与Set的初始化一样，Map也可以用数组来初始化Map，该数组中的每一个数据项也是数组，数组的第一个数据项代表键值对的键，第二个数据项是键值对的值：
+  
+  //使用数组来创建Map
+  let map = new Map([['title','hello world'],['year','2018']]);
+  console.log(map.has('title')); //true
+  console.log(map.has('year')); //true
+  console.log(map.size); //2
+  
+  
+  4. 总结
+  Set 是无重复值的有序列表。根据 Object.is()方法来判断其中的值不相等，以保证无重复。 Set 会自动移除重复的值，因此你可以使用它来过滤数组中的重复值并返回结果。 Set并不是数组的子类型，所以你无法随机访问其中的值。但你可以使用has() 方法来判断某个值是否存在于 Set 中，或通过 size 属性来查看其中有多少个值。 Set 类型还拥有forEach()方法，用于处理每个值。
+  
+  Weak Set 是只能包含对象的特殊 Set 。其中的对象使用弱引用来存储，意味着当 Weak Set中的项是某个对象的仅存引用时，它不会屏蔽垃圾回收。由于内存管理的复杂性， Weak Set的内容不能被检查，因此最好将 Weak Set 仅用于追踪需要被归组在一起的对象。
+  
+  Map 是有序的键值对，其中的键允许是任何类型。与 Set 相似，通过调用 Object.is()方法来判断重复的键，这意味着能将数值 5 与字符串 "5" 作为两个相对独立的键。使用set() 方法能将任何类型的值关联到某个键上，并且该值此后能用 get() 方法提取出来。Map 也拥有一个 size 属性与一个 forEach() 方法，让项目访问更容易。
+  
+  Weak Map 是只能包含对象类型的键的特殊 Map 。与 Weak Set 相似，键的对象引用是弱引用，因此当它是某个对象的仅存引用时，也不会屏蔽垃圾回收。当键被回收之后，所关联的值也同时从 Weak Map 中被移除。
+  
 Promise
 Class
 
@@ -62,6 +147,10 @@ Object.entries(); 得到一个对象的键值对数组；
 Object.fromEntries(); entries的逆操作；
 
 新增了一些对象的方法
+
+
+
+
 
 
 css：
@@ -177,15 +266,7 @@ $router是“路由实例”对象包括了路由的跳转方法，钩子函数�
 1.异步技术 { path: '/home', name: 'home', component: resolve => require(['@/components/home'],resolve) },
 2.import技术 const Index = () => import('@/components/index')
 
-vuex 核心概念
 
-state => 基本数据 
-getters => 从基本数据派生的数据 
-mutations => 修改数据，同步 
-actions => 修改数据，异步 
-modules => 模块化Vuex
-
-用户页面---(dispatch)--actions---(commit)----mutations---state----用户页面
 
 Computed和Watch的区别
 1.computed 计算属性 : 依赖其它属性值,并且 computed 的值有缓存,只有它依赖的 属性值发生改变,下一次获取 computed 的值时才会重新计算 computed 的值。
@@ -221,23 +302,11 @@ Vue 2 中给 data 中的对象属性添加一个新的属性时会发生什么�
 1.26. 组件传值方式有哪些
 1.父传子：子组件通过props['xx'] 来接收父组件传递的属性 xx 的值
 2.子传父：子组件通过 this.$emit('fnName',value) 来传递,父组件通过接收 fnName 事件方法来接收回调
-3.其他方式：通过创建一个bus，进行传值  $emit 传值  $on 接收值
+3.其他方式：通过创建一个bus，进行传值  $emit 传值  $on 接收值   事件总线
 4.使用Vuex
 
-	1. props
-	2. 自定义事件
-	3. eventbus
-	4. vuex
-	5. 还有常见的边界情况$parent、$children、$root、$refs、provide/inject
-	6. 此外还有一些非props特性$attrs 、$listeners(透传事件)
+props、$emit/$on、vuex、$parent / $children、$attrs/$listeners和provide/inject，
 
-	$parent、$children、$root、$refs、$attrs、$listeners  
-	 props
-	 $emit 
-	 $ref 获取子组件数据 调用子组件方法  ref="child"   this.$refs.child.childFun()
-	 $children 获取子组件数据和调用子组件方法
-	 $parent 获取父组件数据和调用父组件方法
-	 $root 获取最高层的父组件及app.vue
 
 assets与static的区别
 
@@ -269,9 +338,18 @@ const  常量  有作用域 不能再次赋值 定义的同时必须赋值 const
 Vue是采用数据劫持配合发布者-订阅者模式，通过Object.defineProperty来劫持各个属性的getter和setter
 在数据发生变化的时候，发布消息给依赖收集器，去通知观察者，做出对应的回调函数去更新视图。
 
+vue是一个典型的MVVM框架，模型Model是js对象，修改它则视图VIEW自动更新。
+vue实现双向数据绑定，需要三大模块：
+Observer:能够对数据对象的所有属性进行监听，如有变动可拿到最新值并通知订阅者
+Compile:对每个元素节点的指令进行扫描和解析，根据指令模板替换数据，以及绑定想要的更新函数
+Watcher:作为链接Observer和Compile的桥梁，能够订阅并收到每个属性变动的通知，执行指令绑定的相应回调函数，从而更新视图。
+
 vue路由守卫有哪些，怎么设置，使用场景等
 
 常用的两个路由守卫：router.beforeEach 和 router.afterEach
+组件内部使用
+beforeRouteEnter:
+beforeRouteLeave：
 
 每个守卫方法接收三个参数：
 
@@ -817,6 +895,17 @@ build->utils.js ->style-loader  -->publicPath
 
 利用wxs  完成wxml里面的脚本  用来计算对数据特殊处理；
 
+模块化：
+
+以下便是模块化推荐用法
+function add(a,b){
+	return a + b
+}
+export default {add}  //模块化以这种方式导出  引入的时候可以随意更改名字
+
+import sss from '/c1.js' 
+sss.add();
+
 
 
 webpack
@@ -829,6 +918,8 @@ webpack
   * 运行项目指令：
  	webpack:会将打包结果输出；
  	npx webpack-dev-server 只会在内存中编译打包，没有输出
+	webpack打包脚本 webpack 入口文件路径 -c 出口文件路径
+	webpack './cs.js' -c './build/'
   */
 
 modules.exports = {
@@ -1093,7 +1184,7 @@ optimization:{
 	 thread-loader //开启多进程打包
 	 
 	 externals: webpack打包忽略插件，采用cdn方式引入  在入口文件处引入cdn文件地址；
-	 script src="https://cdn.bootcss.com/vue/2.5.2/vue.min.js"></script>
+	<script src="https://cdn.bootcss.com/vue/2.5.2/vue.min.js"></script>
 	<script src="https://cdn.bootcss.com/vue-router/3.0.1/vue-router.min.js"></script>
 	<script src="https://cdn.bootcss.com/axios/0.18.0/axios.min.js"></script>
 	 externals: {
@@ -1159,7 +1250,7 @@ optimization:{
 	##生产环境性能优化
 	1.优化打包构建速度
 		1.oneof 
-		2.缓存  babel缓存  
+		2.缓存  babel缓存( cacheDirectory:true  )
 		3.多进程打包 （要考虑一个问题 开启一个进程要很长的时间；）
 		4.dll   为了让某些库不打包 单独打包
 		5.externals 为了让某些库不打包  cdn方式引入外部文件
@@ -1169,6 +1260,175 @@ optimization:{
 	   3.代码分割（code split） optimization  import引入的方式
 	   4.js懒加载/预加载 import引入的方式
 	   5.pwa 作用：离线访问 缺点 兼容性比较严重
+	   
+	   
+	   
+	   需要巩固的点：
+	   1.VUEX
+	   2.性能优化
+	   3.vue原理
+	   4.webpack构建工具
+	   5.VUE传值 props、$emit/$on、vuex、$parent / $children、$attrs/$listeners和provide/inject
+	   常见使用场景可以分为三类：
+	   
+	   父子通信：
+	   父向子传递数据是通过 props，子向父是通过 events（$emit）；通过父链 / 子链也可以通信（$parent / $children）；ref 也可以访问组件实例；provide / inject API；$attrs/$listeners
+	   
+	   兄弟通信：
+	   Bus；Vuex
+	   
+	   跨级通信：
+	   Bus；Vuex；provide / inject API、$attrs/$listeners
+	   6.ES6 ES7的区别
+	   7.VUE2.0 VUE3.0的区别
+	   8.子组件props data的关系 
+	   9.宏任务  微任务
+	   js 宏任务和微任务
+	   .宏任务（macrotask ）和微任务（microtask ）
+	   macrotask 和 microtask 表示异步任务的两种分类。
+	   在挂起任务时，JS 引擎会将所有任务按照类别分到这两个队列中，首先在 macrotask 的队列（这个队列也被叫做 task queue）中取出第一个任务，执行完毕后取出 microtask 队列中的所有任务顺序执行；之后再取 macrotask 任务，周而复始，直至两个队列的任务都取完。
+	   
+	   1.结论  微任务执行的时机比宏任务来的早( 同步代码先执行 然后再执行异步[微任务先早宏任务])
+	   宏任务：setInterval  setTimeout dom事件  ajax请求
+	   微任务： promise  async/wait
+	   
+	   执行顺序 ：微任务--DOM渲染--宏任务
+	   10 __proto__  隐式原型 prototype 显式原型  
+	    hasOwnProperty  是否在对象自己身上；而不是从父类继承来的；
+	   当我们访问一个对象的属性和方法时 	   
+	   首先 往自己身上找 如果没有 就会往上一级的对象去
+	   
+	   
+
+	  
+	  首屏加载过慢的问题优化：
+	  主要原因是资源请求过多；过大；导致； 所以针对这个优化 就是减少资源请求 且减小文件的大小；
+	  1.对于图片： 我们可以使用图片懒加载  小的图片icon 使用字体库代替 小的图片 可以使用雪碧图
+	  2对于其他资源 我们可以使用nginx的combo  webpack optimization 物理打包 使资源请求合并   也可以使用懒加载 路由 来动态加载路由来
+	  3.对于css/js 可以使用压缩 混淆来减少文件体积； 图片可以使用 图片压缩 base64转换 webp格式转换
+	  4.开启gzip压缩全部资源；
+	  
+	  
+	  前端性能优化主要有两个方面：
+	  
+	  初始阶段--->加载优化
+	  运行阶段--->渲染优化
+	  一、初始阶段--->加载优化
+	  1. 首页加载慢
+	  首页加载图片过多：
+	  使用懒加载的方法减少首屏图片的加载量（懒加载的原理就是监听滚动条事件，如果满足滚动条距离浏览器顶部的高度===图片距离顶部的高度，将data-src赋值给src）
+	  对于小图标可以采用字体图标iconfont的方式解决
+	  对于小图片采用精灵图的方式解决
+	  首页的请求量过多：
+	  通过nginx服务器来做资源文件的合并或者通过webpack等打包工具进行物理打包
+	  在代码层面，对于需要引入一些大型三方库的时候，可以通过特定的babel插件来按需加载
+	  还可以使用vue lazy、react lazy或其他动态导入的方案来进行前端路由层面的动态加载，减少首页的js和css的大小
+	  首页请求的资源过大：
+	  CSS和JS可以通过webpack混淆和压缩
+	  混淆：将JS代码进行字符串加密（最大程度减少代码量，比如将长变量名变成单个字母）
+	  压缩：取出注释空行以及console.log等调试代码
+	  压缩图片
+	  通过自动化工具压缩图片
+	  对图片进行转码--->base64格式
+	  使用webP格式
+	  通过在服务器端开启gzip进行全部资源压缩
+	  2. 实现CDN加速
+	  CDN：内容分发网络，放置静态资源（JS CSS 图片等）的服务器
+	  
+	  CDN是一种解决方案，不是一个实际的东西
+	  
+	  CDN服务器主要是用来放置静态资源的服务器，可以用来加速静态资源的下载
+	  之所以能够加速下载，主要是因为会在很多地方都部署CDN服务器，如果用户需要下载静态资源，会自动选择最近的节点下载
+	  另外，由于CDN服务器的地址一般都跟主服务器的地址不同，所以可以破除浏览器对同一个域名发送请求的限制
+	  PS1：HTTP1.1请求：对于同一个协议、域名、端口，浏览器允许同时打开最多6个TCP连接（等于说是最多同时发送6个请求）
+	  PS2：HTTP2.0：引入了多路复用的机制，可以最大化发送请求数量
+	   
+	  
+	  二、运行阶段--->渲染优化
+	  终极目标：减少DOM操作
+	  
+	  虚拟DOM，用js数据来模拟真实的DOM树，从而大大减少操作真实DOM的次数
+	  在渲染的时候，使用document.createDocumentFragment创建虚拟节点，从而避免引起没有必要的渲染
+	  采用分段渲染的方式，最后使用window.requestAnimationFrame逐帧渲染
+	  例：插入十万条数据如何不卡顿：
+	  
+	  复制代码
+	    // 插入十万条数据
+	    const total = 100000;
+	    let ul = document.querySelector('ul'); // 拿到 ul
+	    
+	    // 懒加载的思路 -- 分段渲染
+	    // 1. 一次渲染一屏的量
+	    const once = 20;
+	    // 2. 全部渲染完需要多少次，循环的时候要用
+	    const loopCount = total / once;
+	   // 3. 已经渲染了多少次
+	   let countHasRender = 0;
+	   
+	   function add() {
+	     // 创建虚拟节点，（使用 createDocumentFragment 不会触发渲染）
+	     const fragment = document.createDocumentFragment();
+	     // 循环 20 次
+	     for (let i = 0; i < once; i++) {
+	       const li = document.createElement('li');
+	       li.innerText = Math.floor(Math.random() * total);
+	       fragment.appendChild(li);
+	     }
+	     // 最后把虚拟节点 append 到 ul 上
+	     ul.appendChild(fragment);
+	     // 4. 已渲染的次数 + 1
+	     countHasRender += 1;
+	     loop();
+	   }
+	   
+	   // 最重要的部分来了
+	   function loop() {
+	     // 5. 如果还没渲染完，那么就使用 requestAnimationFrame 来继续渲染
+	     if (countHasRender < loopCount) {
+	       // requestAnimationFrame 叫做逐帧渲染
+	       // 类似于 setTimeout(add, 16);
+	       // 帧：一秒钟播放多少张图片，一秒钟播放的图片越多，动画就约流畅
+	       // 1000/60 = 16
+	       window.requestAnimationFrame(add);
+	     }
+	   }
+	   loop();
+	   
+	   
+	   你都做过哪些Vue的性能优化？
+	   
+	   编码阶段
+	   尽量减少data中的数据，data中的数据都会增加getter和setter，会收集对应的watcher
+	   v-if和v-for不能连用
+	   如果需要使用v-for给每项元素绑定事件时使用事件代理
+	   SPA 页面采用keep-alive缓存组件
+	   在更多的情况下，使用v-if替代v-show
+	   key保证唯一
+	   使用路由懒加载、异步组件
+	   防抖、节流
+	   第三方模块按需导入
+	   长列表滚动到可视区域动态加载
+	   图片懒加载
+	   SEO优化
+	   预渲染
+	   服务端渲染SSR
+	   打包优化
+	   压缩代码
+	   Tree Shaking/Scope Hoisting
+	   使用cdn加载第三方模块
+	   多线程打包happypack
+	   splitChunks抽离公共文件
+	   sourceMap优化
+	   用户体验
+	   骨架屏
+	   PWA
+	   还可以使用缓存(客户端缓存、服务端缓存)优化、服务端开启gzip压缩等。
+	   
+	   
+	   
+	   
+	   
+	   
 	   
 	   
 	   

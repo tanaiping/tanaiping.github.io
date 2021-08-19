@@ -30,11 +30,15 @@
   color: #999;
   font-size: 28rpx;
 }
+/* .order-detail-elem .t1{
+  width: 60rpx;
+} */
 .order-detail-elem.f24{
   font-size: 24rpx;
 }
 .order-detail-elem .order-val{
   color: #333;
+  text-align: right;
 }
 .line{
   width: 100%;
