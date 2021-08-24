@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> -->
+		<title>管理后台</title>
+		<script>
+			　document.write("<link rel='stylesheet' href='../css/layui.css?v="+Math.random()+"'>");
+  　document.write("<link rel='stylesheet' href='../css/main.css?v="+Math.random()+"'>"); 
+  </script>
+	</head>
+	<body>
+		<div class="page-box">
+			<div class="Breadcrumb">
+				<div class="Breadcrumb-title">广告管理 / 广告配置</div>
+				<!-- <button class="layui-btn layui-btn-normal back-btn" >返回</button> -->
+			</div>
+			<div class="content-box">
+				<form class="layui-form" action=""  style="width: 100%;">
+					<div class="layui-form-item">
+						<label class="layui-form-label">广告图</label>
+						<div class="layui-input-inline" style="width: 114px;">
+							  <button type="button" class="layui-btn" id="uploadAdImg">
+							  <i class="layui-icon"></i>上传图片
+							</button><input class="layui-upload-file" type="file" accept="undefined" name="file">
+						  </div>
+						<label class="layui-form-label layui-form-auto" style="color: #c3c3c3;">尺寸规格：750px*300px</label>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">&nbsp;</label>
+						<div class="layui-input-inline flex-imglist">
+							<div class="upload-img-elem mr15" id="picurl" picurl="">
+								<div class="img-close-icon"></div>
+							</div>
+						 </div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">跳转链接</label>
+						<div class="layui-input-inline" style="width: 300px;">
+							<input type="text" placeholder="请输入跳转链接" autocomplete="off" class="layui-input" id="gourl">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">&nbsp;</label>
+						<div class="layui-input-inline">
+							<button class="layui-btn layui-btn-normal" lay-submit="" lay-filter="saveAd">保存</button>
+						</div>
+					</div>
+					
+				</form>
+			</div>
+		</div>
+		<script>
+			document.write("<s" + "cript type='text/javascript' src='../layui.js?" + Math.random() + "'></s" + "cript>");
+			document.write("<s" + "cript type='text/javascript' src='../../com_config.js?" + Math.random() + "'></s" + "cript>");
+			document.write("<s" + "cript type='text/javascript' src='../js/validation.js?" + Math.random() + "'></s" + "cript>");
+			document.write("<s" + "cript type='text/javascript' src='../js/ad/adSet.js?" + Math.random() + "'></s" + "cript>");
+		</script>
+	</body>
+</html>

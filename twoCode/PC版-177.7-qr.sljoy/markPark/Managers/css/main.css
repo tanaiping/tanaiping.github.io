@@ -1,0 +1,398 @@
+body{
+	background: #f3f3f3;
+}
+.layui-login-bg{
+	background-color: #f0f0f0;
+}
+.mb20{
+	margin-bottom: 20px;
+}
+.layui-nav{
+	background-color:#7a7a7a;
+}
+.layui-layout-admin .layui-header{
+	background-color: #e6b666;
+}
+.layui-nav .layui-nav-item a.log-out{
+	color: #616161;
+}
+.layui-layout-admin .layui-logo{
+	color: #FFF;
+	text-align: left;
+	text-indent: 30px;
+	font-size: 22px;
+}
+.layui-bg-self{
+	background: #7a7a7a;
+}
+.layui-login{
+	position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 850px;
+    height: 460px;
+    margin: -230px 0 0 -400px;
+    background:#FFF url(../images/loginbox.jpg) left top no-repeat;
+	
+}
+.login-con{
+	padding: 90px 60px 0 460px;width: 330px;
+	}
+.layui-login-title{
+	text-align: center;
+	line-height: 60px;
+	height: 60px;
+	margin-bottom: 50px;
+	font-size: 22px;
+}
+.layui-login-tab{
+	display: flex;
+	padding:10px 0 33px;
+}
+.layui-login-tab li{
+	flex-direction: row;
+ 	flex: 1;
+ 	text-align: center;
+ 	font-size: 16px;
+ 	cursor: pointer;
+ 	color: #6ea0b0;
+ 	line-height: 20px; 
+ 	height: 20px;
+ }
+ .layui-login-tab li:nth-child(2){
+	border: solid #feffff;
+	border-width: 0 1px;
+ }
+ .layui-login-tab li.act{
+ 	color: #feffff;
+ }
+ .layui-login-center{
+ 	display: flex;
+ 	justify-content: center;
+ }
+ .layui-login-submit{
+ 	width: 100%;
+ 	background-color: #51b4cc;
+ 	font-size: 16px;
+ 	color: #ffffff;
+ 	margin-top: 20px;
+ }
+ #login_box .layui-form-item{
+ 	margin-bottom: 20px;
+ }
+ .layui-form-item .layui-input-inline{
+ 	width: 300px;
+ }
+ .layui-form-label{
+ 	width: 100px;
+ }
+ .layui-form-label.layui-form-auto{
+ 	width: auto;
+ }
+ .layui-textarea{
+ 	resize:none;
+ }
+ .layui-input-date{
+ 	background: url(../images/icon.png) right center no-repeat;
+
+ }
+ .layui-date-area{
+ 	display: flex;
+ 	flex-direction: row;
+	float: left;
+	margin-right: 20px;
+ }
+ #pageList{
+ 	display: flex;
+ 	justify-content: flex-end;
+ 	padding-right: 20px;
+ }
+ .link-text{
+ 	color: #01AAED
+ }
+
+.layui-color-orange{
+ 	color: #FF5722 !important
+ }
+.layui-table td, .layui-table th{
+	line-height: 30px;
+	word-break: break-word;
+	max-width: 260px;
+}
+.layui-header-menu{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	padding: 15px;
+}
+#user_name{
+	background:#FFF;
+	border: none;
+	line-height:40px;
+	height: 40px;
+	border-bottom: 1px solid #686c6dd4;
+	color: #666;
+}
+#user_pwd{
+	background:#FFF;
+	border: none;
+	line-height:40px;
+	height: 40px;
+	border-bottom: 1px solid #686c6dd4;
+	color: #666;
+}
+#user_name::-webkit-input-placeholder,#user_pwd::-webkit-input-placeholder{
+	color: #666;
+}
+
+/*layui-btn*/
+
+#login-btn{
+	background-color:#6a4e27;
+	border-radius: 30px;
+	margin-top: 40px;
+}
+.layui-btn.layui-btn-warm {
+    background-color: #607d8b;
+}
+.layui-btn.layui-btn-normal {
+    background-color: #6a4e27;
+}
+.layui-btn.layui-btn-danger {
+    background-color: #ffae3a;
+}
+.layui-btn.layui-self-disabled {
+    background-color: #ccc;
+	color: #FFF;
+}
+.layui-btn.layui-btn-danger.layui-btn-disabled {
+    background-color: #ccc;
+	color: #FFF;
+}
+.layui-layout-admin .layui-body{
+	bottom: auto;
+}
+.back-link{
+	background: url(../images/back.png)center left no-repeat;
+	background-size:contain;
+	display: block;
+	height: 36px;
+	line-height: 36px;
+	position: absolute;
+	left:0px;
+	top: 10px;
+	padding-left: 50px;
+	font-size: 18px;
+}
+.coupon-uploadimg{
+	width: 100%;
+	height: auto;
+}
+.layui-flex-right{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	flex-wrap: wrap;
+}
+.layui-ml20{
+	margin-left: 20px;
+}
+
+.layui-form-label.layui-form-label-auto{
+	width: auto;
+}
+
+.layui-header-com {
+    height: 36px;
+    border-bottom: 1px solid #dfe4ed;
+    position: relative;
+    padding: 10px 30px;
+    margin-bottom: 15px;
+}
+.layui-header-pad{
+	padding: 15px 0 5px 0;
+}
+.layui-header-title{
+	height: 36px;
+	line-height: 36px;
+	position: absolute;
+	left:0px;
+	top: 10px;
+	padding-left: 30px;
+	font-size: 18px;
+}
+
+.aud_reason{
+	text-decoration: underline;
+}
+/*/css/modules/layer/default/loading-0.gif   loading的图片*/
+.layui-textarea{
+	width: 500px;
+	height: 160px;
+}
+.layui-table td.layui-td-nodata{
+	height: 500px;
+	text-align: center;
+	background: url(../images/no_data.png) center center no-repeat;
+}
+.layui-form-label.layui-value{width: 300px;}
+.list_logo{width: 300px;}
+.detail_logo,.upload-banner-img,.upload-attr-img{width: 300px; height: 128px;}
+.upload-thumbnail-img,.upload-thumbnail-img2{width: 200px;height: 200px;}
+.banner-wrap{position: absolute; left: 0px;top: 0px; background: url(../images/black_bg.png) repeat;width: 300px; height: 128px; display: none;}
+.top-wrap{position: absolute; left: 0px;top: 0px; background: url(../images/black_bg.png) repeat;width: 300px; height: 94px; display: none;}
+.upload-banner{position: absolute; left: 93px;top:45px;}
+.reload-img{position: absolute; right: 40px; bottom: 5px;  background: url(../images/reupload.png) no-repeat; background-size: cover;width: 20px;height: 20px; display: none;}
+.del-img{position: absolute; right: 10px; bottom: 5px;  background: url(../images/delete.png) no-repeat; background-size: cover;width: 20px;height: 20px; display: none;}
+
+.top-uploadbox.has:hover .top-wrap,.top-uploadbox.has:hover .del-img{display: block;}
+
+.banner-uploadbox:hover .banner-wrap{display: block;}
+.banner-uploadbox.has .reload-img,.banner-uploadbox.has .del-img{display: block;}
+.banner-uploadbox.has .upload-banner{display: none;}
+.banner-images{display: flex;flex-wrap: wrap;}
+.banner-uploadbox{margin-bottom: 10px;}
+.dataDesc{color:#51b4cc;word-break: break-all; width: 800px; line-height: 30px;border: 1px solid #c3c3c3;padding: 15px; display: none;}
+
+#detail_logo{display: flex;flex-wrap: wrap;}
+#detail_logo img{margin:0 10px 10px 0;}
+
+.layui-layedit{width: 800px;}
+
+.layui-icon-del{background: url(../images/del.png) center top no-repeat; background-size: contain; width: 34px;height: 34px; float: left;cursor: pointer;}
+.compare-box{height: 420px;display: flex; justify-content: space-between; overflow: auto;}
+.compare-left,.compare-right{width: 49.5%;}
+.compare-bl{border-left: 2px solid #ccc;}
+.compare-br{border-right: 2px solid #ccc;}
+.layui-t-red{color: red;}
+.customBtn{background: #51b4cc url(../images/add.png) 10px center no-repeat; padding-left: 40px;background-size: 22px;}
+.ticket-recover{background-color:#32a293}
+.ticket-pause{background-color:#4465a0;} 
+.edui-editor-bottomContainer{display: none;}
+
+
+.layui-layout-admin .user-name{position: absolute;right:120px;top: 0; width: 200px; height: 100%; line-height: 60px;
+    text-align: center; color: #009688; font-size: 16px;}
+.layui-layout-admin .user-name span{padding-left: 15px;}
+.mt30{margin-top: 30px;}
+.mt20{margin-top: 20px;}
+.mr15{margin-right: 15px;}
+.mb15{margin-bottom: 15px;}
+.mr20{margin-right: 20px;}
+.layui-flex{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+.page-box{
+	padding:30px;
+}
+.filter-box,.content-box{
+	background: #FFF;
+	padding: 40px 20px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+.page-title{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	width: 100%;
+	padding-bottom: 20px;
+	border-bottom: 1px solid #ccc;
+}
+.com-title{
+	line-height: 38px;
+	font-size: 18px;
+	color: #333;
+	font-weight: bold;
+}
+.tab-btnlist{
+	display: flex;
+	flex-direction: row;
+}
+.tab-btnlist label{ margin:0 8px;}
+.table-bottom{
+	display: flex;
+	justify-content: space-between;
+}
+.checkall-export{
+	display: flex;
+	padding: 5px 15px;
+}
+.blue-btn{
+	color: #62c7be;
+}
+.Breadcrumb{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	width: 100%;
+	padding-bottom: 20px;
+}
+.Breadcrumb-title{
+	line-height: 38px;
+	font-size: 18px;
+	color: #333;
+}
+.second-title{
+	font-size: 16px;
+	padding-bottom: 20px;
+	line-height: 30px;
+	color: #666;
+}
+.upload-img-elem{
+	width: 200px;
+	height: 200px;
+	position: relative;
+	background: url(../images/default.png) center center no-repeat;
+	background-size: contain;
+}
+.upload-img-elem .img-close-icon,.upload-img-elem .img-close-icon2{
+	position: absolute;right: -10px;top: -10px; 
+	background: url(../images/close.png) no-repeat; 
+	background-size: contain; width: 30px;height: 30px;
+	display: none;
+	cursor: pointer;
+}
+.upload-img-elem.has .img-close-icon,.upload-img-elem.has .img-close-icon2{
+	display: block;
+}
+.flex-imglist{
+	display: flex;
+	flex-wrap: wrap;
+}
+.layui-form-btn{
+	line-height: 38px;
+	height: 38px;
+	color: #62c7be;
+	cursor: pointer;
+}
+.pageSucees{
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+}
+.suc-txt{
+	line-height: 40px;
+}
+.suc-code{margin: 30px 0 10px 0; width: 200px;}
+.flex-between{
+	display: flex;
+	justify-content: space-between;
+}
+.layui-form-things,.layui-form-relative{background: url(../images/del.png) left center no-repeat; background-size: auto 80%; cursor: pointer;}
+.img-bgshow{width: 200px;height: 200px; background-size: contain;background-position: center center; background-repeat: no-repeat;margin:0 10px 10px 0}
+.flex-row{display: flex;flex-direction: row; flex-wrap: wrap;}
+.w200{width: 200px;}
+.txt-desc{text-align: center;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
+.commu-txt-box{display: flex;}
+.community-imgbox{display: flex; flex-wrap: wrap;padding-top: 10px;}
+.community-imgbox img{width: 40px;height: 40px;margin:0 10px 10px 0;}
+.copy-btn{display: inline-block;width: auto; height: 38px;  line-height: 38px;  padding: 0 18px;  background-color: #6a4e27;  color: #fff;
+	    white-space: nowrap;  text-align: center;  font-size: 14px; border: none; border-radius: 2px; cursor: pointer;}
+.user-link{text-align: left; line-height: 38px; width: 500px;}
