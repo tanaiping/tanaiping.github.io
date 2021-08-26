@@ -1,4 +1,4 @@
-body{background-color: #FFF;}
+body{background-color: #FFF; display: none;}
 img{vertical-align: top;}
 .banner{background:#191919 url(../images/banner.jpg) center top no-repeat; background-size: auto 90%; width:100%; height: 600px;}
 .wrap{width: 960px;margin: 0 auto;position: relative;}
@@ -71,14 +71,29 @@ img{vertical-align: top;}
 .contact-us{display: flex;flex-direction: row; justify-content: center;}
 .contact-us li{width: 160px;margin: 0 50px; display: flex; flex-direction: column; margin-bottom: 100px;}
 .contact-us li .txt{ color: #999; font-size: 14px; text-align: center;}
+.head-desc{
+	position: absolute;
+	left: 530px;
+	top: 476px;
+	font-size: 14px;
+	color: #FFF;
+	width: 405px;
+	line-height: 23px;
+}
+.head-desc a{
+	color: #ab8f71;
+	margin: 0 .03rem;
+	text-decoration: underline;
+}
 @media screen and (max-width: 750px) { /*当屏幕尺寸小于600px时，应用下面的CSS样式*/
    .swiper-container{display: block;}    
    .user-list{display: none;}
-   .banner{background:#191919 url(../images/banner2.jpg) center top no-repeat; background-size: contain; width:100%; height: 2.52rem;}
+   .banner{background:#191919 url(../images/banner2.jpg) center top no-repeat; background-size: contain; width:100%; height: 3.22rem;}
    .btn-ios{background: url(../images/btn-ios.png) left top no-repeat;background-size: contain; width: 1.4rem; height: .38rem;position: absolute;left: .06rem; top: 1.91rem; }
    .btn-and{background: url(../images/btn-and.png) left top no-repeat;background-size: contain; width: 1.4rem; height: .38rem;position: absolute;left: 1.606rem; top: 1.91rem;}
    .wrap{width: 100%;max-width: 3rem; margin: 0 auto;position: relative;}
    .head-txt{position: absolute; left: 50%; top: 1.165rem;font-size: .12rem;color: #FFF; width: 3.22rem; line-height: .2rem; margin-left: -1.61rem;text-align: center;}
+   .head-desc{position: absolute; left: 50%; top: 2.46rem;font-size: .12rem;color: #FFF; width: 3.22rem; line-height: .2rem; margin-left: -1.61rem;text-align: center;}
    .com-title{font-size: .2rem;color: #333;text-align: center;padding: .3rem 0 .3rem 0; font-weight: bold;}
    .list01{flex-wrap: wrap;margin-bottom: .1rem;}
    .list01 li{width: 1.43rem; height: 1.9rem; margin-bottom: .2rem;}
