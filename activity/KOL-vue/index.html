@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta http-equiv="Cache-Control" content="no-cache" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="MobileOptimized" content="240" />
+		<meta name="apple-touch-fullscreen" content="YES" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="email=no" name="format-detection" />
+		<!-- uc强制竖屏 -->
+		<meta name="screen-orientation" content="portrait">
+		<!-- QQ强制竖屏 -->
+		<meta name="x5-orientation" content="portrait">
+		<!-- UC强制全屏 -->
+		<meta name="full-screen" content="yes">
+		<!-- QQ强制全屏 -->
+		<meta name="x5-fullscreen" content="true">
+		<!-- UC应用模式 -->
+		<meta name="browsermode" content="application">
+		<!-- QQ应用模式 -->
+		<meta name="x5-page-mode" content="app">
+		<!-- windows phone 点击无高光 -->
+		<meta name="msapplication-tap-highlight" content="no">
+		<!-- 适应移动端end -->
+		<title>花生地铁</title>
+		<link rel="stylesheet" href="css/base.css">
+		<link rel="stylesheet" href="css/common.css">
+	</head>
+	<body>
+		<div id="app">
+			<div class="wrap">
+				<div class="main-box">
+					<div class="header-img"></div>
+					<div class="form-box">
+						<ul>
+							<li>
+								<label>手机号</label>
+								<input type="tel" v-model="tel"  placeholder="输入手机号码" maxlength="11" pattern="[0-9]*" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
+							</li>
+							<li>
+								<label>验证码</label>
+								<input type="text" v-model="code"  placeholder="输入验证码" class="yzm-input">
+								<div class="code" :class="isdisabled?'disabeld':''"   @click="getCode">{{codeTxt}}</div>
+							</li>
+							<li>
+								<label>昵称</label>
+								<input type="text"  v-model="bookCode" placeholder="输入小红书昵称">
+							</li>
+						</ul>
+						<div class="submit-btn" @click="submitForm">立即入驻</div>
+						<div class="clause-box">
+							<em class="check-ico" :class="isCheck?'checked':''" @click="isCheck = !isCheck"></em>
+							<a href="clause.html" class="clause-txt">同意花生地铁《入驻条款》</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="prompt" id="prompt" :style="{display:(isShow?'block':'none')}"><em>{{msgInfo}}</em></div>
+		</div>
+		
+		<script src="js/vue.js"></script>
+		<script src="js/axios.min.js"></script>
+		<script src="js/public.js"></script>
+		<!-- <script src="js/vconsole.min.js"></script> -->
+		<script>
+			const vue = new Vue({
+				el:'#app',
+				data:{
+					tel:'',
+					code:'',
+					bookCode:'',
+					isCheck:true,
+					msgInfo:'',
+					isShow:false,
+					isdisabled:false,
+					codeTxt:'获取验证码',
+					times:60,
+				},
+				mounted(){
+				},
+				methods:{
+					getCode(){//获取验证码
+						const _this = this;
+						if(!_this.isdisabled){
+							const formData = {
+								tel:_this.tel
+							}
+							axios.post(baseUrl + 'h5api/liuzi/sms/kol', JSON.stringify(formData))
+							.then((res) => {
+							    console.log(res)
+							    if (res.data.code == 1) {
+								  _this.isdisabled = true;
+							      let interval = setInterval(function () {
+							        _this.times--;
+							        _this.codeTxt = _this.times;
+							        if(_this.times == 0){
+									   clearInterval(interval);
+									   _this.codeTxt = '重新获取'
+									   _this.times = 60;
+									   _this.isdisabled = false;
+							        }
+							      }, 1000)
+							    }else{
+									this.showMsg(res.data.msg);
+								}
+							  })
+							  .catch((error) => {
+							    window.console.log(error);
+							  })
+							 
+						}
+					},
+					submitForm(){//表单提交
+						if(!this.isCheck){
+							this.showMsg('请勾选入驻条款');
+							return false;
+						}
+						if(this.tel == ''||this.code == ''||this.bookCode == ''){
+							this.showMsg('请填写入驻信息');
+							return false;
+						}
+						const params = {
+							tel:this.tel,
+							code:this.code,
+							bookCode:this.bookCode,
+						}
+						console.log(params);
+						const _this = this
+						const formData = {
+							tel:_this.tel,
+							code:_this.code,
+							name:_this.bookCode
+						}
+						axios.post(baseUrl + "h5api/liuzi/save/kol", JSON.stringify(formData))
+						  .then((res) => {
+						    console.log(res)
+						    if (res.data.code == 1) {
+							   location.href='success.html'
+						    }else{
+								this.showMsg(res.data.msg);
+							}
+						  })
+						  .catch((error) => {
+						    window.console.log(error);
+						  })
+						
+					},
+					showMsg(msgTxt){//错误提示toast
+						const _this = this;
+						_this.msgInfo = msgTxt;
+						_this.isShow = true;
+						setTimeout(function () {
+						  _this.isShow = false;
+						}, 2000)
+					}
+					
+				}
+			})
+		</script>
+	</body>
+</html>

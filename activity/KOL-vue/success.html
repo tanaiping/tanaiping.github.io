@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta http-equiv="Cache-Control" content="no-cache" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="MobileOptimized" content="240" />
+		<meta name="apple-touch-fullscreen" content="YES" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="email=no" name="format-detection" />
+		<!-- uc强制竖屏 -->
+		<meta name="screen-orientation" content="portrait">
+		<!-- QQ强制竖屏 -->
+		<meta name="x5-orientation" content="portrait">
+		<!-- UC强制全屏 -->
+		<meta name="full-screen" content="yes">
+		<!-- QQ强制全屏 -->
+		<meta name="x5-fullscreen" content="true">
+		<!-- UC应用模式 -->
+		<meta name="browsermode" content="application">
+		<!-- QQ应用模式 -->
+		<meta name="x5-page-mode" content="app">
+		<!-- windows phone 点击无高光 -->
+		<meta name="msapplication-tap-highlight" content="no">
+		<!-- 适应移动端end -->
+		<title>花生地铁</title>
+		<link rel="stylesheet" href="css/base.css">
+		<link rel="stylesheet" href="css/common.css">
+	</head>
+	<body>
+		<div id="app">
+			<div class="wrap">
+				<div class="main-box">
+					<div class="con-box">
+						<div class="flex-center">
+							<img src="images/suc_img.png" alt="" class="suc-img">
+							<div class="suc-t1">您的内容已曝光超<span>100000</span>次</div>
+							<div class="suc-t2">多多分享获得更多关注哦</div>
+						</div>
+						<div class="goapp-btn" @click="goApp">去看看</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="blackbg" :style="{display:(isShow?'block':'none')}" @click="isShow=false"></div>
+			<img class="wx-share" src="images/icon_open.png" alt="" :style="{display:(isShow?'block':'none')}" @click="isShow=false">
+		</div>
+		
+		<script src="js/vue.js"></script>
+		<script src="js/axios.min.js"></script>
+		<script src="js/public.js"></script>
+		<!-- <script src="js/vconsole.min.js"></script> -->
+		<script>
+			const vue = new Vue({
+				el:'#app',
+				data:{
+					isShow:false,
+					isSysBrower:false 
+				},
+				mounted(){
+					this.getBrower();
+				},
+				methods:{
+					goApp(){
+						const _this = this;
+						if (!_this.isSysBrower) {
+							_this.isShow = true;
+						}
+					},
+					getBrower(){
+						const _this = this;
+						let ua = navigator.userAgent.toLowerCase();
+						let browser = {
+							weixin: ua.match(/MicroMessenger/i) == "micromessenger", //微信內置浏览器
+							qq: ua.match(/iPhone\sOS/i) == "iphone os" ? (ua.match(/\sQQ/i) == " qq" && !u.match(/MQQBrowser/i)) : (ua.match(/\sQQ/i) == " qq" && ua.match(/MQQBrowser/i) == "mqqbrowser"), //QQ内置浏览器
+							weibo: ua.match(/WeiBo/i) == "weibo", // 微博内置浏览器
+							alipay: ua.match(/Alipay/i) == "alipay", // 支付宝内置浏览器
+							ding: ua.match(/dingtalk/i) == "dingtalk", //钉钉内置浏览器
+						}
+						if (browser.weixin || browser.qq || browser.ding || browser.alipay || browser.weibo) {
+							_this.isSysBrower = false;
+						}else{
+							_this.isSysBrower = true;
+							window.location.href = "nfyg://1/WiFi"
+							setTimeout(() => {
+								// 下载落地页
+								window.location.href = "http://web.peanut8.com/download"
+							}, 4000);
+						}
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

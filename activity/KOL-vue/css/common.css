@@ -1,0 +1,33 @@
+body{background-color: #37414a; font-size: .14rem;}
+.ope-tc{cursor: pointer;text-align: left;margin:.1rem 0 0 0 ;}
+.prompt{text-align: center;	width: 90%;	position: fixed;margin: auto;left: 0;right: 0;top: 40%;z-index: 10001;display: none;}
+.prompt em{display: inline-block;background: rgba(0,0,0,0.75);padding: 0.1rem .15rem;border-radius: .2rem;color: #FFF;font-size: 0.16rem;line-height: 0.2rem;}
+.blackbg{width: 100%;height: 100%;position: fixed;left: 0;top: 0; background: url(../images/black_bg.png) repeat; z-index: 10; display: none;}
+.wx-share{display: none; position: absolute; right: .2rem; top:.2rem; z-index: 12; width: 2.6rem;}
+body{background: #FFF;}
+.wrap{width: 100%; max-width: 750px;margin: auto;}
+.flex-center{display: flex;flex-direction: column; width: 100%; align-items: center;}
+.main-box{position: relative;}
+.header-img{background: url(../images/headerImg.png) center top no-repeat; background-size: contain; width: 3.75rem; height: 3.38rem;}
+.form-box{margin-top: -.2rem;border-radius: .2rem .2rem 0 0; background-color: #FFF; padding: 0 .24rem;}
+.form-box li{border-bottom: 1px solid #242424; padding: .25rem 0  .12rem 0; display: flex;}
+.form-box li label{line-height: .27rem; height: .27rem; color: #242424; font-size: .16rem; width: .76rem;}
+.form-box li input{line-height: .27rem; height: .27rem; color: #242424; font-size: .16rem; width: 2.51rem; background: transparent;border: none;}
+.form-box li input.yzm-input{width: 1.5rem;}
+.code{width: .91rem; height: .27rem;border:1px solid #242424; line-height: .27rem; font-size: .14rem; box-sizing: border-box; text-align: center; border-radius: .135rem;}
+.code.disabeld{ background-color: #FFF; color: #AFAFAF; border-color: #AFAFAF;}
+.submit-btn{background: #242424; width: 100%; height: .42rem; line-height: .42rem; text-align: center;font-size: .15rem; border-radius: .21rem; color: #FFF; margin-top: .48rem;}
+.submit-btn.disabled{ background-color: #999999;}
+.clause-box{display: flex; align-items: center; justify-content: center; margin-top: .24rem;}
+.check-ico{margin:.04rem; width: .12rem;height: .12rem; background: url(../images/no_check.png) no-repeat; background-size: contain;}
+.checked{background: url(../images/checked.png) no-repeat; background-size: contain;}
+.clause-txt{font-size: .12rem; color: #333;line-height: .12rem;}
+.con-box{margin: .92rem .24rem 0 .24rem;}
+.goapp-btn{background: #242424; width: 100%; height: .42rem; line-height: .42rem; text-align: center;font-size: .15rem; border-radius: .21rem; color: #FFF; margin-top: 1.3rem;}
+.suc-img{width: 2.6rem;}
+.suc-t1{padding: .27rem 0 .07rem 0;color: #242424; font-size: .16rem; line-height: .35rem;}
+.suc-t1 span{font-size: .3rem;}
+.suc-t2{font-size: .16rem;line-height: .22rem; color: #242424;}
+.clause-contxt{padding: .2rem;}
+.clause-title{font-size: .2rem;font-weight: bold;text-align: center;margin-bottom: .35rem;}
+.clause-contxt p{line-height: .2rem; color: #333; font-size: .14rem; margin-bottom: .2rem;}

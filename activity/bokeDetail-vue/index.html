@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>boke</title>
+	<link rel="stylesheet" href="css/common.css">
+	<style>
+		[v-cloak]{
+			display: none
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<div class="main" v-cloak>
+			<audio src="static/手写的从前.mp3" preload="auto" ref="player" > <!-- @canplay="canplay" -->
+				当前浏览器不支持audio
+			</audio>
+			<div class="headbg">
+				<div class="music-cover">
+					<div class="box-yellow"></div>
+					<img class="music-shadow" src="static/shadow.png"/>
+					<div class="die-img-box"><div  class="die-img" ref="die"></div></div>
+					<div class="die-center"></div>
+					<div class="line-box"></div>
+					<img :src="musicData.music_coverImg" alt="" class="music-img">
+				</div>
+			</div>
+			<div class="title">{{musicData.title}}</div>
+			<div class="user-info">
+				<div class="tx-nickname">
+					<img :src="musicData.music_coverImg" alt="" class="user-tx">
+					<div class="nickname">{{musicData.nickname}}</div>
+				</div>
+				<div class="play-num">{{musicData.num}}播放</div>
+			</div>
+			<div class="detail-ope">
+				<div class="detail-l">
+					<div class="zan" @click="openNfygApp">{{musicData.zanNum}}</div>
+					<div class="comment" @click="openNfygApp">{{musicData.zanNum}}</div>
+				</div>
+				<div class="share" @click="openNfygApp"></div>
+			</div>
+			<div class="bar">
+				<div class="music-times-left">{{playTimes}}</div>
+				<div class="progressbar"  ref="runfatbar">
+					<div class="greenbar" ref="runbar" :style="{width:width+'%'}">
+						<span class="yuan"></span>
+					</div>
+				</div>
+				<div class="music-times-right">{{audioTimes}}</div>
+			</div>
+			
+			<div class="music-ope">
+				<div class="forward" @click="openNfygApp"></div>
+				<div class="pre" @click="openNfygApp"></div>
+				<div @click="playMusic" :class="!isPlay?'play':'pause'"></div>
+				<div class="next" @click="openNfygApp"></div>
+				<div class="fast" @click="openNfygApp"></div>
+			</div>
+			<div id="blackbg" v-if="isPop" @click="closePop()"></div>
+			<img src="static/icon_open.png" alt="" id="wx_share" v-if="wxShare" @click="closePop()">
+			<div class="prompt" id="prompt" :style="{display:(isShow?'block':'none')}"><em>{{msgInfo}}</em></div>
+		</div>
+		
+	</div>
+<script src="js/rem.js"></script>
+<script src="js/vue.min.js"></script>
+<script src="js/axios.min.js"></script>
+<!-- <script src="js/vconsole.min.js"></script> -->
+
+<script>
+	var baseUrl = 'http://activity.peanut8.com/';
+	
+	let browser={
+	    versions:function(){
+	        let u = navigator.userAgent, app = navigator.appVersion;
+			let ua = u.toLowerCase();
+	        return {
+	          // 浏览器和设备信息
+	          ie: u.indexOf("Trident") > -1, //IE内核
+	          presto: u.indexOf("Presto") > -1, //opera内核
+	          webKit: u.indexOf("AppleWebKit") > -1, //苹果、谷歌内核
+	          gecko: u.indexOf("Gecko") > -1 && u.indexOf("KHTML") == -1, //火狐内核
+	          iPhone: u.indexOf("iPhone") > -1 || u.indexOf("Mac") > -1, //是否为iPhone或者QQHD浏览器
+	          iPad: u.indexOf("iPad") > -1, //是否iPad
+	          webApp: u.indexOf("Safari") == -1, //是否web应该程序，没有头部与底部
+	          mobile: !!u.match(/AppleWebKit.*Mobile.*/) || (!!u.match(/AppleWebKit/) && u.indexOf("QIHU") && u.indexOf("QIHU") > -1 && u.indexOf("Chrome") < 0), //是否为移动终端
+	          android: ua.match(/Android/i) == "android", //android终端
+	          ios: ua.match(/iPhone\sOS/i) == "iphone os", //ios终端
+	          weixin: ua.match(/MicroMessenger/i) == "micromessenger", //微信內置浏览器
+	          qqb: ua.match(/MQQBrowser/i) == "mqqbrowser" && !u.match(/\sQQ/i), //QQ浏览器
+	          qq: ua.match(/iPhone\sOS/i) == "iphone os" ? (ua.match(/\sQQ/i) == " qq" && !u.match(/MQQBrowser/i)) : (ua.match(/\sQQ/i) == " qq" && ua.match(/MQQBrowser/i) == "mqqbrowser"), //QQ内置浏览器
+	          weibo: ua.match(/WeiBo/i) == "weibo", // 微博内置浏览器
+	          alipay: ua.match(/Alipay/i) == "alipay", // 支付宝内置浏览器
+	          ding: ua.match(/dingtalk/i) == "dingtalk", //钉钉内置浏览器
+	          isNfyg: ua.match(/iPhone\sOS/i) == "iphone os" ? (typeof isNfygPlatform === "function" ? isNfygPlatform() : false) : (window.news ? true : false) //是否花生地铁APP
+	        };
+	    }(),
+	    language:(navigator.browserLanguage || navigator.language).toLowerCase()
+	}
+	
+	
+	new Vue({
+		el:"#app",
+		data() {
+			return{
+				musicData:{
+					music_coverImg:'static/music_img.png',
+					title:'天下无贼主题曲',
+					nickname:'小皮酱',
+					num:'1.2w',
+					zanNum:252,
+					duration:44,
+				},
+				communityId:112,
+				isPop:false,
+				wxShare:false,
+				isPlay:false,
+				audioTimes:'00:00',
+				time:0,
+				Interval:null,
+				loaded:false,
+				width:'0',
+				isAllow:false,
+				rorate:0,
+				dieInterval:null,
+				msgInfo:'',//错误信息
+				isShow:false,//是否显示错误toast
+			}
+		},
+		computed:{
+			playTimes(){
+				if(this.audioTimes != '00:00'){
+					const music = this.$refs.player  // 音频所在对象
+					return this.formatSeconds(this.time<this.musicData.duration?this.time:this.musicData.duration)
+				}
+			}
+		},
+		created() {
+			this.getDetailInfo();
+			document.title = this.musicData.title;
+		},
+		mounted() {
+			const _this = this;
+			const fnt = 100 * (document.documentElement.clientWidth / 750);
+			const music = this.$refs.player  // 音频所在对象
+			const musicBar = this.$refs.runbar  // 颜色进度条所在对象
+			let musicWidth = this.$refs.runfatbar.offsetWidth // 底部进度条总宽
+			
+			setTimeout(function(){
+				_this.audioTimes = _this.formatSeconds(_this.musicData.duration);
+				musicWidth = _this.$refs.runfatbar.offsetWidth // 底部进度条总宽
+				_this.loaded = true;
+			},1000)
+			
+			// _this.$nextTick(() =>{
+			// 	_this.loaded = true;
+			// 	_this.audioTimes = _this.formatSeconds(_this.musicData.duration);
+			// 	musicWidth = _this.$refs.runfatbar.offsetWidth // 底部进度条总宽
+			// 	
+			// })
+			
+			// music.addEventListener('loadedmetadata', function(){
+			// }, false);
+			
+			music.addEventListener('timeupdate', function(v){
+				if(_this.time == Math.ceil(music.currentTime)&& Math.ceil(music.currentTime)!= 0) return false;
+				_this.time = Math.ceil(music.currentTime)
+				let percent = _this.time/music.duration;
+				_this.width = percent*100;
+				
+				if(_this.time>_this.musicData.duration){ //处理播放结束之后 循环  不能用onended事件监听  安卓手机不兼容
+					clearInterval(_this.Interval);
+					clearInterval(_this.dieInterval)
+					_this.time = 0;
+					_this.width = '0';
+					_this.isPlay = false;
+					music.pause();
+					_this.playMusic();
+				}
+			}, false);
+			
+			// 监听颜色进度条是否触摸拖动
+			musicBar.addEventListener('touchmove', (event) => {
+			  if(!this.isAllow) return;//还未播放 不允许拖放 会报错  需要用户先手动点击播放之后才可以;
+			  const events = event.targetTouches[0].pageX-1.02*fnt // 获得触摸拖动的距离  1.02*FNT 进度条离左边距离
+			  // console.log(events)
+			  if(events <= musicWidth) {
+				// musicBar.style.width = `${(events / musicWidth) * 100}%` // 计算进度条所在比例宽度
+				this.width = `${(events / musicWidth) * 100}`
+				// console.log(musicWidth)
+				//改变播放状态
+				music.pause() // 触摸拖动时停止播放
+				//改变播放状态图标
+				// this.$refs.icon.innerHTML = ("&amp;#xe634;");
+				this.isPlay = false;
+			  }
+			})
+			
+			// 监听颜色进度条是否触摸拖动结束
+			musicBar.addEventListener('touchend', () => {
+				if(!this.isAllow) return;//还未播放 不允许拖放 会报错  需要用户先手动点击播放之后才可以;
+			  const touwidth = (musicBar.offsetWidth / musicWidth) // 计算进度条所在比例
+			  music.currentTime = this.musicData.duration * touwidth // 通过所在比例赋值给音频应在的播放时
+				this.width = touwidth*100;
+				this.time = parseInt(music.currentTime)
+				// 改变播放状态，进行播放
+				music.play()
+				this.isPlay = true;
+				// this.$refs.icon.innerHTML = ("&amp;#xe6ad;");
+					
+			  if(touwidth < musicWidth) {
+				music.play() // 根据播放时间开始播放
+				// 更改播放暂停按钮为播放
+				// this.$refs.icon.innerHTML = ("&amp;#xe6ad;");
+				this.isPlay = true;
+			  }else if(touwidth >= musicWidth) {
+				music.pause() // 触摸拖动时停止播放
+				// this.$refs.icon.innerHTML = ("&amp;#xe634;");
+				this.isPlay = false;
+			  }
+			})
+			
+		},
+		methods:{
+			getDetailInfo() {
+				const formData = {
+					tel:''
+				}
+				axios.post(baseUrl + 'h5api/liuzi/sms/kol000', JSON.stringify(formData))
+				.then((res) => {
+				    console.log(res)
+				    if (res.data.code == 1) {
+						console.log("success")
+				    }else{
+						this.showMsg(res.data.msg);
+					}
+				  })
+				  .catch((error) => {
+				    window.console.log(error);
+				  })
+			},
+			showMsg(msgTxt){//错误提示toast
+				const _this = this;
+				_this.msgInfo = msgTxt;
+				_this.isShow = true;
+				setTimeout(function () {
+				  _this.isShow = false;
+				}, 2000)
+			},
+			playMusic(){//播放暂停
+				const _this = this;
+				const music = this.$refs.player  // 音频所在对象
+				if(this.isPlay){
+					music.pause()
+					clearInterval(this.Interval)
+					clearInterval(this.dieInterval)
+				}else{
+					music.play();
+					this.dieInterval = setInterval(function(){
+						//盘子旋转 不能用css3旋转 那样暂停会回到初始位置
+						_this.rorate = (_this.rorate+5)%360;
+						_this.$refs.die.style.transform = 'rotate('+_this.rorate+'deg)';
+					},50)
+					
+				}
+				this.isPlay = !this.isPlay
+				this.isAllow = true;
+			},
+			formatSeconds(value) {  //时长转为时分秒
+				var theTime = parseInt(value);// 秒  
+				var theTime1 = 0;// 分  
+				var theTime2 = 0;// 小时  
+				if(theTime > 60) {  
+					theTime1 = parseInt(theTime/60); 
+					theTime = parseInt(theTime%60);
+					if(theTime1 > 60) {  
+						theTime2 = parseInt(theTime1/60);
+						theTime1 = parseInt(theTime1%60);  
+					}  
+				}  
+				theTime = theTime<10?('0'+theTime):theTime;
+				theTime1 = theTime1<10?('0'+theTime1):theTime1;
+				theTime2 = theTime2<10?('0'+theTime2):theTime2;
+					var result = ""+theTime;  
+					if(theTime1 > 0) {  
+						result = ""+theTime1+":"+result;  
+					}else{
+						result = "00:"+result; 
+					}  
+					if(theTime2 > 0) {  
+						result = ""+theTime2+":"+result;  
+					}
+				return result;  
+			},
+			closePop(){
+				this.isPop = false;
+				this.wxShare = false;
+			},
+			openNfygApp() {// 打开花生地铁APP
+				let _this = this;
+				_this.isPop = true;
+				_this.wxShare = true;
+				return
+				let communityId = this.communityId;
+			  if (browser.versions.weixin || browser.versions.qq || browser.versions.ding || browser.versions.alipay || browser.versions.weibo) {
+					_this.isPop = true;
+					_this.wxShare = true;
+			  } else {
+				  if(browser.versions.ios){
+					  // console.log('nfyg://1/PNCommunityDetailViewController?communityId='+communityId)
+					  window.location.href = 'nfyg://1/PNCommunityDetailViewController?communityId='+communityId
+				  }else{
+					  window.location.href = 'nfyg://launcher?url=nfyg://1/com.nfyg.hsbb.views.community.CommunityDetailActivity?communityId='+communityId
+				  }
+			    //window.location.href = "nfyg://detail?url=" + shareData.url
+			    setTimeout(() => {
+			      // 下载落地页
+			      window.location.href = "http://web.peanut8.com/download"
+			    }, 4000);
+			  }
+			}
+		},
+		beforeDestroy() {
+			clearInterval(this.Interval)
+			clearInterval(this.dieInterval)
+		}
+	})
+</script>
+</body>
+</html>
