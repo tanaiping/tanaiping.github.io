@@ -6,7 +6,7 @@
         <el-input v-model="orderNo" placeholder="请输入订单号" class="filter-input mr10"></el-input>
         <el-input v-model="stationName" placeholder="请输入油站名称" class="filter-input mr10"></el-input>
         <el-input v-model="source" placeholder="请输入渠道名称" class="filter-input mr10"></el-input>
-        
+
         <el-date-picker
               v-model="dateRange"
               type="daterange"
@@ -111,7 +111,7 @@
                 ￥{{!scope.row.contract_price?'0.00':scope.row.contract_price}}
               </template>
             </el-table-column>
-            
+
             <el-table-column align="center"
               label="加油金额">
               <template slot-scope="scope">
@@ -157,9 +157,10 @@
               label="付款时间">
             </el-table-column>
             <el-table-column align="center" width="110px"
-              label="退款原因">
+              label="退款/失败原因">
               <template slot-scope="scope">
-                <div class="ellipsis">{{scope.row.refuntMsg}}</div>
+                <div class="ellipsis" v-if="scope.row.status == 4">{{scope.row.refuntMsg}}</div>
+                <div class="ellipsis" v-if="scope.row.status == 9">{{scope.row.errorMessage}}</div>
               </template>
             </el-table-column>
 

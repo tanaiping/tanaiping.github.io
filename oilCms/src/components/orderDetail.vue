@@ -7,6 +7,9 @@
       <el-form-item label="退款原因：" prop="name" v-if="detailData.status == 4">
         <label style="width: 600px;display: block;">{{detailData.refuntMsg}}</label>
       </el-form-item>
+      <el-form-item label="失败原因：" prop="name" v-if="detailData.status == 9">
+        <label style="width: 600px;display: block;">{{detailData.errorMessage}}</label>
+      </el-form-item>
 
       <el-form-item label="渠道名称：" prop="name" >
        <label >{{detailData.source}}</label>
